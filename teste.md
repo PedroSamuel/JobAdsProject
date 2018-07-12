@@ -15,3 +15,13 @@ asosos
 >>>>>>> b554664574d848062e8e5a9506fad88837965df1
 
 cenas e tal coiso
+
+f
+werg
+er
+geh
+rt
+h
+rt
+h
+t
