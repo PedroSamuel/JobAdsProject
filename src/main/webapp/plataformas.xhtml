@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Gestão de Anúncios</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable 
+			editable="true" style="margin-bottom:20px">
+			<f:facet name="header">
+           Anúncio + 
+       </f:facet>
+			<p:column headerText="Plataformas">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="modelInput" value="#{null}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Estado do Anúncio">
+				
+					
+						<p:inputText />
+				
+			</p:column>
+
+			<p:column headerText="Anúncio Criado">
+		
+						<p:inputText style="width:100%" />
+					
+			</p:column>
+
+			<p:column headerText="Anúncio Expira">
+		
+						<p:inputText style="width:100%" />
+					
+			</p:column>
+
+
+
+			<p:column headerText="Link">
+		
+						<p:inputText style="width:100%" />
+					
+			</p:column>
+
+		</p:dataTable>
+       <p:commandButton value="Voltar" action="listaAnuncios"/>
+	</h:form>
+</h:body>
+</html>

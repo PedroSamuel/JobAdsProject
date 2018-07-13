@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Gestão de Anúncios</title>
+	
+	<style type="text/css">
+	body {
+	  background-color: coral;
+	  }	
+	  
+	button {
+	      color: blue
+	      }
+	</style> 
+</h:head>
+
+<h:body >
+	<p:growl id="growl" showDetail="true" sticky="true" />
+	<h:form>
+		<h1>Criar Anúncio</h1>
+		<h3>Função</h3>
+		<p:inputTextarea value="texto" rows="1" cols="15" />
+		<h3>Manager</h3>
+		<p:inputTextarea value="texto" rows="1" cols="15" />
+		<h3>Referência</h3>
+		<p:inputTextarea value="texto" rows="1" cols="15" />
+        <br />
+        <br />
+		<h:form enctype="multipart/form-data">
+			<p:growl id="messages" showDetail="true" />
+        <br />
+        <h3>Insira o Ficheiro do Anúncio</h3>
+
+			<p:fileUpload value="#{fileUploadView.file}" mode="simple"
+				skinSimple="true" label="Escolher" uploadLabel="Escolher" />
+
+			<p:commandButton value="Submeter" ajax="false"
+				actionListener="#{fileUploadView.upload}" disabled="true" />
+		</h:form>
+
+		<br />
+		<br />
+
+		<p:commandButton value="Guardar" action="listaAnuncios" style="background-color: blue;" />
+		<p:commandButton value="Voltar" action="listaAnuncios" />
+
+	</h:form>
+</h:body>
+</html>
