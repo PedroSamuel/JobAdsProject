@@ -1,7 +1,19 @@
 package model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+
+
+@MappedSuperclass
 public class Entidade {
-	Long id;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected Long id;
+
 
 	public Long getId() {
 		return id;
@@ -11,5 +23,20 @@ public class Entidade {
 		this.id = id;
 	}
 		
+	
+	@Override
+	public boolean equals(Object other) {
+		return (other instanceof Entidade) && (id != null) ? id.equals(((Entidade) other).id) : (other == this);
+	}
+
+	@Override
+	public int hashCode() {
+		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return String.format("ExampleEntity[%d]", id);
+	}
 
 }
