@@ -3,7 +3,7 @@ package model;
 
 import java.util.Date;
 
-public class Anuncio {
+public class Anuncio extends Entidade {
 
 	private String REF;
 	private String funcao;
