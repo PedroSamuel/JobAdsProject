@@ -29,7 +29,14 @@ public class ControlAnuncio {
 		dbA.updateEntity(a);
 	}
 	
-	public void removeProduct() {}
+	public void removeAnuncio(Anuncio anuncio) {
+		dbA.removeEntity(anuncio);
+		
+		updateList();
+	}
 	
-	//dfsdfsdfdfsd
+	public void updateList() {
+		dbA.updateLocalList();
+	}
+	
 }
