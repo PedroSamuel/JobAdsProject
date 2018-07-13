@@ -12,7 +12,7 @@
 	
 	<style type="text/css">
 	body {
-	  background-color: coral;
+	  
 	  }	
 	  
 	button {
@@ -26,11 +26,11 @@
 	<h:form>
 		<h1>Criar Anúncio</h1>
 		<h3>Função</h3>
-		<p:inputTextarea value="texto" rows="1" cols="15" />
+		<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1" cols="15" />
 		<h3>Manager</h3>
-		<p:inputTextarea value="texto" rows="1" cols="15" />
+		<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1" cols="15" />
 		<h3>Referência</h3>
-		<p:inputTextarea value="texto" rows="1" cols="15" />
+		<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1" cols="15" />
         <br />
         <br />
 		<h:form enctype="multipart/form-data">
@@ -48,7 +48,7 @@
 		<br />
 		<br />
 
-		<p:commandButton value="Guardar" action="listaAnuncios" style="background-color: blue;" />
+		<p:commandButton value="Guardar" action="#{anuncioCreate.salvarAnuncio()}" style="background-color: blue;" />
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 
 	</h:form>

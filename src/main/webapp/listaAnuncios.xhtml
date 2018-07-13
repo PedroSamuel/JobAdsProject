@@ -14,38 +14,68 @@
 	<h:form>
 		<p:growl id="msgs" showDetail="true" />
 
-		<p:dataTable editable="true" style="margin-bottom:20px">
+		<p:dataTable id="anuncio1" var="anuncio"
+			value="#{anuncioBean.anuncios}"
+		editable="true" style="margin-bottom:20px">
 			<f:facet name="header">
            Gestão de Anúncios
        </f:facet>
+       
 			<p:column headerText="Função">
-
+<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.funcao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.funcao}" style="width:100%" label="Função" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Manager">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.manager}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.manager}" style="width:100%" label="Manager" />
+					</f:facet>
+				</p:cellEditor>
 
-
-				<p:inputText />
+				
 
 			</p:column>
 
 			<p:column headerText="Referência">
 
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.REF}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.REF}" style="width:100%" label="Referência" />
+					</f:facet>
+				</p:cellEditor>
 
-
-				<p:inputText style="width:100%" />
+				
 
 			</p:column>
 
 			<p:column headerText="Estado">
 
-				<p:inputText style="width:100%" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.estado}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.estado}" style="width:100%" label="Estado" />
+					</f:facet>
+				</p:cellEditor>
 
 			</p:column>
 
 			<p:column headerText="Plataformas">
 
-				<p:inputText style="width:100%" />
 				<p:commandButton value="plataformas" action="plataformas" />
 			</p:column>
 
