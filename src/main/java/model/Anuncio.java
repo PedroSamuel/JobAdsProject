@@ -31,9 +31,9 @@ public class Anuncio extends Entidade {
 	@Column(name = "Requisitos")
 	private String requisitos; 
 	
-	@Column(name = "Data Criação")
+	@Column(name = "DataCriação")
 	private Date dataCriacao;
-	@Column(name = "Ultima Modificação")
+	@Column(name = "UltimaModificação")
     private Date dataModificacao;
 	
     

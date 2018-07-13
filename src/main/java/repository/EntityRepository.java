@@ -12,7 +12,7 @@ import model.Entidade;;
 public abstract class EntityRepository<T extends Entidade> {
 
 	// unitName defined in persistence.xml
-	@PersistenceContext(unitName = "jobads")
+	@PersistenceContext(unitName = "database")
 	protected EntityManager em;
 
 	protected List<T> localList;
