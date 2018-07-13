@@ -3,18 +3,37 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+//import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+//import javax.persistence.FetchType;
+//import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table(name= "Anúncio")
 public class Anuncio extends Entidade {
 
+	private static final long serialVersionUID = 1L;
+	@Column(name = "Referência")
 	private String REF;
+	@Column(name = "Função")
 	private String funcao;
+	@Column(name = "Manager")
 	private String manager;
 	
-	
+	@Column(name = "Estado")
 	private String estado; //posteriormente mudar para enum 
 	
+	@Column(name = "Requisitos")
 	private String requisitos; 
 	
+	@Column(name = "Data Criação")
 	private Date dataCriacao;
+	@Column(name = "Ultima Modificação")
     private Date dataModificacao;
 	
     
@@ -36,7 +55,7 @@ public class Anuncio extends Entidade {
 	}
 	
 	public String getManager() {
-		return manager;
+	 	return manager;
 	}
 	
 	public void setManager(String manager) {
@@ -76,7 +95,10 @@ public class Anuncio extends Entidade {
 	}
 	
     
-    
-	
-	
+	@PreRemove
+	public void preRemove() {
+		//implementar
+		}
 }
+	
+	

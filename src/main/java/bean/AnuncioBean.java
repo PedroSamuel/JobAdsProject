@@ -3,7 +3,8 @@ package bean;
 
 import java.util.Collection;
 
-import javax.enterprise.context.RequestScoped;
+
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,7 +15,7 @@ import model.Anuncio;
 
 
 @Named("anuncioBean")
-@RequestScoped
+@ViewScoped
 public class AnuncioBean {
 
 	@Inject
