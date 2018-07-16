@@ -2,26 +2,43 @@ package model;
 
 import java.util.Date;
 
-public class AnuncioPlataforma {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import javax.persistence.PreRemove;
+import javax.persistence.Table;
+
+
+
+
+@Entity
+@Table(name= "Anúncio - Plataforma")
+public class AnuncioPlataforma extends Entidade{
 	Anuncio anuncio;
-	Plataforma plataforma;
+	
+	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
+	String plataforma;
 	Date Datacriacao;
 	Date DataModificacao;
 	String Estado; // mudar para enum
 	String link;
 	
 	
-	public Anuncio getAnuncio() {
-		return anuncio;
-	}
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
 	}
-	public Plataforma getPlataforma() {
+	
+	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
+	public String getPlataforma() {
 		return plataforma;
 	}
-	public void setPlataforma(Plataforma plataforma) {
+	
+	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
+	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
+	}
+	public Anuncio getAnuncio() {
+		return anuncio;
 	}
 	public Date getDatacriacao() {
 		return Datacriacao;
