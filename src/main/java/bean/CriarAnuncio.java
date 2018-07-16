@@ -28,7 +28,7 @@ public class CriarAnuncio {
 
 	public String salvarAnuncio() {
 		controlAnuncio.criarAnuncio(anuncio);
-		return "index?faces-redirect=true";
+		return "listaAnuncios?faces-redirect=true";
 	}
 
 	public void criarAnuncio() {
