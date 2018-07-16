@@ -14,51 +14,92 @@
 	<h:form>
 		<p:growl id="msgs" showDetail="true" />
 
-		<p:dataTable 
-			editable="true" style="margin-bottom:20px">
+		<p:dataTable editable="true" style="margin-bottom:20px">
 			<f:facet name="header">
-           Anúncio + 
+           Anúncio Ref: ******
        </f:facet>
 			<p:column headerText="Plataformas">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText/>
+						<h:outputText value="#{anuncio.funcao}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="modelInput" value="#{null}" style="width:100%" />
+						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+							label="Função" />
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Estado do Anúncio">
-				
-					
-						<p:inputText />
-				
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.funcao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+							label="Função" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Anúncio Criado">
-		
-						<p:inputText style="width:100%" />
-					
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.funcao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+							label="Função" />
+					</f:facet>
+				</p:cellEditor>
+
 			</p:column>
 
 			<p:column headerText="Anúncio Expira">
-		
-						<p:inputText style="width:100%" />
-					
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.funcao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+							label="Função" />
+					</f:facet>
+				</p:cellEditor>
+
 			</p:column>
 
-
-
 			<p:column headerText="Link">
-		
-						<p:inputText style="width:100%" />
-					
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.funcao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+							label="Função" />
+					</f:facet>
+				</p:cellEditor>
+
+			</p:column>
+
+			<p:column style="width:32px">
+				<p:rowEditor />
+				<p:commandButton icon="ui-icon-trash">
+					<p:confirm header="Confirmação" message="Tem a certeza?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+
 			</p:column>
 
 		</p:dataTable>
-       <p:commandButton value="Voltar" action="listaAnuncios"/>
+		<p:commandButton value="Criar Plataforma" action="criarPlataformas" />
+		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>
 </html>
