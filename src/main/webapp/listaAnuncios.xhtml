@@ -11,23 +11,27 @@
 </h:head>
 <h:body>
 
-	<h:form>
-		<p:growl id="msgs" showDetail="true" />
+	<h:form onkeypress = "if (event.keyCode == 13){return false;}">
+	
 
-		<p:dataTable id="anuncio1" var="anuncio"
-			value="#{anuncioBean.anuncios}"
-		editable="true" style="margin-bottom:20px">
+		<p:dataTable id="dtanuncio" var="anuncio"
+			value="#{anuncioBean.anuncios}" editable="true"
+			style="margin-bottom:20px">
+			
+			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
+			
 			<f:facet name="header">
            Gestão de Anúncios
        </f:facet>
-       
+
 			<p:column headerText="Função">
-<p:cellEditor>
+				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.funcao}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.funcao}" style="width:100%" label="Função" />
+						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+							label="Função" />
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
@@ -38,27 +42,22 @@
 						<h:outputText value="#{anuncio.manager}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.manager}" style="width:100%" label="Manager" />
+						<p:inputText value="#{anuncio.manager}" style="width:100%"
+							label="Manager" />
 					</f:facet>
 				</p:cellEditor>
-
-				
-
 			</p:column>
 
 			<p:column headerText="Referência">
-
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.REF}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.REF}" style="width:100%" label="Referência" />
+						<p:inputText value="#{anuncio.REF}" style="width:100%"
+							label="Referência" />
 					</f:facet>
 				</p:cellEditor>
-
-				
-
 			</p:column>
 
 			<p:column headerText="Estado">
@@ -68,16 +67,35 @@
 						<h:outputText value="#{anuncio.estado}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.estado}" style="width:100%" label="Estado" />
+						<p:inputText value="#{anuncio.estado}" style="width:100%"
+							label="Estado" />
 					</f:facet>
 				</p:cellEditor>
-
 			</p:column>
 
-			<p:column headerText="Plataformas">
-
-				<p:commandButton value="plataformas" action="plataformas" />
+			<p:column style="width:130">
+				<p:commandButton value="Plataformas" action="plataformas" />
 			</p:column>
+
+			<p:column style="width:32px">
+				<p:rowEditor />
+			</p:column>
+
+			<p:column  style="width:32px">
+				<p:commandButton icon="ui-icon-trash"
+					action="#{anuncioBean.removeAnuncio(anuncio)}" 
+					update="dtanuncio">
+					<p:confirm header="Confirmar" message="Tem a certeza?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:column>
+
 
 		</p:dataTable>
 		<p:commandButton value="Criar Anúncio" action="criarAnuncio" />
