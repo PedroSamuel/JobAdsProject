@@ -11,6 +11,7 @@ import repository.RepositorioAnuncioPlataforma;
 
 @RequestScoped
 public class ControlAnuncioPlataforma {
+	
    @Inject
    RepositorioAnuncioPlataforma dbAP;
    

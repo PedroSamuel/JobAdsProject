@@ -1,9 +1,11 @@
 package repository;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 
 import model.AnuncioPlataforma;
 
+@ApplicationScoped
 public class RepositorioAnuncioPlataforma extends EntityRepository<AnuncioPlataforma> {
 	
 	@SuppressWarnings("unchecked")
