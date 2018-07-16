@@ -2,9 +2,14 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import model.AnuncioPlataforma;
 
-public class Plataforma {
+@Entity
+@Table(name= "Plataforma")
+public class Plataforma extends Entidade {
 	String nomePlataforma;
 	int periodoRenovacao;
 	List <AnuncioPlataforma> listaAnuncios;
