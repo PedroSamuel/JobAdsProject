@@ -26,18 +26,18 @@
 	<h:form>
 		<h1>Criar Plataforma</h1>
 		<h3>Plataforma</h3>
- <!--  	<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1" cols="15" /> -->
+<p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.plataforma}" rows="1" cols="15" />
 		<h3>Estado do Anúncio</h3>
-<!--		<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1" cols="15" /> -->
+<p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.estado}anuncioCreate.anuncio.manager}" rows="1" cols="15" /> 
 		<h3>Anúncio Criado</h3>
-<!--    <p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1" cols="15" /> -->
+    <p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.datacriacao}" rows="1" cols="15" /> 
 		<h3>Anúncio Expira</h3>
-<!--    <p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1" cols="15" /> -->
+  <p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.dataModificacao}" rows="1" cols="15" /> 
 		<h3>Link</h3>
-<!--    <p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1" cols="15" />  -->
+  <p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.link}" rows="1" cols="15" />  
         <br />
         <br />
-<!--    <p:commandButton value="Guardar" action="#{anuncioCreate.salvarAnuncio()}" style="background-color: blue;" /> -->
+    <p:commandButton value="Guardar" action="#{anuncioPlataformaCreate.salvarAnuncio()}" style="background-color: blue;" /> 
 		<p:commandButton value="Voltar" action="plataformas" />
 
 	</h:form>
