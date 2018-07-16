@@ -18,9 +18,9 @@ import javax.persistence.Table;
 public class Anuncio extends Entidade {
 
 	private static final long serialVersionUID = 1L;
-	@Column(name = "Referência")
+	@Column(name = "Referencia")
 	private String REF;
-	@Column(name = "Função")
+	@Column(name = "Funçao")
 	private String funcao;
 	@Column(name = "Manager")
 	private String manager;
@@ -31,9 +31,9 @@ public class Anuncio extends Entidade {
 	@Column(name = "Requisitos")
 	private String requisitos; 
 	
-	@Column(name = "DataCriação")
+	@Column(name = "DataCriaçao")
 	private Date dataCriacao;
-	@Column(name = "UltimaModificação")
+	@Column(name = "UltimaModificacao")
     private Date dataModificacao;
 	
     
