@@ -11,7 +11,6 @@ import javax.persistence.Table;
 import model.AnuncioPlataforma;
 
 @Entity
-@Table(name= "Plataforma")
 public class Plataforma extends Entidade {
 	private static final long serialVersionUID = 1L;
 	

@@ -11,20 +11,23 @@
 </h:head>
 <h:body>
 
-	<h:form>
-		<p:growl id="msgs" showDetail="true" />
+	<h:form onkeypress = "if (event.keyCode == 13){return false;}">
+		
 
-		<p:dataTable editable="true" style="margin-bottom:20px">
+		<p:dataTable editable="true" style="margin-bottom:20px"
+		id="dtplataforma" var="plataforma" value="#{anuncioplataformaBean.anuncioPlataforma}">
+		
+		<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
 			<f:facet name="header">
            Anúncio Ref: ******
        </f:facet>
 			<p:column headerText="Plataformas">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{anuncio.funcao}" />
+						<h:outputText value="#{plataforma.anuncio}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+						<p:inputText value="#{plataforma.anuncio}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
@@ -33,10 +36,10 @@
 			<p:column headerText="Estado do Anúncio">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{anuncio.funcao}" />
+						<h:outputText value="#{plataforma.estado}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+						<p:inputText value="#{plataforma.estado}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
@@ -45,10 +48,10 @@
 			<p:column headerText="Anúncio Criado">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{anuncio.funcao}" />
+						<h:outputText value="#{plataforma.datacriacao}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+						<p:inputText value="#{plataforma.datacriacao}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
@@ -58,10 +61,10 @@
 			<p:column headerText="Anúncio Expira">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{anuncio.funcao}" />
+						<h:outputText value="#{plataforma.dataModificacao}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+						<p:inputText value="#{plataforma.dataModificacao}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
@@ -71,10 +74,10 @@
 			<p:column headerText="Link">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{anuncio.funcao}" />
+						<h:outputText value="#{plataforma.link}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.funcao}" style="width:100%"
+						<p:inputText value="#{plataforma.link}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
@@ -83,7 +86,9 @@
 
 			<p:column style="width:32px">
 				<p:rowEditor />
-				<p:commandButton icon="ui-icon-trash">
+				</p:column>
+				<p:column>
+				<p:commandButton icon="ui-icon-trash" action = "#{anuncioplataformaBean.removeAnuncio(plataforma)}">
 					<p:confirm header="Confirmação" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>

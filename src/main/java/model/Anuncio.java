@@ -14,26 +14,16 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name= "Anúncio")
 public class Anuncio extends Entidade {
 
 	private static final long serialVersionUID = 1L;
-	@Column(name = "Referencia")
 	private String REF;
-	@Column(name = "Funçao")
 	private String funcao;
-	@Column(name = "Manager")
 	private String manager;
-	
-	@Column(name = "Estado")
 	private String estado; //posteriormente mudar para enum 
 	
-	@Column(name = "Requisitos")
 	private String requisitos; 
-	
-	@Column(name = "DataCriaçao")
 	private Date dataCriacao;
-	@Column(name = "UltimaModificacao")
     private Date dataModificacao;
 	
     
