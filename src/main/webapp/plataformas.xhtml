@@ -21,17 +21,7 @@
 			<f:facet name="header">
            Anúncio Ref: ******
        </f:facet>
-			<p:column headerText="Plataformas">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{plataforma.anuncio}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{plataforma.anuncio}" style="width:100%"
-							label="Função" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+			
 
 			<p:column headerText="Estado do Anúncio">
 				<p:cellEditor>
@@ -87,8 +77,9 @@
 			<p:column style="width:32px">
 				<p:rowEditor />
 				</p:column>
-				<p:column>
-				<p:commandButton icon="ui-icon-trash" action = "#{anuncioplataformaBean.removeAnuncio(plataforma)}">
+				<p:column style="width:32px">
+				<p:commandButton icon="ui-icon-trash" action = "#{anuncioplataformaBean.removeAnuncio(plataforma)}"
+				update = "dtplataforma">
 					<p:confirm header="Confirmação" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
