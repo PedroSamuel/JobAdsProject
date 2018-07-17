@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name= "Anúncio")
+@Table(name= "Anuncio")
 public class Anuncio extends Entidade {
 
 	private static final long serialVersionUID = 1L;
