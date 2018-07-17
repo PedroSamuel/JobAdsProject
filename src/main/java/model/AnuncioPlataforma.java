@@ -19,7 +19,7 @@ import javax.persistence.PreRemove;
 
 
 @Entity
-@Table(name= "AnúncioPlataforma")
+@Table(name= "AnuncioPlataforma")
 public class AnuncioPlataforma extends Entidade{
 	private static final long serialVersionUID = 1L;
 
