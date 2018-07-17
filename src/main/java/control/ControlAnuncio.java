@@ -29,6 +29,7 @@ public class ControlAnuncio {
 		dbA.updateEntity(a);
 	}
 	
+	
 	public void removeAnuncio(Anuncio anuncio) {
 		dbA.removeEntity(anuncio);
 		
