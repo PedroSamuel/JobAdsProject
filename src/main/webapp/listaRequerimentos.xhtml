@@ -16,9 +16,11 @@
 
 		<p:dataTable id="dtreq" var="req"
 			value="#{}" editable="false"
+			value="#{requerimentoBean.requerimentos}" editable="false"
 			style="margin-bottom:20px">
 			
 			<p:ajax event="rowEdit" listener="#{}" />
+			<p:ajax event="rowEdit" listener="#{requerimentoBean.onRowEdit}" />
 			
 			<f:facet name="header">
           Lista de Requerimentos
@@ -26,6 +28,7 @@
 
 			<p:column headerText="Data Envio">
 				<h:outputText value="#{}" />
+				<h:outputText value="#{req.data}" />
 			</p:column>
 			
 			<p:column headerText="Data Envio">
@@ -34,19 +37,24 @@
 			
 			<p:column headerText="Cargo">
 				<h:outputText value="#{}" />
+			<p:column headerText="Funcao">
+				<h:outputText value="#{req.funcao}" />
 			</p:column>
 			
 			<p:column headerText="e-mail">
 				<h:outputText value="#{}" />
+				<h:outputText value="#{req.email}" />
 			</p:column>
 			
 			<p:column >
 				<p:commandButton value="Ver Detalhes" action="" />
+				<p:commandButton value="Ver Detalhes"  />
 			</p:column>
 			
 			<p:column >
 				<p:commandButton icon="ui-icon-trash"
 					action="#{}" 
+					action="#{requerimentoBean.removerequerimento(req)}" 
 					update="dtreq">
 					<p:confirm header="Confirmar" message="Tem a certeza?"
 						icon="ui-icon-alert" />
