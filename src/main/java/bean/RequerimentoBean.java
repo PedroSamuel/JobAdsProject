@@ -22,12 +22,12 @@ public class RequerimentoBean implements Serializable {
 	ControlRequerimento requerimentoControl;
 	
 	
-	public Collection<Anuncio> getRequerimentos() {
+	public Collection<Requerimento> getRequerimentos() {
 		return requerimentoControl.Requerimentos();
 	}
 
-	public void removeAnuncio(Anuncio anuncio) {
-		requerimentoControl.removeRequerimento(anuncio);
+	public void removerequerimento(Requerimento requerimento) {
+		requerimentoControl.removeRequerimento(requerimento);
 	}
 
 	public void onRowEdit(RowEditEvent event) {

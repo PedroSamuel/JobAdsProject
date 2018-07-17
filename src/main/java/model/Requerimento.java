@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
+
+@Entity
+@Table(name= "Requerimento")
 public class Requerimento extends Entidade {
 	
 	private static final long serialVersionUID = 1L;
@@ -24,7 +27,7 @@ public class Requerimento extends Entidade {
 	
 	String estado;
 	
-	//List <Requerimentos> listaRequerimentos;
+	
 
 	
 	public String getRequerente() {
@@ -96,15 +99,7 @@ public class Requerimento extends Entidade {
 	}
 
 	
-	//public List<Requerimentos> getListaRequerimentos() {
-	//	return listaRequerimentos;
-	//}
-
 	
-	//public void setListaRequerimentos(List<Requerimentos> listaRequerimentos) {
-	//	this.listaRequerimentos = listaRequerimentos;
-	//}
-
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;

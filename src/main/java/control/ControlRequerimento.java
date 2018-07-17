@@ -5,22 +5,21 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-import model.Anuncio;
+
 import model.Requerimento;
-import repository.RepositorioAnuncios;
 import repository.RepositorioRequerimentos;
 
 
 @RequestScoped
 public class ControlRequerimento {
 	@Inject
-	RepositorioAnuncios dbR ;
+	RepositorioRequerimentos dbR ;
 	
-	public void criarAnuncio(Requerimento requerimento) {
+	public void criarRequerimento(Requerimento requerimento) {
 		dbR.createEntity(requerimento);
 	}
 	
-	public List<Requerimento> Anuncios(){
+	public List<Requerimento> Requerimentos(){
 		return dbR.listEntity(Requerimento.class);
 	}
 	
