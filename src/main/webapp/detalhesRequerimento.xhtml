@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Requerimento</title>
+
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<h1 style="text-align: center">Requerimento</h1>
+
+		<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
+
+		<h3>Nome</h3>
+		<h:outputText value="" />
+
+		<h3>Email</h3>
+		<h:outputText value=""/>
+		<br />
+        <br />
+        <br />
+		<h2 style="margin-top: 0">Candidato</h2>
+        <br />
+        
+		<h3>Função</h3>
+		<h:outputText value="" />
+
+		<h3>Requisitos do Candidato</h3>
+		<h:outputText value="" />
+
+		<h3>Observações</h3>
+		<h:outputText value="" />
+		
+		<h3>Estado do Requerimento</h3>
+		<h:outputText value="" />
+
+		<h3>Data do Requerimento</h3>
+		<h:outputText value="" />
+		
+		
+
+	</h:form>
+
+
+
+
+	<h:form>
+
+		<p:commandButton value="Criar" action="pedirRequerimento" />
+		<p:commandButton value="Guardar" action="pedirRequerimento" />
+		<p:commandButton value="Voltar" action="index" />
+
+	</h:form>
+</h:body>
+</html>
