@@ -1,15 +1,19 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 //import javax.persistence.FetchType;
 //import javax.persistence.OneToMany;
 import javax.persistence.PreRemove;
-import javax.persistence.Table;
+
 
 
 
@@ -25,6 +29,9 @@ public class Anuncio extends Entidade {
 	private String requisitos; 
 	private Date dataCriacao;
     private Date dataModificacao;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH })
+	private List<AnuncioPlataforma> listaRelacoes = new ArrayList<AnuncioPlataforma>();
 	
     
     

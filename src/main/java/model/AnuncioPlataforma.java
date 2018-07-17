@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.persistence.PreRemove;
@@ -22,9 +23,8 @@ import javax.persistence.PreRemove;
 public class AnuncioPlataforma extends Entidade{
 	private static final long serialVersionUID = 1L;
 
-	/*@ManyToOne
+	@ManyToOne
 	Anuncio anuncio;
-	*/
 	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
 	String plataforma;
 	Date Datacriacao;
