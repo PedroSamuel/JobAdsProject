@@ -19,7 +19,6 @@ import javax.persistence.PreRemove;
 
 
 @Entity
-@Table(name= "AnuncioPlataforma")
 public class AnuncioPlataforma extends Entidade{
 	private static final long serialVersionUID = 1L;
 
@@ -27,15 +26,10 @@ public class AnuncioPlataforma extends Entidade{
 	Anuncio anuncio;
 	*/
 	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
-	@Column(name="Plataforma")
 	String plataforma;
-	@Column(name="DataCriacao")
 	Date Datacriacao;
-	@Column(name="DataModificacao")
 	Date DataModificacao;
-	@Column(name="Estado")
 	String Estado; // mudar para enum
-	@Column(name="Link")
 	String link;
 	
 	/*

@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name= "Requerimento")
 public class Requerimento extends Entidade {
 	
 	private static final long serialVersionUID = 1L;
