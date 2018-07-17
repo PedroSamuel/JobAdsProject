@@ -33,7 +33,7 @@ import model.AnuncioPlataforma;
 
 		public String salvarAnuncio() {
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
-			return "plataformas?faces-redirect=true";
+			return "index?faces-redirect=true";
 		}
 
 		public void criarAnuncio() {
