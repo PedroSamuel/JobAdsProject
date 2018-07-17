@@ -7,8 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 //import javax.persistence.FetchType;
 //import javax.persistence.OneToMany;
-import javax.persistence.PreRemove;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import javax.persistence.PreRemove;
 
 
 
@@ -17,19 +21,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name= "AnúncioPlataforma")
 public class AnuncioPlataforma extends Entidade{
+	private static final long serialVersionUID = 1L;
+
+	/*@ManyToOne
 	Anuncio anuncio;
-	
+	*/
 	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
+	@Column(name="Plataforma")
 	String plataforma;
+	@Column(name="DataCriacao")
 	Date Datacriacao;
+	@Column(name="DataModificacao")
 	Date DataModificacao;
+	@Column(name="Estado")
 	String Estado; // mudar para enum
+	@Column(name="Link")
 	String link;
 	
-	
+	/*
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
 	}
+	*/
 	
 	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
 	public String getPlataforma() {
@@ -40,9 +53,13 @@ public class AnuncioPlataforma extends Entidade{
 	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
 	}
+	
+	/*
 	public Anuncio getAnuncio() {
 		return anuncio;
 	}
+	*/
+	
 	public Date getDatacriacao() {
 		return Datacriacao;
 	}
@@ -69,5 +86,9 @@ public class AnuncioPlataforma extends Entidade{
 		this.link = link;
 	}
 	
+	@PreRemove
+	public void preRemove() {
+		//implementar
+		}
 	
 }
