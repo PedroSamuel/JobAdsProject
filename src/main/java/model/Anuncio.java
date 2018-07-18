@@ -16,7 +16,6 @@ import javax.persistence.PreRemove;
 
 
 
-
 @Entity
 public class Anuncio extends Entidade {
 

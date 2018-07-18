@@ -76,7 +76,9 @@
 			</p:column>
 
 			<p:column style="width:130">
-				<p:commandButton value="Plataformas" action="plataformas" actionListener="#{anuncioPlataformaBean.anuncio(anuncio)}" />
+				<p:commandButton value="Plataformas" action="listarAnunPlat.xhtml" actionListener="#{anuncioplataformaBean.setAnuncioFromContext()}" >
+					<f:param name="ID" value="#{anuncio.id}" />
+					</p:commandButton>
 			</p:column>
 
 			<p:column style="width:32px">

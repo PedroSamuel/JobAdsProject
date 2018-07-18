@@ -42,6 +42,8 @@ public class ControlAnuncioPlataforma {
 		
 	}
 	
+
+	
 	public void updateAnuncioPlataforma(AnuncioPlataforma ap) {
 		dbAP.updateEntity(ap);
 	}

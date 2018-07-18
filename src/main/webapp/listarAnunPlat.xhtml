@@ -16,9 +16,9 @@
 
 		<p:dataTable editable="true" style="margin-bottom:20px"
 			id="dtplataforma" var="anunPlat"
-			value="#{anuncioplataformaBean.anuncioPlataforma}">
+			value="#{anuncioplataformaBean.SelectAnPlat()}">
 
-			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
+			<p:ajax event="rowEdit" listener="#{anuncioPlataformaBean.onRowEdit}" />
 			<f:facet name="header">
    			Ref Anuncio: 
           <h:outputText value="#{anuncioplataformaBean.anuncio.REF}" />
@@ -93,7 +93,7 @@
 			</p:column>
 
 		</p:dataTable>
-		<p:commandButton value="Associar Plataforma" action="criarAnunPlat" actionListener="#{anuncioPlataformaCreate.anuncio(anuncioPlataformaBean.anuncio)}" />
+		<p:commandButton value="Associar Plataforma" action="criarAnunPlat" actionListener="#{anuncioPlataformaCreate.anuncio(anuncioPlataformaBean)}" />
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>

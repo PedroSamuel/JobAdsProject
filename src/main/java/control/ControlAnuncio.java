@@ -20,6 +20,15 @@ public class ControlAnuncio {
 		return dbA.listEntity(Anuncio.class);
 	}
 	
+	public Anuncio getAnuncio(long id){
+		for (Anuncio anuncio: Anuncios()){
+			if (anuncio.getId() == id) {
+				return anuncio;
+			}
+		}
+		return null;
+	}
+	
 	public Anuncio getAnuncio (Long id) {
 		return dbA.getEntity(Anuncio.class,  id);
 		

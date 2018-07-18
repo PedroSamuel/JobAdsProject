@@ -2,8 +2,10 @@
 
 	package bean;
 
-	import javax.enterprise.context.RequestScoped;
-	import javax.inject.Inject;
+import java.io.Serializable;
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 	import javax.inject.Named;
 
 	import control.ControlAnuncioPlataforma;
@@ -13,10 +15,17 @@ import model.AnuncioPlataforma;
 
 
 	@Named("anuncioPlataformaCreate")
-	@RequestScoped
+	@ViewScoped
 
-	public class AssociarAnuncioPlataforma {
+	public class AssociarAnuncioPlataforma implements Serializable{
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1869695453848976058L;
 
+		private Anuncio anuncio;
+		
 		@Inject
 		private ControlAnuncioPlataforma controlAnuncioPlataforma;
 		
@@ -28,7 +37,7 @@ import model.AnuncioPlataforma;
 			this.anuncio = anuncio;
 		}
 
-		private Anuncio anuncio;
+
 
 		private AnuncioPlataforma anuncioPlataforma = new AnuncioPlataforma();
 
