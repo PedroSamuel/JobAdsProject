@@ -8,7 +8,12 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Gestão de Anúncios</title>
+
 </h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{anuncioplataformaBean.id}"></f:viewParam>
+		<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
+	</f:metadata>
 <h:body>
 
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
@@ -22,7 +27,7 @@
 			<f:facet name="header">
    			Ref Anuncio: 
           <h:outputText value="#{anuncioplataformaBean.anuncio.REF}" />
-       </f:facet>
+			</f:facet>
 
 
 			<p:column headerText="Estado do Anúncio">
@@ -93,7 +98,8 @@
 			</p:column>
 
 		</p:dataTable>
-		<p:commandButton value="Associar Plataforma" action="criarAnunPlat" actionListener="#{anuncioPlataformaCreate.anuncio(anuncioPlataformaBean)}" />
+		<p:commandButton value="Associar Plataforma" action="criarAnunPlat"
+			actionListener="#{anuncioPlataformaCreate.anuncio(anuncioPlataformaBean)}" />
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>

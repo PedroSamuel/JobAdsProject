@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,7 +20,7 @@ import model.AnuncioPlataforma;
 
 
 @Named("anuncioplataformaBean")
-@ViewScoped
+@RequestScoped
 public class AnuncioPlataformaBean implements Serializable{
 	
 	/**
@@ -35,6 +35,7 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 
 	private Anuncio anuncio;
+	private String id;
 	
 	
 	public Collection<AnuncioPlataforma> getAnuncioPlataforma() {
@@ -81,6 +82,25 @@ public class AnuncioPlataformaBean implements Serializable{
 		long id = idParam(fc);
 		Anuncio anuncio = anuncioControl.getAnuncio(id); 
 		return anuncio;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String idx) {
+		id = idx;
+	}
+	
+	public void load(){
+		if (id == (null)) {
+			System.out.println("Fodasse!");
+		} else {
+			long longID = Long.valueOf(id);
+			setAnuncio(anuncioControl.getAnuncio(longID));
+			System.out.println("Ok" + longID);
+		}
+		
 	}
 
 }
