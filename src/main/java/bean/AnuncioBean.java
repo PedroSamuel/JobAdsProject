@@ -22,6 +22,8 @@ public class AnuncioBean implements Serializable {
 	@Inject
 	ControlAnuncio anuncioControl;
 
+	private Anuncio selected;
+	
 	public Collection<Anuncio> getAnuncios() {
 		return anuncioControl.Anuncios();
 	}
@@ -37,6 +39,14 @@ public class AnuncioBean implements Serializable {
 
 	public void updateList() {
 		anuncioControl.updateList();
+	}
+
+	public Anuncio getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Anuncio selected) {
+		this.selected = selected;
 	}
 
 }

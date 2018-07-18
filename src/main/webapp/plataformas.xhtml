@@ -11,19 +11,27 @@
 </h:head>
 <h:body>
 
+	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+
 
 		<p:dataTable editable="true" style="margin-bottom:20px"
+			id="dtplataforma" var="anunPlat"
+			value="#{anuncioplataformaBean.SelectAnPlat()}">
+
+			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
 			<f:facet name="header">
-           Anúncio Ref: ******
+   			Ref Anuncio: 
+          <h:outputText value="#{anuncioplataformaBean.anuncio.REF}" />
        </f:facet>
+
 
 			<p:column headerText="Estado do Anúncio">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{plataforma.estado}" />
+						<h:outputText value="#{anunPlat.estado}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{plataforma.estado}" style="width:100%"
+						<p:inputText value="#{anunPlat.estado}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
@@ -32,22 +40,24 @@
 			<p:column headerText="Anúncio Criado">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{plataforma.datacriacao}" />
+						<h:outputText value="#{anunPlat.datacriacao}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{plataforma.datacriacao}" style="width:100%"
+						<p:inputText value="#{anumPlat.datacriacao}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
 
 			</p:column>
 
-			<p:column headerText="Anúncio Expira">
+			<p:column headerText="Anúncio Modificado">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{plataforma.dataModificacao}" />
+						<h:outputText value="#{anunPlat.dataModificacao}" />
 					</f:facet>
 					<f:facet name="input">
+						<p:inputText value="#{anunPlat.dataModificacao}"
+							style="width:100%" label="Função" />
 					</f:facet>
 				</p:cellEditor>
 
@@ -67,15 +77,8 @@
 			</p:column>
 
 			<p:column style="width:32px">
-				<p:rowEditor />
-				</p:column>
-				<p:column>
-				<p:commandButton icon="ui-icon-trash" action = "#{anuncioplataformaBean.removeAnuncio(plataforma)}">
-			</p:column>
-
-			<p:column style="width:32px">
 				<p:commandButton icon="ui-icon-trash"
-					action="#{anuncioplataformaBean.removeAnuncio(plataforma)}">
+					action="#{anuncioplataformaBean.removeAnuncio(anunPlat)}">
 					<p:confirm header="Confirmação" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
@@ -90,7 +93,7 @@
 			</p:column>
 
 		</p:dataTable>
-		<p:commandButton value="Criar Plataforma" action="criarPlataformas" />
+		<p:commandButton value="Associar Plataforma" action="criarAnunPlat" actionListener="#{anuncioPlataformaCreate.anuncio(anuncioPlataformaBean.anuncio)}" />
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>

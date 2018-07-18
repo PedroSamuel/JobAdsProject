@@ -24,7 +24,7 @@ button {
 <h:body>
 	<p:growl id="growl" showDetail="true" sticky="true" />
 	<h:form>
-		<h1>Criar Plataforma</h1>
+		<h1>Associar Anúncio a Plataforma</h1>
 		<h3>Plataforma</h3>
 		<p:inputTextarea
 			value="#{anuncioPlataformaCreate.anuncioPlataforma.plataforma}"
@@ -38,7 +38,7 @@ button {
 		<p:inputTextarea
 			value="#{anuncioPlataformaCreate.anuncioPlataforma.datacriacao}"
 			rows="1" cols="15" />
-		<h3>Anúncio Expira</h3>
+		<h3>Anúncio Modificado</h3>
 		<p:inputTextarea
 			value="#{anuncioPlataformaCreate.anuncioPlataforma.dataModificacao}"
 			rows="1" cols="15" />
@@ -49,12 +49,12 @@ button {
 		<br />
 		<br />
 		<p:commandButton value="Guardar"
-			action="#{anuncioPlataformaCreate.salvarAnuncio()}"
+			action="#{anuncioPlataformaCreate.salvarAnunPlat()}"
 			style="background-color: blue;" />
   <p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.link}" rows="1" cols="15" />  
         <br />
         <br />
-    <p:commandButton value="Guardar" action="#{anuncioPlataformaCreate.salvarAnuncio()}" /> 
+    <p:commandButton value="Guardar" action="#{anuncioPlataformaCreate.salvarAnunPlat()}" /> 
 		<p:commandButton value="Voltar" action="plataformas" />
 
 	</h:form>

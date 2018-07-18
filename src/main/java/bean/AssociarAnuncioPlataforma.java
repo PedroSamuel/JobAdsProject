@@ -7,8 +7,7 @@
 	import javax.inject.Named;
 
 	import control.ControlAnuncioPlataforma;
-
-	
+import model.Anuncio;
 import model.AnuncioPlataforma;
 
 
@@ -19,7 +18,17 @@ import model.AnuncioPlataforma;
 	public class AssociarAnuncioPlataforma {
 
 		@Inject
-		ControlAnuncioPlataforma controlAnuncioPlataforma;
+		private ControlAnuncioPlataforma controlAnuncioPlataforma;
+		
+		public Anuncio getAnuncio() {
+			return anuncio;
+		}
+
+		public void setAnuncio(Anuncio anuncio) {
+			this.anuncio = anuncio;
+		}
+
+		private Anuncio anuncio;
 
 		private AnuncioPlataforma anuncioPlataforma = new AnuncioPlataforma();
 
@@ -31,13 +40,15 @@ import model.AnuncioPlataforma;
 			anuncioPlataforma = ap;
 		}
 
-		public String salvarAnuncio() {
+		public String salvarAnunPlat() {
+			anuncioPlataforma.setAnuncio(anuncio);
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
 			return "plataformas?faces-redirect=true";
 		}
 
-		public void criarAnuncio() {
+		public void criarAnunPlat() {
 			controlAnuncioPlataforma.criarAnuncioPlataforma(new AnuncioPlataforma());
+			
 		}
 
 	}
