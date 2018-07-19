@@ -4,7 +4,7 @@
 
 import java.io.Serializable;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 	import javax.inject.Named;
 
@@ -16,7 +16,7 @@ import model.AnuncioPlataforma;
 
 
 	@Named("newAnunPlat")
-	@RequestScoped
+	@ViewScoped
 
 	public class AssociarAnuncioPlataforma implements Serializable{
 		
@@ -45,7 +45,7 @@ import model.AnuncioPlataforma;
 
 
 
-		private AnuncioPlataforma anuncioPlataforma	= new AnuncioPlataforma();;
+		private AnuncioPlataforma anuncioPlataforma;
 
 		public AnuncioPlataforma getAnuncioPlataforma() {
 			return anuncioPlataforma;
@@ -56,23 +56,13 @@ import model.AnuncioPlataforma;
 		}
 
 		public String salvarAnunPlat() {
-			if (idAnuncio == (null)) {
-				System.out.println("Não Funcionou!!!!");
-			} else {
-				long longID = Long.valueOf(idAnuncio);
-				setAnuncio(controlAnuncio.getAnuncio(longID));
-				System.out.println("Okok" + longID);
-				
-			}
 			anuncioPlataforma.setAnuncio(anuncio);
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
-			System.out.println("Enviado!");
-			return "listarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
+			return "plataformas?faces-redirect=true";
 		}
 
 		public void criarAnunPlat() {
-
-			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
+			controlAnuncioPlataforma.criarAnuncioPlataforma(new AnuncioPlataforma());
 			
 		}
 		
@@ -84,12 +74,14 @@ import model.AnuncioPlataforma;
 			idAnuncio = idx;
 		}
 		
-		public void load(){ 
+		public void load(){
+			anuncioPlataforma = new AnuncioPlataforma();
 			if (idAnuncio == (null)) {
 				System.out.println("Não Funcionou!");
 			} else {
 				long longID = Long.valueOf(idAnuncio);
 				setAnuncio(controlAnuncio.getAnuncio(longID));
+				anuncioPlataforma.setAnuncio(anuncio);
 				System.out.println("Ok" + longID);
 				
 			}

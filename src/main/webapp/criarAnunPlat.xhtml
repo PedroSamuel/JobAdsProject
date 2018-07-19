@@ -18,46 +18,40 @@ body {
 
 </style>
 </h:head>
- 
-<f:metadata>
-	<f:viewParam name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:viewParam>
-	<f:event listener="#{newAnunPlat.load}" type="preRenderView"></f:event>
-</f:metadata>
-
+	<f:metadata>
+		<f:viewParam name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:viewParam>
+		<f:event listener="#{newAnunPlat.load}" type="preRenderView"></f:event>
+	</f:metadata>
 <h:body>
 	<p:growl id="growl" showDetail="true" sticky="true" />
 	<h:form>
-		<h3>Referência Anuncio: #{newAnunPlat.anuncio.REF}</h3>
-		
-			<h3>Plataforma</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.plataforma}"
+		<h1>Associar Anúncio a Plataforma</h1>
+		<h3>Plataforma</h3>
+		<p:inputTextarea
+			value="#{newAnunPlat.anuncioPlataforma.plataforma}"
 			rows="1" cols="15" />
-		
-
 		<h3>Estado do Anúncio</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.estado}"
-			rows="1" cols="15" />
+		<p:inputTextarea
+			value="#{newAnunPlat.anuncioPlataforma.estado}" rows="1"
+			cols="15" />
+<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.estado}" rows="1" cols="15" /> 
 		<h3>Anúncio Criado</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
+		<p:inputTextarea
+			value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
 			rows="1" cols="15" />
 		<h3>Anúncio Modificado</h3>
 		<p:inputTextarea
-			value="#{newAnunPlat.anuncioPlataforma.dataModificacao}" rows="1"
-			cols="15" />
-		<h3>Link</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.link}"
+			value="#{newAnunPlat.anuncioPlataforma.dataModificacao}"
 			rows="1" cols="15" />
+		<h3>Link</h3>
+		<p:inputTextarea
+			value="#{newAnunPlat.anuncioPlataforma.link}" rows="1"
+			cols="15" />
 		<br />
 		<br />
 
-
-		<h:commandButton action="#{newAnunPlat.salvarAnunPlat()}" value="Gravar">
-		</h:commandButton>
-		
-		<h:button outcome="listarAnunPlat?faces-redirect=true" value="Voltar">
-			<f:param name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:param>
-		</h:button>
-
+    <p:commandButton value="Guardar" action="listarAnunPlat" actionlistener="#{newAnunPlat.salvarAnunPlat()}" /> 
+		<p:commandButton value="Voltar" action="listarAnunPlat" />
 
 	</h:form>
 </h:body>
