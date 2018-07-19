@@ -10,11 +10,6 @@
 	<title>Gestão de Anúncios</title>
 
 </h:head>
-<f:metadata>
-	<f:viewParam name="idAnuncio"
-		value="#{anuncioplataformaBean.idAnuncio}"></f:viewParam>
-	<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
-</f:metadata>
 <h:body>
 
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
@@ -26,38 +21,16 @@
 
 			<p:ajax event="rowEdit" listener="#{anuncioPlataformaBean.onRowEdit}" />
 			<f:facet name="header">
-   			Ref Anuncio: 
-          <h:outputText value="#{anuncioplataformaBean.anuncio.REF}" />
-			</f:facet>
+           <h:outputText  value="Referência: #{anuncioplataformaBean.anuncio.REF}" />
+       </f:facet>
+			
 
-			<p:column headerText="Anúncio">
-					<f:facet name="output">
-						<h:outputText value="#{anunPlat.anuncio.REF}" />
-					</f:facet>
-			</p:column>
-							<p:column headerText="ID">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{anunPlat.id}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{anunPlat.id}" style="width:100%"
-							label="Função" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-				<p:column headerText="Plataforma">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{anunPlat.plataforma}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{anunPlat.plataforma}" style="width:100%"
-							label="Função" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-			<p:column headerText="Estado do Anúncio">
+          
+		
+
+
+
+			<p:column headerText="Estado do Anúncio" sortBy="#{anunPlat.estado}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.estado}" />
@@ -69,7 +42,7 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Anúncio Criado">
+			<p:column headerText="Anúncio Criado" sortBy= "#{anunPlat.datacriacao}" >
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.datacriacao}" />
@@ -82,7 +55,7 @@
 
 			</p:column>
 
-			<p:column headerText="Anúncio Modificado">
+			<p:column headerText="Anúncio Modificado" sortBy="#{anunPlat.dataModificacao}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.dataModificacao}" />
@@ -95,9 +68,9 @@
 
 			</p:column>
 
-			<p:column headerText="Link">
+			<p:column headerText="Link" sortBy= "#{plataforma.link}">
 				<p:cellEditor>
-					<f:facet name="output">
+					<f:facet name="output" >
 						<h:outputText value="#{plataforma.link}" />
 					</f:facet>
 					<f:facet name="input">
@@ -109,9 +82,15 @@
 			</p:column>
 
 			<p:column style="width:32px">
+
+				<p:rowEditor />
+				
+				</p:column>
+				
+				
+				<p:column>
 				<p:commandButton icon="ui-icon-trash"
-					action="#{anuncioplataformaBean.removeAnunPlat(anunPlat)}"
-					update="dtAnunPlat">
+					action="#{anuncioplataformaBean.removeAnuncio(anunPlat)}">
 					<p:confirm header="Confirmação" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
@@ -126,11 +105,10 @@
 			</p:column>
 
 		</p:dataTable>
-		<h:button outcome="criarAnunPlat"
-			value=" Associar Plataforma">
-			<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
-		</h:button>
-
+						<p:button outcome="criarAnunPlat?faces-redirect=true" value=" Associar Plataforma"> 
+					<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
+				</p:button>
+		
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>

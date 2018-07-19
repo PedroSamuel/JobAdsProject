@@ -22,10 +22,10 @@
 		<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
 
 		<h3>Nome</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{requerimentoBean.requerimentos.}" />
 
 		<h3>Email</h3>
-		<h:outputText value=""/>
+		<h:outputText value="#{requerimento.email}"/>
 		<br />
         <br />
         <br />
@@ -33,19 +33,19 @@
         <br />
         
 		<h3>Função</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{requerimentoCreate.requerimento.funcao}" />
 
 		<h3>Requisitos do Candidato</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{requerimentoCreate.requerimento.requisitos}" />
 
 		<h3>Observações</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{requerimentoCreate.requerimento.notas}" />
 		
 		<h3>Estado do Requerimento</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{requerimentoCreate.requerimento.estado}" />
 
 		<h3>Data do Requerimento</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{requerimentoCreate.requerimento.data}" />
 		
 		
 

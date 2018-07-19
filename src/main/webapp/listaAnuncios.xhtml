@@ -18,14 +18,22 @@
 			value="#{anuncioBean.anuncios}" editable="true"
 			style="margin-bottom:20px" rowKey="#{anuncio.id}"
 			selection="#{selected}" selectionMode="single">
+			widgetVar="anucioTable" style="margin-bottom:20px"
+			rowKey="#{anuncio.id}" selection="#{selected}" selectionMode="single"
+			emptyMessage="Não foram encontrados anuncios com os seguintes criterios" filteredValue="#{anuncioBean.filteredAnuncio}">
 
 			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
 
 			<f:facet name="header">
-           Gestão de Anúncios
-       </f:facet>
+			
+			  Gestão de Anúncios
+			  <br />
+				
 
-			<p:column headerText="Função">
+			</f:facet>
+
+			<p:column filterBy="#{anuncio.funcao}" headerText="Função" sortBy="#{anuncio.funcao}"
+				 filterMatchMode="contains">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.funcao}" />
@@ -37,7 +45,8 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Manager">
+			<p:column filterBy="#{anuncio.manager}" headerText="Manager" sortBy="#{anuncio.manager}"
+			filterMatchMode="contains">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.manager}" />
@@ -49,7 +58,8 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Referência">
+			<p:column filterBy="#{anuncio.REF}" headerText="Referência" sortBy="#{anuncio.REF}"
+			filterMatchMode="contains">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.REF}" />
@@ -61,7 +71,8 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Estado">
+			<p:column headerText="Estado" sortBy="#{anuncio.estado}"
+			filterMatchMode="contains">
 
 				<p:cellEditor>
 					<f:facet name="output">
@@ -80,9 +91,10 @@
 
 			<p:column style="width:130">
 				<h:button outcome="listarAnunPlat?faces-redirect=true"
+				<p:button outcome="listarAnunPlat?faces-redirect=true"
 					value="Plataformas">
 					<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
-				</h:button>
+				</p:button>
 			</p:column>
 
 			<p:column style="width:32px">

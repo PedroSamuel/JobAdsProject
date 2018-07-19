@@ -15,9 +15,7 @@ body {
 	
 }
 
-button {
-	color: blue
-}
+
 </style>
 </h:head>
  
@@ -30,25 +28,28 @@ button {
 	<p:growl id="growl" showDetail="true" sticky="true" />
 	<h:form>
 		<h3>Referência Anuncio: #{newAnunPlat.anuncio.REF}</h3>
-		
-			<h3>Plataforma</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.plataforma}"
+		<h1>Associar Anúncio a Plataforma</h1>
+		<h3>Plataforma</h3>
+		<p:inputTextarea
+			value="#{newAnunPlat.anuncioPlataforma.plataforma}"
 			rows="1" cols="15" />
-		
-
 		<h3>Estado do Anúncio</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.estado}"
-			rows="1" cols="15" />
+		<p:inputTextarea
+			value="#{newAnunPlat.anuncioPlataforma.estado}" rows="1"
+			cols="15" />
+<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.estado}" rows="1" cols="15" /> 
 		<h3>Anúncio Criado</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
+		<p:inputTextarea
+			value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
 			rows="1" cols="15" />
 		<h3>Anúncio Modificado</h3>
 		<p:inputTextarea
-			value="#{newAnunPlat.anuncioPlataforma.dataModificacao}" rows="1"
-			cols="15" />
-		<h3>Link</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.link}"
+			value="#{newAnunPlat.anuncioPlataforma.dataModificacao}"
 			rows="1" cols="15" />
+		<h3>Link</h3>
+		<p:inputTextarea
+			value="#{newAnunPlat.anuncioPlataforma.link}" rows="1"
+			cols="15" />
 		<br />
 		<br />
 

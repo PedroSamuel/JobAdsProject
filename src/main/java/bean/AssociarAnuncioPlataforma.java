@@ -56,14 +56,6 @@ import model.AnuncioPlataforma;
 		}
 
 		public String salvarAnunPlat() {
-			if (idAnuncio == (null)) {
-				System.out.println("Não Funcionou!!!!");
-			} else {
-				long longID = Long.valueOf(idAnuncio);
-				setAnuncio(controlAnuncio.getAnuncio(longID));
-				System.out.println("Okok" + longID);
-				
-			}
 			anuncioPlataforma.setAnuncio(anuncio);
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
 			System.out.println("Enviado!");

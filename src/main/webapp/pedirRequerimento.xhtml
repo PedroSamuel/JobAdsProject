@@ -22,10 +22,10 @@
 		<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
 
 		<h3>Nome</h3>
-		<p:inputTextarea rows="1" cols="50" />
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.requerente}" rows="1" cols="50" />
 
 		<h3>Email</h3>
-		<p:inputTextarea rows="1" cols="50" />
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.email}"  rows="1" cols="50" />
 		<br />
 		<br />
 		<br />
@@ -33,32 +33,30 @@
 		<br />
 
 		<h3>Função</h3>
-		<p:inputTextarea rows="1" cols="50" />
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.funcao}" rows="1" cols="50" />
 
 		<h3>Requisitos do Candidato</h3>
-		<p:inputTextarea rows="10" cols="120" counter="display"
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.requisitos}" rows="10" cols="120" counter="display"
 			maxlength="700" counterTemplate="{0} characters remaining."
 			autoResize="false" />
 		<h:outputText id="display" />
 
 		<h3>Observações</h3>
-		<p:inputTextarea rows="3" cols="120" counter="display1"
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.notas}" rows="3" cols="120" counter="display1"
 			maxlength="500" counterTemplate="{0} characters remaining."
 			autoResize="false" />
 		<h:outputText id="display1" />
+		
+		<h3>Estado</h3>
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.estado}" rows="1" cols="30" />
 
 		<h3>Criado</h3>
-		<p:inputTextarea rows="3" cols="120" />
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.data}" rows="1" cols="20" />
 
-	</h:form>
+<br/>
 
-
-
-
-	<h:form>
-
-		<p:commandButton value="Criar" action="pedirRequerimento" />
-		<p:commandButton value="Guardar" action="pedirRequerimento" />
+		<p:commandButton value="Enviar" action="#{requerimentoCreate.salvarRequerimento()}" />
+		<p:commandButton value="Guardar"  />
 		<p:commandButton value="Voltar" action="index" />
 
 	</h:form>
