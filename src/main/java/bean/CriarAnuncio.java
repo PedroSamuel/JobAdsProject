@@ -1,6 +1,9 @@
 package bean;
 
-import javax.enterprise.context.RequestScoped;
+
+import java.io.Serializable;
+
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -10,8 +13,13 @@ import model.Anuncio;
 
 
 @Named("anuncioCreate")
-@RequestScoped
-public class CriarAnuncio {
+@ViewScoped
+public class CriarAnuncio implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5001183263825186972L;
 
 	@Inject
 	ControlAnuncio controlAnuncio;

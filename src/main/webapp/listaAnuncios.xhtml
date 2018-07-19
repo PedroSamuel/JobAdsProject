@@ -16,7 +16,9 @@
 
 		<p:dataTable id="dtanuncio" var="anuncio"
 			value="#{anuncioBean.anuncios}" editable="true"
-			style="margin-bottom:20px">
+			style="margin-bottom:20px"
+				rowKey="#{anuncio.id}" selection="#{selected}"
+				selectionMode="single">
 			
 			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
 			
@@ -74,7 +76,9 @@
 			</p:column>
 
 			<p:column style="width:130">
-				<p:commandButton value="Plataformas" action="plataformas" />
+				<h:button outcome="listarAnunPlat?faces-redirect=true" value="Plataformas"> 
+					<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
+				</h:button>
 			</p:column>
 
 			<p:column style="width:32px">

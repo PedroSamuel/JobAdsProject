@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.persistence.PreRemove;
@@ -22,21 +23,20 @@ import javax.persistence.PreRemove;
 public class AnuncioPlataforma extends Entidade{
 	private static final long serialVersionUID = 1L;
 
-	/*@ManyToOne
-	Anuncio anuncio;
-	*/
+	@ManyToOne
+	private Anuncio anuncio;
 	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
-	String plataforma;
-	Date Datacriacao;
-	Date DataModificacao;
-	String Estado; // mudar para enum
-	String link;
+	private String plataforma;
+	private Date Datacriacao;
+	private Date DataModificacao;
+	private String Estado; // mudar para enum
+	private String link;
 	
-	/*
+	
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
 	}
-	*/
+	
 	
 	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
 	public String getPlataforma() {
@@ -48,11 +48,11 @@ public class AnuncioPlataforma extends Entidade{
 		this.plataforma = plataforma;
 	}
 	
-	/*
+	
 	public Anuncio getAnuncio() {
 		return anuncio;
 	}
-	*/
+
 	
 	public Date getDatacriacao() {
 		return Datacriacao;

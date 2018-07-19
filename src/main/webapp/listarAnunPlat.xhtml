@@ -8,28 +8,41 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Gestão de Anúncios</title>
+
 </h:head>
+	<f:metadata>
+		<f:viewParam name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:viewParam>
+		<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
+	</f:metadata>
 <h:body>
 
-	<h:form onkeypress = "if (event.keyCode == 13){return false;}">
-		
+	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+
 
 		<p:dataTable editable="true" style="margin-bottom:20px"
-		id="dtplataforma" var="plataforma" value="#{anuncioplataformaBean.anuncioPlataforma}">
-		
-		<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
+			id="dtplataforma" var="anunPlat"
+			value="#{anuncioplataformaBean.SelectAnPlat()}">
+
+			<p:ajax event="rowEdit" listener="#{anuncioPlataformaBean.onRowEdit}" />
 			<f:facet name="header">
+<<<<<<< HEAD:src/main/webapp/plataformas.xhtml
            Anúncio Ref: ******
        </f:facet>
 			
+=======
+   			Ref Anuncio: 
+          <h:outputText value="#{anuncioplataformaBean.anuncio.REF}" />
+			</f:facet>
+
+>>>>>>> origin/Pedro-a-partir-Antero2.0:src/main/webapp/listarAnunPlat.xhtml
 
 			<p:column headerText="Estado do Anúncio">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{plataforma.estado}" />
+						<h:outputText value="#{anunPlat.estado}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{plataforma.estado}" style="width:100%"
+						<p:inputText value="#{anunPlat.estado}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
@@ -38,24 +51,24 @@
 			<p:column headerText="Anúncio Criado">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{plataforma.datacriacao}" />
+						<h:outputText value="#{anunPlat.datacriacao}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{plataforma.datacriacao}" style="width:100%"
+						<p:inputText value="#{anumPlat.datacriacao}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
 
 			</p:column>
 
-			<p:column headerText="Anúncio Expira">
+			<p:column headerText="Anúncio Modificado">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{plataforma.dataModificacao}" />
+						<h:outputText value="#{anunPlat.dataModificacao}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{plataforma.dataModificacao}" style="width:100%"
-							label="Função" />
+						<p:inputText value="#{anunPlat.dataModificacao}"
+							style="width:100%" label="Função" />
 					</f:facet>
 				</p:cellEditor>
 
@@ -75,11 +88,16 @@
 			</p:column>
 
 			<p:column style="width:32px">
+<<<<<<< HEAD:src/main/webapp/plataformas.xhtml
 				<p:rowEditor />
 				</p:column>
 				<p:column style="width:32px">
 				<p:commandButton icon="ui-icon-trash" action = "#{anuncioplataformaBean.removeAnuncio(plataforma)}"
 				update = "dtplataforma">
+=======
+				<p:commandButton icon="ui-icon-trash"
+					action="#{anuncioplataformaBean.removeAnuncio(anunPlat)}">
+>>>>>>> origin/Pedro-a-partir-Antero2.0:src/main/webapp/listarAnunPlat.xhtml
 					<p:confirm header="Confirmação" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
@@ -94,7 +112,10 @@
 			</p:column>
 
 		</p:dataTable>
-		<p:commandButton value="Criar Plataforma" action="criarPlataformas" />
+						<h:button outcome="criarAnunPlat?faces-redirect=true" value=" Associar Plataforma"> 
+					<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
+				</h:button>
+		
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>
