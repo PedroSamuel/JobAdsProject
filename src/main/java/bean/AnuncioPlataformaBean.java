@@ -4,10 +4,8 @@ package bean;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -35,7 +33,7 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 
 	private Anuncio anuncio;
-	private String id;
+	private String idAnuncio;
 	
 	
 	public Collection<AnuncioPlataforma> getAnuncioPlataforma() {
@@ -47,11 +45,6 @@ public class AnuncioPlataformaBean implements Serializable{
 		return anuncioControlPlataforma.SelectAnPlat(anuncio);
 	}
 	
-	public long idParam(FacesContext fc){
-		
-		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-		return Long.valueOf(params.get("ID"));
-	}
 
 	public void removeAnuncio(AnuncioPlataforma anuncioplataforma) {
 		anuncioControlPlataforma.removeAnuncioPlataforma(anuncioplataforma);
@@ -77,26 +70,20 @@ public class AnuncioPlataformaBean implements Serializable{
 		this.anuncio = anuncio;
 	}
 
-	public Anuncio setAnuncioFromContext() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		long id = idParam(fc);
-		Anuncio anuncio = anuncioControl.getAnuncio(id); 
-		return anuncio;
+
+	public String getIdAnuncio() {
+		return idAnuncio;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String idx) {
-		id = idx;
+	public void setIdAnuncio(String idx) {
+		idAnuncio = idx;
 	}
 	
 	public void load(){
-		if (id == (null)) {
-			System.out.println("Fodasse!");
+		if (idAnuncio == (null)) {
+			System.out.println("Não Funcionou!");
 		} else {
-			long longID = Long.valueOf(id);
+			long longID = Long.valueOf(idAnuncio);
 			setAnuncio(anuncioControl.getAnuncio(longID));
 			System.out.println("Ok" + longID);
 		}

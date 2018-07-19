@@ -76,9 +76,9 @@
 			</p:column>
 
 			<p:column style="width:130">
-				<h:link outcome="listarAnunPlat?faces-redirect=true" value="Plataformas"> 
-					<f:param name="id" value="1"></f:param>
-				</h:link>
+				<h:button outcome="listarAnunPlat?faces-redirect=true" value="Plataformas"> 
+					<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
+				</h:button>
 			</p:column>
 
 			<p:column style="width:32px">

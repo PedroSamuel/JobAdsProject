@@ -8,13 +8,14 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 	import javax.inject.Named;
 
-	import control.ControlAnuncioPlataforma;
+import control.ControlAnuncio;
+import control.ControlAnuncioPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
 
 
 
-	@Named("anuncioPlataformaCreate")
+	@Named("newAnunPlat")
 	@ViewScoped
 
 	public class AssociarAnuncioPlataforma implements Serializable{
@@ -26,8 +27,13 @@ import model.AnuncioPlataforma;
 
 		private Anuncio anuncio;
 		
+		private String idAnuncio; 
+		
 		@Inject
 		private ControlAnuncioPlataforma controlAnuncioPlataforma;
+		
+		@Inject
+		private ControlAnuncio controlAnuncio;
 		
 		public Anuncio getAnuncio() {
 			return anuncio;
@@ -39,7 +45,7 @@ import model.AnuncioPlataforma;
 
 
 
-		private AnuncioPlataforma anuncioPlataforma = new AnuncioPlataforma();
+		private AnuncioPlataforma anuncioPlataforma;
 
 		public AnuncioPlataforma getAnuncioPlataforma() {
 			return anuncioPlataforma;
@@ -58,6 +64,27 @@ import model.AnuncioPlataforma;
 		public void criarAnunPlat() {
 			controlAnuncioPlataforma.criarAnuncioPlataforma(new AnuncioPlataforma());
 			
+		}
+		
+		public String getIdAnuncio() {
+			return idAnuncio;
+		}
+
+		public void setIdAnuncio(String idx) {
+			idAnuncio = idx;
+		}
+		
+		public void load(){
+			anuncioPlataforma = new AnuncioPlataforma();
+			if (idAnuncio == (null)) {
+				System.out.println("Não Funcionou!");
+			} else {
+				long longID = Long.valueOf(idAnuncio);
+				setAnuncio(controlAnuncio.getAnuncio(longID));
+				anuncioPlataforma.setAnuncio(anuncio);
+				System.out.println("Ok" + longID);
+				
+			}
 		}
 
 	}

@@ -11,7 +11,7 @@
 
 </h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{anuncioplataformaBean.id}"></f:viewParam>
+		<f:viewParam name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:viewParam>
 		<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
 	</f:metadata>
 <h:body>
@@ -98,8 +98,10 @@
 			</p:column>
 
 		</p:dataTable>
-		<p:commandButton value="Associar Plataforma" action="criarAnunPlat"
-			actionListener="#{anuncioPlataformaCreate.anuncio(anuncioPlataformaBean)}" />
+						<h:button outcome="criarAnunPlat?faces-redirect=true" value=" Associar Plataforma"> 
+					<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
+				</h:button>
+		
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>
