@@ -17,6 +17,7 @@ import model.Anuncio;
 import model.AnuncioPlataforma;
 
 
+
 @Named("anuncioplataformaBean")
 @RequestScoped
 public class AnuncioPlataformaBean implements Serializable{
