@@ -16,6 +16,7 @@
 
 		<p:dataTable id="dtanuncio" var="anuncio"
 			value="#{anuncioBean.anuncios}" editable="true"
+			widgetVar="anucioTable"
 			style="margin-bottom:20px"
 				rowKey="#{anuncio.id}" selection="#{selected}"
 				selectionMode="single">
@@ -23,10 +24,16 @@
 			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
 			
 			<f:facet name="header">
-           Gestão de Anúncios
+			<p:outputPanel>
+			  Gestão de Anúncios
+			  <br/>
+                <h:outputText value="Procurar:" />
+                <p:inputText id="globalFilter" onkeyup="PF('anunciotable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+         
        </f:facet>
 
-			<p:column headerText="Função">
+			<p:column headerText="Função" sortBy="#{anuncio.funcao}" footerText="contains" filterMatchMode="contains">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.funcao}" />
@@ -38,7 +45,7 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Manager">
+			<p:column headerText="Manager" sortBy="#{anuncio.manager}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.manager}" />
@@ -50,7 +57,7 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Referência">
+			<p:column headerText="Referência" sortBy="#{anuncio.REF}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.REF}" />
@@ -62,7 +69,7 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Estado">
+			<p:column headerText="Estado" sortBy="#{anuncio.estado}">
 
 				<p:cellEditor>
 					<f:facet name="output">

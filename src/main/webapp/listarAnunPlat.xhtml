@@ -25,18 +25,16 @@
 
 			<p:ajax event="rowEdit" listener="#{anuncioPlataformaBean.onRowEdit}" />
 			<f:facet name="header">
-<<<<<<< HEAD:src/main/webapp/plataformas.xhtml
-           Anúncio Ref: ******
+           <h:outputText value="#{anuncioplataformaBean.anuncio.REF}" />
        </f:facet>
 			
-=======
-   			Ref Anuncio: 
-          <h:outputText value="#{anuncioplataformaBean.anuncio.REF}" />
-			</f:facet>
 
->>>>>>> origin/Pedro-a-partir-Antero2.0:src/main/webapp/listarAnunPlat.xhtml
+          
+		
 
-			<p:column headerText="Estado do Anúncio">
+
+
+			<p:column headerText="Estado do Anúncio" sortBy="#{anunPlat.estado}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.estado}" />
@@ -48,7 +46,7 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Anúncio Criado">
+			<p:column headerText="Anúncio Criado" sortBy= "#{anunPlat.datacriacao}" >
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.datacriacao}" />
@@ -61,7 +59,7 @@
 
 			</p:column>
 
-			<p:column headerText="Anúncio Modificado">
+			<p:column headerText="Anúncio Modificado" sortBy="#{anunPlat.dataModificacao}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.dataModificacao}" />
@@ -74,9 +72,9 @@
 
 			</p:column>
 
-			<p:column headerText="Link">
+			<p:column headerText="Link" sortBy= "#{plataforma.link}">
 				<p:cellEditor>
-					<f:facet name="output">
+					<f:facet name="output" >
 						<h:outputText value="#{plataforma.link}" />
 					</f:facet>
 					<f:facet name="input">
@@ -88,16 +86,15 @@
 			</p:column>
 
 			<p:column style="width:32px">
-<<<<<<< HEAD:src/main/webapp/plataformas.xhtml
+
 				<p:rowEditor />
+				
 				</p:column>
-				<p:column style="width:32px">
-				<p:commandButton icon="ui-icon-trash" action = "#{anuncioplataformaBean.removeAnuncio(plataforma)}"
-				update = "dtplataforma">
-=======
+				
+				
+
 				<p:commandButton icon="ui-icon-trash"
 					action="#{anuncioplataformaBean.removeAnuncio(anunPlat)}">
->>>>>>> origin/Pedro-a-partir-Antero2.0:src/main/webapp/listarAnunPlat.xhtml
 					<p:confirm header="Confirmação" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>

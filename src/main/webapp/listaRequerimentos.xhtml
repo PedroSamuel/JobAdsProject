@@ -11,60 +11,40 @@
 </h:head>
 <h:body>
 
-	<h:form onkeypress = "if (event.keyCode == 13){return false;}">
-	
+	<h:form onkeypress="if (event.keyCode == 13){return false;}">
 
-		<p:dataTable id="dtreq1" var="req"
-			value="#{requerimentoBean.requerimentos}" editable="false"
-			style="margin-bottom:20px">
-			
+
+
 		<p:dataTable id="dtreq" var="req"
-			value="#{}" editable="false"
 			value="#{requerimentoBean.requerimentos}" editable="false"
 			style="margin-bottom:20px">
-			
-			<p:ajax event="rowEdit" listener="#{}" />
+
+
 			<p:ajax event="rowEdit" listener="#{requerimentoBean.onRowEdit}" />
-			
+
 			<f:facet name="header">
           Lista de Requerimentos
        </f:facet>
 
-			<p:column headerText="Data Envio" sortBy="#{req.data}" >
-			<p:column headerText="Data Envio">
-				<h:outputText value="#{}" />
+			<p:column headerText="Data Envio" sortBy="#{req.data}">
 				<h:outputText value="#{req.data}" />
 			</p:column>
-			
-			
+
 			<p:column headerText="Funcao" sortBy="#{req.funcao}">
 				<h:outputText value="#{req.funcao}" />
 			</p:column>
-			
-			<p:column headerText="e-mail" sortBy="#{req.email}">
-			<p:column headerText="Cargo">
-				<h:outputText value="#{}" />
-			<p:column headerText="Funcao">
-				<h:outputText value="#{req.funcao}" />
+
+			<p:column  headerText="e-meail" sortBy="#{req.email}">
+			<h:outputText value="#{req.email}" />
 			</p:column>
-			
-			<p:column headerText="e-mail">
-				<h:outputText value="#{}" />
-				<h:outputText value="#{req.email}" />
-			</p:column>
-			
-			<p:column >
+
+			<p:column>
 				<p:commandButton value="Ver Detalhes" action="detalhesRequerimento" />
-				<p:commandButton value="Ver Detalhes" action="" />
-				<p:commandButton value="Ver Detalhes"  />
 			</p:column>
-			
-			<p:column >
+
+			<p:column>
 				<p:commandButton icon="ui-icon-trash"
-					action="#{requerimentoBean.removerequerimento(req)}" 
-					update="dtreq1">
-					action="#{}" 
-					action="#{requerimentoBean.removerequerimento(req)}" 
+					action="#{requerimentoBean.removerequerimento(req)}" 				
 					update="dtreq">
 					<p:confirm header="Confirmar" message="Tem a certeza?"
 						icon="ui-icon-alert" />
@@ -81,7 +61,7 @@
 
 
 		</p:dataTable>
-		
+
 		<p:commandButton value="Voltar" action="menuRH" />
 	</h:form>
 </h:body>
