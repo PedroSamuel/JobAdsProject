@@ -2,7 +2,6 @@ package model;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import javax.persistence.OneToMany;
 //import javax.persistence.FetchType;
 //import javax.persistence.OneToMany;
 import javax.persistence.PreRemove;
-import javax.faces.model.SelectItem;
 
 
 
@@ -25,24 +23,9 @@ public class Anuncio extends Entidade {
 	private String REF;
 	private String funcao;
 	private String manager;
+	private String estado; //posteriormente mudar para enum 
 	
-	private String estado;
-	
-	
-	
-    //estados [0] = "Manter";
-	
-	
-	//private List <SelectItem> estadoAnuncio;   //posteriormente mudar para enum 
-	
-	
-
 	private String requisitos; 
-	
-	
-	
-	
-
 	private Date dataCriacao;
     private Date dataModificacao;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
@@ -75,18 +58,14 @@ public class Anuncio extends Entidade {
 		this.manager = manager;
 	}
 	
-	
-	
-	
 	public String getEstado() {
 		return estado;
 	}
-
 	
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
+	
 	public String getRequisitos() {
 		return requisitos;
 	}
