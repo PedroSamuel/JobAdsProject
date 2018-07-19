@@ -25,7 +25,7 @@
 
 			<p:ajax event="rowEdit" listener="#{anuncioPlataformaBean.onRowEdit}" />
 			<f:facet name="header">
-           <h:outputText value="#{anuncioplataformaBean.anuncio.REF}" />
+           <h:outputText  value="Referência: #{anuncioplataformaBean.anuncio.REF}" />
        </f:facet>
 			
 
@@ -92,7 +92,7 @@
 				</p:column>
 				
 				
-
+				<p:column>
 				<p:commandButton icon="ui-icon-trash"
 					action="#{anuncioplataformaBean.removeAnuncio(anunPlat)}">
 					<p:confirm header="Confirmação" message="Tem a certeza?"
@@ -109,9 +109,9 @@
 			</p:column>
 
 		</p:dataTable>
-						<h:button outcome="criarAnunPlat?faces-redirect=true" value=" Associar Plataforma"> 
+						<p:button outcome="criarAnunPlat?faces-redirect=true" value=" Associar Plataforma"> 
 					<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
-				</h:button>
+				</p:button>
 		
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>

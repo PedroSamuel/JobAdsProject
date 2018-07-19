@@ -11,29 +11,27 @@
 </h:head>
 <h:body>
 
-	<h:form onkeypress = "if (event.keyCode == 13){return false;}">
-	
+	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+
 
 		<p:dataTable id="dtanuncio" var="anuncio"
 			value="#{anuncioBean.anuncios}" editable="true"
-			widgetVar="anucioTable"
-			style="margin-bottom:20px"
-				rowKey="#{anuncio.id}" selection="#{selected}"
-				selectionMode="single">
-			
-			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
-			
-			<f:facet name="header">
-			<p:outputPanel>
-			  Gestão de Anúncios
-			  <br/>
-                <h:outputText value="Procurar:" />
-                <p:inputText id="globalFilter" onkeyup="PF('anunciotable').filter()" style="width:150px" placeholder="Enter keyword"/>
-            </p:outputPanel>
-         
-       </f:facet>
+			widgetVar="anucioTable" style="margin-bottom:20px"
+			rowKey="#{anuncio.id}" selection="#{selected}" selectionMode="single"
+			emptyMessage="Não foram encontrados anuncios com os seguintes criterios" filteredValue="#{anuncioBean.filteredAnuncio}">
 
-			<p:column headerText="Função" sortBy="#{anuncio.funcao}" footerText="contains" filterMatchMode="contains">
+			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
+
+			<f:facet name="header">
+			
+			  Gestão de Anúncios
+			  <br />
+				
+
+			</f:facet>
+
+			<p:column filterBy="#{anuncio.funcao}" headerText="Função" sortBy="#{anuncio.funcao}"
+				 filterMatchMode="contains">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.funcao}" />
@@ -45,7 +43,8 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Manager" sortBy="#{anuncio.manager}">
+			<p:column filterBy="#{anuncio.manager}" headerText="Manager" sortBy="#{anuncio.manager}"
+			filterMatchMode="contains">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.manager}" />
@@ -57,7 +56,8 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Referência" sortBy="#{anuncio.REF}">
+			<p:column filterBy="#{anuncio.REF}" headerText="Referência" sortBy="#{anuncio.REF}"
+			filterMatchMode="contains">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anuncio.REF}" />
@@ -69,7 +69,8 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Estado" sortBy="#{anuncio.estado}">
+			<p:column headerText="Estado" sortBy="#{anuncio.estado}"
+			filterMatchMode="contains">
 
 				<p:cellEditor>
 					<f:facet name="output">
@@ -83,19 +84,19 @@
 			</p:column>
 
 			<p:column style="width:130">
-				<h:button outcome="listarAnunPlat?faces-redirect=true" value="Plataformas"> 
+				<p:button outcome="listarAnunPlat?faces-redirect=true"
+					value="Plataformas">
 					<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
-				</h:button>
+				</p:button>
 			</p:column>
 
 			<p:column style="width:32px">
 				<p:rowEditor />
 			</p:column>
 
-			<p:column  style="width:32px">
+			<p:column style="width:32px">
 				<p:commandButton icon="ui-icon-trash"
-					action="#{anuncioBean.removeAnuncio(anuncio)}" 
-					update="dtanuncio">
+					action="#{anuncioBean.removeAnuncio(anuncio)}" update="dtanuncio">
 					<p:confirm header="Confirmar" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>

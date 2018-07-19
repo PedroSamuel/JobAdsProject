@@ -26,6 +26,16 @@ public class AnuncioBean implements Serializable {
 
 	@Inject
 	ControlAnuncio anuncioControl;
+	
+	private Collection<Anuncio> filteredAnuncio;
+	
+	public Collection<Anuncio> getFilteredAnuncio() {
+		return filteredAnuncio;
+	}
+
+	public void setFilteredAnuncio(Collection<Anuncio> filteredAnuncio) {
+		this.filteredAnuncio = filteredAnuncio;
+	}
 
 	private Anuncio selected;
 	
