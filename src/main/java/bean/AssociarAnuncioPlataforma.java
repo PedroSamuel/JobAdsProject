@@ -67,6 +67,7 @@ import model.AnuncioPlataforma;
 			anuncioPlataforma.setAnuncio(anuncio);
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
 			System.out.println("Enviado!");
+			System.out.println(anuncio.getREF());
 			return "listarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
 		}
 

@@ -30,8 +30,12 @@
 		<h3>Referência</h3>
 		<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1" cols="15" />
 		<h3>Estado</h3>
-		<p:inputTextarea value="#{anuncioCreate.anuncio.estado}" rows="1" cols="15" />
-		
+            <p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}" style="width:125px">
+               <f:selectItem itemLabel="Selecione um" itemValue="" />
+            <f:selectItem itemLabel="Manter" itemValue="Manter" />
+            <f:selectItem itemLabel="Retirar" itemValue="Retirar" />
+            <f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
+        </p:selectOneMenu>
         <br />
         <br />
 		<h:form enctype="multipart/form-data">

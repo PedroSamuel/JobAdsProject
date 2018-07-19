@@ -11,17 +11,16 @@
 </h:head>
 <h:body>
 
-	<h:form onkeypress = "if (event.keyCode == 13){return false;}">
-	
+	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+
 
 		<p:dataTable id="dtanuncio" var="anuncio"
 			value="#{anuncioBean.anuncios}" editable="true"
-			style="margin-bottom:20px"
-				rowKey="#{anuncio.id}" selection="#{selected}"
-				selectionMode="single">
-			
+			style="margin-bottom:20px" rowKey="#{anuncio.id}"
+			selection="#{selected}" selectionMode="single">
+
 			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
-			
+
 			<f:facet name="header">
            Gestão de Anúncios
        </f:facet>
@@ -69,14 +68,19 @@
 						<h:outputText value="#{anuncio.estado}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.estado}" style="width:100%"
-							label="Estado" />
+						<h:selectOneMenu value="#{anuncio.estado}" style="width:125%">
+							<f:selectItem itemLabel="Selecione um" itemValue="" />
+							<f:selectItem itemLabel="Manter" itemValue="Manter" />
+							<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
+							<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
+						</h:selectOneMenu>
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 
 			<p:column style="width:130">
-				<h:button outcome="listarAnunPlat?faces-redirect=true" value="Plataformas"> 
+				<h:button outcome="listarAnunPlat?faces-redirect=true"
+					value="Plataformas">
 					<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
 				</h:button>
 			</p:column>
@@ -85,10 +89,9 @@
 				<p:rowEditor />
 			</p:column>
 
-			<p:column  style="width:32px">
+			<p:column style="width:32px">
 				<p:commandButton icon="ui-icon-trash"
-					action="#{anuncioBean.removeAnuncio(anuncio)}" 
-					update="dtanuncio">
+					action="#{anuncioBean.removeAnuncio(anuncio)}" update="dtanuncio">
 					<p:confirm header="Confirmar" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
@@ -99,7 +102,6 @@
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				</p:confirmDialog>
 			</p:column>
-
 
 		</p:dataTable>
 		<p:commandButton value="Criar Anúncio" action="criarAnuncio" />
