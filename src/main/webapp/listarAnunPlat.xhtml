@@ -10,18 +10,19 @@
 	<title>Gestão de Anúncios</title>
 
 </h:head>
-	<f:metadata>
-		<f:viewParam name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:viewParam>
-		<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
-	</f:metadata>
+<f:metadata>
+	<f:viewParam name="idAnuncio"
+		value="#{anuncioplataformaBean.idAnuncio}"></f:viewParam>
+	<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
+</f:metadata>
 <h:body>
 
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
 
 
 		<p:dataTable editable="true" style="margin-bottom:20px"
-			id="dtplataforma" var="anunPlat"
-			value="#{anuncioplataformaBean.SelectAnPlat()}">
+			id="dtAnunPlat" var="anunPlat"
+			value="#{anuncioplataformaBean.anuncioPlataforma}">
 
 			<p:ajax event="rowEdit" listener="#{anuncioPlataformaBean.onRowEdit}" />
 			<f:facet name="header">
@@ -35,6 +36,34 @@
 
 
 			<p:column headerText="Estado do Anúncio" sortBy="#{anunPlat.estado}">
+			<p:column headerText="Anúncio">
+					<f:facet name="output">
+						<h:outputText value="#{anunPlat.anuncio.REF}" />
+					</f:facet>
+			</p:column>
+							<p:column headerText="ID">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anunPlat.id}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anunPlat.id}" style="width:100%"
+							label="Função" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+				<p:column headerText="Plataforma">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anunPlat.plataforma}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anunPlat.plataforma}" style="width:100%"
+							label="Função" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Estado do Anúncio">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.estado}" />
@@ -94,7 +123,8 @@
 				
 				<p:column>
 				<p:commandButton icon="ui-icon-trash"
-					action="#{anuncioplataformaBean.removeAnuncio(anunPlat)}">
+					action="#{anuncioplataformaBean.removeAnunPlat(anunPlat)}"
+					update="dtAnunPlat">
 					<p:confirm header="Confirmação" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
@@ -113,6 +143,13 @@
 					<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
 				</p:button>
 		
+=======
+		<h:button outcome="criarAnunPlat"
+			value=" Associar Plataforma">
+			<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
+		</h:button>
+
+>>>>>>> Pedro-a-partir-Antero2.0
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>

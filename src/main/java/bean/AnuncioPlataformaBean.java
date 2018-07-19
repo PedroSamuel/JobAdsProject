@@ -41,13 +41,13 @@ public class AnuncioPlataformaBean implements Serializable{
 	}
 	
 	public Collection<AnuncioPlataforma> SelectAnPlat() {
-
 		return anuncioControlPlataforma.SelectAnPlat(anuncio);
 	}
 	
 
-	public void removeAnuncio(AnuncioPlataforma anuncioplataforma) {
+	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
 		anuncioControlPlataforma.removeAnuncioPlataforma(anuncioplataforma);
+		anuncioControlPlataforma.updateList();
 	}
 
 	public void onRowEdit(RowEditEvent event) {
