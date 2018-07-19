@@ -24,16 +24,16 @@
           Lista de Requerimentos
        </f:facet>
 
-			<p:column headerText="Data Envio">
+			<p:column headerText="Data Envio" sortBy="#{req.data}" >
 				<h:outputText value="#{req.data}" />
 			</p:column>
 			
 			
-			<p:column headerText="Funcao">
+			<p:column headerText="Funcao" sortBy="#{req.funcao}">
 				<h:outputText value="#{req.funcao}" />
 			</p:column>
 			
-			<p:column headerText="e-mail">
+			<p:column headerText="e-mail" sortBy="#{req.email}">
 				<h:outputText value="#{req.email}" />
 			</p:column>
 			

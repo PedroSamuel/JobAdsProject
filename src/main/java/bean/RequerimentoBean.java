@@ -10,7 +10,6 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 import control.ControlRequerimento;
-import model.Anuncio;
 import model.Requerimento;
 
 @Named("requerimentoBean")

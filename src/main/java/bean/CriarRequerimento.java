@@ -30,7 +30,7 @@ public class CriarRequerimento {
 
 	public String salvarRequerimento() {
 		controlRequerimento.criarRequerimento(requerimento);
-		return "listaAnuncios?faces-redirect=true";
+		return "pedirRequerimento?faces-redirect=true";
 	}
 
 	public void criarRequerimento() {
