@@ -6,11 +6,13 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 <h:head>
+ 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Gestão de Anúncios</title>
 </h:head>
-<h:body>
-
+<h:body >
+     
+       
 	<h:form onkeypress = "if (event.keyCode == 13){return false;}">
 	
 
@@ -65,20 +67,24 @@
 			<p:column headerText="Estado">
 
 				<p:cellEditor>
-					<f:facet name="output">
+				   <f:facet name="output">
 						<h:outputText value="#{anuncio.estado}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{anuncio.estado}" style="width:100%"
-							label="Estado" />
-					</f:facet>
+                   <h:selectOneMenu value="#{anuncio.estado}" style="width:125%">
+                       <f:selectItem itemLabel="Selecione um" itemValue="" />
+            <f:selectItem itemLabel="Manter" itemValue="Manter" />
+            <f:selectItem itemLabel="Retirar" itemValue="Retirar" />
+            <f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
+                   </h:selectOneMenu>
+               </f:facet>                
 				</p:cellEditor>
 			</p:column>
 
 			<p:column style="width:130">
-				<h:button outcome="listarAnunPlat?faces-redirect=true" value="Plataformas"> 
-					<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
-				</h:button>
+				<h:link outcome="plataformas.xhtml" value="teste"> 
+					<f:param name="id" value="2"></f:param>
+				</h:link>
 			</p:column>
 
 			<p:column style="width:32px">
@@ -104,6 +110,14 @@
 		</p:dataTable>
 		<p:commandButton value="Criar Anúncio" action="criarAnuncio" />
 		<p:commandButton value="Voltar" action="menuRH" />
+		
+		
+		
+	
+        
+        
+        
+		
 	</h:form>
 </h:body>
 </html>
