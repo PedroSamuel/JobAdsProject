@@ -18,8 +18,7 @@
 			value="#{anuncioBean.anuncios}" editable="true"
 			style="margin-bottom:20px" rowKey="#{anuncio.id}"
 			selection="#{selected}" selectionMode="single"
-			widgetVar="anucioTable" style="margin-bottom:20px"
-			rowKey="#{anuncio.id}" selection="#{selected}" selectionMode="single"
+			widgetVar="anucioTable" 
 			emptyMessage="Não foram encontrados anuncios com os seguintes criterios" filteredValue="#{anuncioBean.filteredAnuncio}">
 
 			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
