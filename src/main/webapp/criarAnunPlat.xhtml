@@ -53,12 +53,12 @@ body {
 		<br />
 
 
-		<h:commandButton action="#{newAnunPlat.salvarAnunPlat()}" value="Gravar">
-		</h:commandButton>
+		<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}" value="Gravar">
+		</p:commandButton>
 		
-		<h:button outcome="listarAnunPlat?faces-redirect=true" value="Voltar">
+		<p:button outcome="listarAnunPlat?faces-redirect=true" value="Voltar">
 			<f:param name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:param>
-		</h:button>
+		</p:button>
 
 
 	</h:form>
