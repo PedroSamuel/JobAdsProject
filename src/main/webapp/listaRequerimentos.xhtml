@@ -17,7 +17,12 @@
 
 		<p:dataTable id="dtreq" var="req"
 			value="#{requerimentoBean.requerimentos}" editable="false"
-			style="margin-bottom:20px">
+			style="margin-bottom:20px" rowKey="#{req.id}"
+			selection="#{selected}" selectionMode="single"
+			widgetVar="reqTable" 
+			emptyMessage="Não foram encontrados resultados com os seguintes criterios"
+			filteredValue="#{requerimentoBean.filteredRequerientos}">
+		
 
 
 			<p:ajax event="rowEdit" listener="#{requerimentoBean.onRowEdit}" />
@@ -26,15 +31,15 @@
           Lista de Requerimentos
        </f:facet>
 
-			<p:column headerText="Data Envio" sortBy="#{req.data}">
+			<p:column headerText="Data Envio" sortBy="#{req.data}" filterBy="#{req.data}">
 				<h:outputText value="#{req.data}" />
 			</p:column>
 
-			<p:column headerText="Funcao" sortBy="#{req.funcao}">
+			<p:column headerText="Funcao" sortBy="#{req.funcao}" filterBy="#{req.funcao}">
 				<h:outputText value="#{req.funcao}" />
 			</p:column>
 
-			<p:column  headerText="e-mail" sortBy="#{req.email}">
+			<p:column  headerText="e-mail" sortBy="#{req.email}" filterBy="#{req.email}">
 			<h:outputText value="#{req.email}" />
 			</p:column>
 

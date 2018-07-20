@@ -20,7 +20,17 @@ public class PlataformaBean implements Serializable {
 	@Inject
 	ControlPlataforma plataformaControl;
 
+	// isto serve para o primefaces poder filtrar
+	private Collection<Plataforma> filteredPlataformas;
 	
+	public Collection<Plataforma> getFilteredPlataformas() {
+		return filteredPlataformas;
+	}
+
+	public void setFilteredPlataformas(Collection<Plataforma> filteredPlataformas) {
+		this.filteredPlataformas = filteredPlataformas;
+	}
+
 	public Collection<Plataforma> getPlataformas() {
 		return plataformaControl.Plataformas();
 	}

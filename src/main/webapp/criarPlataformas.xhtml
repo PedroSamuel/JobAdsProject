@@ -9,33 +9,32 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Gestão de Anúncios</title>
-	
-	<style type="text/css">
-	body {
-	  
-	  }	
 
-	</style> 
+	<style type="text/css">
+body {
+	
+}
+</style>
 </h:head>
 
-<h:body >
+<h:body>
 	<p:growl id="growl" showDetail="true" sticky="true" />
 	<h:form>
 		<h1>Criar Plataforma</h1>
-		<h3>Plataforma</h3>
-<p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.plataforma}" rows="1" cols="15" />
-		<h3>Estado do Anúncio</h3>
-<p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.estado}" rows="1" cols="15" /> 
-		<h3>Anúncio Criado</h3>
-    <p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.datacriacao}" rows="1" cols="15" /> 
-		<h3>Anúncio Expira</h3>
-  <p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.dataModificacao}" rows="1" cols="15" /> 
-		<h3>Link</h3>
-  <p:inputTextarea value="#{anuncioPlataformaCreate.anuncioPlataforma.link}" rows="1" cols="15" />  
-        <br />
-        <br />
-    <p:commandButton value="Guardar" action="#{anuncioPlataformaCreate.salvarAnuncio()}" /> 
-		<p:commandButton value="Voltar" action="plataformas" />
+		<h3>Nome da Plataforma</h3>
+		<p:inputTextarea
+			value="#{plataformaCreate.plataforma.nomePlataforma}"
+			rows="1" cols="15" />
+		<h3>Renovação</h3>
+		<p:inputTextarea
+			value="#{plataformaCreate.plataforma.periodoRenovacao}" rows="1"
+			cols="15" />
+
+		<br />
+		<br />
+		<p:commandButton value="Guardar"
+			action="#{plataformaCreate.salvarPlataforma()}" />
+		<p:commandButton value="Voltar" action="listaPlataformas" />
 
 	</h:form>
 </h:body>
