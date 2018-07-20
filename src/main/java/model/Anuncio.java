@@ -24,7 +24,7 @@ public class Anuncio extends Entidade {
 	private String funcao;
 	private String manager;
 	private String estado; //posteriormente mudar para enum 
-	
+	private String idRequerimento;
 	private String requisitos; 
 	private Date dataCriacao;
     private Date dataModificacao;
@@ -95,6 +95,14 @@ public class Anuncio extends Entidade {
 	public void preRemove() {
 		//implementar
 		}
+
+	public String getIdRequerimento() {
+		return idRequerimento;
+	}
+
+	public void setIdRequerimento(String idRequerimento) {
+		this.idRequerimento = idRequerimento;
+	}
 }
 	
 	

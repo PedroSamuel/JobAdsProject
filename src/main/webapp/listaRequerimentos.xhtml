@@ -34,18 +34,22 @@
 				<h:outputText value="#{req.funcao}" />
 			</p:column>
 
-			<p:column  headerText="e-mail" sortBy="#{req.email}">
-			<h:outputText value="#{req.email}" />
+			<p:column headerText="e-mail" sortBy="#{req.email}">
+				<h:outputText value="#{req.email}" />
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="Ver Detalhes" action="detalhesRequerimento" />
+
+				<p:button outcome="detalhesRequerimento?faces-redirect=true"
+					value="Detalhes">
+					<f:param name="idRequerimento" value="#{req.id}"></f:param>
+				</p:button>
+
 			</p:column>
 
 			<p:column>
 				<p:commandButton icon="ui-icon-trash"
-					action="#{requerimentoBean.removerequerimento(req)}" 				
-					update="dtreq">
+					action="#{requerimentoBean.removerequerimento(req)}" update="dtreq">
 					<p:confirm header="Confirmar" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>

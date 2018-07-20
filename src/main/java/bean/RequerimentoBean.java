@@ -38,6 +38,8 @@ public class RequerimentoBean implements Serializable {
 		requerimentoControl.updateList();
 	}
 	
+
+	
 	
 
 }
