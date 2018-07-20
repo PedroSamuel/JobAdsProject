@@ -39,6 +39,8 @@ public abstract class EntityRepository<T extends Entidade> {
 		em.remove(em.merge(ent));
 	}
 
+	
+	//metodo que insere 
 	public abstract void updateLocalList();
 
 }

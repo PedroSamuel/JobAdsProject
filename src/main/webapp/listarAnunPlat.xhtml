@@ -6,14 +6,30 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 <h:head>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" type="text/css"
+		href="JobAdsProject/src/main/webapp/resources/css/style.css"></link>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<title>Gestão de Anúncios</title>
 
 </h:head>
 <f:metadata>
+
+
+
+
+
+
 	<f:viewParam name="idAnuncio"
 		value="#{anuncioplataformaBean.idAnuncio}"></f:viewParam>
 	<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
+	
+	
+	
+	
+	
 </f:metadata>
 <h:body>
 

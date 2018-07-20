@@ -33,12 +33,27 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 
 	private Anuncio anuncio;
+	
+	
+	
+	
+	
+	//codigo do id
 	private String idAnuncio;
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public Collection<AnuncioPlataforma> getAnuncioPlataforma() {
 		return anuncioControlPlataforma.AnunciosPlataforma();
 	}
+	
+	
 	
 	public Collection<AnuncioPlataforma> SelectAnPlat() {
 		return anuncioControlPlataforma.SelectAnPlat(anuncio);
@@ -79,6 +94,10 @@ public class AnuncioPlataformaBean implements Serializable{
 		idAnuncio = idx;
 	}
 	
+	
+	
+	
+	//codigo do ID chama a funcao load vinda f param do listar anun platf
 	public void load(){
 		if (idAnuncio == (null)) {
 			System.out.println("Não Funcionou!");
@@ -90,4 +109,11 @@ public class AnuncioPlataformaBean implements Serializable{
 		
 	}
 
+	
+	
+	
+	
+	
+	
+	
 }
