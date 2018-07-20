@@ -3,17 +3,22 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 import model.AnuncioPlataforma;
 
 @Entity
 public class Plataforma extends Entidade {
-	private static final long serialVersionUID = 1L;
 	
+	@OneToMany(mappedBy = "plataforma")
+	private List<AnuncioPlataforma> anuncios;
+	
+	public List<AnuncioPlataforma> getAnuncios() {
+		return anuncios;
+	}
+	public void setAnuncios(List<AnuncioPlataforma> anuncios) {
+		this.anuncios = anuncios;
+	}
 	String nomePlataforma;
 	int periodoRenovacao;
 	// List <AnuncioPlataforma> listaAnuncios;

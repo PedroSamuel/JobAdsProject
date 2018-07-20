@@ -1,7 +1,7 @@
 package model;
 
 
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -19,21 +19,30 @@ import javax.persistence.PreRemove;
 @Entity
 public class Anuncio extends Entidade {
 
-	private static final long serialVersionUID = 1L;
 	private String REF;
 	private String funcao;
 	private String manager;
-	private String estado; //posteriormente mudar para enum 
+	private String estado;
 	private String idRequerimento;
 	private String requisitos; 
 	private Date dataCriacao;
     private Date dataModificacao;
+    
+    
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	private List<AnuncioPlataforma> listaRelacoes = new ArrayList<AnuncioPlataforma>();
+	private List<AnuncioPlataforma> plataformas;// = new ArrayList<AnuncioPlataforma>();
 	
     
     
+	public List<AnuncioPlataforma> getPlataformas() {
+		return plataformas;
+	}
+
+	public void setPlataformas(List<AnuncioPlataforma> plataformas) {
+		this.plataformas = plataformas;
+	}
+
 	public String getREF() {
 		return REF;
 	}

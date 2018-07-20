@@ -3,7 +3,9 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -34,7 +36,8 @@ public class AnuncioPlataforma implements Serializable{
 	 */
 	private static final long serialVersionUID = -1759734586163651656L;
 
-	private String idHash; 
+	
+	private String isbn; //Id composto para usar 
 
 	@Id
 	@ManyToOne
@@ -57,12 +60,12 @@ public class AnuncioPlataforma implements Serializable{
 	}
 	
 	
-	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
+	
 	public Plataforma getPlataforma() {
 		return plataforma;
 	}
 	
-	//mudar depois para objecto plataforma neste atributo Plataforma plataforma
+
 	public void setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
 	}
@@ -105,33 +108,53 @@ public class AnuncioPlataforma implements Serializable{
 		}
 	
 	
-	@Override
-	public boolean equals(Object other) {
-		return (other instanceof Entidade) && (idHash != null) ? idHash.equals(((Entidade) other).id) : (other == this);
-	}
+//	@Override
+//	public boolean equals(Object other) {
+//		return (other instanceof Entidade) && (idHash != null) ? idHash.equals(((Entidade) other).id) : (other == this);
+//	}
 
 	@Override
 	public int hashCode() {
-		return (idHash != null) ? (this.getClass().hashCode() + idHash.hashCode()) : super.hashCode();
+		return (isbn != null) ? (this.getClass().hashCode() + isbn.hashCode()) : super.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return String.format("ExampleEntity[%d]", idHash);
+		return String.format("AnuncioPlataforma[%d]", isbn);
+	}
+
+	
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AnuncioPlataforma)) return false;
+        AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
+        return Objects.equals(getIsbn(), anuncioPlataforma.getIsbn());
+    }
+
+//	public String getIdHash() {
+//		return idHash;
+//	}
+//
+//	@PostConstruct
+//	private void setIdHash() {
+//		if ((anuncio != null) && (plataforma != null)) {
+//			this.idHash = ("A" + anuncio.id + "P" + plataforma.id); 
+//		} else {
+//			this.idHash = "ERRO";
+//		}
+//	}
+//
+
+
+	public String getIsbn() {
+		return isbn;
 	}
 
 
-	public String getIdHash() {
-		return idHash;
-	}
 
-
-	public void setIdHash() {
-		if ((anuncio != null) && (plataforma != null)) {
-			this.idHash = ("A" + anuncio.id + "P" + plataforma.id); 
-		} else {
-			this.idHash = "ERRO";
-		}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 	
