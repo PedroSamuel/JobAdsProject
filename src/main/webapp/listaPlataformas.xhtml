@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Gestão de Anúncios</title>
+</h:head>
+<h:body>
+
+	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+
+
+		<p:dataTable id="dtplataforma" var="plataforma"
+			value="#{plataformaBean.plataformas}" editable="true"
+			widgetVar="plataformaTable" style="margin-bottom:20px"
+			rowKey="#{plataforma.id}" selection="#{selected}" selectionMode="single">
+
+			<p:ajax event="rowEdit" listener="#{plataformaBean.onRowEdit}" />
+
+			<f:facet name="header">
+				<p:outputPanel>
+			  Lista de Plataformas
+			  <br />
+					<h:outputText value="Procurar:" />
+					<p:inputText id="globalFilter"
+						onkeyup="PF('plataformatable').filter()" style="width:150px"
+						placeholder="Enter keyword" />
+				</p:outputPanel>
+
+			</f:facet>
+
+			<p:column headerText="Nome" sortBy="#{plataforma.nomePlataforma}"
+				filterMatchMode="contains">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{plataforma.nomePlataforma}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{plataforma.nomePlataforma}" style="width:100%"
+							label="Nome" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Renovação" sortBy="#{plataforma.periodoRenovacao}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{plataforma.periodoRenovacao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{plataforma.periodoRenovacao}" style="width:100%"
+							label="periodoRenovacao" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>			
+
+			<p:column style="width:32px">
+				<p:rowEditor />
+			</p:column>
+
+			<p:column style="width:32px">
+				<p:commandButton icon="ui-icon-trash"
+					action="#{plataformaBean.removePlataforma(plataforma)}" update="dtplataforma">
+					<p:confirm header="Confirmar" message="Tem a certeza?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:column>
+
+
+		</p:dataTable>
+		<p:commandButton value="Criar Plataforma" action="criarPlataformas" />
+		<p:commandButton value="Voltar" action="menuRH" />
+	</h:form>
+</h:body>
+</html>
