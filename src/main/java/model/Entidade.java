@@ -18,9 +18,8 @@ public class Entidade {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
-		this.id = id;
+	this.id = id;
 	}
 		
 	
