@@ -27,8 +27,8 @@ import javax.persistence.PreRemove;
 
 
 @Entity
-@Table(name = "AnuncioPlataforma")
-@IdClass(AnuncioPlataforma.class)
+@Table(name = "anuncioplataforma")
+@IdClass(AnuncioPlataformaId.class)
 public class AnuncioPlataforma implements Serializable{
 
 	/**
@@ -37,7 +37,9 @@ public class AnuncioPlataforma implements Serializable{
 	private static final long serialVersionUID = -1759734586163651656L;
 
 	
-	private String isbn; //Id composto para usar 
+	
+	
+	private String isbn;
 
 	@Id
 	@ManyToOne
@@ -113,24 +115,24 @@ public class AnuncioPlataforma implements Serializable{
 //		return (other instanceof Entidade) && (idHash != null) ? idHash.equals(((Entidade) other).id) : (other == this);
 //	}
 
-	@Override
-	public int hashCode() {
-		return (isbn != null) ? (this.getClass().hashCode() + isbn.hashCode()) : super.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return String.format("AnuncioPlataforma[%d]", isbn);
-	}
-
-	
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AnuncioPlataforma)) return false;
-        AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
-        return Objects.equals(getIsbn(), anuncioPlataforma.getIsbn());
-    }
+//	@Override
+//	public int hashCode() {
+//		return (isbn != null) ? (this.getClass().hashCode() + isbn.hashCode()) : super.hashCode();
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return String.format("AnuncioPlataforma[%d]", isbn);
+//	}
+//
+//	
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof AnuncioPlataforma)) return false;
+//        AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
+//        return Objects.equals(getIsbn(), anuncioPlataforma.getIsbn());
+ //   }
 
 //	public String getIdHash() {
 //		return idHash;
@@ -150,10 +152,10 @@ public class AnuncioPlataforma implements Serializable{
 	public String getIsbn() {
 		return isbn;
 	}
+//
+//
 
-
-
-	public void setIsbn(String isbn) {
+public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 
