@@ -30,10 +30,14 @@ public class Anuncio extends Entidade {
     private Date dataModificacao;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	private List<AnuncioPlataforma> listaRelacoes = new ArrayList<AnuncioPlataforma>();
+	private List<AnuncioPlataforma> plataformas = new ArrayList<AnuncioPlataforma>();
 	
     
     
+	public List<AnuncioPlataforma> getPlataformas() {
+		return plataformas;
+	}
+
 	public String getREF() {
 		return REF;
 	}
@@ -92,7 +96,7 @@ public class Anuncio extends Entidade {
 	
     
 	@PreRemove
-	public void preRemove() {
+	private void preRemove() {
 		//implementar
 		}
 }
