@@ -17,21 +17,40 @@
 		<p:dataTable id="dtplataforma" var="plataforma"
 			value="#{plataformaBean.plataformas}" editable="true"
 			widgetVar="plataformaTable" style="margin-bottom:20px"
+<<<<<<< HEAD
 			rowKey="#{plataforma.id}" selection="#{selected}" selectionMode="single"
 			emptyMessage="Não foram encontrados resultados com os seguintes criterios" 
 			filteredValue="#{plataformaBean.filteredPlataformas}">
+=======
+			rowKey="#{plataforma.id}" selection="#{selected}" selectionMode="single">
+>>>>>>> origin/JorgeNewFile
 
 			<p:ajax event="rowEdit" listener="#{plataformaBean.onRowEdit}" />
 
 			<f:facet name="header">
+<<<<<<< HEAD
 
 			  Lista de Plataformas
 			 
+=======
+				<p:outputPanel>
+			  Lista de Plataformas
+			  <br />
+					<h:outputText value="Procurar:" />
+					<p:inputText id="globalFilter"
+						onkeyup="PF('plataformatable').filter()" style="width:150px"
+						placeholder="Enter keyword" />
+				</p:outputPanel>
+>>>>>>> origin/JorgeNewFile
 
 			</f:facet>
 
 			<p:column headerText="Nome" sortBy="#{plataforma.nomePlataforma}"
+<<<<<<< HEAD
 				filterMatchMode="contains" filterBy="#{plataforma.nomePlataforma}">
+=======
+				filterMatchMode="contains">
+>>>>>>> origin/JorgeNewFile
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{plataforma.nomePlataforma}" />
@@ -43,8 +62,12 @@
 				</p:cellEditor>
 			</p:column>
 
+<<<<<<< HEAD
 			<p:column headerText="Renovação" sortBy="#{plataforma.periodoRenovacao}" 
 			filterBy="#{plataforma.periodoRenovacao}">
+=======
+			<p:column headerText="Renovação" sortBy="#{plataforma.periodoRenovacao}">
+>>>>>>> origin/JorgeNewFile
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{plataforma.periodoRenovacao}" />
