@@ -26,7 +26,10 @@ public class AnuncioBean implements Serializable {
 
 	@Inject
 	ControlAnuncio anuncioControl;
+    
 	
+	
+	// classes criada para o search bar  
 	private Collection<Anuncio> filteredAnuncio;
 	
 	public Collection<Anuncio> getFilteredAnuncio() {
@@ -47,6 +50,9 @@ public class AnuncioBean implements Serializable {
 		anuncioControl.removeAnuncio(anuncio);
 	}
 
+	
+	
+	//class para a tabela editar vindo do primefaces
 	public void onRowEdit(RowEditEvent event) {
 		Anuncio anuncio = (Anuncio) event.getObject();
 		anuncioControl.updateAnuncio(anuncio);
