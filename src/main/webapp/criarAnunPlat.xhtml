@@ -10,15 +10,36 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Gestão de Anúncios</title>
 
-	<style type="text/css">
-body {
-	
-}
+<script>
+PrimeFaces.locales['pt'] = {
+        closeText: 'Fechar',
+            prevText: 'Anterior',
+            nextText: 'Próximo',
+            currentText: 'Começo',
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],                         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Des'],
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            weekHeader: 'Semana',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Só Horas',
+            timeText: 'Tempo',
+            hourText: 'Hora',
+            minuteText: 'Minuto',
+            secondText: 'Segundo',
+            ampm: false,
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia',
+            allDayText: 'Todo Dia'
+        };
+</script>
 
-
-</style>
 </h:head>
- 
+
 <f:metadata>
 	<f:viewParam name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:viewParam>
 	<f:event listener="#{newAnunPlat.load}" type="preRenderView"></f:event>
@@ -30,36 +51,72 @@ body {
 		<h3>Referência Anuncio: #{newAnunPlat.anuncio.REF}</h3>
 		<h1>Associar Anúncio a Plataforma</h1>
 		<h3>Plataforma</h3>
-		<p:inputTextarea
-			value="#{newAnunPlat.anuncioPlataforma.plataforma}"
+		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.plataforma}"
 			rows="1" cols="15" />
+
 		<h3>Estado do Anúncio</h3>
-		<p:inputTextarea
-			value="#{newAnunPlat.anuncioPlataforma.estado}" rows="1"
-			cols="15" />
+		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.estado}"
+			rows="1" cols="15" />
+
+
+
 		<h3>Anúncio Criado</h3>
-		<p:inputTextarea
-			value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
-			rows="1" cols="15" />
+
+		<p:growl id="msgs" showDetail="true" />
+		<h:panelGrid columns="2" cellpadding="5">
+
+			<p:calendar locale="pt" id="datetime"
+				value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
+				pattern="dd/MM/yyyy HH:mm:ss" />
+		</h:panelGrid>
+
+		<p:commandButton value="Submeter" update="msgs"
+			actionListener="#{calendarView.click}" icon="ui-icon-check" />
+
+		<p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+			<h:outputText value="#{newAnunPlat.anuncioPlataforma.datacriacao}">
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:outputText>
+		</p:panelGrid>
+
+
+
+
+
 		<h3>Anúncio Modificado</h3>
-		<p:inputTextarea
-			value="#{newAnunPlat.anuncioPlataforma.dataModificacao}"
-			rows="1" cols="15" />
+
+		<p:growl id="msgs1" showDetail="true" />
+		<h:panelGrid columns="2" cellpadding="5">
+
+			<p:calendar locale="pt" id="datetime1"
+				value="#{newAnunPlat.anuncioPlataforma.dataModificacao}"
+				pattern="dd/MM/yyyy HH:mm:ss" />
+		</h:panelGrid>
+
+		<p:commandButton value="Submeter" update="msgs1"
+			actionListener="#{calendarView.click}" icon="ui-icon-check" />
+
+		<p:panelGrid id="display1" columns="2" columnClasses="label,value">
+
+			<h:outputText
+				value="#{newAnunPlat.anuncioPlataforma.dataModificacao}">
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:outputText>
+		</p:panelGrid>
+
 		<h3>Link</h3>
-		<p:inputTextarea
-			value="#{newAnunPlat.anuncioPlataforma.link}" rows="1"
-			cols="15" />
+		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.link}"
+			rows="1" cols="15" />
 		<br />
 		<br />
 
-
-		<h:commandButton action="#{newAnunPlat.salvarAnunPlat()}" value="Gravar">
-		</h:commandButton>
+		<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}" value="Gravar">
+		</p:commandButton>
 		
-		<h:button outcome="listarAnunPlat?faces-redirect=true" value="Voltar">
+		<p:button outcome="listarAnunPlat?faces-redirect=true" value="Voltar">
 			<f:param name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:param>
-		</h:button>
-
+		</p:button>
 
 	</h:form>
 </h:body>

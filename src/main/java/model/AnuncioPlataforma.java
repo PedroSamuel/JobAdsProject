@@ -105,9 +105,9 @@ public class AnuncioPlataforma implements Serializable{
 	}
 	
 	@PreRemove
-	public void preRemove() {
-		//implementar
-		}
+	private void preRemove() {
+		this.anuncio.getPlataformas().remove(this);
+	}
 	
 	
 //	@Override

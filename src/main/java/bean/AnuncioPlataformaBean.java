@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,7 +19,7 @@ import model.AnuncioPlataforma;
 
 
 @Named("anuncioplataformaBean")
-@RequestScoped
+@ViewScoped
 public class AnuncioPlataformaBean implements Serializable{
 	
 	/**
@@ -41,6 +42,7 @@ public class AnuncioPlataformaBean implements Serializable{
 	//codigo do id
 	private String idAnuncio;
 	
+	private Collection<AnuncioPlataforma> filteredAnuncioPlataforma;
 	
 	
 	
@@ -49,6 +51,14 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 	
 	
+	public Collection<AnuncioPlataforma> getFilteredAnuncioPlataforma() {
+		return filteredAnuncioPlataforma;
+	}
+
+	public void setFilteredAnuncioPlataforma(Collection<AnuncioPlataforma> filteredAnuncioPlataforma) {
+		this.filteredAnuncioPlataforma = filteredAnuncioPlataforma;
+	}
+
 	public Collection<AnuncioPlataforma> getAnuncioPlataforma() {
 		return anuncioControlPlataforma.AnunciosPlataforma();
 	}
@@ -62,7 +72,6 @@ public class AnuncioPlataformaBean implements Serializable{
 
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
 		anuncioControlPlataforma.removeAnuncioPlataforma(anuncioplataforma);
-		anuncioControlPlataforma.updateList();
 	}
 
 	public void onRowEdit(RowEditEvent event) {

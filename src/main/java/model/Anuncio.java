@@ -99,7 +99,7 @@ public class Anuncio extends Entidade {
 	
     
 	@PreRemove
-	public void preRemove() {
+	private void preRemove() {
 		//implementar
 		}
 

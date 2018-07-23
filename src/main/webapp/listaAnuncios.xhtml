@@ -23,8 +23,9 @@
 			value="#{anuncioBean.anuncios}" editable="true"
 			style="margin-bottom:20px" rowKey="#{anuncio.id}"
 			selection="#{selected}" selectionMode="single"
-			widgetVar="anucioTable" 
-			emptyMessage="Não foram encontrados anuncios com os seguintes criterios" filteredValue="#{anuncioBean.filteredAnuncio}">
+			widgetVar="anucioTable"  
+			emptyMessage="Não foram encontrados resultados com os seguintes criterios" filteredValue="#{anuncioBean.filteredAnuncio}">
+
 
 			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
 
@@ -36,6 +37,23 @@
 
 			</f:facet>
 
+
+				<p:column headerText="ID(temp)" sortBy="#{anuncio.id}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anuncio.id}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anuncio.id}" style="width:100%"
+							label="Função" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+          
+
+
+
+				
 			<p:column filterBy="#{anuncio.funcao}" headerText="Função" sortBy="#{anuncio.funcao}"
 				 filterMatchMode="contains">
 				<p:cellEditor>
@@ -75,7 +93,7 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Estado" sortBy="#{anuncio.estado}"
+			<p:column headerText="Estado" sortBy="#{anuncio.estado}" filterBy= "#{anuncio.estado}"
 			filterMatchMode="contains">
 
 				<p:cellEditor>

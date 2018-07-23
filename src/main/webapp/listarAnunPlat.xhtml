@@ -38,20 +38,35 @@
 
 		<p:dataTable editable="true" style="margin-bottom:20px"
 			id="dtAnunPlat" var="anunPlat"
-			value="#{anuncioplataformaBean.anuncioPlataforma}">
+			value="#{anuncioplataformaBean.anuncioPlataforma}"
+			rowKey="#{anunPlat.id}" selection="#{selected}"
+			selectionMode="single" widgetVar="anuPlatTable"
+			emptyMessage="Não foram encontrados resultados com os seguintes criterios"
+			filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}">
 
 			<p:ajax event="rowEdit" listener="#{anuncioPlataformaBean.onRowEdit}" />
 			<f:facet name="header">
-           <h:outputText  value="Referência: #{anuncioplataformaBean.anuncio.REF}" />
-       </f:facet>
-			
-
-          
-		
+				<h:outputText
+					value="Referência: #{anuncioplataformaBean.anuncio.REF}" />
+			</f:facet>
 
 
+			<p:column headerText="ID(temp)" sortBy="#{anunPlat.id}"
+				filterBy="#{anunPlat.id}">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{anunPlat.id}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{anunPlat.id}" style="width:100%"
+							label="Função" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
 
-			<p:column headerText="Estado do Anúncio" sortBy="#{anunPlat.estado}">
+
+			<p:column headerText="Estado do Anúncio" sortBy="#{anunPlat.estado}"
+				filterBy="#{anunPlat.estado}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.estado}" />
@@ -63,7 +78,8 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Anúncio Criado" sortBy= "#{anunPlat.datacriacao}" >
+			<p:column headerText="Anúncio Criado"
+				sortBy="#{anunPlat.datacriacao}" filterBy="#{anunPlat.datacriacao}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.datacriacao}" />
@@ -73,10 +89,11 @@
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
-
 			</p:column>
 
-			<p:column headerText="Anúncio Modificado" sortBy="#{anunPlat.dataModificacao}">
+			<p:column headerText="Anúncio Modificado"
+				sortBy="#{anunPlat.dataModificacao}"
+				filterBy="#{anunPlat.dataModificacao}">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{anunPlat.dataModificacao}" />
@@ -86,32 +103,37 @@
 							style="width:100%" label="Função" />
 					</f:facet>
 				</p:cellEditor>
-
 			</p:column>
 
-			<p:column headerText="Link" sortBy= "#{plataforma.link}">
+			<p:column headerText="Link" sortBy="#{anunPlat.link}"
+				filterBy="#{anunPlat.link}">
 				<p:cellEditor>
-					<f:facet name="output" >
-						<h:outputText value="#{plataforma.link}" />
+					<f:facet name="output">
+						<h:outputText value="#{anunPlat.link}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText value="#{plataforma.link}" style="width:100%"
+						<p:inputText value="#{anunPlat.link}" style="width:100%"
 							label="Função" />
 					</f:facet>
 				</p:cellEditor>
-
+			</p:column>
+			
+			
+			<p:column headerText="Anuncio ID">
+			<h:outputText value="#{anunPlat.anuncio.id}" />
 			</p:column>
 
 			<p:column style="width:32px">
-
 				<p:rowEditor />
-				
-				</p:column>
-				
-				
-				<p:column>
+			</p:column>
+			
+			
+
+
+			<p:column style="width:32px">
 				<p:commandButton icon="ui-icon-trash"
-					action="#{anuncioplataformaBean.removeAnuncio(anunPlat)}">
+					action="#{anuncioplataformaBean.removeAnunPlat(anunPlat)}"
+					update="dtAnunPlat">
 					<p:confirm header="Confirmação" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
@@ -122,14 +144,14 @@
 					<p:commandButton value="Não" type="button"
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				</p:confirmDialog>
-
 			</p:column>
 
 		</p:dataTable>
-						<p:button outcome="criarAnunPlat?faces-redirect=true" value=" Associar Plataforma"> 
-					<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
-				</p:button>
-		
+		<p:button outcome="criarAnunPlat?faces-redirect=true"
+			value=" Associar Plataforma">
+			<f:param name="idAnuncio" value="#{anuncioplataformaBean.idAnuncio}"></f:param>
+		</p:button>
+
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 	</h:form>
 </h:body>

@@ -20,7 +20,17 @@ public class RequerimentoBean implements Serializable {
 	@Inject
 	ControlRequerimento requerimentoControl;
 	
+	// isto serve para o primefaces poder filtrar
+	private Collection<Requerimento> filteredRequerientos;
 	
+	public Collection<Requerimento> getFilteredRequerientos() {
+		return filteredRequerientos;
+	}
+
+	public void setFilteredRequerientos(Collection<Requerimento> filteredRequerientos) {
+		this.filteredRequerientos = filteredRequerientos;
+	}
+
 	public Collection<Requerimento> getRequerimentos() {
 		return requerimentoControl.Requerimentos();
 	}

@@ -17,24 +17,24 @@
 		<p:dataTable id="dtplataforma" var="plataforma"
 			value="#{plataformaBean.plataformas}" editable="true"
 			widgetVar="plataformaTable" style="margin-bottom:20px"
-			rowKey="#{plataforma.id}" selection="#{selected}" selectionMode="single">
+			rowKey="#{plataforma.id}" selection="#{selected}" selectionMode="single"
+			emptyMessage="Não foram encontrados resultados com os seguintes criterios" 
+			filteredValue="#{plataformaBean.filteredPlataformas}">
+
 
 			<p:ajax event="rowEdit" listener="#{plataformaBean.onRowEdit}" />
 
 			<f:facet name="header">
-				<p:outputPanel>
+
+
 			  Lista de Plataformas
-			  <br />
-					<h:outputText value="Procurar:" />
-					<p:inputText id="globalFilter"
-						onkeyup="PF('plataformatable').filter()" style="width:150px"
-						placeholder="Enter keyword" />
-				</p:outputPanel>
+			 
 
 			</f:facet>
 
 			<p:column headerText="Nome" sortBy="#{plataforma.nomePlataforma}"
-				filterMatchMode="contains">
+				filterMatchMode="contains" filterBy="#{plataforma.nomePlataforma}">
+
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{plataforma.nomePlataforma}" />
@@ -46,7 +46,10 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Renovação" sortBy="#{plataforma.periodoRenovacao}">
+
+			<p:column headerText="Renovação" sortBy="#{plataforma.periodoRenovacao}" 
+			filterBy="#{plataforma.periodoRenovacao}">
+
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{plataforma.periodoRenovacao}" />
@@ -67,7 +70,7 @@
 					action="#{plataformaBean.removePlataforma(plataforma)}" update="dtplataforma">
 					<p:confirm header="Confirmar" message="Tem a certeza?"
 						icon="ui-icon-alert" />
-				</p:commandButton>
+				</p:commandButton> 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 					<p:commandButton value="Sim" type="button"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />

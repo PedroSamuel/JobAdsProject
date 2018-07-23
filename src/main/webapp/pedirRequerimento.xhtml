@@ -12,6 +12,33 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Requerimento</title>
 
+	<script>
+PrimeFaces.locales['pt'] = {
+        closeText: 'Fechar',
+            prevText: 'Anterior',
+            nextText: 'Próximo',
+            currentText: 'Começo',
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],                         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Des'],
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            weekHeader: 'Semana',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Só Horas',
+            timeText: 'Tempo',
+            hourText: 'Hora',
+            minuteText: 'Minuto',
+            secondText: 'Segundo',
+            ampm: false,
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia',
+            allDayText: 'Todo Dia'
+        };
+</script>
 
 </h:head>
 
@@ -50,7 +77,25 @@
 
 
 		<h3>Criado</h3>
-		<p:inputTextarea value="#{requerimentoCreate.requerimento.data}" rows="1" cols="20" />
+
+		<p:growl id="msgs2" showDetail="true" />
+		<h:panelGrid columns="2" cellpadding="5">
+
+			<p:calendar locale="pt" id="datetime2"
+				value="#{requerimentoCreate.requerimento.data}"
+				pattern="dd/MM/yyyy HH:mm:ss" />
+		</h:panelGrid>
+
+		<p:commandButton value="Submeter" update="msgs2"
+			actionListener="#{calendarView.click}" icon="ui-icon-check" />
+
+		<p:panelGrid id="display2" columns="2" columnClasses="label,value">
+
+			<h:outputText
+				value="#{requerimentoCreate.requerimento.data}">
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+			</h:outputText>
+		</p:panelGrid>
 
 <br/>
 
