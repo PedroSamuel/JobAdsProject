@@ -10,6 +10,8 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<title>Requerimento</title>
 
 	<script>
@@ -43,8 +45,25 @@ PrimeFaces.locales['pt'] = {
 </h:head>
 
 <h:body>
+
+<div   class="row header ">
+<br/>
+  <div class="col-sm-3"><br/><h:graphicImage value="resources/images/aubayImg.png" width="100"  style = "text-align: center"/></div>
+  <div class="col-sm-6"><br/><h1 style="text-align: center">Requerimento</h1> <br/> <br/></div>
+  <div class="col-sm-3"> </div>
+ 
+</div>
+<br/>
+<div class="container-fluid bodyForm">
+
+			<div class="row">
+			
+
+				<div class="col-sm" >
+				
+				
 	<h:form>
-		<h1 style="text-align: center">Requerimento</h1>
+		
 
 		<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
 
@@ -104,5 +123,9 @@ PrimeFaces.locales['pt'] = {
 		<p:commandButton value="Voltar" action="index" />
 
 	</h:form>
+	
+		</div>
+			</div>
+		</div>
 </h:body>
 </html>

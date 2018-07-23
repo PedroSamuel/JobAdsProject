@@ -1,6 +1,10 @@
 @CHARSET "UTF-8";
 
-body {background-color: grey;}
+body {background-color: coral;}
+
+.header  {background-color: grey;}
+
+.bodyForm {background-color: white;}
 
 #button {
     background-color: #4CAF50; /* Green */
