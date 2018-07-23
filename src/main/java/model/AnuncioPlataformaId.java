@@ -16,58 +16,55 @@ public class AnuncioPlataformaId implements Serializable{
 	private static final long serialVersionUID = 6442153079578196041L;
 	
 
-	private String isbn; //Id composto para usar 
 
-
+	
 	@Column(name = "ANUNCIO_ID")
-	private long anuncio;
+	private Long anuncio_id;
 	
 	@Column(name = "PLATAFORMA_ID")
-	private long plataforma;
+	private Long plataforma_id;
 	
 	
 	
 	
 	@Override
 	public int hashCode() {
-		return (isbn != null) ? (this.getClass().hashCode() + isbn.hashCode()) : super.hashCode();
+		//return (isbn != null) ? (this.getClass().hashCode() + isbn.hashCode()) : super.hashCode();
+		return anuncio_id.hashCode() + plataforma_id.hashCode();
 	}
 
 	
 
 	
-    @Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AnuncioPlataformaId)) return false;
-        AnuncioPlataformaId anuncioPlataformaId = (AnuncioPlataformaId) o;
-        return Objects.equals(getIsbn(), anuncioPlataformaId.getIsbn());
-    }
-
-
-	private String getIsbn() {
-		return isbn;
-	}
-
-    @PostConstruct
-	public void setIsbn() {
-    	this.isbn = ("A" + anuncio + "P" + plataforma);
+        AnuncioPlataformaId that = (AnuncioPlataformaId) o;
+        return Objects.equals(getAnuncio_id(), that.getAnuncio_id()) &&
+                Objects.equals(getPlataforma_id(), that.getPlataforma_id());
 	}
 	
-	public long getAnuncio_id() {
-		return anuncio;
+	@Override
+	public String toString() {
+		return String.format("a%d p%d", anuncio_id, plataforma_id );
+	}
+	
+	
+	public Long getAnuncio_id() {
+		return anuncio_id;
 	}
 
-	public void setAnuncio_id(long anuncio) {
-		this.anuncio = anuncio;
+	public void setAnuncio_id(Long anuncio_id) {
+		this.anuncio_id = anuncio_id;
 	}
 
-	public long getPlataforma_id() {
-		return plataforma;
+	public Long getPlataforma_id() {
+		return plataforma_id;
 	}
 
-	public void setPlataforma_id(long plataforma) {
-		this.plataforma = plataforma;
+	public void setPlataforma(Long plataforma_id) {
+		this.plataforma_id = plataforma_id;
 	
 	}
 }

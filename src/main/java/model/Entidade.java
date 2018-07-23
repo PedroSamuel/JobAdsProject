@@ -35,7 +35,7 @@ public class Entidade {
 
 	@Override
 	public String toString() {
-		return String.format("ExampleEntity[%d]", id);
+		return String.format("Entidade[%d]", id);
 	}
 
 }

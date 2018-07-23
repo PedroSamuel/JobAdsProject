@@ -2,6 +2,7 @@ package model;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,9 +28,9 @@ public class Anuncio extends Entidade {
     private Date dataModificacao;
     
     
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "plataforma", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	private List<AnuncioPlataforma> plataformas;// = new ArrayList<AnuncioPlataforma>();
+	private List<AnuncioPlataforma> plataformas = new ArrayList<AnuncioPlataforma>();
 	
     
     

@@ -3,20 +3,23 @@
 	package bean;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 	import javax.inject.Named;
 
 import control.ControlAnuncio;
 import control.ControlAnuncioPlataforma;
+import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
+import model.Plataforma;
 
 
 
 	@Named("newAnunPlat")
-	@RequestScoped
+	@ViewScoped
 
 	public class AssociarAnuncioPlataforma implements Serializable{
 		
@@ -33,6 +36,9 @@ import model.AnuncioPlataforma;
 		private ControlAnuncioPlataforma controlAnuncioPlataforma;
 		
 		@Inject
+		private ControlPlataforma controlPlataforma;
+		
+		@Inject
 		private ControlAnuncio controlAnuncio;
 		
 		public Anuncio getAnuncio() {
@@ -42,7 +48,6 @@ import model.AnuncioPlataforma;
 		public void setAnuncio(Anuncio anuncio) {
 			this.anuncio = anuncio;
 		}
-
 
 
 		private AnuncioPlataforma anuncioPlataforma	= new AnuncioPlataforma();;
@@ -56,6 +61,7 @@ import model.AnuncioPlataforma;
 		}
 
 		public String salvarAnunPlat() {
+			System.out.println(anuncioPlataforma.getId());
 			if (idAnuncio == (null)) {
 				System.out.println("Não Funcionou!!!!");
 			} else {
@@ -94,6 +100,10 @@ import model.AnuncioPlataforma;
 				System.out.println("Ok" + longID);
 				
 			}
+		}
+
+		public List<Plataforma> listaPlataformas(){
+			return controlPlataforma.Plataformas();
 		}
 
 	}

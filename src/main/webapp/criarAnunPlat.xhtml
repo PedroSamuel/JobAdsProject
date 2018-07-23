@@ -10,7 +10,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Gestão de Anúncios</title>
 
-<script>
+	<script>
 PrimeFaces.locales['pt'] = {
         closeText: 'Fechar',
             prevText: 'Anterior',
@@ -51,8 +51,11 @@ PrimeFaces.locales['pt'] = {
 		<h3>Referência Anuncio: #{newAnunPlat.anuncio.REF}</h3>
 		<h1>Associar Anúncio a Plataforma</h1>
 		<h3>Plataforma</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.plataforma}"
-			rows="1" cols="15" />
+		<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.plataforma}"
+			style="width:25%">
+			<f:selectItem itemLabel="Selecione um" itemValue="" />
+			<f:selectItems Value="#{newAnunPlat.listaPlataformas()}" />
+		</h:selectOneMenu>
 
 		<h3>Estado do Anúncio</h3>
 		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.estado}"
@@ -111,9 +114,10 @@ PrimeFaces.locales['pt'] = {
 		<br />
 		<br />
 
-		<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}" value="Gravar">
+		<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
+			value="Gravar">
 		</p:commandButton>
-		
+
 		<p:button outcome="listarAnunPlat?faces-redirect=true" value="Voltar">
 			<f:param name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:param>
 		</p:button>

@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,26 +30,33 @@ import javax.persistence.PreRemove;
 
 @Entity
 @Table(name = "anuncioplataforma")
-@IdClass(AnuncioPlataformaId.class)
 public class AnuncioPlataforma implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1759734586163651656L;
+	
 
-	
-	
-	
-	private String isbn;
 
-	@Id
+	@EmbeddedId
+	private AnuncioPlataformaId id;
+
+	public AnuncioPlataformaId getId() {
+		return id;
+	}
+	
+	
+	//private String isbn;
+
 	@ManyToOne
+	@MapsId("anuncio_id")
 	@JoinColumn(name = "anuncio_id", referencedColumnName = "id")
 	private Anuncio anuncio;
 
-	@Id
+
 	@ManyToOne
+	@MapsId("plataforma_id")
 	@JoinColumn(name = "plataforma_id", referencedColumnName ="id")
 	private Plataforma plataforma;
 	
@@ -110,29 +119,25 @@ public class AnuncioPlataforma implements Serializable{
 	}
 	
 	
-//	@Override
-//	public boolean equals(Object other) {
-//		return (other instanceof Entidade) && (idHash != null) ? idHash.equals(((Entidade) other).id) : (other == this);
-//	}
 
-//	@Override
-//	public int hashCode() {
-//		return (isbn != null) ? (this.getClass().hashCode() + isbn.hashCode()) : super.hashCode();
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return String.format("AnuncioPlataforma[%d]", isbn);
-//	}
-//
-//	
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof AnuncioPlataforma)) return false;
-//        AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
-//        return Objects.equals(getIsbn(), anuncioPlataforma.getIsbn());
- //   }
+
+	@Override
+	public int hashCode() {
+		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return String.format("AnuncioPlataforma[%s]", id);
+	}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AnuncioPlataforma)) return false;
+        AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
+        return Objects.equals(getId(), anuncioPlataforma.getId());
+    }
 
 //	public String getIdHash() {
 //		return idHash;
@@ -148,16 +153,16 @@ public class AnuncioPlataforma implements Serializable{
 //	}
 
 
-
-	public String getIsbn() {
-		return isbn;
-	}
 //
+//	public String getIsbn() {
+//		return isbn;
+//	}
+////
+////
 //
-
-public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
+//public void setIsbn(String isbn) {
+//		this.isbn = isbn;
+//	}
 
 	
 }

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,8 +11,8 @@ import model.AnuncioPlataforma;
 @Entity
 public class Plataforma extends Entidade {
 	
-	@OneToMany(mappedBy = "plataforma")
-	private List<AnuncioPlataforma> anuncios;
+	@OneToMany(mappedBy = "anuncio")
+	private List<AnuncioPlataforma> anuncios = new ArrayList<AnuncioPlataforma>();
 	
 	public List<AnuncioPlataforma> getAnuncios() {
 		return anuncios;
