@@ -44,14 +44,14 @@ public class AnuncioPlataformaId implements Serializable{
         return Objects.equals(getIsbn(), anuncioPlataformaId.getIsbn());
     }
 
-    @PostConstruct
+
 	private String getIsbn() {
-    	isbn = ("A" + anuncio + "P" + plataforma);
 		return isbn;
 	}
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+    @PostConstruct
+	public void setIsbn() {
+    	this.isbn = ("A" + anuncio + "P" + plataforma);
 	}
 	
 	public long getAnuncio_id() {

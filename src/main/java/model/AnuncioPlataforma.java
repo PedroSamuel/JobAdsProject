@@ -146,7 +146,7 @@ public class AnuncioPlataforma implements Serializable{
 //			this.idHash = "ERRO";
 //		}
 //	}
-//
+
 
 
 	public String getIsbn() {
