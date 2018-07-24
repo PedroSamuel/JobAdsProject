@@ -51,14 +51,14 @@
 								value="Referência: #{anuncioplataformaBean.anuncio.REF}" />
 						</f:facet>
 
-						<p:column headerText="ID(temp)" sortBy="#{anunPlat.id}"
-							filterBy="#{anunPlat.id}">
+						<p:column headerText="Plataforma" sortBy="#{anunPlat.plataforma}"
+							filterBy="#{anunPlat.plataforma}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{anunPlat.id}" />
+									<h:outputText value="#{anunPlat.plataforma}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText value="#{anunPlat.id}" style="width:100%"
+									<p:inputText value="#{anunPlat.plataforma}" style="width:100%"
 										label="Função" />
 								</f:facet>
 							</p:cellEditor>
@@ -120,8 +120,8 @@
 						</p:column>
 
 
-						<p:column headerText="Anuncio ID">
-							<h:outputText value="#{anunPlat.anuncio.id}" />
+						<p:column headerText="REF Anuncio">
+							<h:outputText value="#{anunPlat.anuncio.REF}" />
 						</p:column>
 
 						<p:column style="width:32px">
