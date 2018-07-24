@@ -10,6 +10,8 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<title>Requerimento</title>
 
 
@@ -20,6 +22,11 @@
 	<f:event listener="#{DRequerimento.load}" type="preRenderView"></f:event>
 </f:metadata>
 <h:body>
+
+<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-sm" >
 	<h:form>
 		<h1 style="text-align: center">Requerimento</h1>
 
@@ -75,5 +82,8 @@
 		</p:button>
 
 	</h:form>
+	</div>
+		</div>
+		</div>
 </h:body>
 </html>

@@ -6,148 +6,154 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 <h:head>
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"></link>
-	<link rel="stylesheet" type="text/css"
-		href="JobAdsProject/src/main/webapp/resources/css/style.css"></link>
+
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<title>Gestão de Anúncios</title>
 </h:head>
 <h:body>
 
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
 
+		<div class="container-fluid">
+			<div class="row">
 
-		<p:dataTable id="dtanuncio" var="anuncio"
-			value="#{anuncioBean.anuncios}" editable="true"
-			style="margin-bottom:20px" rowKey="#{anuncio.id}"
-			selection="#{selected}" selectionMode="single"
-			widgetVar="anucioTable"  
-			emptyMessage="Não foram encontrados resultados com os seguintes criterios" filteredValue="#{anuncioBean.filteredAnuncio}">
+				<div class="col-sm" >
+<br /> 
+					<p:dataTable id="dtanuncio" var="anuncio"
+						value="#{anuncioBean.anuncios}" editable="true"
+						style="margin-bottom:20px" rowKey="#{anuncio.id}"
+						selection="#{selected}" selectionMode="single"
+						widgetVar="anucioTable"
+						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
+						filteredValue="#{anuncioBean.filteredAnuncio}">
 
 
-			<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
+						<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
 
-			<f:facet name="header">
+						<f:facet name="header">
 			
 			  Gestão de Anúncios
 			  <br />
-				
-
-			</f:facet>
 
 
-				<p:column headerText="ID(temp)" sortBy="#{anuncio.id}">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{anuncio.id}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{anuncio.id}" style="width:100%"
-							label="Função" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-          
+						</f:facet>
 
 
 
-				
-			<p:column filterBy="#{anuncio.funcao}" headerText="Função" sortBy="#{anuncio.funcao}"
-				 filterMatchMode="contains">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{anuncio.funcao}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{anuncio.funcao}" style="width:100%"
-							label="Função" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+						<p:column headerText="ID(temp)" sortBy="#{anuncio.id}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anuncio.id}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anuncio.id}" style="width:100%"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
-			<p:column filterBy="#{anuncio.manager}" headerText="Manager" sortBy="#{anuncio.manager}"
-			filterMatchMode="contains">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{anuncio.manager}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{anuncio.manager}" style="width:100%"
-							label="Manager" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
 
-			<p:column filterBy="#{anuncio.REF}" headerText="Referência" sortBy="#{anuncio.REF}"
-			filterMatchMode="contains">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{anuncio.REF}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{anuncio.REF}" style="width:100%"
-							label="Referência" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
 
-			<p:column headerText="Estado" sortBy="#{anuncio.estado}" filterBy= "#{anuncio.estado}"
-			filterMatchMode="contains">
 
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{anuncio.estado}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:selectOneMenu value="#{anuncio.estado}" style="width:125%">
-							<f:selectItem itemLabel="Selecione um" itemValue="" />
-							<f:selectItem itemLabel="Manter" itemValue="Manter" />
-							<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
-							<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
-						</h:selectOneMenu>
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-			
-			
-			
-			
-			
 
-			<p:column style="width:130">
-				<p:button outcome="listarAnunPlat?faces-redirect=true"
-					value="Plataformas">
-					<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
-				</p:button>
-			</p:column>
-			
-			
-			
-			
+						<p:column filterBy="#{anuncio.funcao}" headerText="Função"
+							sortBy="#{anuncio.funcao}" filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anuncio.funcao}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anuncio.funcao}" style="width:100%"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
-			<p:column style="width:32px">
-				<p:rowEditor />
-			</p:column>
+						<p:column filterBy="#{anuncio.manager}" headerText="Manager"
+							sortBy="#{anuncio.manager}" filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anuncio.manager}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anuncio.manager}" style="width:100%"
+										label="Manager" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
-			<p:column style="width:32px">
-				<p:commandButton icon="ui-icon-trash"
-					action="#{anuncioBean.removeAnuncio(anuncio)}" update="dtanuncio">
-					<p:confirm header="Confirmar" message="Tem a certeza?"
-						icon="ui-icon-alert" />
-				</p:commandButton>
-				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
-			</p:column>
+						<p:column filterBy="#{anuncio.REF}" headerText="Referência"
+							sortBy="#{anuncio.REF}" filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anuncio.REF}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anuncio.REF}" style="width:100%"
+										label="Referência" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
-		</p:dataTable>
-		<p:commandButton value="Criar Anúncio" action="criarAnuncio" />
-		<p:commandButton value="Voltar" action="menuRH" />
+						<p:column headerText="Estado" sortBy="#{anuncio.estado}"
+							filterBy="#{anuncio.estado}" filterMatchMode="contains">
+
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anuncio.estado}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{anuncio.estado}" style="width:125%">
+										<f:selectItem itemLabel="Selecione um" itemValue="" />
+										<f:selectItem itemLabel="Manter" itemValue="Manter" />
+										<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
+										<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
+									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+
+						<p:column style="width:142">
+							<p:button outcome="listarAnunPlat?faces-redirect=true"
+								value="Plataformas">
+								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
+							</p:button>
+						</p:column>
+
+
+					<p:column style="width:32px">
+							<p:rowEditor />
+						</p:column>
+
+						<p:column style="width:54px">
+							<p:commandButton icon="ui-icon-trash"
+								action="#{anuncioBean.removeAnuncio(anuncio)}"
+								update="dtanuncio">
+								<p:confirm header="Confirmar" message="Tem a certeza?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</p:column>
+
+					</p:dataTable>
+
+
+					<p:commandButton value="Criar Anúncio" action="criarAnuncio?faces-redirect=true" />
+					<p:commandButton value="Voltar" action="menuRH?faces-redirect=true" />
+				</div>
+			</div>
+		</div>
+
 	</h:form>
 </h:body>
 </html>

@@ -7,11 +7,18 @@
 	xmlns:of="http://omnifaces.org/functions">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<title>Gestão de Anúncios</title>
 </h:head>
 <h:body>
 
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-sm" >
+<br /> 
 
 
 		<p:dataTable id="dtplataforma" var="plataforma"
@@ -78,11 +85,16 @@
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				</p:confirmDialog>
 			</p:column>
+			
 
 
 		</p:dataTable>
-		<p:commandButton value="Criar Plataforma" action="criarPlataformas" />
-		<p:commandButton value="Voltar" action="menuRH" />
+		<p:commandButton value="Criar Plataforma" action="criarPlataformas?faces-redirect=true" />
+		<p:commandButton value="Voltar" action="menuRH?faces-redirect=true" />
+		
+			</div>
+			</div>
+		</div>
 	</h:form>
 </h:body>
 </html>

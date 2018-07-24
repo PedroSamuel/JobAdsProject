@@ -7,17 +7,11 @@
 
 
 <h:head>
-
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"></link>
-	<link rel="stylesheet" type="text/css"
-		href="JobAdsProject/src/main/webapp/resources/css/style.css"></link>
+		
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
-	<title>Gestão de Anúncios</title>
-
-
-
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputStylesheet library="css" name="style.css"/>
+	<title>index</title>
 </h:head>
 
 <h:body>
@@ -26,7 +20,7 @@
 		<div class="row">
 			<div class="col-sm"></div>
 
-			<div class="col-sm">
+			<div class="col-sm text-center">
 				<br /> <br /> <br /> <br />
 				<h:graphicImage value="resources/images/aubayImg.png" width="200" />
 				<br /> <br />
@@ -34,10 +28,10 @@
 				<h:form>
 
 
-					<p:commandButton value="Requerimentos" action="pedirRequerimento" class="center-block" />
+					<p:commandButton value="Requerimentos" action="pedirRequerimento?faces-redirect=true" class="center-block" />
 					<br />
 					<br />
-					<p:commandButton value="Login" action="menuRH" />
+					<p:commandButton value="Login" action="menuRH?faces-redirect=true" />
 					<br />
 					<br />
 				</h:form>

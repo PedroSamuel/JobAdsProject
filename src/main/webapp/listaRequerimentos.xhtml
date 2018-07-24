@@ -7,7 +7,9 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<title>Gestão de Anúncios</title>
 	
 		<script>
@@ -43,7 +45,11 @@ PrimeFaces.locales['pt'] = {
 
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
 
+	<div class="container-fluid">
+			<div class="row">
 
+				<div class="col-sm" >
+<br /> 
 
 		<p:dataTable id="dtreq" var="req"
 			value="#{requerimentoBean.requerimentos}" editable="false"
@@ -74,6 +80,9 @@ PrimeFaces.locales['pt'] = {
 			</p:column>
 
 
+=======
+			
+				
 			<p:column  headerText="e-mail" sortBy="#{req.email}" filterBy="#{req.email}">
 			<h:outputText value="#{req.email}" />
 			</p:column>
@@ -106,7 +115,11 @@ PrimeFaces.locales['pt'] = {
 
 		</p:dataTable>
 
-		<p:commandButton value="Voltar" action="menuRH" />
+		<p:commandButton value="Voltar" action="menuRH?faces-redirect=true" />
+		
+			</div>
+			</div>
+		</div>
 	</h:form>
 </h:body>
 </html>
