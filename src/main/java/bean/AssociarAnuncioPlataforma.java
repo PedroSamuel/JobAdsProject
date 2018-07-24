@@ -67,14 +67,15 @@ import model.Plataforma;
 		}
 
 		public String salvarAnunPlat() {
-			if (idAnuncio == (null)) {
-				System.out.println("Não Funcionou!!!!");
-			} else {
-				Long longID = Long.valueOf(idAnuncio);
-				setAnuncio(controlAnuncio.getAnuncio(longID));
-				System.out.println("Okok" + longID);
-				
-			}
+			// vai buscar o parametro id, converte para Long e declara o anuncio com base no mesmo.
+//			if (idAnuncio == (null)) {
+//				System.out.println("Não Funcionou!!!!");
+//			} else {
+//				Long longID = Long.valueOf(idAnuncio);
+//				setAnuncio(controlAnuncio.getAnuncio(longID));
+//				System.out.println("Okok" + longID);
+//				
+//			}
 			anuncio.adicionarPlataforma(plataforma);
 			controlAnuncio.updateAnuncio(anuncio);
 			
@@ -102,7 +103,7 @@ import model.Plataforma;
 			idAnuncio = idx;
 		}
 		
-		@PostConstruct
+		// vai buscar o parametro id, converte para Long e declara o anuncio com base no mesmo.
 		public void load(){ 
 			if (idAnuncio == (null)) {
 				System.out.println("Não Funcionou!");
