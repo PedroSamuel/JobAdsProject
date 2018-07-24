@@ -8,8 +8,8 @@ import javax.persistence.MappedSuperclass;
 
 
 @MappedSuperclass
-public class Entidade {
-	private static final long serialVersionUID = 1L;
+public abstract class Entidade {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;

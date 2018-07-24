@@ -27,7 +27,7 @@ public class Anuncio extends Entidade {
     private Date dataModificacao;
     
     
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
 	private List<AnuncioPlataforma> plataformas;// = new ArrayList<AnuncioPlataforma>();
 	

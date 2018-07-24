@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -42,12 +43,12 @@ public class AnuncioPlataforma implements Serializable{
 	private String isbn;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "anuncio_id", referencedColumnName = "id")
 	private Anuncio anuncio;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "plataforma_id", referencedColumnName ="id")
 	private Plataforma plataforma;
 	

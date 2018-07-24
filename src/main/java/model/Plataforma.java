@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import model.AnuncioPlataforma;
@@ -10,7 +11,7 @@ import model.AnuncioPlataforma;
 @Entity
 public class Plataforma extends Entidade {
 	
-	@OneToMany(mappedBy = "plataforma")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "plataforma")
 	private List<AnuncioPlataforma> anuncios;
 	
 	public List<AnuncioPlataforma> getAnuncios() {
