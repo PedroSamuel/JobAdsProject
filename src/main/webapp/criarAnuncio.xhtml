@@ -10,12 +10,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="style.css" />
+	
+	 
 	<title>Gestão de Anúncios</title>
 	
 
 </h:head>
 
 <h:body >
+<br />
+        <br />
+         <br />
+       
+        <div class="container">
+		
+			<div class="col-sm"></div>
+
+			
+
+         <div class="col-sm container1 ">
+         <br />
+         <h:graphicImage value="resources/images/aubayImg.png" width="150" class="mx-auto d-block"/>
+
+<br />
 	<p:growl id="growl" showDetail="true" sticky="true" />
 	
 	<div   class="row header ">
@@ -33,6 +50,7 @@
 
 				<div class="col-sm" >
 	<h:form>
+<<<<<<< HEAD
 		<h4>Criar Anúncio</h4>
 		<h5>Função</h5>
 		<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1" cols="15" autoResize = "false"/>
@@ -42,6 +60,19 @@
 		<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1" cols="15" autoResize = "false"/>
 		<h5>Estado</h5>
             <p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}" style="width:160px">
+=======
+		<h1>Criar Anúncio</h1>
+		<br />
+		<br />
+		<h3>Função</h3>
+		<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1" cols="15" />
+		<h3>Manager</h3>
+		<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1" cols="15" />
+		<h3>Referência</h3>
+		<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1" cols="15" />
+		<h3>Estado</h3>
+            <p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}" style="width:125px">
+>>>>>>> Andre-24-julho-v1
                <f:selectItem itemLabel="Selecione um" itemValue="" />
             <f:selectItem itemLabel="Manter" itemValue="Manter" />
             <f:selectItem itemLabel="Retirar" itemValue="Retirar" />
@@ -68,8 +99,17 @@
 		<p:commandButton value="Voltar" action="listaAnuncios?faces-redirect=true" />
 
 	</h:form>
+<<<<<<< HEAD
 	</div>
 			</div>
 		</div>
+=======
+	<div class="col-sm"></div>
+
+		</div>
+	</div>
+	
+	 
+>>>>>>> Andre-24-julho-v1
 </h:body>
 </html>
