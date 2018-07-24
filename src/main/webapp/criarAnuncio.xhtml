@@ -7,109 +7,88 @@
 
 
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="style.css" />
-	
-	 
+
+
 	<title>Gestão de Anúncios</title>
-	
+
 
 </h:head>
 
-<h:body >
-<br />
-        <br />
-         <br />
-       
-        <div class="container">
+<h:body>
+	<br />
+	<br />
+	<br />
+
+	<div class="container">
+
+		<div class="col-sm"></div>
+
+
+
+		<div class="col-sm container1 ">
+			<br />
+			<h:graphicImage value="resources/images/aubayImg.png" width="150"
+				class="mx-auto d-block" />
+
+			<br />
+			<p:growl id="growl" showDetail="true" sticky="true" />
+
+			
+
+	
+			<br />
 		
-			<div class="col-sm"></div>
+						<h:form>
 
-			
+							<h4>Criar Anúncio</h4>
+							<h5>Função</h5>
+							<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1"
+								cols="15" autoResize="false" />
+							<h5>Manager</h5>
+							<p:inputTextarea value="#{anuncioCreate.anuncio.manager}"
+								rows="1" cols="15" autoResize="false" />
+							<h5>Referência</h5>
+							<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1"
+								cols="15" autoResize="false" />
+							<h5>Estado</h5>
+							<p:selectOneMenu id="estado"
+								value="#{anuncioCreate.anuncio.estado}" style="width:160px">
 
-         <div class="col-sm container1 ">
-         <br />
-         <h:graphicImage value="resources/images/aubayImg.png" width="150" class="mx-auto d-block"/>
+								<f:selectItem itemLabel="Selecione um" itemValue="" />
+								<f:selectItem itemLabel="Manter" itemValue="Manter" />
+								<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
+								<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
+							</p:selectOneMenu>
+							<br />
+							<br />
+							<h:form enctype="multipart/form-data">
+								<p:growl id="messages" showDetail="true" />
+								<br />
+								<h5>Insira o Ficheiro do Anúncio</h5>
 
-<br />
-	<p:growl id="growl" showDetail="true" sticky="true" />
-	
-	<div   class="row header ">
-<br/>
-  <div class="col-sm-3"><br/><h:graphicImage value="resources/images/aubayImg.png" width="100"  style = "text-align: center"/></div>
-  <div class="col-sm-6"><br/><h1 style="text-align: center">Criar Anúncio</h1> <br/> <br/></div>
-  <div class="col-sm-3"> </div>
- 
-</div>
-<br/>
-<div class="container-fluid bodyForm">
+								<p:fileUpload value="#{fileUploadView.file}" mode="simple"
+									skinSimple="true" label="Escolher" uploadLabel="Escolher" />
 
-			<div class="row">
-			
+								<p:commandButton value="Submeter" ajax="false"
+									actionListener="#{fileUploadView.upload}" disabled="true" />
+							</h:form>
 
-				<div class="col-sm" >
-	<h:form>
-<<<<<<< HEAD
-		<h4>Criar Anúncio</h4>
-		<h5>Função</h5>
-		<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1" cols="15" autoResize = "false"/>
-		<h5>Manager</h5>
-		<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1" cols="15" autoResize = "false"/>
-		<h5>Referência</h5>
-		<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1" cols="15" autoResize = "false"/>
-		<h5>Estado</h5>
-            <p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}" style="width:160px">
-=======
-		<h1>Criar Anúncio</h1>
-		<br />
-		<br />
-		<h3>Função</h3>
-		<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1" cols="15" />
-		<h3>Manager</h3>
-		<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1" cols="15" />
-		<h3>Referência</h3>
-		<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1" cols="15" />
-		<h3>Estado</h3>
-            <p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}" style="width:125px">
->>>>>>> Andre-24-julho-v1
-               <f:selectItem itemLabel="Selecione um" itemValue="" />
-            <f:selectItem itemLabel="Manter" itemValue="Manter" />
-            <f:selectItem itemLabel="Retirar" itemValue="Retirar" />
-            <f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
-        </p:selectOneMenu>
-        <br />
-        <br />
-		<h:form enctype="multipart/form-data">
-			<p:growl id="messages" showDetail="true" />
-        <br />
-        <h5>Insira o Ficheiro do Anúncio</h5>
+							<br />
+							<br />
 
-			<p:fileUpload value="#{fileUploadView.file}" mode="simple"
-				skinSimple="true" label="Escolher" uploadLabel="Escolher" />
+							<p:commandButton value="Guardar"
+								action="#{anuncioCreate.salvarAnuncio()}" />
+							<p:commandButton value="Voltar"
+								action="listaAnuncios?faces-redirect=true" />
 
-			<p:commandButton value="Submeter" ajax="false"
-				actionListener="#{fileUploadView.upload}" disabled="true" />
-		</h:form>
+						</h:form>
 
-		<br />
-		<br />
+						<div class="col-sm"></div>
 
-		<p:commandButton value="Guardar" action="#{anuncioCreate.salvarAnuncio()}" />
-		<p:commandButton value="Voltar" action="listaAnuncios?faces-redirect=true" />
-
-	</h:form>
-<<<<<<< HEAD
-	</div>
-			</div>
-		</div>
-=======
-	<div class="col-sm"></div>
-
-		</div>
-	</div>
-	
-	 
->>>>>>> Andre-24-julho-v1
+					</div>
+				</div>
 </h:body>
 </html>

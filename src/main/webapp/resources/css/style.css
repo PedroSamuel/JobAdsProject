@@ -1,6 +1,15 @@
 @CHARSET "UTF-8";
 
+	body  {
+    background-image: url(#{resource['images:OrangeBG.jpg']});
+   /* Full height */
+    height: 100%; 
 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .header  {background-color: grey;}
 
