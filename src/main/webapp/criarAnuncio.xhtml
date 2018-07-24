@@ -10,15 +10,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="style.css" />
+	
+	 
 	<title>Gestão de Anúncios</title>
 	
 
 </h:head>
 
 <h:body >
+<br />
+        <br />
+         <br />
+       
+        <div class="container">
+		
+			<div class="col-sm"></div>
+
+			
+
+         <div class="col-sm container1 ">
+         <br />
+         <h:graphicImage value="resources/images/aubayImg.png" width="150" class="mx-auto d-block"/>
+
+<br />
 	<p:growl id="growl" showDetail="true" sticky="true" />
 	<h:form>
 		<h1>Criar Anúncio</h1>
+		<br />
+		<br />
 		<h3>Função</h3>
 		<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1" cols="15" />
 		<h3>Manager</h3>
@@ -53,5 +72,11 @@
 		<p:commandButton value="Voltar" action="listaAnuncios" />
 
 	</h:form>
+	<div class="col-sm"></div>
+
+		</div>
+	</div>
+	
+	 
 </h:body>
 </html>
