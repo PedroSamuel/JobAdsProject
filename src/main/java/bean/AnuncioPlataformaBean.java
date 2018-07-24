@@ -66,7 +66,7 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 	
 	public Collection<AnuncioPlataforma> SelectAnPlat() {
-		return anuncioControlPlataforma.SelectAnPlat(anuncio);
+		return anuncioControlPlataforma.SelectAnPlat(getAnuncioById());
 	}
 	
 
@@ -87,6 +87,10 @@ public class AnuncioPlataformaBean implements Serializable{
 	public Anuncio getAnuncio() {
 		
 		return anuncio;
+	}
+	
+	public Anuncio getAnuncioById() {
+		return anuncioControl.getAnuncio(Long.valueOf(idAnuncio));
 	}
 
 	public void setAnuncio(Anuncio anuncio) {

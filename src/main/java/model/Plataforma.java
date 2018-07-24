@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,12 +17,12 @@ public class Plataforma extends Entidade {
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	private List<AnuncioPlataforma> anuncios = new ArrayList<AnuncioPlataforma>();
+	private Set<AnuncioPlataforma> anuncios = new HashSet<AnuncioPlataforma>();
 	
-	public List<AnuncioPlataforma> getAnuncios() {
+	public Set<AnuncioPlataforma> getAnuncios() {
 		return anuncios;
 	}
-	public void setAnuncios(List<AnuncioPlataforma> anuncios) {
+	public void setAnuncios(Set<AnuncioPlataforma> anuncios) {
 		this.anuncios = anuncios;
 	}
 	String nomePlataforma;
@@ -45,6 +47,17 @@ public class Plataforma extends Entidade {
 	@Override
 	public String toString() {
 		return String.format("[%s]", nomePlataforma);
+	}
+	
+	
+	@Override
+	public boolean equals(Object other) {
+		return (other instanceof Plataforma) && (id != null) ? id.equals(((Plataforma) other).id) : (other == this);
+	}
+
+	@Override
+	public int hashCode() {
+		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
 	}
 	
 	/*

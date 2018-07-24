@@ -38,9 +38,7 @@
 
 		<p:dataTable editable="true" style="margin-bottom:20px"
 			id="dtAnunPlat" var="anunPlat"
-			value="#{anuncioplataformaBean.anuncioPlataforma}"
-			rowKey="#{anunPlat.id}" selection="#{selected}"
-			selectionMode="single" widgetVar="anuPlatTable"
+			value="#{anuncioplataformaBean.anuncio.plataformas}"
 			emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 			filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}">
 

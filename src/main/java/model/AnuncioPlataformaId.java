@@ -27,10 +27,21 @@ public class AnuncioPlataformaId implements Serializable{
 	
 	
 	
+	public AnuncioPlataformaId(Long anuncioId, Long plataformaId) {
+		this.anuncio_id = anuncioId;
+		this.plataforma_id = plataformaId;
+		
+	}
+	
+	public AnuncioPlataformaId() {}
+
+
+
+
 	@Override
 	public int hashCode() {
 		//return (isbn != null) ? (this.getClass().hashCode() + isbn.hashCode()) : super.hashCode();
-		return anuncio_id.hashCode() + plataforma_id.hashCode();
+		return Objects.hash(anuncio_id, plataforma_id);
 	}
 
 	
@@ -39,10 +50,11 @@ public class AnuncioPlataformaId implements Serializable{
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AnuncioPlataformaId)) return false;
+        if (o == null || getClass() != o.getClass())
+			return false;
         AnuncioPlataformaId that = (AnuncioPlataformaId) o;
-        return Objects.equals(getAnuncio_id(), that.getAnuncio_id()) &&
-                Objects.equals(getPlataforma_id(), that.getPlataforma_id());
+        return Objects.equals(anuncio_id, that.anuncio_id) &&
+                Objects.equals(plataforma_id, that.plataforma_id);
 	}
 	
 	@Override

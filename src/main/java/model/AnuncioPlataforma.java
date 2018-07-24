@@ -67,6 +67,15 @@ public class AnuncioPlataforma implements Serializable{
 	private String link;
 	
 	
+	public AnuncioPlataforma(Anuncio anuncio, Plataforma plataforma) {
+		this.anuncio = anuncio;
+		this.plataforma = plataforma;
+		this.id = new AnuncioPlataformaId(anuncio.getId(), plataforma.getId());
+	}
+	
+	public AnuncioPlataforma() {}
+	
+	
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
 	}

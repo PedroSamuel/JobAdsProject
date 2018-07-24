@@ -75,12 +75,14 @@ import model.Plataforma;
 				System.out.println("Okok" + longID);
 				
 			}
-			anuncioPlataforma.setAnuncio(anuncio);
+			anuncio.adicionarPlataforma(plataforma);
+			controlAnuncio.updateAnuncio(anuncio);
+			
 //			anuncio.getPlataformas().add(anuncioPlataforma);
 //			controlAnuncio.updateAnuncio(anuncio);
 //			anuncioPlataforma.getPlataforma().getAnuncios().add(anuncioPlataforma);
 //			controlPlataforma.updatePlataforma(anuncioPlataforma.getPlataforma());
-			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
+			//controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
 //			System.out.println("Enviado!");
 //			System.out.println(anuncio.getREF());
 			return "listarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
@@ -100,6 +102,7 @@ import model.Plataforma;
 			idAnuncio = idx;
 		}
 		
+		@PostConstruct
 		public void load(){ 
 			if (idAnuncio == (null)) {
 				System.out.println("Não Funcionou!");
@@ -125,7 +128,7 @@ import model.Plataforma;
 			this.plataforma = plataforma;
 		}
 		
-		@PostConstruct
+	
 		public void teste() {
 			for (Plataforma plataforma: listaPlataformas()) {
 				System.out.println(plataforma.toString());

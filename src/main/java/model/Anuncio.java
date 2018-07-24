@@ -4,7 +4,9 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,15 +32,15 @@ public class Anuncio extends Entidade {
     
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "plataforma", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
-	private List<AnuncioPlataforma> plataformas = new ArrayList<AnuncioPlataforma>();
+	private Set<AnuncioPlataforma> plataformas = new HashSet<AnuncioPlataforma>();
 	
     
     
-	public List<AnuncioPlataforma> getPlataformas() {
+	public Set<AnuncioPlataforma> getPlataformas() {
 		return plataformas;
 	}
 
-	public void setPlataformas(List<AnuncioPlataforma> plataformas) {
+	public void setPlataformas(Set<AnuncioPlataforma> plataformas) {
 		this.plataformas = plataformas;
 	}
 
@@ -115,6 +117,24 @@ public class Anuncio extends Entidade {
 	@Override
 	public String toString() {
 		return String.format("Anuncio [%s]", REF);
+	
+	}
+	
+	public void adicionarPlataforma(Plataforma plataforma) {
+		AnuncioPlataforma anunPlat = new AnuncioPlataforma(this, plataforma);
+		plataformas.add(anunPlat);
+		plataforma.getAnuncios().add(anunPlat);
+	}
+	
+	
+	@Override
+	public boolean equals(Object other) {
+		return (other instanceof Anuncio) && (id != null) ? id.equals(((Anuncio) other).id) : (other == this);
+	}
+
+	@Override
+	public int hashCode() {
+		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
 	}
 }
 	
