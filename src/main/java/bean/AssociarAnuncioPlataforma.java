@@ -30,7 +30,11 @@ import model.Plataforma;
 
 		private Anuncio anuncio;
 		
+		private Plataforma plataforma;
+		
 		private String idAnuncio; 
+		
+		
 		
 		@Inject
 		private ControlAnuncioPlataforma controlAnuncioPlataforma;
@@ -50,7 +54,7 @@ import model.Plataforma;
 		}
 
 
-		private AnuncioPlataforma anuncioPlataforma	= new AnuncioPlataforma();;
+		private AnuncioPlataforma anuncioPlataforma	= new AnuncioPlataforma();
 
 		public AnuncioPlataforma getAnuncioPlataforma() {
 			return anuncioPlataforma;
@@ -65,12 +69,16 @@ import model.Plataforma;
 			if (idAnuncio == (null)) {
 				System.out.println("Não Funcionou!!!!");
 			} else {
-				long longID = Long.valueOf(idAnuncio);
+				Long longID = Long.valueOf(idAnuncio);
 				setAnuncio(controlAnuncio.getAnuncio(longID));
 				System.out.println("Okok" + longID);
 				
 			}
 			anuncioPlataforma.setAnuncio(anuncio);
+			anuncioPlataforma.getAnuncio().getPlataformas().add(anuncioPlataforma);
+			controlAnuncio.updateAnuncio(anuncioPlataforma.getAnuncio());
+			anuncioPlataforma.getPlataforma().getAnuncios().add(anuncioPlataforma);
+			controlPlataforma.updatePlataforma(anuncioPlataforma.getPlataforma());
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
 			System.out.println("Enviado!");
 			System.out.println(anuncio.getREF());
@@ -104,6 +112,14 @@ import model.Plataforma;
 
 		public List<Plataforma> listaPlataformas(){
 			return controlPlataforma.Plataformas();
+		}
+
+		public Plataforma getPlataforma() {
+			return plataforma;
+		}
+
+		public void setPlataforma(Plataforma plataforma) {
+			this.plataforma = plataforma;
 		}
 
 	}
