@@ -45,7 +45,11 @@ PrimeFaces.locales['pt'] = {
 
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
 
+	<div class="container-fluid">
+			<div class="row">
 
+				<div class="col-sm" >
+<br /> 
 
 		<p:dataTable id="dtreq" var="req"
 			value="#{requerimentoBean.requerimentos}" editable="false"
@@ -110,6 +114,10 @@ PrimeFaces.locales['pt'] = {
 		</p:dataTable>
 
 		<p:commandButton value="Voltar" action="menuRH?faces-redirect=true" />
+		
+			</div>
+			</div>
+		</div>
 	</h:form>
 </h:body>
 </html>

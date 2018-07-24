@@ -117,11 +117,7 @@
 						</p:column>
 
 
-
-
-
-
-						<p:column style="width:131">
+						<p:column style="width:142">
 							<p:button outcome="listarAnunPlat?faces-redirect=true"
 								value="Plataformas">
 								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
@@ -129,14 +125,11 @@
 						</p:column>
 
 
-
-
-
-						<p:column style="width:32px">
+					<p:column style="width:32px">
 							<p:rowEditor />
 						</p:column>
 
-						<p:column style="width:32x">
+						<p:column style="width:54px">
 							<p:commandButton icon="ui-icon-trash"
 								action="#{anuncioBean.removeAnuncio(anuncio)}"
 								update="dtanuncio">
