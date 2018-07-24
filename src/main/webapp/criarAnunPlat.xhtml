@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
 
 
 <h:head>
@@ -51,10 +52,10 @@ PrimeFaces.locales['pt'] = {
 		<h3>Referência Anuncio: #{newAnunPlat.anuncio.REF}</h3>
 		<h1>Associar Anúncio a Plataforma</h1>
 		<h3>Plataforma</h3>
-		<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.plataforma}"
+		<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.plataforma}" converter="omnifaces.SelectItemsConverter"
 			style="width:25%">
-			<f:selectItem itemLabel="Selecione um" itemValue="" />
-			<f:selectItems Value="#{newAnunPlat.listaPlataformas()}" />
+			<f:selectItem itemLabel="Plataformas" itemValue="" />
+			<f:selectItems value="#{newAnunPlat.listaPlataformas()}" var="plataforma" itemLabel="#{plataforma.nomePlataforma}" itemValue="#{plataforma}"/>
 		</h:selectOneMenu>
 
 		<h3>Estado do Anúncio</h3>

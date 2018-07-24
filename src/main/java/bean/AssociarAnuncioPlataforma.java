@@ -3,8 +3,10 @@
 	package bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 	import javax.inject.Named;
@@ -34,7 +36,7 @@ import model.Plataforma;
 		
 		private String idAnuncio; 
 		
-		
+
 		
 		@Inject
 		private ControlAnuncioPlataforma controlAnuncioPlataforma;
@@ -65,7 +67,6 @@ import model.Plataforma;
 		}
 
 		public String salvarAnunPlat() {
-			System.out.println(anuncioPlataforma.getId());
 			if (idAnuncio == (null)) {
 				System.out.println("Não Funcionou!!!!");
 			} else {
@@ -75,13 +76,13 @@ import model.Plataforma;
 				
 			}
 			anuncioPlataforma.setAnuncio(anuncio);
-			anuncioPlataforma.getAnuncio().getPlataformas().add(anuncioPlataforma);
-			controlAnuncio.updateAnuncio(anuncioPlataforma.getAnuncio());
-			anuncioPlataforma.getPlataforma().getAnuncios().add(anuncioPlataforma);
-			controlPlataforma.updatePlataforma(anuncioPlataforma.getPlataforma());
+//			anuncio.getPlataformas().add(anuncioPlataforma);
+//			controlAnuncio.updateAnuncio(anuncio);
+//			anuncioPlataforma.getPlataforma().getAnuncios().add(anuncioPlataforma);
+//			controlPlataforma.updatePlataforma(anuncioPlataforma.getPlataforma());
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
-			System.out.println("Enviado!");
-			System.out.println(anuncio.getREF());
+//			System.out.println("Enviado!");
+//			System.out.println(anuncio.getREF());
 			return "listarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
 		}
 
@@ -113,6 +114,8 @@ import model.Plataforma;
 		public List<Plataforma> listaPlataformas(){
 			return controlPlataforma.Plataformas();
 		}
+		
+
 
 		public Plataforma getPlataforma() {
 			return plataforma;
@@ -120,6 +123,13 @@ import model.Plataforma;
 
 		public void setPlataforma(Plataforma plataforma) {
 			this.plataforma = plataforma;
+		}
+		
+		@PostConstruct
+		public void teste() {
+			for (Plataforma plataforma: listaPlataformas()) {
+				System.out.println(plataforma.toString());
+			}
 		}
 
 	}

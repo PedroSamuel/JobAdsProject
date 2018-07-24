@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -49,15 +50,15 @@ public class AnuncioPlataforma implements Serializable{
 	
 	//private String isbn;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("anuncio_id")
-	@JoinColumn(name = "anuncio_id", referencedColumnName = "id")
+	@JoinColumn(name = "ANUNCIO_ID")
 	private Anuncio anuncio;
 
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("plataforma_id")
-	@JoinColumn(name = "plataforma_id", referencedColumnName ="id")
+	@JoinColumn(name = "PLATAFORMA_ID")
 	private Plataforma plataforma;
 	
 	private Date Datacriacao;

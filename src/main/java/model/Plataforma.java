@@ -3,7 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import model.AnuncioPlataforma;
@@ -11,7 +13,8 @@ import model.AnuncioPlataforma;
 @Entity
 public class Plataforma extends Entidade {
 	
-	@OneToMany(mappedBy = "anuncio")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH })
 	private List<AnuncioPlataforma> anuncios = new ArrayList<AnuncioPlataforma>();
 	
 	public List<AnuncioPlataforma> getAnuncios() {
@@ -21,8 +24,9 @@ public class Plataforma extends Entidade {
 		this.anuncios = anuncios;
 	}
 	String nomePlataforma;
+	
 	int periodoRenovacao;
-	// List <AnuncioPlataforma> listaAnuncios;
+	
 	
 	public String getNomePlataforma() {
 		return nomePlataforma;
@@ -35,6 +39,12 @@ public class Plataforma extends Entidade {
 	}
 	public void setPeriodoRenovacao(int periodoRenovacao) {
 		this.periodoRenovacao = periodoRenovacao;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("[%s]", nomePlataforma);
 	}
 	
 	/*

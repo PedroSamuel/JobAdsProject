@@ -111,6 +111,11 @@ public class Anuncio extends Entidade {
 	public void setIdRequerimento(String idRequerimento) {
 		this.idRequerimento = idRequerimento;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("Anuncio [%s]", REF);
+	}
 }
 	
 	
