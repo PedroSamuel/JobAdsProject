@@ -10,44 +10,58 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<title>Requerimento</title>
 
 
 </h:head>
-
+<f:metadata>
+	<f:viewParam name="idRequerimento"
+		value="#{DRequerimento.idRequerimento}"></f:viewParam>
+	<f:event listener="#{DRequerimento.load}" type="preRenderView"></f:event>
+</f:metadata>
 <h:body>
+
+<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-sm" >
 	<h:form>
 		<h1 style="text-align: center">Requerimento</h1>
 
 		<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
 
+		<h3>Id Requerimento</h3>
+		<h:outputText value="#{DRequerimento.requerimento.id}" />
+
 		<h3>Nome</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{DRequerimento.requerimento.requerente}" />
 
 		<h3>Email</h3>
-		<h:outputText value=""/>
+		<h:outputText value="#{DRequerimento.requerimento.email}" />
 		<br />
-        <br />
-        <br />
+		<br />
+		<br />
 		<h2 style="margin-top: 0">Candidato</h2>
-        <br />
-        
+		<br />
+
 		<h3>Função</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{DRequerimento.requerimento.funcao}" />
 
 		<h3>Requisitos do Candidato</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{DRequerimento.requerimento.requisitos}" />
 
 		<h3>Observações</h3>
-		<h:outputText value="" />
-		
+		<h:outputText value="#{DRequerimento.requerimento.notas}" />
+
 		<h3>Estado do Requerimento</h3>
-		<h:outputText value="" />
+		<h:outputText value="#{DRequerimento.requerimento.estado}" />
 
 		<h3>Data do Requerimento</h3>
-		<h:outputText value="" />
-		
-		
+		<h:outputText value="#{DRequemimento.requerimento.data}" />
+
+
 
 	</h:form>
 
@@ -56,10 +70,20 @@
 
 	<h:form>
 
-		<p:commandButton value="Criar" action="pedirRequerimento" />
-		<p:commandButton value="Guardar" action="pedirRequerimento" />
-		<p:commandButton value="Voltar" action="index" />
+		<p:button outcome="criarAnuncio?faces-redirect=true"
+			value="Criar Novo Anuncio">
+			<f:param name="idRequerimento"
+				value="#{DRequerimento.idRequerimento
+					}"></f:param>
+		</p:button>
+		<p:button outcome="listaRequerimentos?faces-redirect=true"
+			value="Voltar">
+
+		</p:button>
 
 	</h:form>
+	</div>
+		</div>
+		</div>
 </h:body>
 </html>

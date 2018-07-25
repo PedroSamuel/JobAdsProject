@@ -7,24 +7,50 @@
 
 
 <h:head>
+		
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Gestão de Anúncios</title>
 	
-	<style type="text/css">
-	body {
-	 
-	  }	
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputStylesheet library="css" name="style.css"/>
 
-	</style> 
+	<title>index</title>
 </h:head>
 
-<h:body style="background-image: url(../images/background.jpg)">
-	
-	<h:form>
-		
-        <p:commandButton value="Requerimentos" action="pedirRequerimento"/>
-		<p:commandButton value="Login" action="menuRH"  />		
+<h:body>
 
-	</h:form>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm"></div>
+
+
+			<div class="col-sm text-center">
+				<br /> <br /> <br /> <br />
+
+				<h:graphicImage value="resources/images/aubayImg.png" width="200" />
+				<br /> <br />
+
+				<h:form>
+
+
+					<p:commandButton value="Requerimentos" action="pedirRequerimento?faces-redirect=true" class="center-block" />
+					<br />
+					<br />
+					<p:commandButton value="Login" action="menuRH?faces-redirect=true" />
+					<br />
+					<br />
+				</h:form>
+			</div>
+
+			<div class="col-sm"></div>
+
+		</div>
+	</div>
+	 <br />
+	  <br />
+	  <br />
+	  <br />
+
 </h:body>
 </html>

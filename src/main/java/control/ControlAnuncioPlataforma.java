@@ -1,10 +1,14 @@
 package control;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+
+import model.Anuncio;
 import model.AnuncioPlataforma;
 import repository.RepositorioAnuncioPlataforma;
 
@@ -23,10 +27,22 @@ public class ControlAnuncioPlataforma {
 		return dbAP.listEntity(AnuncioPlataforma.class);
 	}
 	
+	public Collection<AnuncioPlataforma> SelectAnPlat(Anuncio anuncio) {
+		ArrayList<AnuncioPlataforma> selection = new ArrayList<AnuncioPlataforma>(); 
+		for (AnuncioPlataforma AP : AnunciosPlataforma()){
+			if (AP.getAnuncio().equals(anuncio)){
+				selection.add(AP);
+			}
+		}
+		return selection;
+	}
+	
 	public AnuncioPlataforma getAnuncioPlataforma (Long id) {
 		return dbAP.getEntity(AnuncioPlataforma.class,  id);
 		
 	}
+	
+
 	
 	public void updateAnuncioPlataforma(AnuncioPlataforma ap) {
 		dbAP.updateEntity(ap);

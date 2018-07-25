@@ -2,52 +2,103 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<title>Gestão de Anúncios</title>
+	
+		<script>
+PrimeFaces.locales['pt'] = {
+        closeText: 'Fechar',
+            prevText: 'Anterior',
+            nextText: 'Próximo',
+            currentText: 'Começo',
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],                         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Des'],
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            weekHeader: 'Semana',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Só Horas',
+            timeText: 'Tempo',
+            hourText: 'Hora',
+            minuteText: 'Minuto',
+            secondText: 'Segundo',
+            ampm: false,
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia',
+            allDayText: 'Todo Dia'
+        };
+</script>
+	
 </h:head>
 <h:body>
 
-	<h:form onkeypress = "if (event.keyCode == 13){return false;}">
-	
+	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+
+	<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-sm" >
+<br /> 
 
 		<p:dataTable id="dtreq" var="req"
-			value="#{}" editable="false"
-			style="margin-bottom:20px">
-			
-			<p:ajax event="rowEdit" listener="#{}" />
-			
+			value="#{requerimentoBean.requerimentos}" editable="false"
+			style="margin-bottom:20px" rowKey="#{req.id}"
+			selection="#{selected}" selectionMode="single"
+			widgetVar="reqTable" 
+			emptyMessage="Não foram encontrados resultados com os seguintes criterios"
+			filteredValue="#{requerimentoBean.filteredRequerientos}">
+		
+
+
+			<p:ajax event="rowEdit" listener="#{requerimentoBean.onRowEdit}" />
+
 			<f:facet name="header">
           Lista de Requerimentos
        </f:facet>
 
-			<p:column headerText="Data Envio">
-				<h:outputText value="#{}" />
+
+			<p:column headerText="Data Envio" sortBy="#{req.data}" filterBy="#{req.data}">
+				<h:outputText value="#{req.data}">
+				<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+				 </h:outputText>
+
 			</p:column>
-			
-			<p:column headerText="Data Envio">
-				<h:outputText value="#{}" />
+
+			<p:column headerText="Funcao" sortBy="#{req.funcao}" filterBy="#{req.funcao}">
+				<h:outputText value="#{req.funcao}" />
 			</p:column>
+
+
+=======
 			
-			<p:column headerText="Cargo">
-				<h:outputText value="#{}" />
+				
+			<p:column  headerText="e-mail" sortBy="#{req.email}" filterBy="#{req.email}">
+			<h:outputText value="#{req.email}" />
 			</p:column>
-			
-			<p:column headerText="e-mail">
-				<h:outputText value="#{}" />
+
+			<p:column>
+
+				<p:button outcome="detalhesRequerimento?faces-redirect=true"
+					value="Detalhes">
+					<f:param name="idRequerimento" value="#{req.id}"></f:param>
+				</p:button>
+
 			</p:column>
-			
-			<p:column >
-				<p:commandButton value="Ver Detalhes" action="" />
-			</p:column>
-			
-			<p:column >
+
+			<p:column>
 				<p:commandButton icon="ui-icon-trash"
-					action="#{}" 
-					update="dtreq">
+					action="#{requerimentoBean.removerequerimento(req)}" update="dtreq">
 					<p:confirm header="Confirmar" message="Tem a certeza?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
@@ -63,8 +114,12 @@
 
 
 		</p:dataTable>
+
+		<p:commandButton value="Voltar" action="menuRH?faces-redirect=true" />
 		
-		<p:commandButton value="Voltar" action="menuRH" />
+			</div>
+			</div>
+		</div>
 	</h:form>
 </h:body>
 </html>

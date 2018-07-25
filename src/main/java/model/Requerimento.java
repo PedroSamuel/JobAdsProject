@@ -17,14 +17,13 @@ public class Requerimento extends Entidade {
 	
 	private static final long serialVersionUID = 1L;
 	
-	String requerente;
-	String data;
-	String email;
-	String funcao;
-	String requisitos;
-	String notas;
-	
-	String estado;
+	private String requerente;
+	private String data;
+	private String email;
+	private String funcao;
+	private String requisitos;
+	private String notas;	
+	private String estado;
 	
 	
 
@@ -93,7 +92,7 @@ public class Requerimento extends Entidade {
 		return estado;
 	}
 
-	void setEstado(String estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Gestão de Anúncios</title>
+
+</h:head>
+<f:metadata>
+
+
+
+
+
+
+	<f:viewParam name="idAnuncio"
+		value="#{anuncioplataformaBean.idAnuncio}"></f:viewParam>
+	<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
+
+
+
+
+
+</f:metadata>
+<h:body>
+
+	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-sm">
+					<br />
+
+					<p:dataTable editable="true" style="margin-bottom:20px"
+						id="dtAnunPlat" var="anunPlat"
+						value="#{anuncioplataformaBean.anuncio.plataformas}"
+						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
+						filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}">
+
+						<p:ajax event="rowEdit"
+							listener="#{anuncioPlataformaBean.onRowEdit}" />
+						<f:facet name="header">
+							<h:outputText
+								value="Referência: #{anuncioplataformaBean.anuncio.REF}" />
+						</f:facet>
+
+						<p:column headerText="Plataforma" sortBy="#{anunPlat.plataforma}"
+							filterBy="#{anunPlat.plataforma}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anunPlat.plataforma}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.plataforma}" style="width:100%"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+
+						<p:column headerText="Estado do Anúncio"
+							sortBy="#{anunPlat.estado}" filterBy="#{anunPlat.estado}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anunPlat.estado}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.estado}" style="width:100%"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Anúncio Criado"
+							sortBy="#{anunPlat.datacriacao}"
+							filterBy="#{anunPlat.datacriacao}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anunPlat.datacriacao}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anumPlat.datacriacao}" style="width:100%"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Anúncio Modificado"
+							sortBy="#{anunPlat.dataModificacao}"
+							filterBy="#{anunPlat.dataModificacao}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anunPlat.dataModificacao}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.dataModificacao}"
+										style="width:100%" label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Link" sortBy="#{anunPlat.link}"
+							filterBy="#{anunPlat.link}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anunPlat.link}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.link}" style="width:100%"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+
+						<p:column headerText="REF Anuncio">
+							<h:outputText value="#{anunPlat.anuncio.REF}" />
+						</p:column>
+
+						<p:column style="width:32px">
+							<p:rowEditor />
+						</p:column>
+
+
+
+
+						<p:column style="width:32px">
+							<p:commandButton icon="ui-icon-trash"
+								action="#{anuncioplataformaBean.removeAnunPlat(anunPlat)}"
+								update="dtAnunPlat">
+								<p:confirm header="Confirmação" message="Tem a certeza?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</p:column>
+
+					</p:dataTable>
+					<p:button outcome="criarAnunPlat?faces-redirect=true"
+						value=" Associar Plataforma">
+						<f:param name="idAnuncio"
+							value="#{anuncioplataformaBean.idAnuncio}"></f:param>
+					</p:button>
+
+					<p:commandButton value="Voltar"
+						action="listaAnuncios?faces-redirect=true" />
+
+
+				</div>
+			</div>
+	</div>
+	</h:form>
+</h:body>
+</html>

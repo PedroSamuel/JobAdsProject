@@ -1,22 +1,34 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 import model.AnuncioPlataforma;
 
 @Entity
 public class Plataforma extends Entidade {
-	private static final long serialVersionUID = 1L;
 	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH })
+	private Set<AnuncioPlataforma> anuncios = new HashSet<AnuncioPlataforma>();
+	
+	public Set<AnuncioPlataforma> getAnuncios() {
+		return anuncios;
+	}
+	public void setAnuncios(Set<AnuncioPlataforma> anuncios) {
+		this.anuncios = anuncios;
+	}
 	String nomePlataforma;
+	
 	int periodoRenovacao;
-	// List <AnuncioPlataforma> listaAnuncios;
+	
 	
 	public String getNomePlataforma() {
 		return nomePlataforma;
@@ -29,6 +41,23 @@ public class Plataforma extends Entidade {
 	}
 	public void setPeriodoRenovacao(int periodoRenovacao) {
 		this.periodoRenovacao = periodoRenovacao;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("[%s]", nomePlataforma);
+	}
+	
+	
+	@Override
+	public boolean equals(Object other) {
+		return (other instanceof Plataforma) && (id != null) ? id.equals(((Plataforma) other).id) : (other == this);
+	}
+
+	@Override
+	public int hashCode() {
+		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
 	}
 	
 	/*

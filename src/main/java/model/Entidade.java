@@ -18,9 +18,8 @@ public class Entidade {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
-		this.id = id;
+	this.id = id;
 	}
 		
 	
@@ -36,7 +35,7 @@ public class Entidade {
 
 	@Override
 	public String toString() {
-		return String.format("ExampleEntity[%d]", id);
+		return String.format("Entidade[%d]", id);
 	}
 
 }

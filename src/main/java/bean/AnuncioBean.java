@@ -18,10 +18,30 @@ import model.Anuncio;
 @ViewScoped
 public class AnuncioBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 372562415933083083L;
+
 	@Inject
 	ControlAnuncio anuncioControl;
+    
+	
+	
+	// classes criada para o search bar  
+	private Collection<Anuncio> filteredAnuncio;
+	
+	public Collection<Anuncio> getFilteredAnuncio() {
+		return filteredAnuncio;
+	}
 
+	public void setFilteredAnuncio(Collection<Anuncio> filteredAnuncio) {
+		this.filteredAnuncio = filteredAnuncio;
+	}
+
+	private Anuncio selected;
+	
 	public Collection<Anuncio> getAnuncios() {
 		return anuncioControl.Anuncios();
 	}
@@ -30,6 +50,9 @@ public class AnuncioBean implements Serializable {
 		anuncioControl.removeAnuncio(anuncio);
 	}
 
+	
+	
+	//class para a tabela editar vindo do primefaces
 	public void onRowEdit(RowEditEvent event) {
 		Anuncio anuncio = (Anuncio) event.getObject();
 		anuncioControl.updateAnuncio(anuncio);
@@ -37,6 +60,14 @@ public class AnuncioBean implements Serializable {
 
 	public void updateList() {
 		anuncioControl.updateList();
+	}
+
+	public Anuncio getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Anuncio selected) {
+		this.selected = selected;
 	}
 
 }
