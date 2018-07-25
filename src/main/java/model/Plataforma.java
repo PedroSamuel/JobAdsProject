@@ -46,7 +46,7 @@ public class Plataforma extends Entidade {
 	
 	@Override
 	public String toString() {
-		return String.format("[%s]", nomePlataforma);
+		return String.format("%s", nomePlataforma);
 	}
 	
 	

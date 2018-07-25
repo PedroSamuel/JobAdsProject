@@ -13,21 +13,38 @@
 	<title>Gestão de Anúncios</title>
 
 	<style type="text/css">
-body {
-	
-}
+
 </style>
 </h:head>
 
 <h:body>
-	<p:growl id="growl" showDetail="true" sticky="true" />
+<br />
+	<br />
+	<br />
+
+	<div class="container">
+
+		<div class="col-sm"></div>
+
+
+
+		<div class="col-sm container1 ">
+			<br />
+			<h:graphicImage value="resources/images/aubayImg.png" width="150"
+				class="mx-auto d-block" />
+
+			<br />
+			<p:growl id="growl" showDetail="true" sticky="true" />
+	
+			<br />
+
 	<h:form>
-		<h1>Criar Plataforma</h1>
-		<h3>Nome da Plataforma</h3>
+		<h4>Criar Plataforma</h4>
+		<h5>Nome da Plataforma</h5>
 		<p:inputTextarea
 			value="#{plataformaCreate.plataforma.nomePlataforma}"
 			rows="1" cols="15" autoResize = "false"/>
-		<h3>Renovação</h3>
+		<h5>Renovação</h5>
 		<p:inputTextarea
 			value="#{plataformaCreate.plataforma.periodoRenovacao}" rows="1"
 			cols="15" autoResize = "false"/>
@@ -39,5 +56,11 @@ body {
 		<p:commandButton value="Voltar" action="listaPlataformas?faces-redirect=true" />
 
 	</h:form>
+
+
+						<div class="col-sm"></div>
+
+					</div>
+				</div>
 </h:body>
 </html>

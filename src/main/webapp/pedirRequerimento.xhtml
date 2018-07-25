@@ -45,22 +45,28 @@ PrimeFaces.locales['pt'] = {
 </h:head>
 
 <h:body>
+<br />
+	<br />
+	<br />
 
-<div   class="row header ">
-<br/>
-  <div class="col-sm-3"><br/><h:graphicImage value="resources/images/aubayImg.png" width="100"  style = "text-align: center"/></div>
-  <div class="col-sm-6"><br/><h1 style="text-align: center">Requerimento</h1> <br/> <br/></div>
-  <div class="col-sm-3"> </div>
- 
-</div>
-<br/>
-<div class="container-fluid bodyForm">
+	<div class="row">
 
-			<div class="row">
+		<div class="col-sm-1"></div>
+
+
+
+		<div class="col-sm-10 container1 ">
+			<br />
+			<h:graphicImage value="resources/images/aubayImg.png" width="150"
+				class="mx-auto d-block" />
+
+			<br />
+			<p:growl id="growl" showDetail="true" sticky="true" />
+
 			
 
-				<div class="col-sm" >
-				
+	
+			<br />
 				
 	<h:form>
 		
@@ -123,9 +129,9 @@ PrimeFaces.locales['pt'] = {
 		<p:commandButton value="Voltar" action="index?faces-redirect=true" />
 
 	</h:form>
-	
-		</div>
-			</div>
-		</div>
+		<div class="col-sm-1"></div>
+
+					</div>
+				</div>
 </h:body>
 </html>

@@ -49,82 +49,118 @@ PrimeFaces.locales['pt'] = {
 </f:metadata>
 
 <h:body>
-	<p:growl id="growl" showDetail="true" sticky="true" />
-	<h:form>
-		<h3>Referência Anuncio: #{newAnunPlat.anuncio.REF}</h3>
-		<h1>Associar Anúncio a Plataforma</h1>
-		<h3>Plataforma</h3>
-		<h:selectOneMenu value="#{newAnunPlat.plataforma}" converter="omnifaces.SelectItemsConverter"
-			style="width:25%">
-			<f:selectItem itemLabel="Plataformas" itemValue="" />
-			<f:selectItems value="#{newAnunPlat.listaPlataformas()}" var="plataforma" itemLabel="#{plataforma.nomePlataforma}" itemValue="#{plataforma}"/>
-		</h:selectOneMenu>
+	<br />
+	<br />
+	<br />
 
-		<h3>Estado do Anúncio</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.estado}"
-			rows="1" cols="15" autoResize = "false"/>
+	<div class="container">
+
+		<div class="col-sm"></div>
 
 
 
-		<h3>Anúncio Criado</h3>
+		<div class="col-sm container1 ">
+			<br />
+			<h:graphicImage value="resources/images/aubayImg.png" width="150"
+				class="mx-auto d-block" />
 
-		<p:growl id="msgs" showDetail="true" />
-		<h:panelGrid columns="2" cellpadding="5">
-
-			<p:calendar locale="pt" id="datetime"
-				value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
-				pattern="dd/MM/yyyy HH:mm:ss" />
-		</h:panelGrid>
-
-		<p:commandButton value="Submeter" update="msgs"
-			actionListener="#{calendarView.click}" icon="ui-icon-check" />
-
-		<p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-			<h:outputText value="#{newAnunPlat.anuncioPlataforma.datacriacao}">
-				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-			</h:outputText>
-		</p:panelGrid>
+			<br />
+			<p:growl id="growl" showDetail="true" sticky="true" />
 
 
 
 
+			<br />
 
-		<h3>Anúncio Modificado</h3>
 
-		<p:growl id="msgs1" showDetail="true" />
-		<h:panelGrid columns="2" cellpadding="5">
 
-			<p:calendar locale="pt" id="datetime1"
-				value="#{newAnunPlat.anuncioPlataforma.dataModificacao}"
-				pattern="dd/MM/yyyy HH:mm:ss" />
-		</h:panelGrid>
+			<h:form>
+				<h5>Referência Anuncio: #{newAnunPlat.anuncio.REF}</h5>
+				<h4>Associar Anúncio a Plataforma</h4>
+				<h5>Plataforma</h5>
+				<h:selectOneMenu value="#{newAnunPlat.plataforma}"
+					converter="omnifaces.SelectItemsConverter" style="width:25%">
+					<f:selectItem itemLabel="Plataformas" itemValue="" />
+					<f:selectItems value="#{newAnunPlat.listaPlataformas()}"
+						var="plataforma" itemLabel="#{plataforma.nomePlataforma}"
+						itemValue="#{plataforma}" />
+				</h:selectOneMenu>
 
-		<p:commandButton value="Submeter" update="msgs1"
-			actionListener="#{calendarView.click}" icon="ui-icon-check" />
+				<h5>Estado do Anúncio</h5>
+				<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.estado}" style="width:25%">
+					<f:selectItem itemLabel="Offline" itemValue="Offline" />
+					<f:selectItem itemLabel="Online" itemValue="Online" />
 
-		<p:panelGrid id="display1" columns="2" columnClasses="label,value">
+				</h:selectOneMenu>
 
-			<h:outputText
-				value="#{newAnunPlat.anuncioPlataforma.dataModificacao}">
-				<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-			</h:outputText>
-		</p:panelGrid>
 
-		<h3>Link</h3>
-		<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.link}"
-			rows="1" cols="15" />
-		<br />
-		<br />
 
-		<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
-			value="Gravar">
-		</p:commandButton>
+				<h5>Anúncio Criado</h5>
 
-		<p:button outcome="listarAnunPlat?faces-redirect=true" value="Voltar">
-			<f:param name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:param>
-		</p:button>
+				<p:growl id="msgs" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
 
-	</h:form>
+					<p:calendar locale="pt" id="datetime"
+						value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
+						pattern="dd/MM/yyyy HH:mm:ss" />
+				</h:panelGrid>
+
+				<p:commandButton value="Submeter" update="msgs"
+					actionListener="#{calendarView.click}" icon="ui-icon-check" />
+
+				<p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+					<h:outputText value="#{newAnunPlat.anuncioPlataforma.datacriacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:outputText>
+				</p:panelGrid>
+
+
+
+
+
+				<h4>Anúncio Modificado</h4>
+
+				<p:growl id="msgs1" showDetail="true" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:calendar locale="pt" id="datetime1"
+						value="#{newAnunPlat.anuncioPlataforma.dataModificacao}"
+						pattern="dd/MM/yyyy HH:mm:ss" />
+				</h:panelGrid>
+
+				<p:commandButton value="Submeter" update="msgs1"
+					actionListener="#{calendarView.click}" icon="ui-icon-check" />
+
+				<p:panelGrid id="display1" columns="2" columnClasses="label,value">
+
+					<h:outputText
+						value="#{newAnunPlat.anuncioPlataforma.dataModificacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+					</h:outputText>
+				</p:panelGrid>
+
+				<h5>Link</h5>
+				<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.link}"
+					rows="1" cols="15" />
+				<br />
+				<br />
+
+				<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
+					value="Gravar">
+				</p:commandButton>
+
+				<p:button outcome="listarAnunPlat?faces-redirect=true"
+					value="Voltar">
+					<f:param name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:param>
+				</p:button>
+
+			</h:form>
+
+
+			<div class="col-sm"></div>
+
+		</div>
+	</div>
 </h:body>
 </html>
