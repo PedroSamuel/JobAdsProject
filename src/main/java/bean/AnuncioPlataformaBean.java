@@ -76,7 +76,7 @@ public class AnuncioPlataformaBean implements Serializable{
 
 	public void onRowEdit(RowEditEvent event) {
 		AnuncioPlataforma anuncioplataforma = (AnuncioPlataforma) event.getObject();
-		anuncioControlPlataforma.updateAnuncioPlataforma(anuncioplataforma);
+		anuncioControlPlataforma.criarAnuncioPlataforma(anuncioplataforma);
 	}
 
 	public void updateList() {

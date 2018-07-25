@@ -53,27 +53,24 @@
 
 						<p:column headerText="Plataforma" sortBy="#{anunPlat.plataforma}"
 							filterBy="#{anunPlat.plataforma}">
-							<p:cellEditor>
-								<f:facet name="output">
+		
 									<h:outputText value="#{anunPlat.plataforma}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{anunPlat.plataforma}" style="width:100%"
-										label="Função" />
-								</f:facet>
-							</p:cellEditor>
+
 						</p:column>
 
 
-						<p:column headerText="Estado do Anúncio"
-							sortBy="#{anunPlat.estado}" filterBy="#{anunPlat.estado}">
+						<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
+							filterBy="#{anunPlat.estado}" filterMatchMode="contains">
+
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{anunPlat.estado}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText value="#{anunPlat.estado}" style="width:100%"
-										label="Função" />
+									<h:selectOneMenu value="#{anunPlat.estado}" style="width:125%">
+										<f:selectItem itemLabel="Offline" itemValue="Offline" />
+										<f:selectItem itemLabel="Online" itemValue="Online" />
+									</h:selectOneMenu>
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
@@ -86,7 +83,7 @@
 									<h:outputText value="#{anunPlat.datacriacao}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText value="#{anumPlat.datacriacao}" style="width:100%"
+									<p:inputText value="#{anunPlat.datacriacao}" style="width:100%"
 										label="Função" />
 								</f:facet>
 							</p:cellEditor>
