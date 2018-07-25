@@ -16,7 +16,6 @@ import control.ControlAnuncioPlataforma;
 import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
-import model.AnuncioPlataformaId;
 import model.Plataforma;
 
 
@@ -77,8 +76,7 @@ import model.Plataforma;
 //				System.out.println("Okok" + longID);
 //				
 //			}
-			anuncioPlataforma.setId(new AnuncioPlataformaId(anuncio.getId(), plataforma.getId()));
-			anuncio.adicionarPlataforma(plataforma, anuncioPlataforma);
+			anuncio.adicionarPlataforma(plataforma);
 			controlAnuncio.updateAnuncio(anuncio);
 			
 //			anuncio.getPlataformas().add(anuncioPlataforma);

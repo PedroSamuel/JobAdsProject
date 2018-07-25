@@ -120,8 +120,8 @@ public class Anuncio extends Entidade {
 	
 	}
 	
-	public void adicionarPlataforma(Plataforma plataforma, AnuncioPlataforma anuncioPlataforma) {
-		AnuncioPlataforma anunPlat = anuncioPlataforma;
+	public void adicionarPlataforma(Plataforma plataforma) {
+		AnuncioPlataforma anunPlat = new AnuncioPlataforma(this, plataforma);
 		plataformas.add(anunPlat);
 		plataforma.getAnuncios().add(anunPlat);
 	}
