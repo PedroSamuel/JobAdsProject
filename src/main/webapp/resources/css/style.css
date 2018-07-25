@@ -1,37 +1,31 @@
 @CHARSET "UTF-8";
 
-body {background-color: coral;}
+	body  {
+    background-image: url(#{resource['images:OrangeBG.jpg']});
+   /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .header  {background-color: grey;}
 
 .bodyForm {background-color: white;}
 
-#button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+
+
+
+/* Add a background color and some padding around the form */
+.container1 {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
 
 
-#header 
-{
-width:              100%;
-font-size:          36px;
-font-weight:        bold;
-line-height:        48px;
-background-color:   navy;
-color:              white;
-}
 
-#footer
-{
-width:              100%;
-font-weight:        bold;
-background-color:   navy;
-color:              white;
-}
+
+
