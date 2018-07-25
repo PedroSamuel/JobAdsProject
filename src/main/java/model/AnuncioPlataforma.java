@@ -43,12 +43,6 @@ public class AnuncioPlataforma implements Serializable{
 	@EmbeddedId
 	private AnuncioPlataformaId id;
 
-	public AnuncioPlataformaId getId() {
-		return id;
-	}
-	
-	
-	//private String isbn;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("anuncio_id")
@@ -61,25 +55,28 @@ public class AnuncioPlataforma implements Serializable{
 	@JoinColumn(name = "PLATAFORMA_ID")
 	private Plataforma plataforma;
 	
+
 	private Date Datacriacao;
 	private Date DataModificacao;
 	private String Estado; // mudar para enum
 	private String link;
 	
 	
-	public AnuncioPlataforma(Anuncio anuncio, Plataforma plataforma) {
-		this.anuncio = anuncio;
-		this.plataforma = plataforma;
-		this.id = new AnuncioPlataformaId(anuncio.getId(), plataforma.getId());
+	
+	
+	public AnuncioPlataformaId getId() {
+		return id;
 	}
 	
-	public AnuncioPlataforma() {}
+	public void setId(AnuncioPlataformaId id) {
+		this.id = id;
+	}
+	
 	
 	
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
 	}
-	
 	
 	
 	public Plataforma getPlataforma() {
@@ -128,8 +125,6 @@ public class AnuncioPlataforma implements Serializable{
 		this.anuncio.getPlataformas().remove(this);
 	}
 	
-	
-
 
 	@Override
 	public int hashCode() {
@@ -148,31 +143,5 @@ public class AnuncioPlataforma implements Serializable{
         AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
         return Objects.equals(getId(), anuncioPlataforma.getId());
     }
-
-//	public String getIdHash() {
-//		return idHash;
-//	}
-//
-//	@PostConstruct
-//	private void setIdHash() {
-//		if ((anuncio != null) && (plataforma != null)) {
-//			this.idHash = ("A" + anuncio.id + "P" + plataforma.id); 
-//		} else {
-//			this.idHash = "ERRO";
-//		}
-//	}
-
-
-//
-//	public String getIsbn() {
-//		return isbn;
-//	}
-////
-////
-//
-//public void setIsbn(String isbn) {
-//		this.isbn = isbn;
-//	}
-
 	
 }
