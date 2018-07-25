@@ -76,8 +76,10 @@ import model.Plataforma;
 //				setAnuncio(controlAnuncio.getAnuncio(longID));
 //				System.out.println("Okok" + longID);
 //				
-//			}
-			anuncioPlataforma.setId(new AnuncioPlataformaId(Long.valueOf(idAnuncio), plataforma.getId()));
+//			
+			//anuncioPlataforma.setId(new AnuncioPlataformaId(Long.valueOf(idAnuncio), plataforma.getId()));
+			anuncioPlataforma.setAnuncio(anuncio);
+			anuncioPlataforma.setPlataforma(plataforma); //fazer merge do anuncio e da plataforma, obter objectos merged, fazer set dos objectos merged e gravar anuncioPlataforma
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
 			//anuncio.adicionarPlataforma(plataforma);
 		

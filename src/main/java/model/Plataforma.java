@@ -15,7 +15,7 @@ import model.AnuncioPlataforma;
 @Entity
 public class Plataforma extends Entidade {
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "plataforma", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
 	private Set<AnuncioPlataforma> anuncios = new HashSet<AnuncioPlataforma>();
 	

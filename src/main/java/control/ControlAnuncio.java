@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+
 import model.Anuncio;
 import repository.RepositorioAnuncios;
 
+@Transactional
 @RequestScoped
 public class ControlAnuncio {
 	@Inject

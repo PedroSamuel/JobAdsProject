@@ -30,7 +30,7 @@ public class Anuncio extends Entidade {
     private Date dataModificacao;
     
     
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "plataforma", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
 	private Set<AnuncioPlataforma> plataformas = new HashSet<AnuncioPlataforma>();
 	
