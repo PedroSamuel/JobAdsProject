@@ -16,6 +16,7 @@ import control.ControlAnuncioPlataforma;
 import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
+import model.AnuncioPlataformaId;
 import model.Plataforma;
 
 
@@ -76,8 +77,11 @@ import model.Plataforma;
 //				System.out.println("Okok" + longID);
 //				
 //			}
-			anuncio.adicionarPlataforma(plataforma);
-			controlAnuncio.updateAnuncio(anuncio);
+			anuncioPlataforma.setId(new AnuncioPlataformaId(Long.valueOf(idAnuncio), plataforma.getId()));
+			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
+			//anuncio.adicionarPlataforma(plataforma);
+		
+			//controlAnuncio.updateAnuncio(anuncio);
 			
 //			anuncio.getPlataformas().add(anuncioPlataforma);
 //			controlAnuncio.updateAnuncio(anuncio);

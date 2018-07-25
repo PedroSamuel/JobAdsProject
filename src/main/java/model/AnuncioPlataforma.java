@@ -50,6 +50,11 @@ public class AnuncioPlataforma implements Serializable{
 	
 	//private String isbn;
 
+	public void setId(AnuncioPlataformaId id) {
+		this.id = id;
+	}
+
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("anuncio_id")
 	@JoinColumn(name = "ANUNCIO_ID")
