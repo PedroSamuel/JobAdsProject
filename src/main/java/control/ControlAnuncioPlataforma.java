@@ -65,13 +65,20 @@ public class ControlAnuncioPlataforma {
 	
 
 	
-	public void updateAnuncioPlataforma(AnuncioPlataforma ap) {
-		dbAP.updateEntity(ap);
+	public AnuncioPlataforma updateAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
+		    dbAP.updateEntity(anuncioPlataforma);
+
+		return anuncioPlataforma;
 	}
 	
+	
+	@Transactional
 	public void removeAnuncioPlataforma(AnuncioPlataforma anuncioplataforma) {
+		anuncioplataforma.getAnuncio().getPlataformas().remove(anuncioplataforma);
+		dbA.updateEntity(anuncioplataforma.getAnuncio());
+		anuncioplataforma.getPlataforma().getAnuncios().remove(anuncioplataforma);
+		dbP.updateEntity(anuncioplataforma.getPlataforma());
 		dbAP.removeEntity(anuncioplataforma);
-		
 		updateList();
 	}
 	

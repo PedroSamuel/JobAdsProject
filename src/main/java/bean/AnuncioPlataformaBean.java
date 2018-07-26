@@ -2,10 +2,13 @@ package bean;
 
 
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,6 +37,8 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 
 	private Anuncio anuncio;
+	
+	private AnuncioPlataforma selected;
 	
 	
 	
@@ -76,7 +81,7 @@ public class AnuncioPlataformaBean implements Serializable{
 
 	public void onRowEdit(RowEditEvent event) {
 		AnuncioPlataforma anuncioplataforma = (AnuncioPlataforma) event.getObject();
-		anuncioControlPlataforma.criarAnuncioPlataforma(anuncioplataforma);
+		anuncioControlPlataforma.updateAnuncioPlataforma(anuncioplataforma);
 	}
 
 	public void updateList() {
@@ -122,10 +127,34 @@ public class AnuncioPlataformaBean implements Serializable{
 		
 	}
 
+	public AnuncioPlataforma getSelected() {
+		return selected;
+	}
+
+	public void setSelected(AnuncioPlataforma selected) {
+		this.selected = selected;
+	}
+
+	
+	public void deleteSelected() {
+		anuncioControlPlataforma.removeAnuncioPlataforma(selected);
+		selected = null;
+	}
+	
+	public String newAnunPlat() {
+		return "criarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
+	}
 	
 	
+	public void updateSelected() {
+		anuncioControlPlataforma.updateAnuncioPlataforma(selected);
+	}
 	
 	
+	public void redirect() throws IOException {
+	    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+	    externalContext.redirect("http://stackoverflow.com");
+	}
 	
 	
 	
