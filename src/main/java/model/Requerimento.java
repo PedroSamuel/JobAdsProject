@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 //import javax.persistence.FetchType;
 //import javax.persistence.OneToMany;
 import javax.persistence.PreRemove;
@@ -21,6 +22,7 @@ public class Requerimento extends Entidade {
 	private String data;
 	private String email;
 	private String funcao;
+	@Lob
 	private String requisitos;
 	private String notas;	
 	private String estado;
