@@ -49,6 +49,11 @@ PrimeFaces.locales['pt'] = {
 </f:metadata>
 
 <h:body>
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
 	<br />
 	<br />
 	<br />
@@ -87,7 +92,8 @@ PrimeFaces.locales['pt'] = {
 				</h:selectOneMenu>
 
 				<h5>Estado do Anúncio</h5>
-				<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.estado}" style="width:25%">
+				<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.estado}"
+					style="width:25%">
 					<f:selectItem itemLabel="Offline" itemValue="Offline" />
 					<f:selectItem itemLabel="Online" itemValue="Online" />
 

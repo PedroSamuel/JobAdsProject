@@ -22,7 +22,11 @@
 	<f:event listener="#{DRequerimento.load}" type="preRenderView"></f:event>
 </f:metadata>
 <h:body>
-
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
 <div class="container-fluid">
 			<div class="row">
 

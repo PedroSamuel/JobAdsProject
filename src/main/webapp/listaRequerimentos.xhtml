@@ -42,7 +42,11 @@ PrimeFaces.locales['pt'] = {
 	
 </h:head>
 <h:body>
-
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
 
 	<div class="container-fluid">
