@@ -59,12 +59,15 @@ public class CriarAnuncio implements Serializable {
 	
 	public void load() {
 		if (idRequerimento != null) {
+			System.out.println("correu " + idRequerimento);
 			anuncio.setIdRequerimento(idRequerimento);
 			Requerimento req = controlReq.getRequerimento(Long.valueOf(idRequerimento));
 			anuncio.setManager(req.getRequerente());
 			anuncio.setFuncao(req.getFuncao());
 			anuncio.setRequisitos(req.getRequisitos());
 			
+		} else {
+			System.out.println("Sem parametro");
 		}
 	}
 
