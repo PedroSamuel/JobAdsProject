@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import control.ControlAnuncio;
+import control.ControlRequerimento;
 import model.Anuncio;
+import model.Requerimento;
 
 
 
@@ -23,8 +25,12 @@ public class CriarAnuncio implements Serializable {
 
 	@Inject
 	ControlAnuncio controlAnuncio;
+	@Inject
+	ControlRequerimento controlReq;
 
 	private Anuncio anuncio = new Anuncio();
+	
+	private String idRequerimento;
 
 	public Anuncio getAnuncio() {
 		return anuncio;
@@ -41,6 +47,25 @@ public class CriarAnuncio implements Serializable {
 
 	public void criarAnuncio() {
 		controlAnuncio.criarAnuncio(new Anuncio());
+	}
+
+	public String getIdRequerimento() {
+		return idRequerimento;
+	}
+
+	public void setIdRequerimento(String idRequerimento) {
+		this.idRequerimento = idRequerimento;
+	}
+	
+	public void load() {
+		if (idRequerimento != null) {
+			anuncio.setIdRequerimento(idRequerimento);
+			Requerimento req = controlReq.getRequerimento(Long.valueOf(idRequerimento));
+			anuncio.setManager(req.getRequerente());
+			anuncio.setFuncao(req.getFuncao());
+			anuncio.setRequisitos(req.getRequisitos());
+			
+		}
 	}
 
 }

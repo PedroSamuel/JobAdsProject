@@ -74,5 +74,7 @@ public class AnuncioBean implements Serializable {
 	}
 	
 
+	
+
 
 }
