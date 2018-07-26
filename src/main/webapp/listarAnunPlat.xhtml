@@ -65,17 +65,15 @@
 						<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
 							filterBy="#{anunPlat.estado}" filterMatchMode="contains">
 
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{anunPlat.estado}" />
-								</f:facet>
-								<f:facet name="input">
-									<h:selectOneMenu value="#{anunPlat.estado}" style="width:125%">
-										<f:selectItem itemLabel="Offline" itemValue="Offline" />
-										<f:selectItem itemLabel="Online" itemValue="Online" />
-									</h:selectOneMenu>
-								</f:facet>
-							</p:cellEditor>
+							<p:selectOneButton
+								value="#{anunPlat.estado}"
+								unselectable="false">
+
+								<f:selectItem itemLabel="Offline" itemValue="Offline" />
+								<f:selectItem itemLabel="Online" itemValue="Online" />
+								<p:ajax event="change" update="dtAnunPlat"
+									listener="#{anuncioplataformaBean.updateSelected()}" />
+							</p:selectOneButton>
 						</p:column>
 
 						<p:column headerText="Anúncio Criado"
@@ -110,7 +108,7 @@
 							filterBy="#{anunPlat.link}">
 							<p:cellEditor>
 								<f:facet name="output">
-								<h:commandLink value="#{anunPlat.link}"
+									<h:commandLink value="#{anunPlat.link}"
 										action="#{anuncioPlataforma.redirect()}" />
 								</f:facet>
 								<f:facet name="input">

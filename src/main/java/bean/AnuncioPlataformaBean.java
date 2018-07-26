@@ -151,6 +151,10 @@ public class AnuncioPlataformaBean implements Serializable{
 	}
 	
 	
+	public void updateSelected(AnuncioPlataforma ap) {
+		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+	}
+	
 	public void redirect() throws IOException {
 	    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	    externalContext.redirect("http://stackoverflow.com");
