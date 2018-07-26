@@ -1,9 +1,12 @@
 package bean;
 
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -69,5 +72,7 @@ public class AnuncioBean implements Serializable {
 	public void setSelected(Anuncio selected) {
 		this.selected = selected;
 	}
+	
+
 
 }

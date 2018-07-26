@@ -65,14 +65,13 @@
 						<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
 							filterBy="#{anunPlat.estado}" filterMatchMode="contains">
 
-							<p:selectOneButton
-								value="#{anunPlat.estado}"
+							<p:selectOneButton value="#{anunPlat.estado}"
 								unselectable="false">
 
 								<f:selectItem itemLabel="Offline" itemValue="Offline" />
 								<f:selectItem itemLabel="Online" itemValue="Online" />
 								<p:ajax event="change" update="dtAnunPlat"
-									listener="#{anuncioplataformaBean.updateSelected()}" />
+									listener="#{anuncioplataformaBean.updateSelected(anunPlat)}" />
 							</p:selectOneButton>
 						</p:column>
 
@@ -181,13 +180,16 @@
 									<p:ajax event="change" update="dtAnunPlat"
 										listener="#{anuncioplataformaBean.updateSelected()}" />
 								</p:selectOneButton>
-								<br />
-								<h:outputText value="Link:" />
-								<h:form>
-									<h:commandLink value="#{Link}"
-										action="#{anuncioplataformaBean.redirect()}" />
-								</h:form>
+						
 
+								<h:outputText value="Link:" />
+								<h:commandLink value="#{anuncioplataformaBean.selected.link}"
+									action="#{anuncioplataformaBean.redirect()}" />
+
+							
+								<h:outputText value="Requisitos" />
+								<h:outputText value="#{anuncioplataformaBean.selected.anuncio.requisitos}" />
+					
 
 
 							</p:panelGrid>

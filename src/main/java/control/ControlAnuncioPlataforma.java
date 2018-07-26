@@ -67,7 +67,6 @@ public class ControlAnuncioPlataforma {
 	
 	public AnuncioPlataforma updateAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
 		    dbAP.updateEntity(anuncioPlataforma);
-
 		return anuncioPlataforma;
 	}
 	
