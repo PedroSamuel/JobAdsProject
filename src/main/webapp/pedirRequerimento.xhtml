@@ -12,7 +12,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="style.css" />
-	<title>Requerimento</title>
+	<title>Efectuar Pedido</title>
 
 	<script>
 PrimeFaces.locales['pt'] = {
@@ -51,9 +51,8 @@ PrimeFaces.locales['pt'] = {
 
 	<div class="row">
 
+	<div class="container">
 		<div class="col-sm-1"></div>
-
-
 
 		<div class="col-sm-10 container1 ">
 			<br />
@@ -88,13 +87,13 @@ PrimeFaces.locales['pt'] = {
 		<p:inputTextarea value="#{requerimentoCreate.requerimento.funcao}" rows="1" cols="50" autoResize = "false"/>
 
 		<h4>Requisitos do Candidato</h4>
-		<p:inputTextarea value="#{requerimentoCreate.requerimento.requisitos}" rows="10" cols="120" counter="display"
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.requisitos}" rows="10" cols="80" counter="display"
 			maxlength="700" counterTemplate="{0} characters remaining."
 			autoResize="false" />
 		<h:outputText id="display" />
 
 		<h5>Observações</h5>
-		<p:inputTextarea value="#{requerimentoCreate.requerimento.notas}" rows="3" cols="120" counter="display1"
+		<p:inputTextarea value="#{requerimentoCreate.requerimento.notas}" rows="3" cols="80" counter="display1"
 			maxlength="500" counterTemplate="{0} characters remaining."
 			autoResize="false" />
 		<h:outputText id="display1" />
@@ -108,11 +107,9 @@ PrimeFaces.locales['pt'] = {
 
 			<p:calendar locale="pt" id="datetime2"
 				value="#{requerimentoCreate.requerimento.data}"
-				pattern="dd/MM/yyyy HH:mm:ss" />
+				pattern="dd/MM/yyyy" />
 		</h:panelGrid>
 
-		<p:commandButton value="Submeter" update="msgs2"
-			actionListener="#{calendarView.click}" icon="ui-icon-check" />
 
 		<p:panelGrid id="display2" columns="2" columnClasses="label,value">
 
@@ -125,13 +122,13 @@ PrimeFaces.locales['pt'] = {
 <br/>
 
 		<p:commandButton value="Enviar" action="#{requerimentoCreate.salvarRequerimento()}" />
-		<p:commandButton value="Guardar"  />
 		<p:commandButton value="Voltar" action="index?faces-redirect=true" />
 
 	</h:form>
 		<div class="col-sm-1"></div>
 
 					</div>
+				</div>
 				</div>
 </h:body>
 </html>

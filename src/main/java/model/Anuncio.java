@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 import javax.persistence.PreRemove;
@@ -25,12 +26,13 @@ public class Anuncio extends Entidade {
 	private String manager;
 	private String estado;
 	private String idRequerimento;
+	@Lob
 	private String requisitos; 
 	private Date dataCriacao;
     private Date dataModificacao;
     
     
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "plataforma", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REFRESH })
 	private Set<AnuncioPlataforma> plataformas = new HashSet<AnuncioPlataforma>();
 	

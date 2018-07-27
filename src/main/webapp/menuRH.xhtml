@@ -18,6 +18,11 @@
 </h:head>
 
 <h:body >
+		    <div id="menu">
+		<ui:insert name="menu" >
+		  <ui:include src="menu.xhtml" />
+		</ui:insert>
+	    </div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-3"></div>
@@ -30,12 +35,11 @@
 	<h:form>
 		
 
-		<p:commandButton value="Ver Requerimentos"   action="listaRequerimentos?faces-redirect=true" style="width:500px"  /> <br/><br/>
+		<p:commandButton value="Ver Pedidos"   action="listaRequerimentos?faces-redirect=true" style="width:500px"  /> <br/><br/>
 		<p:commandButton value="Ver Estado Anúncios" action="listaAnuncios?faces-redirect=true" style="width:500px"  /> <br/><br/>
 
 		<p:commandButton value="Ver Especificacões Plataforma" action="listaPlataformas?faces-redirect=true"   style="width:500px" /> <br/><br/>
 
-		<p:commandButton value="Importar Excel" style="width:500px"  /> <br/><br/>
 		<p:commandButton value="Index" action="index?faces-redirect=true" style="width:100px;height:100px" /> <br/><br/>
 		
 		
@@ -47,5 +51,8 @@
 
 		</div>
 	</div>
+	
+
+	
 </h:body>
 </html>

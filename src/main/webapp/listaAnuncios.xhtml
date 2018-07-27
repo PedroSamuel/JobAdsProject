@@ -4,7 +4,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
-	xmlns:of="http://omnifaces.org/functions">
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 
 
@@ -14,7 +15,11 @@
 	<title>Gestão de Anúncios</title>
 </h:head>
 <h:body>
-
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
 	<h:form onkeypress="if (event.keyCode == 13){return false;}">
 
 		<div class="container-fluid">
@@ -25,7 +30,7 @@
 					<p:dataTable id="dtanuncio" var="anuncio"
 						value="#{anuncioBean.anuncios}" editable="true"
 						style="margin-bottom:20px" rowKey="#{anuncio.id}"
-						selection="#{selected}" selectionMode="single"
+						selection="#{selected}" selectionMode="single"		
 						widgetVar="anucioTable"
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 						filteredValue="#{anuncioBean.filteredAnuncio}">
@@ -107,7 +112,7 @@
 								</f:facet>
 								<f:facet name="input">
 									<h:selectOneMenu value="#{anuncio.estado}" style="width:125%">
-										<f:selectItem itemLabel="Selecione um" itemValue="" />
+										<f:selectItem itemLabel="Selecione um" itemValue="#{anuncio.estado}" />
 										<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
 										<f:selectItem itemLabel="Manter" itemValue="Manter" />
 										<f:selectItem itemLabel="Retirar" itemValue="Retirar" />

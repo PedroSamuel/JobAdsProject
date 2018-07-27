@@ -49,6 +49,11 @@ PrimeFaces.locales['pt'] = {
 </f:metadata>
 
 <h:body>
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
 	<br />
 	<br />
 	<br />
@@ -87,7 +92,8 @@ PrimeFaces.locales['pt'] = {
 				</h:selectOneMenu>
 
 				<h5>Estado do Anúncio</h5>
-				<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.estado}" style="width:25%">
+				<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.estado}"
+					style="width:25%">
 					<f:selectItem itemLabel="Offline" itemValue="Offline" />
 					<f:selectItem itemLabel="Online" itemValue="Online" />
 
@@ -102,16 +108,14 @@ PrimeFaces.locales['pt'] = {
 
 					<p:calendar locale="pt" id="datetime"
 						value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
-						pattern="dd/MM/yyyy HH:mm:ss" />
+						pattern="dd/MM/yyyy" />
 				</h:panelGrid>
 
-				<p:commandButton value="Submeter" update="msgs"
-					actionListener="#{calendarView.click}" icon="ui-icon-check" />
 
 				<p:panelGrid id="display" columns="2" columnClasses="label,value">
 
 					<h:outputText value="#{newAnunPlat.anuncioPlataforma.datacriacao}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:panelGrid>
 
@@ -126,17 +130,15 @@ PrimeFaces.locales['pt'] = {
 
 					<p:calendar locale="pt" id="datetime1"
 						value="#{newAnunPlat.anuncioPlataforma.dataModificacao}"
-						pattern="dd/MM/yyyy HH:mm:ss" />
+						pattern="dd/MM/yyyy" />
 				</h:panelGrid>
 
-				<p:commandButton value="Submeter" update="msgs1"
-					actionListener="#{calendarView.click}" icon="ui-icon-check" />
-
+	
 				<p:panelGrid id="display1" columns="2" columnClasses="label,value">
 
 					<h:outputText
 						value="#{newAnunPlat.anuncioPlataforma.dataModificacao}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:panelGrid>
 
