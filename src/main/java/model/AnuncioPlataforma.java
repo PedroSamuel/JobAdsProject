@@ -22,7 +22,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.PreRemove;
 
 
@@ -66,11 +67,14 @@ public class AnuncioPlataforma implements Serializable{
 	@JoinColumn(name = "PLATAFORMA_ID")
 	private Plataforma plataforma;
 	
+
 	private Date Datacriacao;
+	
 	private Date DataModificacao;
 	private String Estado; // mudar para enum
 	private String link;
 	
+
 	
 	public AnuncioPlataforma(Anuncio anuncio, Plataforma plataforma) {
 		this.anuncio = anuncio;

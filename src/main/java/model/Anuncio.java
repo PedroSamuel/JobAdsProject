@@ -15,6 +15,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 import javax.persistence.PreRemove;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 
@@ -28,6 +30,9 @@ public class Anuncio extends Entidade {
 	private String idRequerimento;
 	@Lob
 	private String requisitos; 
+	
+	
+	@Temporal( TemporalType.DATE )
 	private Date dataCriacao;
     private Date dataModificacao;
     
