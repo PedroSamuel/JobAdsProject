@@ -7,55 +7,97 @@
 
 
 <h:head>
-		
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
-	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
-	<h:outputStylesheet library="css" name="style.css"/>
+
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 
 	<title>index</title>
-	
-	
+
+
 </h:head>
 
 <h:body>
 
 
-
-	<div class="container">
-		<div class="row">
-			<div class="col-sm"></div>
-
-
-			<div class="col-sm text-center">
-				<br /> <br /> <br /> <br />
-
-				<h:graphicImage value="resources/images/aubayImg.png" width="200" />
-				<br /> <br />
-				
-				<h1> Gestão de Anúncios</h1>
-				
-                 <br />
-				<h:form>
+	<div class="filler">
+		<div class="container verticalcenter">
+			<div class="row">
+				<div class="col-sm-4"></div>
 
 
-					<p:commandButton value="Efectuar Pedido" action="pedirRequerimento?faces-redirect=true" class="center-block" />
+				<div class="col-sm-4 text-center">
+					<br /> <br /> <br /> <br />
+
+					<h:graphicImage value="resources/images/aubayImg.png" width="200" />
+
+					<br /> <br />
+
+					
+
 					<br />
-					<br />
-					<p:commandButton value="Login" action="menuRH?faces-redirect=true" />
-					<br />
-					<br />
-				</h:form>
+					<h:form>
+
+
+
+					</h:form>
+				</div>
+
+				<div class="col-sm-4"></div>
 			</div>
+			<h1 class="text-center big-orange">Gestão de Anúncios</h1>
+			<div class="filler"></div>
+			<div class="row">
 
-			<div class="col-sm"></div>
+				<div class="col-sm-4 text-center">
+					<h:form>
+					
+						<div>
+							<h:commandLink action="pedirRequerimento?faces-redirect=true"
+								styleClass="clickAll">
+								<h:graphicImage value="resources/images/business_user.png"
+									class="userImg hover1">
+								</h:graphicImage>
+								
+							</h:commandLink>
+							<p class="userText">Business Manager</p>
 
+						</div>
+					</h:form>
+				</div>
+				<div class="col-sm-4 text-center">
+					<h:form>
+						<div>
+							<h:commandLink action="menuRH?faces-redirect=true"
+								styleClass="clickAll">
+								<h:graphicImage value="resources/images/rh.png" class="userImg" />
+							</h:commandLink>
+							<p class="userText">Human Resourses</p>
+
+						</div>
+					</h:form>
+				</div>
+
+				<div class="col-sm-4 text-center">
+					<h:form>
+						<div>
+							<h:commandLink action="menuRH?faces-redirect=true"
+								styleClass="clickAll">
+								<h:graphicImage value="resources/images/admin.png"
+									class="userImg" />
+							</h:commandLink>
+							<p class="userText">Administrator</p>
+
+						</div>
+					</h:form>
+				</div>
+			</div>
 		</div>
 	</div>
-	 <br />
-	  <br />
-	  <br />
-	  <br />
-
+	<br />
+	<br />
+	<br />
+	<br />
 </h:body>
 </html>
