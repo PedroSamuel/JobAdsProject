@@ -20,6 +20,10 @@ public class RequerimentoBean implements Serializable {
 	@Inject
 	ControlRequerimento requerimentoControl;
 	
+
+
+	private Requerimento selected;
+	
 	// isto serve para o primefaces poder filtrar
 	private Collection<Requerimento> filteredRequerientos;
 	
@@ -47,9 +51,24 @@ public class RequerimentoBean implements Serializable {
 	public void updateList() {
 		requerimentoControl.updateList();
 	}
-	
 
 	
+	
+	public void deleteSelected() { //mudar para arquivar
+		System.out.println("OK");
+		System.out.println(selected);
+		requerimentoControl.removeRequerimento(selected);
+	}
+
+	public Requerimento getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Requerimento selected) {
+		this.selected = selected;
+	}
+
+
 	
 
 }
