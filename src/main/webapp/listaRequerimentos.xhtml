@@ -68,23 +68,15 @@ PrimeFaces.locales['pt'] = {
 
 						<p:ajax event="rowEdit" listener="#{requerimentoBean.onRowEdit}" />
 
-							<f:facet name="header">
+						<f:facet name="header">
           Lista de Requerimentos
        </f:facet>
 
 
-<<<<<<< HEAD
 						<p:column headerText="Data Envio" sortBy="#{req.data}"
 							filterBy="#{req.data}">
 							<h:outputText value="#{req.data}">
-								<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
 							</h:outputText>
-=======
-			<p:column headerText="Data Envio" sortBy="#{req.data}" filterBy="#{req.data}">
-				<h:outputText value="#{req.data}">
-				
-				 </h:outputText>
->>>>>>> origin/antero-7.5-com-imagem
 
 						</p:column>
 
@@ -98,12 +90,12 @@ PrimeFaces.locales['pt'] = {
 							filterBy="#{req.email}" style="width:20;">
 							<h:outputText value="#{req.email}" />
 						</p:column>
-								
-							<p:column headerText="Estado" sortBy="#{req.email}"
+
+						<p:column headerText="Estado" sortBy="#{req.email}"
 							filterBy="#{req.estado}" style="width:20;">
 							<h:outputText value="#{req.estado}" />
 						</p:column>
-			
+
 					</p:dataTable>
 
 					<p:contextMenu for="dtreq">
@@ -160,9 +152,8 @@ PrimeFaces.locales['pt'] = {
 										<h:outputText value="#{requerimentoBean.selected.estado}" />
 
 										<h3>Data do Requerimento</h3>
-										<h:outputText value="#{requerimentoBean.selected.data}" />
-
-									
+										<h:outputText
+											value="#{of:formatDate(DRequemimento.requerimento.data, 'dd.MM.yyyy HH:mm')}" />
 									</h:form>
 
 
