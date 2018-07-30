@@ -3,7 +3,9 @@
 	package bean;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -77,10 +79,12 @@ import model.Plataforma;
 //				System.out.println("Okok" + longID);
 //				
 //			
+			anuncioPlataforma.setDatacriacao(new Date());
 			//anuncioPlataforma.setId(new AnuncioPlataformaId(Long.valueOf(idAnuncio), plataforma.getId()));
 			anuncioPlataforma.setAnuncio(anuncio);
 			anuncioPlataforma.setPlataforma(plataforma); //fazer merge do anuncio e da plataforma, obter objectos merged, fazer set dos objectos merged e gravar anuncioPlataforma
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
+		
 			//anuncio.adicionarPlataforma(plataforma);
 		
 			//controlAnuncio.updateAnuncio(anuncio);
@@ -140,6 +144,11 @@ import model.Plataforma;
 			for (Plataforma plataforma: listaPlataformas()) {
 				System.out.println(plataforma.toString());
 			}
+	
+		}
+		
+		public  void onOnline(){
+			anuncioPlataforma.setDatacriacao(new Date());
 		}
 
 	}

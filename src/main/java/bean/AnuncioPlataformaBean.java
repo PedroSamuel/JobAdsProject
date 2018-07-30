@@ -5,6 +5,7 @@ package bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;

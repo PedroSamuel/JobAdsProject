@@ -1,33 +1,82 @@
 @CHARSET "UTF-8";
 
-	body, html  {
-    background-image: url(#{resource['images:AquaBlueBG.jpg']});
-   /* Full height */
-    height: 100%; 
+body, html {
+background-image: url(#{ resource [ 'images:AquaBlueBG.jpg' ]});
+background-repeat:repeat-y;
 
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+/* Center and scale the image nicely */
+background-position:center;
+background-size:cover;
+/* Full height */
+height:100%
 }
 
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
+.super {
+	position: absolute;
+}
 
-.header  {background-color: grey;}
+.header {
+	background-color: grey;
+}
 
-.bodyForm {background-color: white;}
+.bodyForm {
+	background-color: white;
+}
 
-
-
+.transparent {
+	background: none;
+	border-style: none;
+}
 
 /* Add a background color and some padding around the form */
 .container1 {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
 }
 
+.flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 
+.verticalcenter {
+	postition: absolute;
+	top: 50%;
+}
 
+.clickAll {
+	display: block;
+}
 
+.userText {
+	font-size: 30px;
+	color: black;
+}
 
+.userImg {
+	height: 200px;
+}
+
+.userImg:hover {
+	height: 250px;
+	transition: height .9s;
+}
+
+.big-orange {
+	font-size: 50px;
+	color: #e95d0b;
+}
+
+div.filler {
+	height: 10em;
+}
+}
