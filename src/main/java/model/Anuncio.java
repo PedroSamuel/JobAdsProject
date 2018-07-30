@@ -3,10 +3,11 @@ package model;
 
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -32,9 +33,9 @@ public class Anuncio extends Entidade {
 	private String requisitos; 
 	
 	
-	@Temporal( TemporalType.DATE )
-	private Date dataCriacao;
-    private Date dataModificacao;
+
+	private LocalDateTime dataCriacao;
+    private LocalDateTime dataModificacao;
     
     
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
@@ -91,19 +92,19 @@ public class Anuncio extends Entidade {
 		this.requisitos = requisitos;
 	}
 	
-	public Date getDataCriacao() {
+	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
 	}
 	
-	public void setDataCriacao(Date dataCriacao) {
+	public void setDataCriacao(LocalDateTime dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 	
-	public Date getDataModificacao() {
+	public LocalDateTime getDataModificacao() {
 		return dataModificacao;
 	}
 	
-	public void setDataModificacao(Date dataModificacao) {
+	public void setDataModificacao(LocalDateTime dataModificacao) {
 		this.dataModificacao = dataModificacao;
 	}
 	
@@ -143,6 +144,7 @@ public class Anuncio extends Entidade {
 	public int hashCode() {
 		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
 	}
+
 }
 	
 	

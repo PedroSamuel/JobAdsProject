@@ -41,7 +41,7 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 	private AnuncioPlataforma selected;
 	
-	
+
 	
 	
 	

@@ -62,7 +62,9 @@
 		<h:outputText value="#{DRequerimento.requerimento.estado}" />
 
 		<h3>Data do Requerimento</h3>
-		<h:outputText value="#{DRequemimento.requerimento.data}" />
+		<h:outputText value="#{of:formatDate(DRequemimento.requerimento.data, 'dd.MM.yyyy HH:mm')}" >
+		
+		</h:outputText>
 
 
 
