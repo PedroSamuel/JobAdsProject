@@ -47,7 +47,7 @@ PrimeFaces.locales['pt'] = {
 			<ui:include src="menu.xhtml" />
 		</ui:insert>
 	</div>
-	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+	<h:form id="super" onkeypress="if (event.keyCode == 13){return false;}">
 
 		<div class="container-fluid">
 			<div class="row">
@@ -61,13 +61,14 @@ PrimeFaces.locales['pt'] = {
 						selection="#{requerimentoBean.selected}" selectionMode="single"
 						widgetVar="reqTable"
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
-						filteredValue="#{requerimentoBean.filteredRequerientos}">
+						filteredValue="#{requerimentoBean.filteredRequerientos}"
+						scrollable="true" scrollHeight="150">
 
 
 
 						<p:ajax event="rowEdit" listener="#{requerimentoBean.onRowEdit}" />
 
-						<f:facet name="header">
+							<f:facet name="header">
           Lista de Requerimentos
        </f:facet>
 
@@ -81,123 +82,110 @@ PrimeFaces.locales['pt'] = {
 						</p:column>
 
 						<p:column headerText="Funcao" sortBy="#{req.funcao}"
-							filterBy="#{req.funcao}">
+							filterBy="#{req.funcao}" style="width:20;">
 							<h:outputText value="#{req.funcao}" />
 						</p:column>
 
 
 						<p:column headerText="e-mail" sortBy="#{req.email}"
-							filterBy="#{req.email}">
+							filterBy="#{req.email}" style="width:20;">
 							<h:outputText value="#{req.email}" />
 						</p:column>
-
-						<p:column>
-
-							<p:button outcome="detalhesRequerimento?faces-redirect=true"
-								value="Detalhes">
-								<f:param name="idRequerimento" value="#{req.id}"></f:param>
-							</p:button>
-
+								
+							<p:column headerText="Estado" sortBy="#{req.email}"
+							filterBy="#{req.estado}" style="width:20;">
+							<h:outputText value="#{req.estado}" />
 						</p:column>
-
-						<p:column>
-							<p:commandButton icon="ui-icon-trash"
-								action="#{requerimentoBean.removerequerimento(req)}"
-								update="dtreq">
-								<p:confirm header="Confirmar" message="Tem a certeza?"
-									icon="ui-icon-alert" />
-							</p:commandButton>
-							<p:confirmDialog global="true" showEffect="fade"
-								hideEffect="fade">
-								<p:commandButton value="Sim" type="button"
-									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-								<p:commandButton value="Não" type="button"
-									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-							</p:confirmDialog>
-						</p:column>
-
-
-
-
+			
 					</p:dataTable>
 
 					<p:contextMenu for="dtreq">
-						<p:menuitem value="Criar Anuncio" icon="ui-icon-search" />
-						<p:menuitem value="Detalhes" icon="ui-icon-search" update="dreq"
-							oncomplete="PF('ReqDialog').show()" />
+						<p:menuitem value="Criar Anuncio" icon="ui-icon-search"
+							action="listaAnuncios">
+							<ui:param name="idRequerimento"
+								value="#{requerimentoBean.selected.id}"></ui:param>
+						</p:menuitem>
+						<p:menuitem value="Detalhes" icon="ui-icon-search"
+							oncomplete="PF('ReqDialog').show()" update=":super:dialog" />
 						<p:menuitem value="Delete" update="dtreq" icon="ui-icon-close"
-							actionListener="#{requerimentoBean.deleteSelected()}" />
-							
+							actionListener="#{requerimentoBean.deleteSelected()}">
+							<p:confirm header="Confirmar" message="Tem a certeza?"
+								icon="ui-icon-alert" />
+						</p:menuitem>
 					</p:contextMenu>
 
-					<p:dialog id="dreq" header="Detalhes" widgetVar="ReqDialog"
+
+
+					<p:dialog id="dialog" header="Detalhes" widgetVar="ReqDialog"
 						modal="true" showEffect="fade" hideEffect="fade" resizable="false">
 						<div>
-				
-								<div class=" container">
-									<div class="col-sm"></div>
-									<div class="col-sm container1 ">
-										<h:form>
-											<h1 style="text-align: center">Detalhes Pedido #{requerimentoBean.selected.id}</h1>
 
-											
-											<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
+							<div class=" container" id="dreq">
+								<div class="col-sm"></div>
+								<div class="col-sm container1 ">
+									<h:form id="dreqForm">
+										<h1 style="text-align: center">Detalhes Pedido
+											#{requerimentoBean.selected.id}</h1>
 
 
-											<h4>Nome: </h4>
-											<h:outputText
-												value="#{requerimentoBean.selected.requerente}" />
-
-											<h3>Email</h3>
-											<h:outputText value="#{requerimentoBean.selected.email}" />
-								
-											<h2 style="margin-top: 0">Candidato</h2>
-											<br />
-
-											<h3>Função</h3>
-											<h:outputText value="#{requerimentoBean.selected.funcao}" />
-
-											<h3>Requisitos do Candidato</h3>
-											<h:outputText
-												value="#{requerimentoBean.selected.requisitos}" />
-
-											<h3>Observações</h3>
-											<h:outputText value="#{requerimentoBean.selected.notas}" />
-
-											<h3>Estado do Requerimento</h3>
-											<h:outputText value="#{requerimentoBean.selected.estado}" />
-
-											<h3>Data do Requerimento</h3>
-											<h:outputText value="#{requerimentoBean.selected.data}" />
+										<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
 
 
+										<h4>Nome:</h4>
+										<h:outputText value="#{requerimentoBean.selected.requerente}" />
 
-										</h:form>
+										<h3>Email</h3>
+										<h:outputText value="#{requerimentoBean.selected.email}" />
+
+										<h2 style="margin-top: 0">Candidato</h2>
+										<br />
+
+										<h3>Função</h3>
+										<h:outputText value="#{requerimentoBean.selected.funcao}" />
+
+										<h3>Requisitos do Candidato</h3>
+										<h:outputText value="#{requerimentoBean.selected.requisitos}" />
+
+										<h3>Observações</h3>
+										<h:outputText value="#{requerimentoBean.selected.notas}" />
+
+										<h3>Estado do Requerimento</h3>
+										<h:outputText value="#{requerimentoBean.selected.estado}" />
+
+										<h3>Data do Requerimento</h3>
+										<h:outputText value="#{requerimentoBean.selected.data}" />
+
+									
+									</h:form>
 
 
 
 
-										<h:form>
+									<h:form>
 
-											<p:button outcome="criarAnuncio?faces-redirect=true"
-												value="Criar Novo Anuncio">
-												<f:param name="idRequerimento"
-													value="#{DRequerimento.idRequerimento}"></f:param>
-											</p:button>
-											<p:button outcome="listaRequerimentos?faces-redirect=true"
-												value="Voltar">
+										<p:button outcome="criarAnuncio?faces-redirect=true"
+											value="Criar Novo Anuncio">
+											<f:param name="idRequerimento"
+												value="#{requerimentoBean.selected.id}"></f:param>
+										</p:button>
+										<p:button outcome="listaRequerimentos?faces-redirect=true"
+											value="Voltar">
+										</p:button>
 
-											</p:button>
-
-										</h:form>
-									</div>
+									</h:form>
 								</div>
+							</div>
 						</div>
 					</p:dialog>
 
 
 					<p:commandButton value="Voltar" action="menuRH?faces-redirect=true" />
-
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
 				</div>
 			</div>
 		</div>
