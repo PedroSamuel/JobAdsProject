@@ -15,6 +15,7 @@ import org.primefaces.event.RowEditEvent;
 
 import control.ControlAnuncio;
 import model.Anuncio;
+import model.AnuncioPlataforma;
 
 
 @Named("anuncioBean")
@@ -30,6 +31,8 @@ public class AnuncioBean implements Serializable {
 	@Inject
 	ControlAnuncio anuncioControl;
     
+	
+	
 	
 	
 	// classes criada para o search bar  

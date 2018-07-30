@@ -1,8 +1,8 @@
 package model;
 
 
-import java.util.Date;
 
+import java.time.*;
 import javax.persistence.Column;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,7 +19,7 @@ public class Requerimento extends Entidade {
 	private static final long serialVersionUID = 1L;
 	
 	private String requerente;
-	private String data;
+	private LocalDateTime data;
 	private String email;
 	private String funcao;
 	@Lob
@@ -40,12 +40,12 @@ public class Requerimento extends Entidade {
 	}
 
 	
-	public String getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
 	
-	public void setData(String data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 
