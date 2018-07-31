@@ -94,18 +94,12 @@
 							</p:cellEditor>
 						</p:column>
 
-						<p:column headerText="Anúncio Modificado"
-							sortBy="#{anunPlat.dataModificacao}"
-							filterBy="#{anunPlat.dataModificacao}">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{anunPlat.dataModificacao}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{anunPlat.dataModificacao}"
-										style="width:100%" label="Função" />
-								</f:facet>
-							</p:cellEditor>
+						<p:column headerText="Anúncio Expira em:"
+							sortBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
+							filterBy="#{anuncioplataformaBean.expirationDate(anunPlat)}">
+						
+									<h:outputText value="#{anuncioplataformaBean.expirationDate(anunPlat)}" />
+		
 						</p:column>
 
 						<p:column headerText="Link" sortBy="#{anunPlat.link}"
@@ -126,6 +120,13 @@
 						<p:column headerText="REF Anuncio">
 							<h:outputText value="#{anunPlat.anuncio.REF}" />
 						</p:column>
+						
+						<p:column headerText="Dias até expirar:">
+							<h:outputText value="#{anuncioplataformaBean.daysToExpire(anunPlat)}" />
+						</p:column>
+						
+						
+						
 
 						<p:column style="width:32px">
 							<p:rowEditor />

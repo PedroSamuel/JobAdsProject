@@ -4,6 +4,8 @@ package bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 
@@ -161,6 +163,22 @@ public class AnuncioPlataformaBean implements Serializable{
 	    externalContext.redirect("http://stackoverflow.com");
 	}
 	
+	 public int daysToExpire(AnuncioPlataforma anuncioPlataforma){
+	    	
+	    	Duration duration = Duration.between( anuncioPlataforma.getDatacriacao(),LocalDateTime.now());
+	    	int days  = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
+	    	
+	    	
+			return days;
+	  
+	    }
+	 
+	 public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma){
+		 
+		 LocalDateTime date = anuncioPlataforma.getDatacriacao().plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
+		 
+		 return date;
+	 }
 	
 	
 }
