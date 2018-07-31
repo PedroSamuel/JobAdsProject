@@ -82,7 +82,8 @@
 
 						<p:column headerText="Anúncio Criado"
 							sortBy="#{anunPlat.datacriacao}"
-							filterBy="#{anunPlat.datacriacao}">
+							filterBy="#{anunPlat.datacriacao}"
+						    filterMatchMode="contains">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
@@ -96,7 +97,8 @@
 
 						<p:column headerText="Anúncio Expira em:"
 							sortBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
-							filterBy="#{anuncioplataformaBean.expirationDate(anunPlat)}">
+							filterBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
+							filterMatchMode="contains">
 						
 									<h:outputText value="#{anuncioplataformaBean.expirationDate(anunPlat).toLocalDate()}" />
 		
