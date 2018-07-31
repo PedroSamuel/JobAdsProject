@@ -85,7 +85,7 @@
 							filterBy="#{anunPlat.datacriacao}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{anunPlat.datacriacao}" />
+									<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{anunPlat.datacriacao}" style="width:100%"
@@ -98,7 +98,7 @@
 							sortBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
 							filterBy="#{anuncioplataformaBean.expirationDate(anunPlat)}">
 						
-									<h:outputText value="#{anuncioplataformaBean.expirationDate(anunPlat)}" />
+									<h:outputText value="#{anuncioplataformaBean.expirationDate(anunPlat).toLocalDate()}" />
 		
 						</p:column>
 
