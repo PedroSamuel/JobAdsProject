@@ -73,7 +73,7 @@ PrimeFaces.locales['pt'] = {
 
 
 			<p:column headerText="Data Envio" sortBy="#{req.data}" filterBy="#{req.data}">
-				<h:outputText value="#{req.data}">
+				<h:outputText value="#{req.data.toLocalDate()}">
 				
 				 </h:outputText>
 
