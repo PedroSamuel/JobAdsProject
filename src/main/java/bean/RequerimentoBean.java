@@ -16,7 +16,14 @@ import model.Requerimento;
 @ViewScoped
 public class RequerimentoBean implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5893776681538897923L;
+
+
+
 	@Inject
 	ControlRequerimento requerimentoControl;
 	
