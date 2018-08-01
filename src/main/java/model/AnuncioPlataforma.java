@@ -2,7 +2,7 @@ package model;
 
 
 import java.io.Serializable;
-import java.util.Date;
+
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -158,6 +158,10 @@ public class AnuncioPlataforma implements Serializable{
         AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
         return Objects.equals(getId(), anuncioPlataforma.getId());
     }
+    
+   
+    
+    
 
 //	public String getIdHash() {
 //		return idHash;

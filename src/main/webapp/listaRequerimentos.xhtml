@@ -73,10 +73,17 @@ PrimeFaces.locales['pt'] = {
        </f:facet>
 
 
+<<<<<<< HEAD
 						<p:column headerText="Data Envio" sortBy="#{req.data}"
 							filterBy="#{req.data}">
 							<h:outputText value="#{req.data}">
 							</h:outputText>
+=======
+			<p:column headerText="Data Envio" sortBy="#{req.data}" filterBy="#{req.data}">
+				<h:outputText value="#{req.data.toLocalDate()}">
+				
+				 </h:outputText>
+>>>>>>> origin/antero-7.5-com-imagem
 
 						</p:column>
 
