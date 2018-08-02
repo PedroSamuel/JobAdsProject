@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	
+	
+	<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            PF('dlg').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('dlg').hide();
+            $('#loginLink').fadeOut();
+        }
+    }
+</script>
+
+	<title>index</title>
+
+
+</h:head>
+
+<h:body>
+
+	Login
+	
+	<p:growl for="login" autoUpdate="true"/>
+		<div class="row ">
+			<div class="col-md-3 ">
+				<div class="loginBox">
+					<h2>Login</h2>
+					<h:form id="login">
+						<h:panelGrid columns="2">
+							<h:outputLabel for="username" value="Username:">
+								<br />
+								<h:message id="m_username" for="username" styleClass="loginMessage"/>
+							</h:outputLabel>
+							<h:inputText id="username" value="#{login.username}"
+								required="true" requiredMessage="Coloque username!">
+								<f:ajax event="blur" render="m_username" />
+							</h:inputText>
+
+							<h:outputLabel for="password" value="Password:">
+								<br />
+								<h:message id="m_password" for="password" styleClass="loginMessage"/>
+							</h:outputLabel>
+							<h:inputSecret id="password" value="#{login.password}"
+								required="true" requiredMessage="Coloque password">
+								<f:ajax event="blur" render="m_password" />
+							</h:inputSecret>
+						</h:panelGrid>
+
+						<p:commandButton value="Login" action="#{login.submit}">
+							<f:ajax execute="@form" render="@form" />
+						</p:commandButton>
+					</h:form>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+			<div class="col-md-7">
+
+				<h:graphicImage name="images/todos_no_jardim.jpg"
+					alt="image not shown" style="width:100%" styleClass="loginImage" />
+
+			</div>
+		</div>
+</h:body>
+</html>

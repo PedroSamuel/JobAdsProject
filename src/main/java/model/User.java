@@ -2,6 +2,22 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+
+@Entity
+
+@NamedQueries({
+    @NamedQuery(
+        name = "User.find",
+        query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password"),
+    @NamedQuery(
+        name = "User.list",
+        query = "SELECT u FROM User u"),
+   
+})
 public class User extends Entidade implements Serializable {
 	
 	private static final long serialVersionUID = -4656759219348212715L;
@@ -15,7 +31,7 @@ public class User extends Entidade implements Serializable {
 	  
 	  private String password;
 	  
-	  private String salt;
+
 
 	
 	public String getUsername() {
@@ -32,10 +48,6 @@ public class User extends Entidade implements Serializable {
 		return password;
 	}
 
-	
-	public String getSalt() {
-		return salt;
-	}
 
 	
 	public void setUsername(String username) {
@@ -53,10 +65,7 @@ public class User extends Entidade implements Serializable {
 	}
 
 	
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-	  
+	
 	  
 
 	
