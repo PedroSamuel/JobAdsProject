@@ -3,7 +3,7 @@ package bean;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
-@SessionScoped
+
 public abstract class navigator implements Serializable {
 
 	/**
