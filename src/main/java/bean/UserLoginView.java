@@ -2,6 +2,7 @@ package bean;
  
 import java.io.Serializable;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -11,7 +12,7 @@ import javax.faces.view.ViewScoped;
 
 import org.primefaces.PrimeFaces;
  
-@ViewScoped
+@ApplicationScoped
 public class UserLoginView implements Serializable {
      
     /**
@@ -51,7 +52,7 @@ public class UserLoginView implements Serializable {
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
         }
          
-        //FacesContext.getCurrentInstance().addMessage(null, message);
-        //PrimeFaces.current().ajax().addCallbackParam("loggedIn", loggedIn);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        PrimeFaces.current().ajax().addCallbackParam("loggedIn", loggedIn);
     }   
 }
