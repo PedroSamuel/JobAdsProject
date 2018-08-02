@@ -45,6 +45,10 @@ public class RequerimentoBean implements Serializable {
 	public Collection<Requerimento> getRequerimentos() {
 		return requerimentoControl.Requerimentos();
 	}
+	
+	public Collection<Requerimento> porProcessar() {
+		return requerimentoControl.porProcessar();
+	}
 
 	public void removerequerimento(Requerimento requerimento) {
 		requerimentoControl.removeRequerimento(requerimento);
@@ -76,6 +80,9 @@ public class RequerimentoBean implements Serializable {
 	}
 
 
+	public String novoAnuncio() {
+		return "criarAnuncio?faces-redirect=true&idRequerimento=" + selected.getId();
+	}
 	
 
 }

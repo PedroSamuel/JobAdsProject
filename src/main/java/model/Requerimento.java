@@ -25,7 +25,7 @@ public class Requerimento extends Entidade {
 	@Lob
 	private String requisitos;
 	private String notas;	
-	private String estado;
+	private String estado = "Por Processar";
 	
 	
 
