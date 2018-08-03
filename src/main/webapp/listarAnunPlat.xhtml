@@ -119,10 +119,7 @@
 						</p:column>
 
 
-						<p:column headerText="REF Anuncio" >
-							<h:outputText value="#{anunPlat.anuncio.REF}" />
-						</p:column>
-						
+	
 						<p:column headerText="Dias até expirar:" sortBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"
 						filterBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}">
 							<h:outputText value="#{anuncioplataformaBean.daysToExpire(anunPlat)}" />

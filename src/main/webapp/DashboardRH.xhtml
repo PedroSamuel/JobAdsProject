@@ -400,15 +400,21 @@ PrimeFaces.locales['pt'] = {
 					listener="#{anuncioPlataformaBean.onRowEdit}" />
 
 
-				<p:column headerText="Estado">
-					<p:selectOneButton value="#{anunPlat.estado}" unselectable="false">
+				<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
+							filterBy="#{anunPlat.estado}" filterMatchMode="contains">
 
-						<f:selectItem itemLabel="Offline" itemValue="Offline" />
-						<f:selectItem itemLabel="Online" itemValue="Online" />
-						<p:ajax event="change" update="dtAnunPlat"
-							listener="#{anuncioplataformaBean.updateSelected(anunPlat)}" />
-					</p:selectOneButton>
-				</p:column>
+							<p:selectOneButton value="#{anunPlat.estado}"
+								unselectable="false">
+
+								<f:selectItem itemLabel="Offline" itemValue="Offline" />
+								<f:selectItem itemLabel="Online" itemValue="Online" />
+								<p:ajax event="change" update="dtAnunPlat"
+									listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" />
+							</p:selectOneButton>
+						</p:column>
+				
+				
+				
 				<p:column headerText="Dias até expirar:"
 					sortBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"
 					filterBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}">
@@ -440,23 +446,20 @@ PrimeFaces.locales['pt'] = {
 				</p:column>
 
 
-				<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
-					filterBy="#{anunPlat.estado}" filterMatchMode="contains">
-				</p:column>
-
-				<p:column headerText="Online desde:"
-					sortBy="#{anunPlat.datacriacao}" filterBy="#{anunPlat.datacriacao}"
-					filterMatchMode="contains">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{anunPlat.datacriacao}" style="width:100%"
-								label="Função" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+						<p:column headerText="Online desde"
+							sortBy="#{anunPlat.datacriacao}"
+							filterBy="#{anunPlat.datacriacao}"
+						    filterMatchMode="contains">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.datacriacao}" style="width:100%"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
 
 
