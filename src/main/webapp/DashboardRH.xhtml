@@ -229,25 +229,6 @@ PrimeFaces.locales['pt'] = {
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Estado" sortBy="#{anuncio.estado}"
-					filterBy="#{anuncio.estado}" filterMatchMode="contains">
-
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{anuncio.estado}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:selectOneMenu value="#{anuncio.estado}">
-								<f:selectItem itemLabel="Selecione um"
-									itemValue="#{anuncio.estado}" />
-								<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
-								<f:selectItem itemLabel="Manter" itemValue="Manter" />
-								<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
-
-							</h:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
 
 				<p:column filterBy="#{anuncio.funcao}" headerText="Função"
 					sortBy="#{anuncio.funcao}" filterMatchMode="contains">

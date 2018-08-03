@@ -18,25 +18,27 @@
 			<ui:include src="menu.xhtml" />
 		</ui:insert>
 	</div>
-	<h:form onkeypress="if (event.keyCode == 13){return false;}">
-		<div class="container-fluid">
-			<div class="row">
 
-				<div class="col-sm" >
-<br /> 
+	<div id="super" class="container-fluid">
+		<div id="row" class="row">
+
+			<div class="col" id="lista">
+				<br />
+
+				<h:form id="plat"
+					onkeypress="if (event.keyCode == 13){return false;}">
+					<p:dataTable id="dtplataforma" var="plataforma"
+						value="#{plataformaBean.plataformas}" editable="true"
+						widgetVar="plataformaTable" style="margin-bottom:20px"
+						rowKey="#{plataforma.id}" selection="#{selected}"
+						selectionMode="single"
+						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
+						filteredValue="#{plataformaBean.filteredPlataformas}">
 
 
-		<p:dataTable id="dtplataforma" var="plataforma"
-			value="#{plataformaBean.plataformas}" editable="true"
-			widgetVar="plataformaTable" style="margin-bottom:20px"
-			rowKey="#{plataforma.id}" selection="#{selected}" selectionMode="single"
-			emptyMessage="Não foram encontrados resultados com os seguintes criterios" 
-			filteredValue="#{plataformaBean.filteredPlataformas}">
+						<p:ajax event="rowEdit" listener="#{plataformaBean.onRowEdit}" />
 
-
-			<p:ajax event="rowEdit" listener="#{plataformaBean.onRowEdit}" />
-
-			<f:facet name="header">
+						<f:facet name="header">
 
 
 			  Lista de Plataformas
@@ -44,62 +46,88 @@
 
 			</f:facet>
 
-			<p:column headerText="Nome" sortBy="#{plataforma.nomePlataforma}"
-				filterMatchMode="contains" filterBy="#{plataforma.nomePlataforma}">
+						<p:column headerText="Nome" sortBy="#{plataforma.nomePlataforma}"
+							filterMatchMode="contains"
+							filterBy="#{plataforma.nomePlataforma}">
 
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{plataforma.nomePlataforma}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{plataforma.nomePlataforma}" style="width:100%"
-							label="Nome" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-
-
-			<p:column headerText="Renovação (dias)" sortBy="#{plataforma.periodoRenovacao}" 
-			filterBy="#{plataforma.periodoRenovacao}">
-
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{plataforma.periodoRenovacao}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{plataforma.periodoRenovacao}" style="width:100%"
-							label="periodoRenovacao" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>			
-
-			<p:column style="width:32px">
-				<p:rowEditor />
-			</p:column>
-
-			<p:column style="width:32px">
-				<p:commandButton icon="ui-icon-trash"
-					action="#{plataformaBean.removePlataforma(plataforma)}" update="dtplataforma">
-					<p:confirm header="Confirmar" message="Tem a certeza?"
-						icon="ui-icon-alert" />
-				</p:commandButton> 
-				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Sim" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="Não" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
-			</p:column>
-			
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{plataforma.nomePlataforma}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{plataforma.nomePlataforma}"
+										style="width:100%" label="Nome" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
 
-		</p:dataTable>
-		<p:commandButton value="Criar Plataforma" action="criarPlataformas?faces-redirect=true" />
-		<p:commandButton value="Inicio" action="DashboardRH?faces-redirect=true" />
-		
+						<p:column headerText="Renovação (dias)"
+							sortBy="#{plataforma.periodoRenovacao}"
+							filterBy="#{plataforma.periodoRenovacao}">
+
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{plataforma.periodoRenovacao}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{plataforma.periodoRenovacao}"
+										style="width:100%" label="periodoRenovacao" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:32px">
+							<p:rowEditor />
+						</p:column>
+
+						<p:column style="width:32px">
+							<p:commandButton icon="ui-icon-trash"
+								action="#{plataformaBean.removePlataforma(plataforma)}"
+								update="dtplataforma">
+								<p:confirm header="Confirmar" message="Tem a certeza?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+
 			</div>
+
+			<div class="col-2">
+				<h:form id="criar">
+					<h4>Criar Plataforma</h4>
+					<h5>Nome da Plataforma</h5>
+					<p:inputTextarea
+						value="#{plataformaCreate.plataforma.nomePlataforma}" rows="1"
+						cols="15" autoResize="false" />
+					<h5>Renovação</h5>
+					<p:inputTextarea
+						value="#{plataformaCreate.plataforma.periodoRenovacao}" rows="1"
+						cols="15" autoResize="false" />
+
+					<br />
+					<br />
+					<p:commandButton value="Guardar"
+						action="#{plataformaCreate.salvarPlataforma()}" update="@([id$=lista])" />
+				</h:form>
 			</div>
+
+
+
+
+
 		</div>
-	</h:form>
+	</div>
+	<p:commandButton value="Inicio"
+		action="DashboardRH?faces-redirect=true" />
+
 </h:body>
 </html>

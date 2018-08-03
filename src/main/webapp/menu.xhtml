@@ -36,22 +36,17 @@
         <p:menubar>
    
    
-        <p:menuitem value="Inicio" action="DashboardRH" icon="ui-icon-home"   />
+        <p:menuitem value="Inicio" action="DashboardRH?faces-redirect=true" icon="ui-icon-home"   />
         
+         <p:menuitem value="Pedidos" action="listaRequerimentos?faces-redirect=true" icon="ui-icon-pencil"   />
         
-      <p:submenu label="Anúncios" icon="ui-icon-document">
-            <p:menuitem value="Lista de anúncios" action="listaAnuncios?faces-redirect=true" icon=""   />
-            <p:menuitem value="Criar anúncio" action="criarAnuncio" icon=""   />
-        </p:submenu>
+        <p:menuitem value="Anuncios" action="listaAnuncios?faces-redirect=true" icon="ui-icon-document"   />
         
-        <p:submenu label="Pedidos" icon="ui-icon-pencil">
-            <p:menuitem value="Lista de pedidos" action="listaRequerimentos?faces-redirect=true" icon=""   />
-        </p:submenu>
+         <p:menuitem value="Plataformas" action="listaPlataformas?faces-redirect=true" icon="ui-icon-home"   />
+         
+          
         
-        <p:submenu label="Plataformas" icon="ui-icon-document">
-            <p:menuitem value="Lista de plataformas" action="listaPlataformas?faces-redirect=true" icon=""   />
-            <p:menuitem value="Criar plataforma" action="criarPlataformas?faces-redirect=true" icon=""   />
-        </p:submenu>
+      
         
     
       
