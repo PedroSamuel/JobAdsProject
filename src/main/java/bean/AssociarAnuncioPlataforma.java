@@ -79,7 +79,10 @@ import model.Plataforma;
 //				System.out.println("Okok" + longID);
 //				
 //			
-			anuncioPlataforma.setDatacriacao(LocalDateTime.now());
+			if (anuncioPlataforma.getEstado().equals("Online")){
+				anuncioPlataforma.setDatacriacao(LocalDateTime.now());
+			}
+			
 			//anuncioPlataforma.setId(new AnuncioPlataformaId(Long.valueOf(idAnuncio), plataforma.getId()));
 			anuncioPlataforma.setAnuncio(anuncio);
 			anuncioPlataforma.setPlataforma(plataforma); //fazer merge do anuncio e da plataforma, obter objectos merged, fazer set dos objectos merged e gravar anuncioPlataforma

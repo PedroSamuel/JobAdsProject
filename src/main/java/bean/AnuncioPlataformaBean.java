@@ -151,10 +151,24 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 	public void updateSelected() {
 		anuncioControlPlataforma.updateAnuncioPlataforma(selected);
+		
 	}
 	
 	
 	public void updateSelected(AnuncioPlataforma ap) {
+		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+		
+	}
+	
+	public void onlineDate(AnuncioPlataforma ap) {
+		
+		if (ap.getEstado().equals("Online")){
+			ap.setDatacriacao(LocalDateTime.now());
+			
+		}
+		else if(ap.getEstado().equals("Offline")){
+			ap.setDatacriacao(null);		
+		}
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
 	}
 	
@@ -164,21 +178,28 @@ public class AnuncioPlataformaBean implements Serializable{
 	}
 	
 	 public int daysToExpire(AnuncioPlataforma anuncioPlataforma){
-	    	
+	    	if (!(anuncioPlataforma.getDatacriacao() == null)){
 	    	Duration duration = Duration.between( anuncioPlataforma.getDatacriacao(),LocalDateTime.now());
 	    	int days  = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
 	    	
 	    	
 			return days;
+	    	}
+	    	return 0;
 	  
 	    }
 	 
 	 public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma){
 		 
+		 if (!(anuncioPlataforma.getDatacriacao() == null)){
 		 LocalDateTime date = anuncioPlataforma.getDatacriacao().plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
 		 
 		 return date;
+		 }
+		 return null;
 	 }
+	 
+	
 	
 	
 }
