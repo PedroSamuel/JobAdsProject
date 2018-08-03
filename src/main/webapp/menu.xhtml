@@ -36,7 +36,7 @@
         <p:menubar>
    
    
-        <p:menuitem value="Home" action="DashboardRH" icon="ui-icon-home"   />
+        <p:menuitem value="Inicio" action="DashboardRH" icon="ui-icon-home"   />
         
         
       <p:submenu label="Anúncios" icon="ui-icon-document">
@@ -53,19 +53,14 @@
             <p:menuitem value="Criar plataforma" action="criarPlataformas?faces-redirect=true" icon=""   />
         </p:submenu>
         
-        <p:submenu label="Utilizadores" icon="ui-icon-person">
-            <p:menuitem value="RH" action="menuRH" icon=""   />
-            <p:menuitem value="Business Managers" action="menuRH" icon=""   />
-            <p:menuitem value="Criar novo utilizador" action="menuRH" icon=""   />
-        </p:submenu>
     
-    
-  
       
  
         <f:facet name="options">
-           
-            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+         
+            <p:button type="button" value="Logout" icon="ui-icon-extlink" outcome="index.xhtml?faces-redirect=true" />
+
+	
             
         </f:facet>
     </p:menubar>

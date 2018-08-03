@@ -61,8 +61,7 @@ PrimeFaces.locales['pt'] = {
 						selection="#{requerimentoBean.selected}" selectionMode="single"
 						widgetVar="reqTable"
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
-						filteredValue="#{requerimentoBean.filteredRequerientos}"
-						scrollable="true" scrollHeight="150" reflow="true">
+						filteredValue="#{requerimentoBean.filteredRequerientos}" reflow="true">
 
 
 
@@ -167,9 +166,6 @@ PrimeFaces.locales['pt'] = {
 											<f:param name="idRequerimento"
 												value="#{requerimentoBean.selected.id}"></f:param>
 										</p:button>
-										<p:button outcome="listaRequerimentos?faces-redirect=true"
-											value="Voltar">
-										</p:button>
 
 									</h:form>
 								</div>
@@ -178,7 +174,7 @@ PrimeFaces.locales['pt'] = {
 					</p:dialog>
 
 
-					<p:commandButton value="Voltar" action="menuRH?faces-redirect=true" />
+					<p:commandButton value="Início" action="DashboardRH?faces-redirect=true" />
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 						<p:commandButton value="Sim" type="button"
 							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
