@@ -516,25 +516,10 @@
 
 
 
-				<p:column style="width:100px" escape="false">
-
-					<p:rowEditor />
-
-				</p:column>
+			
 
 
-
-				<p:column style="width:100px" escape="false">
-
-					<p:commandButton icon="ui-icon-trash "
-
-						action="#{anuncioBean.removeAnuncio(anuncio)}" update="dtanuncio">
-
-						<p:confirm header="Confirmar" message="Tem a certeza?"
-
-							icon="ui-icon-alert" />
-
-					</p:commandButton>
+				
 
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 
@@ -548,7 +533,7 @@
 
 					</p:confirmDialog>
 
-				</p:column>
+	
 
 
 
@@ -658,23 +643,7 @@
 
 
 
-				<p:column headerText="Estado"  escape="false" style="width:100px" >
 
-					<p:selectOneButton value="#{anunPlat.estado}" unselectable="false">
-
-
-
-						<f:selectItem itemLabel="Offline" itemValue="Offline" />
-
-						<f:selectItem itemLabel="Online" itemValue="Online" />
-
-						<p:ajax event="change" update="dtAnunPlat"
-
-							listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" />
-
-					</p:selectOneButton>
-
-				</p:column>
 
 				<p:column headerText="Dias até expirar:"
 
@@ -734,7 +703,23 @@
 
 				</p:column>
 
+				<p:column headerText="Estado"  escape="false" style="width:100px" >
 
+					<p:selectOneButton value="#{anunPlat.estado}" unselectable="false">
+
+
+
+						<f:selectItem itemLabel="Offline" itemValue="Offline" />
+
+						<f:selectItem itemLabel="Online" itemValue="Online" />
+
+						<p:ajax event="change" update="dtAnunPlat"
+
+							listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" />
+
+					</p:selectOneButton>
+
+				</p:column>
 
 
 
@@ -770,50 +755,6 @@
 
 
 
-				<p:column  style="width:100px" escape="false">
-
-					<p:rowEditor />
-
-				</p:column>
-
-
-
-
-
-
-
-
-
-				<p:column  style="width:100px" escape="false" >
-
-					<p:commandButton icon="ui-icon-trash"
-
-						action="#{anuncioplataformaBean.removeAnunPlat(anunPlat)}"
-
-						update="dtAnunPlat">
-
-						<p:confirm header="Confirmação" message="Tem a certeza?"
-
-							icon="ui-icon-alert" />
-
-					</p:commandButton>
-
-
-
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-
-						<p:commandButton value="Sim" type="button"
-
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-
-						<p:commandButton value="Não" type="button"
-
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-
-					</p:confirmDialog>
-
-				</p:column>
-
 
 
 			</p:dataTable>
@@ -827,23 +768,9 @@
 
 
 
-
-
-
-
-
-
-
 				<p:commandButton value="Ver Especificacões Plataformas"
 
 					action="listaPlataformas?faces-redirect=true" style="width:500px" />
-
-			
-
-
-
-
-
 
 
 			</h:form>
