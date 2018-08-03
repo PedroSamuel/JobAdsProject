@@ -164,7 +164,7 @@ PrimeFaces.locales['pt'] = {
 
 								<h:form>
 
-									<p:button outcome="criarAnuncio?faces-redirect=true"
+									<p:button outcome="criarAnuncio.xhtml?faces-redirect=true"
 										value="Criar Novo Anuncio">
 										<f:param name="idRequerimento"
 											value="#{requerimentoBean.selected.id}"></f:param>
@@ -307,7 +307,7 @@ PrimeFaces.locales['pt'] = {
 			<h:form>
 				<p:contextMenu for="dtanuncio">
 					<p:menuitem value="Criar Anuncio" icon="ui-icon-search"
-						oncomplete="PF('anuncioDialog').show()" update="new">
+						action="criarAnuncio?faces-redirect=true">
 					</p:menuitem>
 					<p:menuitem value="Detalhes e Plataformas" icon="ui-icon-search"
 						action="listaAnunPlat" />
@@ -319,52 +319,7 @@ PrimeFaces.locales['pt'] = {
 					</p:menuitem>
 				</p:contextMenu>
 			</h:form>
-			<p:dialog header="Criar Anuncio" widgetVar="anuncioDialog" showEffect="fade" hideEffect="fade" resizable="true"
-				dynamic="true" class="flex">
-			
-				<h:form id="new">
-					
-					<h4>Criar Anúncio</h4>
-					<h5>Função</h5>
-					<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1"
-						cols="15" autoResize="false" />
-					<h5>Manager</h5>
-					<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1"
-						cols="15" autoResize="false" />
-					<h5>Referência</h5>
-					<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1"
-						cols="15" autoResize="false" />
-					<h5>Estado</h5>
-					<p:selectOneMenu id="estado"
-						value="#{anuncioCreate.anuncio.estado}" style="width:160px">
-
-						<f:selectItem itemLabel="Selecione um" itemValue="Aplicar" />
-						<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
-						<f:selectItem itemLabel="Manter" itemValue="Manter" />
-						<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
-
-					</p:selectOneMenu>
-					<br />
-					<br />
-
-
-					<h5>Requisitos</h5>
-					<p:inputTextarea rows="10" cols="50"
-						value="#{anuncioCreate.anuncio.requisitos}" />
-
-
-					<br />
-					<br />
-
-					<p:commandButton value="Guardar"
-						action="#{anuncioCreate.salvarAnuncio()}"
-						oncomplete="PF('anuncioDialog').hide()" update="dtanuncio" />
-
-
-
-				</h:form>
-			
-			</p:dialog>
+		
 
 
 			<p:commandButton value="Ver Todos Anúncios"
@@ -500,10 +455,7 @@ PrimeFaces.locales['pt'] = {
 				<br />
 				<br />
 
-				<p:commandButton value="Index" action="index?faces-redirect=true"
-					style="width:100px;height:100px" />
-				<br />
-				<br />
+
 
 
 
