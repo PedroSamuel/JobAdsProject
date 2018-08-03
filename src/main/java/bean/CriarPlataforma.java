@@ -29,9 +29,8 @@ public class CriarPlataforma implements Serializable{
 		plataforma = p;
 	}
 
-	public String salvarPlataforma() {
+	public void salvarPlataforma() {
 		controlPlataforma.criarPlataforma(plataforma);
-		return "listaPlataformas?faces-redirect=true";
 	}
 
 	public void criarPlataforma() {

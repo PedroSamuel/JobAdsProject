@@ -42,7 +42,7 @@ public class CriarAnuncio implements Serializable {
 
 	public String salvarAnuncio() {
 		controlAnuncio.criarAnuncio(anuncio);
-		return "listaAnuncios?faces-redirect=true";
+		return "DashboardRH?faces-redirect=true";
 	}
 
 	public void criarAnuncio() {

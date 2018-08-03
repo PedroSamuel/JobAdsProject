@@ -2,7 +2,7 @@ package model;
 
 
 import java.io.Serializable;
-import java.util.Date;
+
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -26,6 +26,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.PreRemove;
 
+import java.time.*;
 
 
 
@@ -68,13 +69,13 @@ public class AnuncioPlataforma implements Serializable{
 	private Plataforma plataforma;
 	
 
-	private Date Datacriacao;
+	private LocalDateTime Datacriacao;
 	
-	private Date DataModificacao;
+	private LocalDateTime DataModificacao;
 	private String Estado; // mudar para enum
 	private String link;
 	
-
+	
 	
 	public AnuncioPlataforma(Anuncio anuncio, Plataforma plataforma) {
 		this.anuncio = anuncio;
@@ -106,16 +107,16 @@ public class AnuncioPlataforma implements Serializable{
 	}
 
 	
-	public Date getDatacriacao() {
+	public LocalDateTime getDatacriacao() {
 		return Datacriacao;
 	}
-	public void setDatacriacao(Date datacriacao) {
+	public void setDatacriacao(LocalDateTime datacriacao) {
 		Datacriacao = datacriacao;
 	}
-	public Date getDataModificacao() {
+	public LocalDateTime getDataModificacao() {
 		return DataModificacao;
 	}
-	public void setDataModificacao(Date dataModificacao) {
+	public void setDataModificacao(LocalDateTime dataModificacao) {
 		DataModificacao = dataModificacao;
 	}
 	
@@ -157,6 +158,10 @@ public class AnuncioPlataforma implements Serializable{
         AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
         return Objects.equals(getId(), anuncioPlataforma.getId());
     }
+    
+   
+    
+    
 
 //	public String getIdHash() {
 //		return idHash;

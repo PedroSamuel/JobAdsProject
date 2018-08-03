@@ -5,7 +5,7 @@
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.*;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -79,7 +79,10 @@ import model.Plataforma;
 //				System.out.println("Okok" + longID);
 //				
 //			
-			anuncioPlataforma.setDatacriacao(new Date());
+			if (anuncioPlataforma.getEstado().equals("Online")){
+				anuncioPlataforma.setDatacriacao(LocalDateTime.now());
+			}
+			
 			//anuncioPlataforma.setId(new AnuncioPlataformaId(Long.valueOf(idAnuncio), plataforma.getId()));
 			anuncioPlataforma.setAnuncio(anuncio);
 			anuncioPlataforma.setPlataforma(plataforma); //fazer merge do anuncio e da plataforma, obter objectos merged, fazer set dos objectos merged e gravar anuncioPlataforma
@@ -148,7 +151,7 @@ import model.Plataforma;
 		}
 		
 		public  void onOnline(){
-			anuncioPlataforma.setDatacriacao(new Date());
+			anuncioPlataforma.setDatacriacao(LocalDateTime.now());
 		}
 
 	}

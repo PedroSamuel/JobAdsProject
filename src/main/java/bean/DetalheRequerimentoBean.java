@@ -2,6 +2,7 @@ package bean;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,7 +12,7 @@ import control.ControlRequerimento;
 import model.Requerimento;
 
 @Named("DRequerimento")
-@ViewScoped
+@RequestScoped
 public class DetalheRequerimentoBean implements Serializable {
 
 	/**

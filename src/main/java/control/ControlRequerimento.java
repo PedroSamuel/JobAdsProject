@@ -23,6 +23,10 @@ public class ControlRequerimento {
 		return dbR.listEntity(Requerimento.class);
 	}
 	
+	public List<Requerimento> porProcessar(){
+		return dbR.listEntity(Requerimento.class);
+	}
+	
 	public Requerimento getRequerimento (Long id) {
 		return dbR.getEntity(Requerimento.class,  id);
 		
