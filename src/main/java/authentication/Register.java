@@ -37,12 +37,12 @@ public class Register implements Serializable {
 		user = u;
 	}
 
-	public String salvarAnuncio() {
+	public String salvarUser() {
 		controlUser.criarUser(user);
 		return "listaAnuncios?faces-redirect=true";
 	}
 
-	public void criarAnuncio() {
+	public void criarUser() {
 		controlUser.criarUser(new User());
 	}
 

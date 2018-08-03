@@ -49,12 +49,17 @@
 
 			<h4>Criar Utilizador</h4>
 			<h5>User</h5>
-			<p:inputTextarea value="#{register.user.username}" rows="1"
+			<p:inputTextarea value="#{criaUser.user.username}" rows="1"
 				cols="15" autoResize="false" />
-			<h5>PassWord</h5>
-			<p:inputTextarea value="#{register.user.password}" rows="1"
+			<h5>Password</h5>
+			<p:inputTextarea value="#{criarUser.user.password}" rows="1"
+				cols="15" autoResize="false" />
+				
+				<h5>Email</h5>
+			<p:inputTextarea value="#{criarUser.user.email}" rows="1"
 				cols="15" autoResize="false" />
 			
+		
 
 		
 			
@@ -64,7 +69,7 @@
 				<br />
 
 				<p:commandButton value="Guardar"
-					action="#{register.salvarUser()}" />
+					action="#{criarUser.salvarUser()}" />
 				<p:commandButton value="Voltar" action="listaAnuncios" />
 
 
