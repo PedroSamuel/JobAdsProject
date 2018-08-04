@@ -35,6 +35,11 @@ public class RepositorioAnuncioPlataforma{
 	public List<AnuncioPlataforma> listEntity(Class<AnuncioPlataforma> entClass) {
 		return localList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<AnuncioPlataforma> selectAnunPlat(long idAnuncio){
+		return (em.createQuery("SELECT e FROM AnuncioPlataforma e WHERE e.anuncio.id LIKE :idAnuncio").setParameter("idAnuncio", idAnuncio).getResultList());
+	}
 
 	public AnuncioPlataforma getEntity(Class<AnuncioPlataforma> entClass, Long id) {
 		return em.find(entClass, id);
@@ -43,6 +48,10 @@ public class RepositorioAnuncioPlataforma{
 	public void updateEntity(AnuncioPlataforma ent) {
 		em.merge(ent);
 		updateLocalList();
+	}
+	
+	public void updateEntity2(AnuncioPlataforma ent) {
+		em.merge(ent);
 	}
 
 	public void removeEntity(AnuncioPlataforma ent) {

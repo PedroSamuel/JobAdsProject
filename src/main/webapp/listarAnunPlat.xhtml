@@ -35,7 +35,7 @@
 			<ui:include src="menu.xhtml" />
 		</ui:insert>
 	</div>
-	<h:form onkeypress="if (event.keyCode == 13){return false;}">
+	<h:form id="su" onkeypress="if (event.keyCode == 13){return false;}">
 		    <p:growl id="growl" showDetail="true" sticky="true" life="3000" />  
 
 		<div class="container-fluid">
@@ -115,7 +115,7 @@
 
 							<f:selectItem itemLabel="Offline" itemValue="Offline" />
 							<f:selectItem itemLabel="Online" itemValue="Online" />
-							<p:ajax event="change" update="dtAnunPlat"
+							<p:ajax event="change" update="dtAnunPlat :su:growl"
 								listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" />
 						</p:selectOneButton>
 					</p:column>
