@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -44,8 +45,7 @@ public class AnuncioPlataformaBean implements Serializable{
 	private AnuncioPlataforma selected;
 	
 
-	
-	
+
 	
 	//codigo do id
 	private String idAnuncio;
@@ -54,7 +54,13 @@ public class AnuncioPlataformaBean implements Serializable{
 	
 	
 	
-	
+	public void updateAnuncio() {
+		anuncioControl.updateAnuncio(anuncio);
+		
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        context.addMessage("null", new FacesMessage("Estado do Anúncio alterado para ",  anuncio.getEstado()) );
+	}
 	
 	
 	

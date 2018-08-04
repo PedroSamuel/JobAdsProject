@@ -18,6 +18,25 @@ body{
 	padding: 2em;
 	color: #3a1e8f;
 	font-family: sans-serif;
+	
+}
+
+.align-center{
+	left: 30%;
+	position: relative;
+}
+
+p{
+	font-size: 25px;
+}
+
+h3 b{
+	font-size: 35px;
+	color: #c9f5ff;
+}
+
+.inline-block{
+	display: inline-block;
 }
 
 #menu{
@@ -25,12 +44,31 @@ body{
 	display: block; 	
 }
 
+.selectOneMenu{
+	font-size: 35px;
+	padding: 5px;
+}
+
+.green{
+	color:green;
+}
+
+.red{
+	color: red;
+}
+
+.blue{
+	color: blue;
+}
+
+
 table{
 	background: #c9f5ff;
 	color: black;
 	padding: 1em;
 	border-color: black;
 	border:solid;
+	font-size:25px;
 }
 
 th{
@@ -147,5 +185,5 @@ div.filler {
 	color: #ffffff;
 	padding: 1em;
 	font-size: 15px;
-	background-color: #6464ff;
+	background-color: #60bfd8;
 }
