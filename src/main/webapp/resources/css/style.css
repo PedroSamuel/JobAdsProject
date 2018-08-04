@@ -21,10 +21,8 @@ body{
 }
 
 #menu{
-	position: fixed;
-	background:rgba(255,255,255,0.5);
-	display: block; 
-	
+	position: relative;
+	display: block; 	
 }
 
 table{
