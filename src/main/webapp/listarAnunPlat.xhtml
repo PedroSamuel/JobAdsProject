@@ -39,9 +39,21 @@
 		<p:growl id="msg" />
 
 		<div class="container-fluid">
-			<div class="row">
+		<div class="displayinfo">
+			<p> <b> Referência: </b> #{anuncioplataformaBean.anuncio.REF}" </p>
+			<br />
+			<h3> "Manager: #{anuncioplataformaBean.anuncio.manager}" </h3>
+			<br />
+			<h3> "Função: #{anuncioplataformaBean.anuncio.funcao}" </h3>
+			<br />
+			<br />
+			<h3> Requisitos </h3>
+			<br />
+			<p> #{anuncioplataformaBean.selected.anuncio.requisitos} </p>
+			</div>
+			
+				<div class="row">
 
-				<div class="col-sm">
 					<br />
 
 					<p:dataTable editable="true" style="margin-bottom:20px"
@@ -51,6 +63,10 @@
 						filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}"
 						selection="#{anuncioplataformaBean.selected}"
 						selectionMode="single" rowKey="#{anunPlat.id}">
+						
+						 <p:ajax event="rowSelect" update="@([id$=AnunPlatDetail])" oncomplete="PF('AnunPlatDialog').show()" />
+						 
+						 (
 
 						<p:ajax event="rowEdit"
 							listener="#{anuncioPlataformaBean.onRowEdit}" />
@@ -211,7 +227,6 @@
 
 
 
-				</div>
 			</div>
 		</div>
 	</h:form>

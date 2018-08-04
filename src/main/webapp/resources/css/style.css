@@ -9,17 +9,76 @@ background-repeat:repeat-y;
 background-position:center;
 background-size:cover;
 /* Full height */
-height:100%
+height:100%;
+
 }
 
-* {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+
+body{
+	padding: 2em;
+	color: #3a1e8f;
+	font-family: sans-serif;
+}
+
+#menu{
+	position: fixed;
+	background:rgba(255,255,255,0.5);
+	display: block; 
+	
+}
+
+table{
+	background: #c9f5ff;
+	color: black;
+	padding: 1em;
+	border-color: black;
+	border:solid;
+}
+
+th{
+	font-weight: bold;
+	padding:0.5em;
+	background :#60bfd8;
+}
+
+.ui-menu{
+	background-color: #e7480e;
+	vertical-align: middle;
+	border-color: black;
+	border-style: solid;
+	border-radius: 25px;
+
+}
+
+.ui-menuitem-text, button{
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 0.5em;
+	background: #9a030380;
+	border-radius: 10px;
+	
+}
+
+.ui-menuitem-text:hover, button:hover{
+	background: #60bfd8;
+	font-stretch: wider;
+}
+
+.menuitem{
+	color: black;
+	padding: 1em;
+	border-color: black;
+	border:solid;
 }
 
 .super {
 	position: absolute;
+}
+
+.container-fluid{
+	top: 5em;
+	position: relative;
 }
 
 .header {
@@ -84,3 +143,10 @@ div.filler {
 	margin:1em;
 	
 	}
+	
+.displayinfo{
+	color: #ffffff;
+	padding: 1em;
+	font-size: 15px;
+	background-color: #6464ff;
+}
