@@ -104,6 +104,12 @@ public class Requerimento extends Entidade {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
+	public void processar() {
+		setEstado("Processado");
+		
+	}
 	
 	
 	

@@ -24,9 +24,10 @@ public class ControlRequerimento {
 	}
 	
 	public List<Requerimento> porProcessar(){
-		return dbR.listEntity(Requerimento.class);
+		return dbR.getPorProcessar();
 	}
 	
+
 	public Requerimento getRequerimento (Long id) {
 		return dbR.getEntity(Requerimento.class,  id);
 		
@@ -45,4 +46,6 @@ public class ControlRequerimento {
 	public void updateList() {
 		dbR.updateLocalList();
 	}
+	
+	
 }

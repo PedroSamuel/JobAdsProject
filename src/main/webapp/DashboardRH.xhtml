@@ -81,6 +81,8 @@
 
 
 				<h3>Pedidos por Processar</h3>
+				<h:outputText value="Tem #{requerimentoBean.porProcessar().size()} requerimentos por processar" escape="false"/>
+				
 
 				<p:dataTable id="dtreq" var="req"
 

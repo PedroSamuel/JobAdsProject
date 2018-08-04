@@ -27,6 +27,8 @@ public class CriarAnuncio implements Serializable {
 	ControlAnuncio controlAnuncio;
 	@Inject
 	ControlRequerimento controlReq;
+	
+	private Requerimento req; 
 
 	private Anuncio anuncio = new Anuncio();
 	
@@ -35,18 +37,30 @@ public class CriarAnuncio implements Serializable {
 	public Anuncio getAnuncio() {
 		return anuncio;
 	}
-
+	
 	public void setAnuncio(Anuncio p) {
 		anuncio = p;
 	}
 
 	public String salvarAnuncio() {
 		controlAnuncio.criarAnuncio(anuncio);
+		if (idRequerimento != null) {
+			processarReq();
+			} else {
+				System.out.println("Não está ok!");
+			}
+		
 		return "DashboardRH?faces-redirect=true";
 	}
 
 	public void criarAnuncio() {
 		controlAnuncio.criarAnuncio(new Anuncio());
+	}
+	
+	public void processarReq() {
+		System.out.println("processando requerimento " + req.getId());
+		req.processar();
+		controlReq.updateRequerimento(req);
 	}
 
 	public String getIdRequerimento() {
@@ -61,7 +75,7 @@ public class CriarAnuncio implements Serializable {
 		if (idRequerimento != null) {
 			System.out.println("correu " + idRequerimento);
 			anuncio.setIdRequerimento(idRequerimento);
-			Requerimento req = controlReq.getRequerimento(Long.valueOf(idRequerimento));
+			req = controlReq.getRequerimento(Long.valueOf(idRequerimento));
 			anuncio.setManager(req.getRequerente());
 			anuncio.setFuncao(req.getFuncao());
 			anuncio.setRequisitos(req.getRequisitos());
