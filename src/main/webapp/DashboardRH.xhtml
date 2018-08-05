@@ -80,8 +80,8 @@
 
 
 
-				<h3>Pedidos por Processar</h3>
-				<h:outputText value="Tem #{requerimentoBean.porProcessar().size()} requerimentos por processar" escape="false"/>
+						<h2><b>Gestão de Pedidos </b></h2>
+						<p>		Existem <b>#{requerimentoBean.porProcessar().size()}</b> pedidos por processar  </p>
 				
 
 				<p:dataTable id="dtreq" var="req"
@@ -98,7 +98,7 @@
 
 					filteredValue="#{requerimentoBean.filteredRequerientos}"
 
-					scrollable="true" scrollHeight="150" raggableColumns="false" resizableColumns="false">
+					scrollable="true" scrollHeight="250" raggableColumns="false" resizableColumns="false">
 
 
 
@@ -358,7 +358,8 @@
 
 			<br />
 
-			<h3>Gestão de Anuncios</h3>
+			<h2><b>Gestão de Anuncios</b></h2>
+			<p> Existem <b>#{anuncioBean.comTarefa().size()}</b> Anúncios com tarefas por concluir. </p>
 
 			<p:dataTable id="dtanuncio" class="table table-condensed table-hover"
 
@@ -372,7 +373,7 @@
 
 				filteredValue="#{anuncioBean.filteredAnuncio}" scrollable="true"
 
-				scrollHeight="150" reflow="true" raggableColumns="false" resizableColumns="false">
+				scrollHeight="250" reflow="true" raggableColumns="false" resizableColumns="false">
 
 
 
@@ -585,192 +586,12 @@
 		</div>
 
 
-
-		<!--  
-
 	
 
-	
 
-	
+		
 
-	
-
-	*******************************Anuncios em Plataformas************************************ 
-
-	
-
-	
-
-	
-
-	
-
-	-->
-
-
-
-		<div id="AnunPlat">
-
-
-
-			<h3>Manutenção nas Plataformas</h3>
-
-			<p:dataTable editable="true"
-
-				class="table table-condensed table-hover" id="dtAnunPlat"
-
-				var="anunPlat" value="#{anuncioplataformaBean.anuncioPlataforma}"
-
-				emptyMessage="Não foram encontrados resultados com os seguintes criterios"
-
-				filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}"
-
-				selection="#{anuncioplataformaBean.selected}" selectionMode="single"
-
-				rowKey="#{anunPlat.id}" scrollable="true" scrollHeight="150"
-
-				reflow="true" raggableColumns="false" resizableColumns="false">
-
-
-
-				<p:ajax event="rowEdit"
-
-					listener="#{anuncioPlataformaBean.onRowEdit}" />
-
-
-
-
-
-
-
-				<p:column headerText="Dias até expirar:"
-
-					sortBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"
-
-					filterBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"  escape="false" style="width:100px" >
-
-					<h:outputText
-
-						value="#{anuncioplataformaBean.daysToExpire(anunPlat)}" />
-
-				</p:column>
-
-
-
-
-
-				<p:column headerText="Ref Anuncio" sortBy="#{anunPlat.anuncio.REF}"
-
-					filterBy="#{anunPlat.anuncio.REF}"  escape="false" style="width:100px">
-
-
-
-					<h:outputText value="#{anunPlat.anuncio.REF}" />
-
-
-
-				</p:column>
-
-
-
-				<p:column headerText="Estado Anuncio"
-
-					sortBy="#{anunPlat.anuncio.estado}"
-
-					filterBy="#{anunPlat.anuncio.estado}"  escape="false" style="width:100px" >
-
-
-
-					<h:outputText value="#{anunPlat.anuncio.estado}" />
-
-
-
-				</p:column>
-
-
-
-				<p:column headerText="Plataforma" sortBy="#{anunPlat.plataforma}"
-
-					filterBy="#{anunPlat.plataforma}"  escape="false" style="width:100px" >
-
-
-
-					<h:outputText value="#{anunPlat.plataforma}" />
-
-
-
-				</p:column>
-
-				<p:column headerText="Estado"  escape="false" style="width:100px" >
-
-					<p:selectOneButton value="#{anunPlat.estado}" unselectable="false">
-
-
-
-						<f:selectItem itemLabel="Offline" itemValue="Offline" />
-
-						<f:selectItem itemLabel="Online" itemValue="Online" />
-
-						<p:ajax event="change" update="dtAnunPlat"
-
-							listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" />
-
-					</p:selectOneButton>
-
-				</p:column>
-
-
-
-				<p:column headerText="Online desde:"
-
-					sortBy="#{anunPlat.datacriacao}" filterBy="#{anunPlat.datacriacao}"
-
-					filterMatchMode="contains" style="width:100px"  escape="false">
-
-					<p:cellEditor>
-
-						<f:facet name="output">
-
-							<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
-
-						</f:facet>
-
-						<f:facet name="input">
-
-							<p:inputText value="#{anunPlat.datacriacao}" 
-
-								label="Função" />
-
-						</f:facet>
-
-					</p:cellEditor>
-
-				</p:column>
-
-
-
-
-
-
-
-
-
-			</p:dataTable>
-
-		</div>
-
-		<div id="menuRH">
-
-			<h:form>
-
-				<p:commandButton value="Ver Especificacões Plataformas"
-
-					action="listaPlataformas?faces-redirect=true" style="width:500px" />
-
-			</h:form>
-
-		</div>
+		
 
 	</div>
 

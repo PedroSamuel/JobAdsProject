@@ -47,7 +47,10 @@ public class AnuncioBean implements Serializable {
 	private Anuncio selected;
 
 	public Collection<Anuncio> getAnuncios() {
-		return anuncioControl.Anuncios();
+		
+		Collection<Anuncio>list = anuncioControl.Anuncios();
+		tarefas(list);
+		return list;
 	}
 
 	public void removeAnuncio(Anuncio anuncio) {
@@ -77,6 +80,7 @@ public class AnuncioBean implements Serializable {
 	}
 
 	public int numberOnlinePlats(Anuncio anuncio) {
+		
 		int count = 0;
 		for (AnuncioPlataforma ap : anuncio.getPlataformas()) {
 			if (ap.getEstado().equals("Online")) {
@@ -86,9 +90,9 @@ public class AnuncioBean implements Serializable {
 		return count;
 	}
 
-	@PostConstruct
-	public void tarefas() {
-		for (Anuncio anuncio : getAnuncios()) {
+	
+	public void tarefas(Collection<Anuncio> list) {
+		for (Anuncio anuncio : list) {
 			switch(anuncio.getEstado()) {
 				case "Aplicar":
 					if (numberAnunPlats(anuncio) == plats.Plataformas().size()) {
@@ -126,7 +130,10 @@ public class AnuncioBean implements Serializable {
 	}
 	
 	public Collection<Anuncio> comTarefa(){
-		return anuncioControl.comTarefa();
+		tarefas(getAnuncios());
+		Collection<Anuncio> comTarefa = anuncioControl.comTarefa();
+		return comTarefa;
+		
 	}
 
 		
