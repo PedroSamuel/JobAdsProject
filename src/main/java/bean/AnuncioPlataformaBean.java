@@ -1,7 +1,5 @@
 package bean;
 
-
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.Duration;
@@ -24,47 +22,38 @@ import control.ControlAnuncioPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
 
-
 @Named("anuncioplataformaBean")
 @ViewScoped
-public class AnuncioPlataformaBean implements Serializable{
-	
+public class AnuncioPlataformaBean implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1425549335664619123L;
-	
+
 	@Inject
 	private ControlAnuncioPlataforma anuncioControlPlataforma;
-	@Inject 
+	@Inject
 	private ControlAnuncio anuncioControl;
-	
 
 	private Anuncio anuncio;
-	
+
 	private AnuncioPlataforma selected;
-	
 
-
-	
-	//codigo do id
+	// codigo do id
 	private String idAnuncio;
-	
+
 	private Collection<AnuncioPlataforma> filteredAnuncioPlataforma;
-	
-	
-	
+
 	public void updateAnuncio() {
 		anuncioControl.updateAnuncio(anuncio);
-		
-        FacesContext context = FacesContext.getCurrentInstance();
-        
-        context.addMessage("null", new FacesMessage("Estado do Anúncio alterado para ",  anuncio.getEstado()) );
+
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		context.addMessage("null",
+				new FacesMessage("Estado do Anúncio " + anuncio.getREF() + " alterado para ", anuncio.getEstado()));
 	}
-	
-	
-	
-	
+
 	public Collection<AnuncioPlataforma> getFilteredAnuncioPlataforma() {
 		return filteredAnuncioPlataforma;
 	}
@@ -76,13 +65,10 @@ public class AnuncioPlataformaBean implements Serializable{
 	public Collection<AnuncioPlataforma> getAnuncioPlataforma() {
 		return anuncioControlPlataforma.AnunciosPlataforma();
 	}
-	
-	
-	
+
 	public Collection<AnuncioPlataforma> SelectAnPlat() {
 		return anuncioControlPlataforma.SelectAnPlat(getAnuncioById());
 	}
-	
 
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
 		anuncioControlPlataforma.removeAnuncioPlataforma(anuncioplataforma);
@@ -97,21 +83,19 @@ public class AnuncioPlataformaBean implements Serializable{
 		anuncioControlPlataforma.updateList();
 	}
 
-
 	public Anuncio getAnuncio() {
-		
+
 		return anuncio;
 	}
-	
+
 	public Anuncio getAnuncioById() {
 		return anuncioControl.getAnuncio(Long.valueOf(idAnuncio));
 	}
 
 	public void setAnuncio(Anuncio anuncio) {
-		
+
 		this.anuncio = anuncio;
 	}
-
 
 	public String getIdAnuncio() {
 		return idAnuncio;
@@ -120,12 +104,9 @@ public class AnuncioPlataformaBean implements Serializable{
 	public void setIdAnuncio(String idx) {
 		idAnuncio = idx;
 	}
-	
-	
-	
-	
-	//codigo do ID chama a funcao load vinda f param do listar anun platf
-	public void load(){
+
+	// codigo do ID chama a funcao load vinda f param do listar anun platf
+	public void load() {
 		if (idAnuncio == (null)) {
 			System.out.println("Não Funcionou!");
 		} else {
@@ -133,7 +114,7 @@ public class AnuncioPlataformaBean implements Serializable{
 			setAnuncio(anuncioControl.getAnuncio(longID));
 			System.out.println("Ok" + longID);
 		}
-		
+
 	}
 
 	public AnuncioPlataforma getSelected() {
@@ -144,68 +125,63 @@ public class AnuncioPlataformaBean implements Serializable{
 		this.selected = selected;
 	}
 
-	
 	public void deleteSelected() {
 		anuncioControlPlataforma.removeAnuncioPlataforma(selected);
 		selected = null;
 	}
-	
+
 	public String newAnunPlat() {
 		return "criarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
 	}
-	
-	
+
 	public void updateSelected() {
 		anuncioControlPlataforma.updateAnuncioPlataforma(selected);
-		
+
 	}
-	
-	
+
 	public void updateSelected(AnuncioPlataforma ap) {
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
-		
+
 	}
-	
+
 	public void onlineDate(AnuncioPlataforma ap) {
-		
-		if (ap.getEstado().equals("Online")){
+		if (ap.getEstado().equals("Online")) {
 			ap.setDatacriacao(LocalDateTime.now());
-			
-		}
-		else if(ap.getEstado().equals("Offline")){
-			ap.setDatacriacao(null);		
+			System.out.println("online:" + ap.getDatacriacao());
+
+		} else if (ap.getEstado().equals("Offline")) {
+			ap.setDatacriacao(null);
+			System.out.println("data nula");
+
 		}
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
 	}
-	
+
 	public void redirect() throws IOException {
-	    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-	    externalContext.redirect("http://stackoverflow.com");
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		externalContext.redirect("http://stackoverflow.com");
 	}
-	
-	 public int daysToExpire(AnuncioPlataforma anuncioPlataforma){
-	    	if (!(anuncioPlataforma.getDatacriacao() == null)){
-	    	Duration duration = Duration.between( anuncioPlataforma.getDatacriacao(),LocalDateTime.now());
-	    	int days  = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
-	    	
-	    	
+
+	public int daysToExpire(AnuncioPlataforma anuncioPlataforma) {
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			Duration duration = Duration.between(anuncioPlataforma.getDatacriacao(), LocalDateTime.now());
+			int days = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
+
 			return days;
-	    	}
-	    	return 0;
-	  
-	    }
-	 
-	 public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma){
-		 
-		 if (!(anuncioPlataforma.getDatacriacao() == null)){
-		 LocalDateTime date = anuncioPlataforma.getDatacriacao().plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
-		 
-		 return date;
-		 }
-		 return null;
-	 }
-	 
-	
-	
-	
+		}
+		return 0;
+
+	}
+
+	public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma) {
+
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			LocalDateTime date = anuncioPlataforma.getDatacriacao()
+					.plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
+
+			return date;
+		}
+		return null;
+	}
+
 }

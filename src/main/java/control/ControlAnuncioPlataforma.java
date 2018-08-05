@@ -1,6 +1,8 @@
 package control;
 
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -45,18 +47,42 @@ public class ControlAnuncioPlataforma {
 	}
 	
 	public List<AnuncioPlataforma> AnunciosPlataforma(){
-		return dbAP.listEntity(AnuncioPlataforma.class);
+		List<AnuncioPlataforma> list = dbAP.listEntity(AnuncioPlataforma.class);
+		//reverContagem(list);
+		return list;
 	}
 	
 	public Collection<AnuncioPlataforma> SelectAnPlat(Anuncio anuncio) {
-		ArrayList<AnuncioPlataforma> selection = new ArrayList<AnuncioPlataforma>(); 
-		for (AnuncioPlataforma AP : AnunciosPlataforma()){
-			if (AP.getAnuncio().equals(anuncio)){
-				selection.add(AP);
+		List<AnuncioPlataforma> select = dbAP.selectAnunPlat(anuncio.getId());
+		//reverContagem(select);
+		return select;
+	}
+	
+
+	public void reverContagem(Collection<AnuncioPlataforma> list) {
+		for (AnuncioPlataforma ap : list) {
+			if ((ap.getPlataforma().getPeriodoRenovacao() != 0) && (daysToExpire(ap)== 0) && (ap.getDatacriacao()!= null)){
+				ap.setEstado("Offline");
+				dbAP.updateEntity2(ap);
 			}
 		}
-		return selection;
 	}
+	
+
+	 public int daysToExpire(AnuncioPlataforma anuncioPlataforma){
+	    	if (!(anuncioPlataforma.getDatacriacao() == null)){
+	    	Duration duration = Duration.between( anuncioPlataforma.getDatacriacao(),LocalDateTime.now());
+	    	int days  = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
+	    	
+	    	
+			return days;
+	    	}
+	    	return 0;
+	  
+	    }
+	
+	
+	
 	
 	public AnuncioPlataforma getAnuncioPlataforma (Long id) {
 		return dbAP.getEntity(AnuncioPlataforma.class,  id);
