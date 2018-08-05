@@ -362,7 +362,7 @@
 
 			<p:dataTable id="dtanuncio" class="table table-condensed table-hover"
 
-				var="anuncio" value="#{anuncioBean.anuncios}" editable="true"
+				var="anuncio" value="#{anuncioBean.comTarefa()}" editable="true"
 
 				rowKey="#{anuncio.id}" selection="#{selected}"
 
@@ -502,17 +502,14 @@
 
 
 
-				<p:column style="width: 100px;" escape="false">
-
-					<p:button outcome="listarAnunPlat?faces-redirect=true "
-
-						value="Plataformas" >
-
-						<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
-
-					</p:button>
-
-				</p:column>
+							<p:column headerText="Plataformas" sortBy="#{anuncio.tarefas}" style="width:100px;"
+							filterBy="#{anuncio.tarefas}" filterMatchMode="contains">
+							<p:button outcome="listarAnunPlat?faces-redirect=true"
+								value="#{anuncioBean.numberOnlinePlats(anuncio)} / #{anuncioBean.numberAnunPlats(anuncio)}" >
+								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
+							</p:button>
+							<h:outputText value="#{anuncio.tarefas}" />
+						</p:column>
 
 
 

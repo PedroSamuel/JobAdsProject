@@ -29,7 +29,7 @@ public class RepositorioAnuncios extends EntityRepository<Anuncio> {
 
 	@SuppressWarnings("unchecked")
 	public Collection<Anuncio> comTarefa() {
-		setComTarefa(em.createQuery("SELECT e FROM Anuncio e WHERE e.tarefas LIKE :tarefas").setParameter("estado", "!!!!").getResultList());
+		setComTarefa(em.createQuery("SELECT e FROM Anuncio e WHERE e.tarefas LIKE :tarefas").setParameter("tarefas", "!!!!").getResultList());
 		return comTarefa;
 	}
 
