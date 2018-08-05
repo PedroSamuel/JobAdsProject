@@ -28,7 +28,7 @@
 				<div class="col-sm" >
 <br /> 
 					<p:dataTable id="dtanuncio" var="anuncio"
-						value="#{anuncioBean.anuncios}" editable="true"
+						value="#{anuncioBean.comTarefa()}" editable="true"
 						style="margin-bottom:20px" rowKey="#{anuncio.id}"
 						selection="#{selected}" selectionMode="single"		
 						widgetVar="anucioTable"
@@ -46,23 +46,18 @@
 
 						</f:facet>
 
-
-
-						<p:column headerText="ID(temp)" sortBy="#{anuncio.id}">
+						<p:column filterBy="#{anuncio.REF}" headerText="Referência"
+							sortBy="#{anuncio.REF}" filterMatchMode="contains">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{anuncio.id}" />
+									<h:outputText value="#{anuncio.REF}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText value="#{anuncio.id}" style="width:100%"
-										label="Função" />
+									<p:inputText value="#{anuncio.REF}" style="width:100%"
+										label="Referência" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
-
-
-
-
 
 						<p:column filterBy="#{anuncio.funcao}" headerText="Função"
 							sortBy="#{anuncio.funcao}" filterMatchMode="contains">
@@ -90,18 +85,7 @@
 							</p:cellEditor>
 						</p:column>
 
-						<p:column filterBy="#{anuncio.REF}" headerText="Referência"
-							sortBy="#{anuncio.REF}" filterMatchMode="contains">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{anuncio.REF}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{anuncio.REF}" style="width:100%"
-										label="Referência" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+
 
 						<p:column headerText="Estado" sortBy="#{anuncio.estado}"
 							filterBy="#{anuncio.estado}" filterMatchMode="contains">
@@ -121,14 +105,19 @@
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
+						
+	
 
-
-						<p:column style="width:142">
+						<p:column headerText="Plataformas" style="width:142" sortBy="#{anuncio.tarefas}"
+							filterBy="#{anuncio.tarefas" filterMatchMode="contains">
 							<p:button outcome="listarAnunPlat?faces-redirect=true"
-								value="Plataformas">
+								value="#{anuncioBean.numberAnunPlats(anuncio)} / #{anuncioBean.numberOnlinePlats(anuncio)}">
 								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
+								
 							</p:button>
+							<h:outputText value="#{anuncioBean.tarefas(anuncio)}" />
 						</p:column>
+						
 
 
 					<p:column style="width:32px">

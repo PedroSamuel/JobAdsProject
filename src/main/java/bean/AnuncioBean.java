@@ -1,10 +1,10 @@
 package bean;
 
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -14,14 +14,13 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 import control.ControlAnuncio;
+import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
-
 
 @Named("anuncioBean")
 @ViewScoped
 public class AnuncioBean implements Serializable {
-
 
 	/**
 	 * 
@@ -30,14 +29,13 @@ public class AnuncioBean implements Serializable {
 
 	@Inject
 	ControlAnuncio anuncioControl;
-    
-	
-	
-	
-	
-	// classes criada para o search bar  
+
+	@Inject
+	ControlPlataforma plats;
+
+	// classes criada para o search bar
 	private Collection<Anuncio> filteredAnuncio;
-	
+
 	public Collection<Anuncio> getFilteredAnuncio() {
 		return filteredAnuncio;
 	}
@@ -47,7 +45,7 @@ public class AnuncioBean implements Serializable {
 	}
 
 	private Anuncio selected;
-	
+
 	public Collection<Anuncio> getAnuncios() {
 		return anuncioControl.Anuncios();
 	}
@@ -56,9 +54,7 @@ public class AnuncioBean implements Serializable {
 		anuncioControl.removeAnuncio(anuncio);
 	}
 
-	
-	
-	//class para a tabela editar vindo do primefaces
+	// class para a tabela editar vindo do primefaces
 	public void onRowEdit(RowEditEvent event) {
 		Anuncio anuncio = (Anuncio) event.getObject();
 		anuncioControl.updateAnuncio(anuncio);
@@ -75,9 +71,64 @@ public class AnuncioBean implements Serializable {
 	public void setSelected(Anuncio selected) {
 		this.selected = selected;
 	}
-	
 
-	
+	public int numberAnunPlats(Anuncio anuncio) {
+		return anuncio.getPlataformas().size();
+	}
 
+	public int numberOnlinePlats(Anuncio anuncio) {
+		int count = 0;
+		for (AnuncioPlataforma ap : anuncio.getPlataformas()) {
+			if (ap.getEstado().equals("Online")) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	@PostConstruct
+	public void tarefas() {
+		for (Anuncio anuncio : getAnuncios()) {
+			switch(anuncio.getEstado()) {
+				case "Aplicar":
+					if (numberAnunPlats(anuncio) == plats.Plataformas().size()) {
+						anuncio.setEstado("Manter");
+						anuncio.setTarefas("Feito");
+						break;
+					} else {
+						anuncio.setTarefas("!!!!");
+						break;
+					}
+				case "Manter":
+					if (numberOnlinePlats(anuncio) == numberAnunPlats(anuncio)) {
+						anuncio.setTarefas("Feito");
+						break;
+						
+					} else {
+						anuncio.setTarefas("!!!!");
+						break;
+					}
+				case "Retirar":
+					if (numberOnlinePlats(anuncio) == 0) {
+						anuncio.setTarefas("Feito");
+						break;
+					} else {
+						anuncio.setTarefas("!!!!");
+						break;
+					}
+				default:
+					anuncio.setTarefas("ERRO");
+					break;
+				}
+				anuncioControl.updateAnuncio(anuncio);		
+		}
+		
+	}
+	
+	public Collection<Anuncio> comTarefa(){
+		return anuncioControl.comTarefa();
+	}
+
+		
 
 }

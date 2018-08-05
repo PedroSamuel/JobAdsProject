@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PreRemove;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 
@@ -31,11 +32,9 @@ public class Anuncio extends Entidade {
 	private String idRequerimento;
 	@Lob
 	private String requisitos; 
-	
-	
-
 	private LocalDateTime dataCriacao;
     private LocalDateTime dataModificacao;
+    private String tarefas;
     
     
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
@@ -143,6 +142,14 @@ public class Anuncio extends Entidade {
 	@Override
 	public int hashCode() {
 		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
+	}
+
+	public String getTarefas() {
+		return tarefas;
+	}
+
+	public void setTarefas(String tarefas) {
+		this.tarefas = tarefas;
 	}
 
 }

@@ -1,5 +1,6 @@
 package control;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -50,6 +51,11 @@ public class ControlAnuncio {
 	
 	public void updateList() {
 		dbA.updateLocalList();
+	}
+
+	public Collection<Anuncio> comTarefa() {
+		return dbA.comTarefa();
+		
 	}
 	
 }
