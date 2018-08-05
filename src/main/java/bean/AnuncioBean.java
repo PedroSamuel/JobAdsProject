@@ -135,6 +135,11 @@ public class AnuncioBean implements Serializable {
 		return comTarefa;
 		
 	}
+	
+	public String listAnunPlat(Anuncio anuncio) {
+		return "listarAnunPlat?faces-redirect=true&idAnuncio=" + anuncio.getId(); 
+
+	}
 
 		
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -48,23 +49,33 @@ public class ControlAnuncioPlataforma {
 	
 	public List<AnuncioPlataforma> AnunciosPlataforma(){
 		List<AnuncioPlataforma> list = dbAP.listEntity(AnuncioPlataforma.class);
-		//reverContagem(list);
 		return list;
 	}
 	
 	public Collection<AnuncioPlataforma> SelectAnPlat(Anuncio anuncio) {
-		List<AnuncioPlataforma> select = dbAP.selectAnunPlat(anuncio.getId());
-		//reverContagem(select);
+		ArrayList<AnuncioPlataforma> select = new ArrayList<AnuncioPlataforma>(); 
+		for (AnuncioPlataforma AP : AnunciosPlataforma()){
+			reverContagem(AP);
+			if (AP.getAnuncio().equals(anuncio)){
+				select.add(AP);
+			}
+		}
+		//List<AnuncioPlataforma> select = dbAP.selectAnunPlat(anuncio.getId());  * Está a causar problemas.
 		return select;
 	}
 	
 
-	public void reverContagem(Collection<AnuncioPlataforma> list) {
-		for (AnuncioPlataforma ap : list) {
+	public void reverContagem(AnuncioPlataforma ap) {
 			if ((ap.getPlataforma().getPeriodoRenovacao() != 0) && (daysToExpire(ap)== 0) && (ap.getDatacriacao()!= null)){
 				ap.setEstado("Offline");
-				dbAP.updateEntity2(ap);
+				dbAP.updateEntity(ap);
 			}
+		}
+	
+	@PostConstruct
+	public void reverContagem() {
+		for (AnuncioPlataforma ap: AnunciosPlataforma()) {
+			reverContagem(ap);
 		}
 	}
 	

@@ -159,7 +159,7 @@ public class AnuncioPlataformaBean implements Serializable {
 
 	public void redirect() throws IOException {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		externalContext.redirect("http://stackoverflow.com");
+		externalContext.redirect(selected.getLink());
 	}
 
 	public int daysToExpire(AnuncioPlataforma anuncioPlataforma) {

@@ -198,51 +198,11 @@
 				<p:contextMenu for="dtAnunPlat">
 					<p:menuitem value="Associar Plataforma" icon="ui-icon-search"
 						action="#{anuncioplataformaBean.newAnunPlat()}" />
-					<p:menuitem value="Detalhes" update="AnunPlatDetail"
-						icon="ui-icon-search" oncomplete="PF('AnunPlatDialog').show()" />
+					<p:menuitem value="Ir para Link" action="#{anuncioplataformaBean.redirect()}"
+						icon="ui-icon-search" />
 					<p:menuitem value="Delete" update="dtAnunPlat" icon="ui-icon-close"
 						actionListener="#{anuncioplataformaBean.deleteSelected()}" />
 				</p:contextMenu>
-
-				<p:dialog header="Detalhes" widgetVar="AnunPlatDialog" modal="true"
-					showEffect="fade" hideEffect="fade" resizable="false">
-					<p:outputPanel id="AnunPlatDetail" style="text-align:center;">
-						<p:panelGrid columns="2"
-							rendered="#{not empty anuncioplataformaBean.selected}"
-							columnClasses="label,value">
-							<h:outputText value="Plataforma:" />
-							<h:outputText
-								value="#{anuncioplataformaBean.selected.plataforma}" />
-							<h:outputText value="Anuncio:" />
-							<h:outputText
-								value="#{anuncioplataformaBean.selected.anuncio.REF}" />
-
-							<h:outputText value="Estado:" />
-							<p:selectOneButton
-								value="#{anuncioplataformaBean.selected.estado}">
-
-								<f:selectItem itemLabel="Offline" itemValue="Offline" />
-								<f:selectItem itemLabel="Online" itemValue="Online" />
-								<p:ajax event="change" update="dtAnunPlat"
-									listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" />
-							</p:selectOneButton>
-
-
-							<h:outputText value="Link:" />
-							<h:commandLink value="#{anuncioplataformaBean.selected.link}"
-								action="#{anuncioplataformaBean.redirect()}" />
-
-
-							<h:outputText value="Requisitos" />
-							<h:outputText
-								value="#{anuncioplataformaBean.selected.anuncio.requisitos}" />
-
-
-
-						</p:panelGrid>
-					</p:outputPanel>
-				</p:dialog>
-
 
 				<p:button outcome="criarAnunPlat?faces-redirect=true"
 					value=" Associar Plataforma">

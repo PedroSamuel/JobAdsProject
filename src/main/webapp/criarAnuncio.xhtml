@@ -34,11 +34,8 @@
 
 		<div class=" container">
 		<div class="col-sm"></div>
-		<div class="col-sm container1 ">
-		
-			<br />
-			<h:graphicImage value="resources/images/aubayImg.png" width="150"
-				class="mx-auto d-block" />
+		<div class="col-sm container1 displayinfo ">
+
 
 			<br />
 			<p:growl id="growl" showDetail="true" sticky="true" />
@@ -50,32 +47,40 @@
 
 		<h:form>
 
-			<h4>Criar Anúncio</h4>
-			<h5>Função</h5>
-			<p:inputTextarea value="#{anuncioCreate.anuncio.funcao}" rows="1"
-				cols="15" autoResize="false" />
-			<h5>Manager</h5>
-			<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1"
-				cols="15" autoResize="false" />
-			<h5>Referência</h5>
-			<p:inputTextarea value="#{anuncioCreate.anuncio.REF}" rows="1"
-				cols="15" autoResize="false" />
-			<h5>Estado</h5>
-			<p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}"
-				style="width:160px">
+			<h2 class="big-orange">Criar Anúncio</h2>
+			<br />
 
-				<f:selectItem itemLabel="Selecione um" itemValue="Aplicar" />
+					<h3 class="inline">Referência</h3>
+			<p:inputTextarea class="inline" escape="false" value="#{anuncioCreate.anuncio.REF}          " rows="1"
+				cols="15" autoResize="false" />
+				<h3 class="inline"  >  Estado </h3>
+				<p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}"
+				style="width:160px">
+								<f:selectItem itemLabel="Selecione um" itemValue="Aplicar" />
 				<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
 				<f:selectItem itemLabel="Manter" itemValue="Manter" />
 				<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
 
 			</p:selectOneMenu>
+			<br/>
+			<br></br>
+			
+			<h3>Função</h3>
+			<p:inputTextarea  value="#{anuncioCreate.anuncio.funcao}" rows="1"
+				cols="100" autoResize="false" />
+			<h3>Manager</h3>
+			<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1"
+				cols="100" autoResize="false" />
+				<br />
+				<br />
+	
+
 			<br />
 			<br />
 		
 			
-				<h5>Requisitos</h5>
-				<p:inputTextarea rows="10" cols="50"
+				<h3>Requisitos</h3>
+				<p:inputTextarea rows="15" cols="120"
 					value="#{anuncioCreate.anuncio.requisitos}" />
 
 	

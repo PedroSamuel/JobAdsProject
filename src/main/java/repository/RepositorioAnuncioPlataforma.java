@@ -3,6 +3,7 @@ package repository;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 
+import model.Anuncio;
 import model.AnuncioPlataforma;
 
 
@@ -26,6 +27,7 @@ public class RepositorioAnuncioPlataforma{
 	protected EntityManager em;
 
 	protected List<AnuncioPlataforma> localList;
+	protected List<AnuncioPlataforma> selectList;
 
 	public void createEntity(AnuncioPlataforma ent) {
 		em.persist(ent);
@@ -38,7 +40,8 @@ public class RepositorioAnuncioPlataforma{
 	
 	@SuppressWarnings("unchecked")
 	public List<AnuncioPlataforma> selectAnunPlat(long idAnuncio){
-		return (em.createQuery("SELECT e FROM AnuncioPlataforma e WHERE e.anuncio.id LIKE :idAnuncio").setParameter("idAnuncio", idAnuncio).getResultList());
+		selectList = (em.createQuery("SELECT e FROM AnuncioPlataforma e WHERE e.anuncio.id LIKE :idAnuncio").setParameter("idAnuncio", idAnuncio).getResultList());
+	return selectList;	
 	}
 
 	public AnuncioPlataforma getEntity(Class<AnuncioPlataforma> entClass, Long id) {
@@ -48,6 +51,7 @@ public class RepositorioAnuncioPlataforma{
 	public void updateEntity(AnuncioPlataforma ent) {
 		em.merge(ent);
 		updateLocalList();
+		
 	}
 	
 	public void updateEntity2(AnuncioPlataforma ent) {
@@ -68,4 +72,9 @@ public class RepositorioAnuncioPlataforma{
 	public void updateLocalList() {
 		loadFromDB();
 	}
+	
+	public void updateSelectAnPlat(long idAnuncio) {
+		selectAnunPlat(idAnuncio);
+	}
+	
 }

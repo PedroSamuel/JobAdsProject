@@ -71,6 +71,8 @@ table{
 	font-size:25px;
 }
 
+
+
 th{
 	font-weight: bold;
 	padding:0.5em;
@@ -86,7 +88,7 @@ th{
 
 }
 
-.ui-menuitem-text, button{
+.ui-menuitem-text{
 	color: white;
 	font-size: 25px;
 	font-weight: bold;
@@ -111,6 +113,21 @@ th{
 
 .super {
 	position: absolute;
+}
+
+
+.a150px {
+	width: 150px;
+}
+
+.inlineblock{
+	display: inline-block;
+	
+}
+
+.inline{
+	display: inline;
+	padding-left: 30px;
 }
 
 .container-fluid{

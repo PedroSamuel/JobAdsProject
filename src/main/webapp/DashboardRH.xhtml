@@ -503,16 +503,19 @@
 
 
 
-							<p:column headerText="Plataformas" sortBy="#{anuncio.tarefas}" style="width:100px;"
-							filterBy="#{anuncio.tarefas}" filterMatchMode="contains">
+							<p:column headerText="Plataformas" sortBy="#{anuncioBean.numberOnlinePlats(anuncio)}" style="width:30px;"
+							filterBy="#{anuncioBean.numberOnlinePlats(anuncio)}" filterMatchMode="contains">
 							<p:button outcome="listarAnunPlat?faces-redirect=true"
 								value="#{anuncioBean.numberOnlinePlats(anuncio)} / #{anuncioBean.numberAnunPlats(anuncio)}" >
 								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
 							</p:button>
-							<h:outputText value="#{anuncio.tarefas}" />
 						</p:column>
 
 
+						<p:column headerText="Tarefas" sortBy="#{anuncio.tarefas}" style="width:30px;"
+							filterBy="#{anuncio.tarefas}" filterMatchMode="contains">
+							<h:outputText value="#{anuncio.tarefas}" />
+						</p:column>
 
 
 
@@ -553,9 +556,8 @@
 
 					<p:menuitem value="Detalhes e Plataformas" icon="ui-icon-search"
 
-						action="listaAnunPlat" />
-
-
+						action="#{anuncioBean.listAnunPlat(selected)}" />
+	
 
 					<p:menuitem value="Delete" update="dtanuncio" icon="ui-icon-close"
 
