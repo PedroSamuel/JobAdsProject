@@ -8,7 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
+import javax.persistence.PreRemove;
+import javax.validation.constraints.NotNull;
 import javax.persistence.ElementCollection;
 
 import javax.persistence.EnumType;
@@ -26,46 +27,45 @@ import authentication.Role;
 	@NamedQuery(
 			name = "User.list",
 			query = "SELECT u FROM User u"),
-//	@NamedQuery(
-//			name = "User.role",
-//			query = "SELECT u FROM User u WHERE u.roles =  :roles")
+	@NamedQuery(
+		name = "User.role",
+			query = "SELECT u FROM User u WHERE u.roles =  :roles")
 
 })
-public class User extends Entidade implements Serializable {
+public class User extends Entidade  {
 
-	private static final long serialVersionUID = -4656759219348212715L;
-
-
+	
 
 
+
+	@NotNull
+    @Column(unique = true)
 	private String username;
 	
 
 	public String getUsername() {
 		return username;
 	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 
+	
+	private String email;
+	
 	public String getEmail() {
 		return email;
 	}
 	
 	
 
-	private String email;
-	
-	
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
+	@NotNull
 	private String password;
 	
 	public void setPassword(String password) {
@@ -76,23 +76,39 @@ public class User extends Entidade implements Serializable {
 		return password;
 	}
 
-	//@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-	//@Enumerated(EnumType.STRING)
-	//@CollectionTable(name = "UserRoles", joinColumns = { @JoinColumn(name = "userId") })
-	//@Column(name = "role")
-	//private List<Role> roles;
+	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+	@Enumerated(EnumType.STRING)
+	@CollectionTable(name = "UserRoles", joinColumns = { @JoinColumn(name = "userId") })
+	@Column(name = "role")
+	private List<Role> roles;
 
 
 	
-	//public List<Role> getRoles() {
-	//	return roles;
-	//}
+	public List<Role> getRoles() {
+		return roles;
+	}
 
 
 	
-	//public void setRoles(List<Role> roles) {
-	//	this.roles = roles;
-	//}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
+	@PreRemove
+	private void preRemove() {
+		//implementar
+		}
 
+	
+	
+	@Override
+	public boolean equals(Object other) {
+		return (other instanceof User) && (id != null) ? id.equals(((User) other).id) : (other == this);
+	}
+
+	@Override
+	public int hashCode() {
+		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
+	}
 
 }

@@ -21,8 +21,8 @@ public class Register implements Serializable {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 2801507022043885551L;
-	
+	private static final long serialVersionUID = 1L;
+
 	
 	@Inject
 	ControlUser controlUser;
