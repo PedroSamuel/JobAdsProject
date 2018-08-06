@@ -107,6 +107,7 @@ public class AnuncioPlataformaBean implements Serializable {
 
 	// codigo do ID chama a funcao load vinda f param do listar anun platf
 	public void load() {
+		anuncioControlPlataforma.reverContagem();
 		if (idAnuncio == (null)) {
 			System.out.println("Não Funcionou!");
 		} else {

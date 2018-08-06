@@ -33,9 +33,12 @@ public class ControlAnuncioPlataforma {
    
    @Transactional
    public void criarAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
+	   System.out.println("anuncio: " + anuncioPlataforma.getAnuncio());
+	   System.out.println("plataforma: " + anuncioPlataforma.getPlataforma());
+	   System.out.println("estado: " + anuncioPlataforma.getEstado() );
 	   System.out.println("A iniciar control-criaranunplat");
 	    dbA.updateEntity(anuncioPlataforma.getAnuncio());
-	    System.out.println("updateAnuncio ok ");
+	    System.out.println("updateAnuncio ok " + anuncioPlataforma.getAnuncio());
 	    System.out.println(anuncioPlataforma.getAnuncio().getId());
 	    
 	    Anuncio anuncio = (dbA.getEntity(Anuncio.class, anuncioPlataforma.getAnuncio().getId()));
@@ -75,11 +78,13 @@ public class ControlAnuncioPlataforma {
 			}
 		}
 	
-	@PostConstruct
+
 	public void reverContagem() {
+		System.out.println("A iniciar rever contagem");
 		for (AnuncioPlataforma ap: AnunciosPlataforma()) {
 			reverContagem(ap);
 		}
+		System.out.println("rever contagem ok");
 	}
 	
 

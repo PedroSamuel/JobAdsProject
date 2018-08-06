@@ -56,11 +56,16 @@
 							var="plataforma" itemLabel="#{plataforma.nomePlataforma}"
 							itemValue="#{plataforma}" />
 					</h:selectOneMenu>
-
+					
+					<h3><b>Estado </b></h3>
+					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.estado}">
+						<f:selectItem itemLabel="Offline" itemValue="Offline" />
+						<f:selectItem itemLabel="Online" itemValue="Online" />
+						</h:selectOneMenu>
 
 					
 					<h3><b>Link</b></h3>
-					<p:inputTextarea class="inputText" value="#{newAnunPlat.anuncioPlataforma.link}"
+					<p:inputTextarea class="inputText" value="#{newAnunPlat.link}"
 						rows="1" cols="80" />
 					<br />
 					

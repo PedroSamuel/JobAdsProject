@@ -18,7 +18,6 @@ import control.ControlAnuncioPlataforma;
 import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
-import model.AnuncioPlataformaId;
 import model.Plataforma;
 
 
@@ -37,7 +36,16 @@ import model.Plataforma;
 		
 		private Plataforma plataforma;
 		
+		private String link;
+		
+		private String estado;
+		
 		private String idAnuncio; 
+		
+
+
+
+
 		
 
 		
@@ -59,7 +67,7 @@ import model.Plataforma;
 		}
 
 
-		private AnuncioPlataforma anuncioPlataforma	= new AnuncioPlataforma();
+		private AnuncioPlataforma anuncioPlataforma = new AnuncioPlataforma();
 
 		public AnuncioPlataforma getAnuncioPlataforma() {
 			return anuncioPlataforma;
@@ -70,15 +78,19 @@ import model.Plataforma;
 		}
 
 		public String salvarAnunPlat() {
+			System.out.println("anuncio :" + anuncio);
+			System.out.println("plataforma:" + plataforma);
+			System.out.println("estado: " + estado);
+			System.out.println("link: " + link);
 			System.out.println("Iniciar bean.salvarAnunPlat");
 			System.out.println(anuncioPlataforma);
+	
 			System.out.println("Check if online");
 			if (anuncioPlataforma.getEstado().equals("Online")){
 				System.out.println("online ok");
 				anuncioPlataforma.setDatacriacao(LocalDateTime.now());
 				System.out.println("set dateTime to " + LocalDateTime.now());
 			}		
-
 			anuncioPlataforma.setAnuncio(anuncio);
 			System.out.println("ok set anuncio " + anuncio);
 			anuncioPlataforma.setPlataforma(plataforma); //fazer merge do anuncio e da plataforma, obter objectos merged, fazer set dos objectos merged e gravar anuncioPlataforma
@@ -105,7 +117,7 @@ import model.Plataforma;
 		
 		// vai buscar o parametro id, converte para Long e declara o anuncio com base no mesmo.
 		public void load(){ 
-			anuncioPlataforma = new AnuncioPlataforma();
+			setLink("teste");
 			if (idAnuncio == (null)) {
 				System.out.println("Não Funcionou!");
 			} else {
@@ -142,5 +154,23 @@ import model.Plataforma;
 			anuncioPlataforma.setDatacriacao(LocalDateTime.now());
 		}
 
+
+	
+	
+	public String getLink() {
+		return link;
 	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+}
 
