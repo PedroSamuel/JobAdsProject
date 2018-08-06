@@ -47,7 +47,7 @@
 					</h3>
 
 					<br />
-					
+					<h:form>
 					<h3><b>Associar Plataforma</b></h3>
 					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.plataforma}"
 						converter="omnifaces.SelectItemsConverter">
@@ -58,14 +58,14 @@
 					</h:selectOneMenu>
 					
 					<h3><b>Estado </b></h3>
-					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.estado}">
+					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.anuncioPlataforma.estado}">
 						<f:selectItem itemLabel="Offline" itemValue="Offline" />
 						<f:selectItem itemLabel="Online" itemValue="Online" />
 						</h:selectOneMenu>
 
 					
 					<h3><b>Link</b></h3>
-					<p:inputTextarea class="inputText" value="#{newAnunPlat.link}"
+					<p:inputTextarea class="inputText" value="#{newAnunPlat.anuncioPlataforma.link}"
 						rows="1" cols="80" />
 					<br />
 					
@@ -73,10 +73,12 @@
 					<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
 						value="Associar">
 					</p:commandButton>
+					</h:form>
 
 				</div>
 
 				<div class="col-sm-6">
+	
 					<h3>
 						<b>Requisitos: </b>
 					</h3>

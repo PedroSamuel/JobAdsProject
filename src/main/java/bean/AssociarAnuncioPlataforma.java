@@ -78,13 +78,7 @@ import model.Plataforma;
 		}
 
 		public String salvarAnunPlat() {
-			System.out.println("anuncio :" + anuncio);
-			System.out.println("plataforma:" + plataforma);
-			System.out.println("estado: " + estado);
-			System.out.println("link: " + link);
-			System.out.println("Iniciar bean.salvarAnunPlat");
-			System.out.println(anuncioPlataforma);
-	
+
 			System.out.println("Check if online");
 			if (anuncioPlataforma.getEstado().equals("Online")){
 				System.out.println("online ok");
