@@ -28,38 +28,32 @@ import authentication.Role;
 			name = "User.list",
 			query = "SELECT u FROM User u"),
 	@NamedQuery(
-		name = "User.role",
+			name = "User.role",
 			query = "SELECT u FROM User u WHERE u.roles =  :roles")
-
 })
 public class User extends Entidade  {
 
-	
-
-
-
 	@NotNull
-    @Column(unique = true)
+	@Column(unique = true)
 	private String username;
-	
+
 
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
 
-	
+
 	private String email;
-	
+
 	public String getEmail() {
 		return email;
 	}
-	
-	
+
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -67,11 +61,11 @@ public class User extends Entidade  {
 
 	@NotNull
 	private String password;
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -83,24 +77,24 @@ public class User extends Entidade  {
 	private List<Role> roles;
 
 
-	
+
 	public List<Role> getRoles() {
 		return roles;
 	}
 
 
-	
+
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
+
 	@PreRemove
 	private void preRemove() {
 		//implementar
-		}
+	}
 
-	
-	
+
+
 	@Override
 	public boolean equals(Object other) {
 		return (other instanceof User) && (id != null) ? id.equals(((User) other).id) : (other == this);
