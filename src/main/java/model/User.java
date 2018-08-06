@@ -17,7 +17,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 
-import authentication.Role; 
 
 @Entity
 @NamedQueries({
@@ -70,21 +69,16 @@ public class User extends Entidade  {
 		return password;
 	}
 
-	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-	@Enumerated(EnumType.STRING)
-	@CollectionTable(name = "UserRoles", joinColumns = { @JoinColumn(name = "userId") })
-	@Column(name = "role")
-	private List<Role> roles;
+	@NotNull
+	private String roles;
 
-
-
-	public List<Role> getRoles() {
+    
+	public String getRoles() {
 		return roles;
 	}
 
-
-
-	public void setRoles(List<Role> roles) {
+	
+	public void setRoles(String roles) {
 		this.roles = roles;
 	}
 
