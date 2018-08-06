@@ -32,6 +32,8 @@ public class AnuncioBean implements Serializable {
 
 	@Inject
 	ControlPlataforma plats;
+	
+	private String tarefasDetail;
 
 	// classes criada para o search bar
 	private Collection<Anuncio> filteredAnuncio;
