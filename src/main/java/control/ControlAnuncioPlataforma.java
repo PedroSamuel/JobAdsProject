@@ -46,6 +46,7 @@ public class ControlAnuncioPlataforma {
 	    dbAP.updateEntity(anuncioPlataforma);
 		System.out.println("ok6");
 	}
+  
 	
 	public List<AnuncioPlataforma> AnunciosPlataforma(){
 		List<AnuncioPlataforma> list = dbAP.listEntity(AnuncioPlataforma.class);

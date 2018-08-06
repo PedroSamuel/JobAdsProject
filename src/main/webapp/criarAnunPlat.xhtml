@@ -21,6 +21,7 @@
 </f:metadata>
 
 <h:body>
+
 	<div id="menu">
 		<ui:insert name="menu">
 			<ui:include src="menu.xhtml" />
@@ -47,7 +48,7 @@
 					</h3>
 
 					<br />
-					
+					<h:form >
 					<h3><b>Associar Plataforma</b></h3>
 					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.plataforma}"
 						converter="omnifaces.SelectItemsConverter">
@@ -73,7 +74,7 @@
 					<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
 						value="Associar">
 					</p:commandButton>
-
+</h:form>
 				</div>
 
 				<div class="col-sm-6">
@@ -93,5 +94,6 @@
 
 		</div>
 	</div>
+	
 </h:body>
 </html>
