@@ -32,7 +32,7 @@ p{
 
 h3 b{
 	font-size: 35px;
-	color: #c9f5ff;
+	color: #e95d0b;
 }
 
 .inline-block{
@@ -88,7 +88,7 @@ th{
 
 }
 
-.ui-menuitem-text{
+.ui-menuitem-text, .ui-button-text{
 	color: white;
 	font-size: 25px;
 	font-weight: bold;
@@ -199,8 +199,17 @@ div.filler {
 	}
 	
 .displayinfo{
-	color: #ffffff;
+	color: #000000;
 	padding: 1em;
 	font-size: 15px;
-	background-color: #60bfd8;
+	background-color: #fddd71;
+		border-color: black;
+	border-style: solid;
+	border-radius: 25px;
+}
+
+
+.inputText{
+	font-size: 25px;
+	
 }

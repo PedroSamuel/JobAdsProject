@@ -14,19 +14,9 @@
 
 </h:head>
 <f:metadata>
-
-
-
-
-
-
 	<f:viewParam name="idAnuncio"
 		value="#{anuncioplataformaBean.idAnuncio}"></f:viewParam>
 	<f:event listener="#{anuncioplataformaBean.load}" type="preRenderView"></f:event>
-
-
-
-
 
 </f:metadata>
 <h:body>
@@ -45,7 +35,7 @@
 			</div>
 			<div class="displayinfo row">
 
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 					<h3>
 						<b>Função:</b> #{anuncioplataformaBean.anuncio.funcao}
 					</h3>
@@ -69,7 +59,7 @@
 
 				</div>
 
-				<div class="col-sm-8">
+				<div class="col-sm-6">
 					<h3>
 						<b>Requisitos: </b>
 					</h3>
@@ -177,7 +167,7 @@
 
 
 
-					<p:column style="width:54px">
+					<p:column style="width:70px">
 						<p:commandButton icon="ui-icon-trash"
 							action="#{anuncioplataformaBean.removeAnunPlat(anunPlat)}"
 							update="dtAnunPlat">

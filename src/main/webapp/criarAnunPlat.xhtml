@@ -13,34 +13,6 @@
 	<h:outputStylesheet library="css" name="style.css" />
 	<title>Gestão de Anúncios</title>
 
-	<script>
-PrimeFaces.locales['pt'] = {
-        closeText: 'Fechar',
-            prevText: 'Anterior',
-            nextText: 'Próximo',
-            currentText: 'Começo',
-            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],                         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Des'],
-            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-            weekHeader: 'Semana',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: '',
-            timeOnlyTitle: 'Só Horas',
-            timeText: 'Tempo',
-            hourText: 'Hora',
-            minuteText: 'Minuto',
-            secondText: 'Segundo',
-            ampm: false,
-            month: 'Mês',
-            week: 'Semana',
-            day: 'Dia',
-            allDayText: 'Todo Dia'
-        };
-</script>
-
 </h:head>
 
 <f:metadata>
@@ -58,105 +30,66 @@ PrimeFaces.locales['pt'] = {
 	<br />
 	<br />
 
-	<div class="container">
+		<div class="container-fluid">
+			<div class="row">
+				<h3 class="big-orange">Anúncio:
+					#{newAnunPlat.anuncio.REF}</h3>
+			</div>
+			<div class="displayinfo row">
 
-		<div class="col-sm"></div>
+				<div class="col-sm-6">
+					<h3>
+						<b>Função:</b> #{newAnunPlat.anuncio.funcao}
+					</h3>
+					<br /> <br />
+					<h3>
+						<b>Manager: </b> #{newAnunPlat.anuncio.manager}
+					</h3>
 
+					<br />
+					
+					<h3><b>Associar Plataforma</b></h3>
+					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.plataforma}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Plataformas" itemValue="" />
+						<f:selectItems value="#{newAnunPlat.listaPlataformas()}"
+							var="plataforma" itemLabel="#{plataforma.nomePlataforma}"
+							itemValue="#{plataforma}" />
+					</h:selectOneMenu>
 
+					<h3><b>Estado </b></h3>
+					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.anuncioPlataforma.estado}">
+						<f:selectItem itemLabel="Offline" itemValue="Offline" />
+						<f:selectItem itemLabel="Online" itemValue="Online" />
 
-		<div class="col-sm container1 ">
-			<br />
-			<h:graphicImage value="resources/images/aubayImg.png" width="150"
-				class="mx-auto d-block" />
+					</h:selectOneMenu>
+					
+					<h3><b>Link</b></h3>
+					<p:inputTextarea class="inputText" value="#{newAnunPlat.anuncioPlataforma.link}"
+						rows="1" cols="80" />
+					<br />
+					
+					
+					<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
+						value="Associar">
+					</p:commandButton>
 
-			<br />
-			<p:growl id="growl" showDetail="true" sticky="true" />
+				</div>
 
+				<div class="col-sm-6">
+					<h3>
+						<b>Requisitos: </b>
+					</h3>
 
-
-
-			<br />
-
-
-
-			<h:form>
-				<h5>Referência Anuncio: #{newAnunPlat.anuncio.REF}</h5>
-				<h4>Associar Anúncio a Plataforma</h4>
-				<h5>Plataforma</h5>
-				<h:selectOneMenu value="#{newAnunPlat.plataforma}"
-					converter="omnifaces.SelectItemsConverter" style="width:25%">
-					<f:selectItem itemLabel="Plataformas" itemValue="" />
-					<f:selectItems value="#{newAnunPlat.listaPlataformas()}"
-						var="plataforma" itemLabel="#{plataforma.nomePlataforma}"
-						itemValue="#{plataforma}" />
-				</h:selectOneMenu>
-
-				<h5>Estado do Anúncio</h5>
-				<h:selectOneMenu value="#{newAnunPlat.anuncioPlataforma.estado}"
-					style="width:25%">
-					<f:selectItem itemLabel="Offline" itemValue="Offline" />
-					<f:selectItem itemLabel="Online" itemValue="Online" />
-
-				</h:selectOneMenu>
-
-
-
-				<h5>Anúncio Criado</h5>
-
-			
-
-	<p:growl id="msgs" showDetail="true" />
-				<h:panelGrid columns="2" cellpadding="5">
-
-					<p:calendar locale="pt" id="datetime"
-						value="#{newAnunPlat.anuncioPlataforma.datacriacao}"
-						pattern="dd/MM/yyyy" />
-				</h:panelGrid>
+					<p>#{newAnunPlat.anuncio.requisitos}</p>
 
 
-				<p:panelGrid id="display" columns="2" columnClasses="label,value">
+				</div>
+			</div>
 
-					<h:outputText value="#{newAnunPlat.anuncioPlataforma.datacriacao}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:panelGrid>
-
-
-
-				<h4>Anúncio Modificado</h4>
-
-				<p:growl id="msgs1" showDetail="true" />
-				<h:panelGrid columns="2" cellpadding="5">
-
-					<p:calendar locale="pt" id="datetime1"
-						value="#{newAnunPlat.anuncioPlataforma.dataModificacao}"
-						pattern="dd/MM/yyyy" />
-				</h:panelGrid>
-
-	
-				<p:panelGrid id="display1" columns="2" columnClasses="label,value">
-
-					<h:outputText
-						value="#{newAnunPlat.anuncioPlataforma.dataModificacao}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:panelGrid>
-
-				<h5>Link</h5>
-				<p:inputTextarea value="#{newAnunPlat.anuncioPlataforma.link}"
-					rows="1" cols="15" />
-				<br />
-				<br />
-
-				<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
-					value="Gravar">
-				</p:commandButton>
-
-
-			</h:form>
-
-
+		<div class="row">
 			<div class="col-sm"></div>
+
 
 		</div>
 	</div>
