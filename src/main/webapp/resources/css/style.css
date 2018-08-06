@@ -98,10 +98,18 @@ th{
 	
 }
 
+.mybutton .ui-button-text{
+	background: #e42813;
+}
+
+.on.selectOnebutton .ui-button-text {
+	background: green;
+}
+
 .ui-menuitem-text:hover, button:hover{
 	background: #60bfd8;
 	font-stretch: wider;
-	zoom: 1.1;
+	zoom: 1.1;<
 }
 
 .menuitem{

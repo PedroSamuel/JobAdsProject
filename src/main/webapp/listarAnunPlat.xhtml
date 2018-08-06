@@ -103,8 +103,8 @@
 
 						<p:selectOneButton value="#{anunPlat.estado}" unselectable="false">
 
-							<f:selectItem itemLabel="Offline" itemValue="Offline" />
-							<f:selectItem itemLabel="Online" itemValue="Online" />
+							<f:selectItem class="on selectOnebutton" itemLabel="Offline" itemValue="Offline" />
+							<f:selectItem class="off selectOnebutton" itemLabel="Online" itemValue="Online" />
 							<p:ajax event="change" update="dtAnunPlat :su:growl"
 								listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" />
 						</p:selectOneButton>
