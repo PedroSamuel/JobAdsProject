@@ -10,6 +10,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PreRemove;
 import javax.validation.constraints.NotNull;
+
+import authentication.Role;
+
 import javax.persistence.ElementCollection;
 
 import javax.persistence.EnumType;
@@ -69,18 +72,31 @@ public class User extends Entidade  {
 		return password;
 	}
 
-	@NotNull
-	private String roles;
-
-    
-	public String getRoles() {
+	
+	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "UserRoles", joinColumns = { @JoinColumn(name = "userId") })
+    @Column(name = "role")
+	private List<Role> roles;
+	//private String roles;
+	
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	
-	public void setRoles(String roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+
+    
+	//public String getRoles() {
+	//	return roles;
+	//}
+
+	
+	//public void setRoles(String roles) {
+	//	this.roles = roles;
+	//}
 
 	@PreRemove
 	private void preRemove() {
@@ -88,15 +104,21 @@ public class User extends Entidade  {
 	}
 
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
 
 	@Override
 	public boolean equals(Object other) {
 		return (other instanceof User) && (id != null) ? id.equals(((User) other).id) : (other == this);
 	}
 
-	@Override
-	public int hashCode() {
-		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
-	}
+
 
 }
