@@ -79,9 +79,9 @@ import model.Plataforma;
 //				System.out.println("Okok" + longID);
 //				
 //			
-			if (anuncioPlataforma.getEstado().equals("Online")){
-				anuncioPlataforma.setDatacriacao(LocalDateTime.now());
-			}
+//			if (anuncioPlataforma.getEstado().equals("Online")){
+//				anuncioPlataforma.setDatacriacao(LocalDateTime.now());
+//			}
 			
 			//anuncioPlataforma.setId(new AnuncioPlataformaId(Long.valueOf(idAnuncio), plataforma.getId()));
 			anuncioPlataforma.setAnuncio(anuncio);
