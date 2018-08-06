@@ -141,6 +141,9 @@ public class AnuncioBean implements Serializable {
 
 	}
 
+	public int platsSize() {
+		return plats.Plataformas().size();
+	}
 		
 
 }

@@ -503,7 +503,7 @@
 
 
 
-							<p:column headerText="Plataformas" sortBy="#{anuncioBean.numberOnlinePlats(anuncio)}" style="width:30px;"
+							<p:column headerText="Plataformas" sortBy="#{anuncioBean.numberOnlinePlats(anuncio)} Plataformas (Online/Total)" style="width:30px;"
 							filterBy="#{anuncioBean.numberOnlinePlats(anuncio)}" filterMatchMode="contains">
 							<p:button outcome="listarAnunPlat?faces-redirect=true"
 								value="#{anuncioBean.numberOnlinePlats(anuncio)} / #{anuncioBean.numberAnunPlats(anuncio)}" >
