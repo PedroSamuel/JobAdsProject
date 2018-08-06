@@ -70,22 +70,35 @@ import model.Plataforma;
 		}
 
 		public String salvarAnunPlat() {
-			System.out.println("Iniciar bean.salvarAnunPlat");
-			System.out.println(anuncioPlataforma);
-			System.out.println("Check if online");
+			// vai buscar o parametro id, converte para Long e declara o anuncio com base no mesmo.
+//			if (idAnuncio == (null)) {
+//				System.out.println("Não Funcionou!!!!");
+//			} else {
+//				Long longID = Long.valueOf(idAnuncio);
+//				setAnuncio(controlAnuncio.getAnuncio(longID));
+//				System.out.println("Okok" + longID);
+//				
+//			
 			if (anuncioPlataforma.getEstado().equals("Online")){
-				System.out.println("online ok");
 				anuncioPlataforma.setDatacriacao(LocalDateTime.now());
-				System.out.println("set dateTime to " + LocalDateTime.now());
-			}		
-
+			}
+			
+			//anuncioPlataforma.setId(new AnuncioPlataformaId(Long.valueOf(idAnuncio), plataforma.getId()));
 			anuncioPlataforma.setAnuncio(anuncio);
-			System.out.println("ok set anuncio " + anuncio);
 			anuncioPlataforma.setPlataforma(plataforma); //fazer merge do anuncio e da plataforma, obter objectos merged, fazer set dos objectos merged e gravar anuncioPlataforma
-			System.out.println(" ok set plataforma " + plataforma);
 			controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
-			System.out.println("anunplat criada. a returnar para listarAnunPlat");
-		;
+		
+			//anuncio.adicionarPlataforma(plataforma);
+		
+			//controlAnuncio.updateAnuncio(anuncio);
+			
+//			anuncio.getPlataformas().add(anuncioPlataforma);
+//			controlAnuncio.updateAnuncio(anuncio);
+//			anuncioPlataforma.getPlataforma().getAnuncios().add(anuncioPlataforma);
+//			controlPlataforma.updatePlataforma(anuncioPlataforma.getPlataforma());
+			//controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
+//			System.out.println("Enviado!");
+//			System.out.println(anuncio.getREF());
 			return "listarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
 		}
 
@@ -105,7 +118,6 @@ import model.Plataforma;
 		
 		// vai buscar o parametro id, converte para Long e declara o anuncio com base no mesmo.
 		public void load(){ 
-			anuncioPlataforma = new AnuncioPlataforma();
 			if (idAnuncio == (null)) {
 				System.out.println("Não Funcionou!");
 			} else {

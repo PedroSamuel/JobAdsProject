@@ -33,21 +33,18 @@ public class ControlAnuncioPlataforma {
    
    @Transactional
    public void criarAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
-	   System.out.println("A iniciar control-criaranunplat");
 	    dbA.updateEntity(anuncioPlataforma.getAnuncio());
-	    System.out.println("updateAnuncio ok ");
-	    System.out.println(anuncioPlataforma.getAnuncio().getId());
-	    
+	    System.out.println("ok1");
 	    Anuncio anuncio = (dbA.getEntity(Anuncio.class, anuncioPlataforma.getAnuncio().getId()));
-	    System.out.println("get anuncio from db ok");
+	    System.out.println("ok2");
 	    dbP.updateEntity(anuncioPlataforma.getPlataforma());
-	    System.out.println("update plataforma ok");
+	    System.out.println("ok3");
 	    Plataforma plataforma = (dbP.getEntity(Plataforma.class, anuncioPlataforma.getPlataforma().getId()));
-	    System.out.println("get plataforma from db ok");
+	    System.out.println("ok4");
 	    anuncioPlataforma.setId(new AnuncioPlataformaId(anuncio.getId(), plataforma.getId()));
-	    System.out.println("id composto ok");
+	    System.out.println("ok5");
 	    dbAP.updateEntity(anuncioPlataforma);
-		System.out.println("update anuncioPlataforma ok");
+		System.out.println("ok6");
 	}
 	
 	public List<AnuncioPlataforma> AnunciosPlataforma(){
