@@ -59,10 +59,7 @@ public class RequerimentoBean implements Serializable {
 		requerimentoControl.updateRequerimento(requerimento);
 	}
 
-	public void updateList() {
-		requerimentoControl.updateList();
-	}
-
+	
 	
 	
 	public void deleteSelected() { //mudar para arquivar

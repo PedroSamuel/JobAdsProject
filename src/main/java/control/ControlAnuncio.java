@@ -21,7 +21,7 @@ public class ControlAnuncio {
 	}
 	
 	public List<Anuncio> Anuncios(){
-		return dbA.listEntity(Anuncio.class);
+		return dbA.getAllWithPlataformas();
 	}
 	
 	public Anuncio getAnuncio(long id){
@@ -45,13 +45,9 @@ public class ControlAnuncio {
 	
 	public void removeAnuncio(Anuncio anuncio) {
 		dbA.removeEntity(anuncio);
-		
-		updateList();
 	}
 	
-	public void updateList() {
-		dbA.updateLocalList();
-	}
+
 
 	public Collection<Anuncio> comTarefa() {
 		return dbA.comTarefa();

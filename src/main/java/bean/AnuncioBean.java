@@ -65,9 +65,7 @@ public class AnuncioBean implements Serializable {
 		anuncioControl.updateAnuncio(anuncio);
 	}
 
-	public void updateList() {
-		anuncioControl.updateList();
-	}
+	
 
 	public Anuncio getSelected() {
 		return selected;

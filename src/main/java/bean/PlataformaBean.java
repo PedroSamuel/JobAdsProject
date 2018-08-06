@@ -44,7 +44,4 @@ public class PlataformaBean implements Serializable {
 		plataformaControl.updatePlataforma(plataforma);
 	}
 
-	public void updateList() {
-		plataformaControl.updateList();
-	}
 }

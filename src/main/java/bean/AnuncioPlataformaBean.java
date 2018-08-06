@@ -79,9 +79,7 @@ public class AnuncioPlataformaBean implements Serializable {
 		anuncioControlPlataforma.updateAnuncioPlataforma(anuncioplataforma);
 	}
 
-	public void updateList() {
-		anuncioControlPlataforma.updateList();
-	}
+	
 
 	public Anuncio getAnuncio() {
 

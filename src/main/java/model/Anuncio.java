@@ -2,27 +2,27 @@ package model;
 
 
 
-import java.util.ArrayList;
+
 import java.time.*;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
-import javax.persistence.CascadeType;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import javax.persistence.PreRemove;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+
 
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "Anuncio.getAll", query = "SELECT e FROM Anuncio e"),
+	@NamedQuery(name = "Anuncio.getAllWithPlataformas", query = "SELECT e FROM Anuncio e LEFT JOIN FETCH e.plataformas"),
+	@NamedQuery(name = "Anuncio.comTarefa", query = "SELECT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.tarefas LIKE :tarefas")})
 public class Anuncio extends Entidade {
 
 	private String REF;
@@ -37,8 +37,8 @@ public class Anuncio extends Entidade {
     private String tarefas;
     
     
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "anuncio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REFRESH })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "anuncio") //,cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			//CascadeType.REFRESH })
 	private Set<AnuncioPlataforma> plataformas = new HashSet<AnuncioPlataforma>();
 	
     
