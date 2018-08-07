@@ -54,11 +54,9 @@ public class ControlAnuncioPlataforma {
 	}
 	
 	public List<AnuncioPlataforma> AnunciosPlataforma(){
-		List<AnuncioPlataforma> list = dbAP.getEverything();
+		List<AnuncioPlataforma> list = dbAP.listEntity(AnuncioPlataforma.class);
 		return list;
 	}
-	
-	
 	
 	public Collection<AnuncioPlataforma> SelectAnPlat(Anuncio anuncio) {
 		ArrayList<AnuncioPlataforma> select = new ArrayList<AnuncioPlataforma>(); 
@@ -125,7 +123,11 @@ public class ControlAnuncioPlataforma {
 		anuncioplataforma.getPlataforma().getAnuncios().remove(anuncioplataforma);
 		dbP.updateEntity(anuncioplataforma.getPlataforma());
 		dbAP.removeEntity(anuncioplataforma);
+		updateList();
 	}
 	
-
+	public void updateList() {
+		dbAP.updateLocalList();
+	}
+   
 }

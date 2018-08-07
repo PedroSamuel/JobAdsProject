@@ -20,11 +20,11 @@ public class ControlRequerimento {
 	}
 	
 	public List<Requerimento> Requerimentos(){
-		return dbR.getAll();
+		return dbR.listEntity(Requerimento.class);
 	}
 	
 	public List<Requerimento> porProcessar(){
-		return dbR.porProcessar();
+		return dbR.getPorProcessar();
 	}
 	
 
@@ -39,10 +39,13 @@ public class ControlRequerimento {
 	
 	public void removeRequerimento(Requerimento requerimento) {
 		dbR.removeEntity(requerimento);
-	}
 		
-
-
+		updateList();
+	}
+	
+	public void updateList() {
+		dbR.updateLocalList();
+	}
 	
 	
 }

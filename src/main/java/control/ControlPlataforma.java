@@ -21,7 +21,7 @@ public class ControlPlataforma {
 	}
 	
 	public List<Plataforma> Plataformas(){
-		return dbP.getAll();
+		return dbP.listEntity(Plataforma.class);
 	}
 	
 	public Plataforma getPlataforma (Long id) {
@@ -36,9 +36,12 @@ public class ControlPlataforma {
 	public void removePlataforma(Plataforma plataforma) {
 		dbP.removeEntity(plataforma);
 		
+		updateList();
 	}
 	
-
+	public void updateList() {
+		dbP.updateLocalList();
+	}
 	
 
 }

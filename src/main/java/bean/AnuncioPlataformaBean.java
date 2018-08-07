@@ -37,14 +37,13 @@ public class AnuncioPlataformaBean implements Serializable {
 	private ControlAnuncio anuncioControl;
 
 	private Anuncio anuncio;
+
 	private AnuncioPlataforma selected;
 
 	// codigo do id
 	private String idAnuncio;
 
 	private Collection<AnuncioPlataforma> filteredAnuncioPlataforma;
-	private Collection<AnuncioPlataforma> APList;
-	private Collection<AnuncioPlataforma> SelectAnPlat;
 
 	public void updateAnuncio() {
 		anuncioControl.updateAnuncio(anuncio);
@@ -63,10 +62,12 @@ public class AnuncioPlataformaBean implements Serializable {
 		this.filteredAnuncioPlataforma = filteredAnuncioPlataforma;
 	}
 
-
+	public Collection<AnuncioPlataforma> getAnuncioPlataforma() {
+		return anuncioControlPlataforma.AnunciosPlataforma();
+	}
 
 	public Collection<AnuncioPlataforma> SelectAnPlat() {
-		return SelectAnPlat;
+		return anuncioControlPlataforma.SelectAnPlat(getAnuncioById());
 	}
 
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
@@ -78,7 +79,9 @@ public class AnuncioPlataformaBean implements Serializable {
 		anuncioControlPlataforma.updateAnuncioPlataforma(anuncioplataforma);
 	}
 
-	
+	public void updateList() {
+		anuncioControlPlataforma.updateList();
+	}
 
 	public Anuncio getAnuncio() {
 
@@ -104,15 +107,13 @@ public class AnuncioPlataformaBean implements Serializable {
 
 	// codigo do ID chama a funcao load vinda f param do listar anun platf
 	public void load() {
-		//anuncioControlPlataforma.reverContagem();
+		anuncioControlPlataforma.reverContagem();
 		if (idAnuncio == (null)) {
 			System.out.println("Não Funcionou!");
-			APList = anuncioControlPlataforma.AnunciosPlataforma();
 		} else {
 			long longID = Long.valueOf(idAnuncio);
 			setAnuncio(anuncioControl.getAnuncio(longID));
-			System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
-			APList = anuncioControlPlataforma.SelectAnPlat(anuncio);
+			System.out.println("Ok" + longID);
 		}
 
 	}
@@ -145,9 +146,6 @@ public class AnuncioPlataformaBean implements Serializable {
 	}
 
 	public void onlineDate(AnuncioPlataforma ap) {
-		
-		System.out.println("iniciar evento online date");
-		System.out.println(ap.getEstado());
 		if (ap.getEstado().equals("Online")) {
 			ap.setDatacriacao(LocalDateTime.now());
 			System.out.println("online:" + ap.getDatacriacao());
@@ -155,7 +153,6 @@ public class AnuncioPlataformaBean implements Serializable {
 		} else if (ap.getEstado().equals("Offline")) {
 			ap.setDatacriacao(null);
 			System.out.println("data nula");
-			System.out.println("Offline;" + ap.getDatacriacao());
 
 		}
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
@@ -186,22 +183,6 @@ public class AnuncioPlataformaBean implements Serializable {
 			return date;
 		}
 		return null;
-	}
-
-	public Collection<AnuncioPlataforma> getAPList() {
-		return APList;
-	}
-
-	public void setAPList(Collection<AnuncioPlataforma> aPList) {
-		APList = aPList;
-	}
-
-	public Collection<AnuncioPlataforma> getSelectAnPlat() {
-		return SelectAnPlat;
-	}
-
-	public void setSelectAnPlat(Collection<AnuncioPlataforma> selectAnPlat) {
-		SelectAnPlat = selectAnPlat;
 	}
 
 }

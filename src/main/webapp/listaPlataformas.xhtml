@@ -28,7 +28,7 @@
 				<h:form id="plat"
 					onkeypress="if (event.keyCode == 13){return false;}">
 					<p:dataTable id="dtplataforma" var="plataforma"
-						value="#{plataformaBean.plataformaList}" editable="true"
+						value="#{plataformaBean.plataformas}" editable="true"
 						widgetVar="plataformaTable" style="margin-bottom:20px"
 						rowKey="#{plataforma.id}" selection="#{selected}"
 						selectionMode="single"

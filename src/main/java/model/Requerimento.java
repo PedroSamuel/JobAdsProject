@@ -3,20 +3,20 @@ package model;
 
 
 import java.time.*;
-
+import javax.persistence.Column;
+//import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
+//import javax.persistence.FetchType;
+//import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
+import javax.persistence.Table;
 
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "Requerimento.getAll", query = "SELECT e FROM Requerimento e"),
-	@NamedQuery(name = "Requerimento.porProcessar", query = "SELECT e FROM Requerimento e WHERE e.estado LIKE :estado") })
 public class Requerimento extends Entidade {
 	
-
+	private static final long serialVersionUID = 1L;
 	
 	private String requerente;
 	private LocalDateTime data;
@@ -101,6 +101,9 @@ public class Requerimento extends Entidade {
 	
 	
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 
 	public void processar() {

@@ -73,10 +73,10 @@
 			<div class="row">
 
 				<br />
-				<h:form>
+
 				<p:dataTable editable="true" style="margin-bottom:20px"
 					id="dtAnunPlat" var="anunPlat"
-					value="#{anuncioplataformaBean.APList}"
+					value="#{anuncioplataformaBean.SelectAnPlat()}"
 					emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 					filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}"
 					selection="#{anuncioplataformaBean.selected}"
@@ -100,15 +100,14 @@
 
 					<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
 						filterBy="#{anunPlat.estado}" filterMatchMode="contains">
-						
+
 						<p:selectOneButton value="#{anunPlat.estado}" unselectable="false">
 
 							<f:selectItem class="on selectOnebutton" itemLabel="Offline" itemValue="Offline" />
 							<f:selectItem class="off selectOnebutton" itemLabel="Online" itemValue="Online" />
-							<p:ajax event="change" 
-								listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" update="dtAnunPlat"/>
+							<p:ajax event="change" update="dtAnunPlat :su:growl"
+								listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" />
 						</p:selectOneButton>
-					
 					</p:column>
 
 					<p:column headerText="Anúncio Criado"
@@ -200,7 +199,7 @@
 					<f:param name="idAnuncio"
 						value="#{anuncioplataformaBean.idAnuncio}"></f:param>
 				</p:button>
-				</h:form>
+
 
 
 			</div>

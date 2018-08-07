@@ -3,7 +3,6 @@ package bean;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,9 +33,6 @@ public class RequerimentoBean implements Serializable {
 	
 	// isto serve para o primefaces poder filtrar
 	private Collection<Requerimento> filteredRequerientos;
-	private Collection<Requerimento> reqList;
-	private Collection<Requerimento> porProcessar;
-
 	
 	public Collection<Requerimento> getFilteredRequerientos() {
 		return filteredRequerientos;
@@ -46,7 +42,13 @@ public class RequerimentoBean implements Serializable {
 		this.filteredRequerientos = filteredRequerientos;
 	}
 
-
+	public Collection<Requerimento> getRequerimentos() {
+		return requerimentoControl.Requerimentos();
+	}
+	
+	public Collection<Requerimento> porProcessar() {
+		return requerimentoControl.porProcessar();
+	}
 
 	public void removerequerimento(Requerimento requerimento) {
 		requerimentoControl.removeRequerimento(requerimento);
@@ -57,7 +59,10 @@ public class RequerimentoBean implements Serializable {
 		requerimentoControl.updateRequerimento(requerimento);
 	}
 
-	
+	public void updateList() {
+		requerimentoControl.updateList();
+	}
+
 	
 	
 	public void deleteSelected() { //mudar para arquivar
@@ -77,29 +82,6 @@ public class RequerimentoBean implements Serializable {
 
 	public String novoAnuncio() {
 		return "criarAnuncio?faces-redirect=true&idRequerimento=" + selected.getId();
-	}
-
-	public Collection<Requerimento> getReqList() {
-		return reqList;
-	}
-
-	public void setReqList(Collection<Requerimento> reqList) {
-		this.reqList = reqList;
-	}
-
-	public Collection<Requerimento> getPorProcessar() {
-		return porProcessar;
-	}
-
-	public void setPorProcessar(Collection<Requerimento> porProcessar) {
-		this.porProcessar = porProcessar;
-	}
-	
-	@PostConstruct
-	private void loadRequerimentos() {
-		reqList = requerimentoControl.Requerimentos();
-		porProcessar = requerimentoControl.porProcessar();
-				
 	}
 	
 

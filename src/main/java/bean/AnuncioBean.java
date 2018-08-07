@@ -1,6 +1,5 @@
 package bean;
 
-import java.awt.List;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
@@ -33,20 +32,10 @@ public class AnuncioBean implements Serializable {
 
 	@Inject
 	ControlPlataforma plats;
-	
-	private Collection<Anuncio> anuncioList;
-	
-
-
-	private Collection<Anuncio> comTarefa;
 
 	// classes criada para o search bar
 	private Collection<Anuncio> filteredAnuncio;
 
-
-	private Anuncio selected;
-	
-	
 	public Collection<Anuncio> getFilteredAnuncio() {
 		return filteredAnuncio;
 	}
@@ -54,7 +43,15 @@ public class AnuncioBean implements Serializable {
 	public void setFilteredAnuncio(Collection<Anuncio> filteredAnuncio) {
 		this.filteredAnuncio = filteredAnuncio;
 	}
-	
+
+	private Anuncio selected;
+
+	public Collection<Anuncio> getAnuncios() {
+		
+		Collection<Anuncio>list = anuncioControl.Anuncios();
+		tarefas(list);
+		return list;
+	}
 
 	public void removeAnuncio(Anuncio anuncio) {
 		anuncioControl.removeAnuncio(anuncio);
@@ -66,7 +63,9 @@ public class AnuncioBean implements Serializable {
 		anuncioControl.updateAnuncio(anuncio);
 	}
 
-	
+	public void updateList() {
+		anuncioControl.updateList();
+	}
 
 	public Anuncio getSelected() {
 		return selected;
@@ -102,7 +101,6 @@ public class AnuncioBean implements Serializable {
 						break;
 					} else {
 						anuncio.setTarefas("!!!!");
-						
 						break;
 					}
 				case "Manter":
@@ -131,38 +129,18 @@ public class AnuncioBean implements Serializable {
 		
 	}
 	
+	public Collection<Anuncio> comTarefa(){
+		tarefas(getAnuncios());
+		Collection<Anuncio> comTarefa = anuncioControl.comTarefa();
+		return comTarefa;
+		
+	}
 	
 	public String listAnunPlat(Anuncio anuncio) {
 		return "listarAnunPlat?faces-redirect=true&idAnuncio=" + anuncio.getId(); 
 
 	}
 
-	public int platsSize() {
-		return plats.Plataformas().size();
-	}
-	
-	@PostConstruct
-	public void loadAnuncios() {
-		setAnuncioList(anuncioControl.Anuncios());
-		tarefas(anuncioList);
-		setComTarefa(anuncioControl.comTarefa());
-	}
-
-	public Collection<Anuncio> getComTarefa() {
-		return comTarefa;
-	}
-
-	public void setComTarefa(Collection<Anuncio> comTarefa) {
-		this.comTarefa = comTarefa;
-	}
-	
-	public Collection<Anuncio> getAnuncioList() {
-		return anuncioList;
-	}
-
-	public void setAnuncioList(Collection<Anuncio> anuncioList) {
-		this.anuncioList = anuncioList;
-	}
 		
 
 }
