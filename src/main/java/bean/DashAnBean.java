@@ -19,9 +19,9 @@ import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
 
-@Named("anuncioBean")
+@Named("dashAnBean")
 @ViewScoped
-public class AnuncioBean implements Serializable {
+public class DashAnBean implements Serializable {
 
 	/**
 	 * 
@@ -34,9 +34,6 @@ public class AnuncioBean implements Serializable {
 	@Inject
 	ControlPlataforma plats;
 	
-	private Collection<Anuncio> anuncioList;
-	
-
 
 	private Collection<Anuncio> comTarefa;
 
@@ -145,8 +142,7 @@ public class AnuncioBean implements Serializable {
 	
 	@PostConstruct
 	public void loadAnuncios() {
-		setAnuncioList(anuncioControl.Anuncios());
-		tarefas(anuncioList);
+		tarefas(anuncioControl.Anuncios());
 		setComTarefa(anuncioControl.comTarefa());
 	}
 
@@ -158,13 +154,6 @@ public class AnuncioBean implements Serializable {
 		this.comTarefa = comTarefa;
 	}
 	
-	public Collection<Anuncio> getAnuncioList() {
-		return anuncioList;
-	}
-
-	public void setAnuncioList(Collection<Anuncio> anuncioList) {
-		this.anuncioList = anuncioList;
-	}
 		
 
 }

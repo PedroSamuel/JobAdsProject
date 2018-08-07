@@ -28,7 +28,7 @@
 				<h:form id="plat"
 					onkeypress="if (event.keyCode == 13){return false;}">
 					<p:dataTable id="dtplataforma" var="plataforma"
-						value="#{plataformaBean.plataformas}" editable="true"
+						value="#{plataformaBean.plataformaList}" editable="true"
 						widgetVar="plataformaTable" style="margin-bottom:20px"
 						rowKey="#{plataforma.id}" selection="#{selected}"
 						selectionMode="single"
@@ -116,18 +116,13 @@
 					<br />
 					<br />
 					<p:commandButton value="Guardar"
-						action="#{plataformaCreate.salvarPlataforma()}" update="@([id$=lista])" />
+						action="#{plataformaCreate.salvarPlataforma()}" />
+						
 				</h:form>
+				
 			</div>
-
-
-
-
 
 		</div>
 	</div>
-	<p:commandButton value="Inicio"
-		action="DashboardRH?faces-redirect=true" />
-
 </h:body>
 </html>

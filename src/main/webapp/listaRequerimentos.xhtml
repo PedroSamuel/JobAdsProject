@@ -56,7 +56,7 @@ PrimeFaces.locales['pt'] = {
 					<br />
 
 					<p:dataTable id="dtreq" var="req"
-						value="#{requerimentoBean.requerimentos}" editable="false"
+						value="#{requerimentoBean.reqList}" editable="false"
 						style="margin-bottom:20px" rowKey="#{req.id}"
 						selection="#{requerimentoBean.selected}" selectionMode="single"
 						widgetVar="reqTable"
@@ -174,7 +174,6 @@ PrimeFaces.locales['pt'] = {
 					</p:dialog>
 
 
-					<p:commandButton value="Início" action="DashboardRH?faces-redirect=true" />
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 						<p:commandButton value="Sim" type="button"
 							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />

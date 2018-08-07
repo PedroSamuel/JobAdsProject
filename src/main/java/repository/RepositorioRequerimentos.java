@@ -3,33 +3,51 @@ package repository;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 
 import model.Requerimento;
 
 
-@ApplicationScoped
+@RequestScoped
 public class RepositorioRequerimentos extends EntityRepository <Requerimento>{
-	
-	@SuppressWarnings("unchecked")
-	@PostConstruct
-	protected void loadFromDB() {
-		localList = em.createQuery("SELECT e FROM Requerimento e").getResultList();
-	}
-	
 
-	@Override
-	public void updateLocalList() {
-		loadFromDB();
+	public List<Requerimento> getAll() {
+		return em.createNamedQuery("Requerimento.getAll", Requerimento.class).getResultList();
 	}
-	
-	@SuppressWarnings("unchecked")
-	protected List<Requerimento> porProcessar(){
-		return  (em.createQuery("SELECT e FROM REQUERIMENTO e WHERE REQUERIMENTO.estado = 'Por Processar'").getResultList());
-		
+
+	public List<Requerimento> porProcessar() {
+		return em.createNamedQuery("Requerimento.porProcessar", Requerimento.class).setParameter("estado", "Por Processar").getResultList();
 	}
+
 	
+	
+	
+//	private List<Requerimento> porProcessar;
+	
+//	@SuppressWarnings("unchecked")
+//	@PostConstruct
+//	protected void loadFromDB() {
+//		localList = em.createQuery("SELECT e FROM Requerimento e").getResultList();
+//		porProcessar = em.createQuery("SELECT e FROM Requerimento e WHERE e.estado LIKE :estado").setParameter("estado", "Por Processar").getResultList();
+//	}
+//	
+//
+//	@Override
+//	public void updateLocalList() {
+//		loadFromDB();
+//	}
+//	
+//
+//	public List<Requerimento> getPorProcessar() {
+//		return porProcessar;
+//	}
+//
+//
+//	public void setPorProcessar(List<Requerimento> porProcessar) {
+//		this.porProcessar = porProcessar;
+//	}
+//	
 	
 	
 

@@ -1,22 +1,33 @@
 package repository;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-
+import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import model.Plataforma;
 
-@ApplicationScoped
+@RequestScoped
 public class RepositorioPlataformas extends EntityRepository<Plataforma> {
 	
-	@SuppressWarnings("unchecked")
-	@PostConstruct
-	protected void loadFromDB() {
-		localList = em.createQuery("SELECT e FROM Plataforma e").getResultList();
+	public List<Plataforma> getAll() {
+		return em.createNamedQuery("Plataforma.getAll", Plataforma.class).getResultList();
 	}
 
-	@Override
-	public void updateLocalList() {
-		loadFromDB();
+	public List<Plataforma> getAllWithAnuncios() {
+		return em.createNamedQuery("Plataforma.getAllWithAnuncios", Plataforma.class).getResultList();
 	}
 
 }
+	
+	
+	
+//	@SuppressWarnings("unchecked")
+//	@PostConstruct
+//	protected void loadFromDB() {
+//		localList = em.createQuery("SELECT e FROM Plataforma e").getResultList();
+//	}
+//
+//	@Override
+//	public void updateLocalList() {
+//		loadFromDB();
+//	}
+
+//}

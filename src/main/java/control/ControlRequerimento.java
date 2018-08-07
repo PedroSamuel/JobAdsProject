@@ -20,13 +20,14 @@ public class ControlRequerimento {
 	}
 	
 	public List<Requerimento> Requerimentos(){
-		return dbR.listEntity(Requerimento.class);
+		return dbR.getAll();
 	}
 	
 	public List<Requerimento> porProcessar(){
-		return dbR.listEntity(Requerimento.class);
+		return dbR.porProcessar();
 	}
 	
+
 	public Requerimento getRequerimento (Long id) {
 		return dbR.getEntity(Requerimento.class,  id);
 		
@@ -38,11 +39,10 @@ public class ControlRequerimento {
 	
 	public void removeRequerimento(Requerimento requerimento) {
 		dbR.removeEntity(requerimento);
+	}
 		
-		updateList();
-	}
+
+
 	
-	public void updateList() {
-		dbR.updateLocalList();
-	}
+	
 }

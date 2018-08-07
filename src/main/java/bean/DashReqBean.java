@@ -8,20 +8,24 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.RowEditEvent;
 
 import control.ControlRequerimento;
 import model.Requerimento;
 
-@Named("requerimentoBean")
+@Named("dashReqBean")
 @ViewScoped
-public class RequerimentoBean implements Serializable {
-	
+public class DashReqBean implements Serializable{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5893776681538897923L;
+	private static final long serialVersionUID = 2133142098555964372L;
+
+
+
+
+
+
 
 
 
@@ -31,10 +35,9 @@ public class RequerimentoBean implements Serializable {
 
 
 	private Requerimento selected;
-	
-	// isto serve para o primefaces poder filtrar
+
 	private Collection<Requerimento> filteredRequerientos;
-	private Collection<Requerimento> reqList;
+	private Collection<Requerimento> porProcessar;
 
 	
 	public Collection<Requerimento> getFilteredRequerientos() {
@@ -52,10 +55,6 @@ public class RequerimentoBean implements Serializable {
 		loadRequerimentos();
 	}
 
-	public void onRowEdit(RowEditEvent event) {
-	Requerimento requerimento = (Requerimento) event.getObject();
-		requerimentoControl.updateRequerimento(requerimento);
-	}
 
 	
 	
@@ -80,21 +79,23 @@ public class RequerimentoBean implements Serializable {
 		return "criarAnuncio?faces-redirect=true&idRequerimento=" + selected.getId();
 	}
 
-	public Collection<Requerimento> getReqList() {
-		return reqList;
+
+	public Collection<Requerimento> getPorProcessar() {
+		return porProcessar;
 	}
 
-	public void setReqList(Collection<Requerimento> reqList) {
-		this.reqList = reqList;
+	public void setPorProcessar(Collection<Requerimento> porProcessar) {
+		this.porProcessar = porProcessar;
 	}
-
-
 	
 	@PostConstruct
 	private void loadRequerimentos() {
-		reqList = requerimentoControl.Requerimentos();
+		porProcessar = requerimentoControl.porProcessar();
 				
 	}
 	
-
+	
+	
+	
+	
 }
