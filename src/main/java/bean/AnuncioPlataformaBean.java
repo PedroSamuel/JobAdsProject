@@ -37,13 +37,14 @@ public class AnuncioPlataformaBean implements Serializable {
 	private ControlAnuncio anuncioControl;
 
 	private Anuncio anuncio;
-
 	private AnuncioPlataforma selected;
 
 	// codigo do id
 	private String idAnuncio;
 
 	private Collection<AnuncioPlataforma> filteredAnuncioPlataforma;
+	private Collection<AnuncioPlataforma> APList;
+	private Collection<AnuncioPlataforma> SelectAnPlat;
 
 	public void updateAnuncio() {
 		anuncioControl.updateAnuncio(anuncio);
@@ -62,12 +63,10 @@ public class AnuncioPlataformaBean implements Serializable {
 		this.filteredAnuncioPlataforma = filteredAnuncioPlataforma;
 	}
 
-	public Collection<AnuncioPlataforma> getAnuncioPlataforma() {
-		return anuncioControlPlataforma.AnunciosPlataforma();
-	}
+
 
 	public Collection<AnuncioPlataforma> SelectAnPlat() {
-		return anuncioControlPlataforma.SelectAnPlat(getAnuncioById());
+		return SelectAnPlat;
 	}
 
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
@@ -108,10 +107,12 @@ public class AnuncioPlataformaBean implements Serializable {
 		//anuncioControlPlataforma.reverContagem();
 		if (idAnuncio == (null)) {
 			System.out.println("Não Funcionou!");
+			APList = anuncioControlPlataforma.AnunciosPlataforma();
 		} else {
 			long longID = Long.valueOf(idAnuncio);
 			setAnuncio(anuncioControl.getAnuncio(longID));
 			System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
+			APList = getSelectAnPlat();
 		}
 
 	}
@@ -182,6 +183,22 @@ public class AnuncioPlataformaBean implements Serializable {
 			return date;
 		}
 		return null;
+	}
+
+	public Collection<AnuncioPlataforma> getAPList() {
+		return APList;
+	}
+
+	public void setAPList(Collection<AnuncioPlataforma> aPList) {
+		APList = aPList;
+	}
+
+	public Collection<AnuncioPlataforma> getSelectAnPlat() {
+		return SelectAnPlat;
+	}
+
+	public void setSelectAnPlat(Collection<AnuncioPlataforma> selectAnPlat) {
+		SelectAnPlat = selectAnPlat;
 	}
 
 }
