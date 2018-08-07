@@ -43,6 +43,7 @@ public class PlataformaBean implements Serializable {
 
 	public void removePlataforma(Plataforma plataforma) {
 		plataformaControl.removePlataforma(plataforma);
+		plataformasLoad();
 	}
 
 	public void onRowEdit(RowEditEvent event) {

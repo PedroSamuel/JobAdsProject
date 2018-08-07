@@ -58,12 +58,14 @@ public class AnuncioBean implements Serializable {
 
 	public void removeAnuncio(Anuncio anuncio) {
 		anuncioControl.removeAnuncio(anuncio);
+		loadAnuncios();
 	}
 
 	// class para a tabela editar vindo do primefaces
 	public void onRowEdit(RowEditEvent event) {
 		Anuncio anuncio = (Anuncio) event.getObject();
 		anuncioControl.updateAnuncio(anuncio);
+	
 	}
 
 	

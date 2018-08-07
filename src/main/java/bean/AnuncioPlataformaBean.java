@@ -71,6 +71,7 @@ public class AnuncioPlataformaBean implements Serializable {
 
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
 		anuncioControlPlataforma.removeAnuncioPlataforma(anuncioplataforma);
+		load();
 	}
 
 	public void onRowEdit(RowEditEvent event) {

@@ -50,6 +50,7 @@ public class RequerimentoBean implements Serializable {
 
 	public void removerequerimento(Requerimento requerimento) {
 		requerimentoControl.removeRequerimento(requerimento);
+		loadRequerimentos();
 	}
 
 	public void onRowEdit(RowEditEvent event) {
@@ -64,6 +65,7 @@ public class RequerimentoBean implements Serializable {
 		System.out.println("OK");
 		System.out.println(selected);
 		requerimentoControl.removeRequerimento(selected);
+		loadRequerimentos();
 	}
 
 	public Requerimento getSelected() {
