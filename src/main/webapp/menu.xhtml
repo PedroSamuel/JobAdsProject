@@ -49,7 +49,7 @@
         </p:submenu>
         
         <p:submenu label="Plataformas" icon="ui-icon-document">
-            <p:menuitem value="Lista de plataformas" action="listaPlataformas?faces-redirect=true" icon=""   />
+            <p:menuitem value="Lista de plataformas" action="/RH/listaPlataformas?faces-redirect=true" icon=""   />
             <p:menuitem value="Criar plataforma" action="criarPlataformas?faces-redirect=true" icon=""   />
         </p:submenu>
         
@@ -65,7 +65,7 @@
  
         <f:facet name="options">
            
-            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" action="#{logout.submit()}"/>
+            <p:commandLink type="button" value="Logout" icon="ui-icon-extlink" action="#{logout.submit}"/>
             
         </f:facet>
     </p:menubar>

@@ -63,18 +63,18 @@
 
 				<h5>Tipo de utilizador</h5>
 				
-					<h:outputLabel for="roles" value="Roles:" />
+				<!-- 		<h:outputLabel for="roles" value="Roles:" />
 				<h:selectManyCheckbox id="roles" value="#{criarUser.user.roles}"
 					required="true" layout="pageDirection"
 					converter="omnifaces.GenericEnumConverter">
 					<f:selectItems value="#{Role}" />
 				</h:selectManyCheckbox>
+-->
 
 
 
-
-			<!-- 	<p:selectOneMenu id="estado" value="#{criarUser.user.roles}"
-					style="width:160px">
+				<p:selectOneMenu id="estado" value="#{criarUser.user.roles}"
+					style="width:160px">/WEB-INF/shiro.ini
 
 					<f:selectItem itemLabel="Selecione um" itemValue="Aplicar" />
 					<f:selectItem itemLabel="RH" itemValue="RH" />
@@ -83,7 +83,7 @@
 
 				</p:selectOneMenu>
 
--->
+
 
 				<br />
 				<br />

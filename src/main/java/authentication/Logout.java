@@ -19,10 +19,11 @@ public class Logout {
 
 	public static final String HOME_URL = "index.xhtml";
 
-    public void submit() throws IOException {
+    public String submit() throws IOException {
         SecurityUtils.getSubject().logout();
         Faces.invalidateSession();
-        Faces.redirect(HOME_URL);
+        //Faces.redirect(HOME_URL);
+        return "index.xhtml?faces-redirect=true";
     }
     
 

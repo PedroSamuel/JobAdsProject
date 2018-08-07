@@ -1,24 +1,21 @@
 package model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PreRemove;
 import javax.validation.constraints.NotNull;
 
 import authentication.Role;
-
-import javax.persistence.ElementCollection;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 
 
 @Entity
@@ -73,30 +70,30 @@ public class User extends Entidade  {
 	}
 
 	
-	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "UserRoles", joinColumns = { @JoinColumn(name = "userId") })
-    @Column(name = "role")
-	private List<Role> roles;
-	//private String roles;
+	//@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+   // @Enumerated(EnumType.STRING)
+   // @CollectionTable(name = "UserRoles", joinColumns = { @JoinColumn(name = "userId") })
+    //@Column(name = "role")
+	//private List<Role> roles;
+    private String roles;
 	
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-    
-	//public String getRoles() {
+	//public List<Role> getRoles() {
 	//	return roles;
 	//}
 
-	
-	//public void setRoles(String roles) {
+	//public void setRoles(List<Role> roles) {
 	//	this.roles = roles;
 	//}
+
+    
+	public String getRoles() {
+		return roles;
+	}
+
+	
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
 
 	@PreRemove
 	private void preRemove() {

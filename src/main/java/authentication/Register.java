@@ -27,7 +27,12 @@ public class Register implements Serializable {
 	@Inject
 	ControlUser controlUser;
 	
-	private User user = new User();
+	private User user;
+	
+	@PostConstruct
+    public void init() {
+        user = new User();
+    }
 
 	public User getUser() {
 		return user;
