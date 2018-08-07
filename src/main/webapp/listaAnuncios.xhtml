@@ -28,7 +28,7 @@
 				<div class="col-sm" >
 <br /> 
 					<p:dataTable id="dtanuncio" var="anuncio"
-						value="#{anuncioBean.anuncios}" editable="true"
+						value="#{anuncioBean.anuncioList}" editable="true"
 						style="margin-bottom:20px" rowKey="#{anuncio.id}"
 						selection="#{selected}" selectionMode="single"		
 						widgetVar="anucioTable"
@@ -108,10 +108,10 @@
 						
 	
 
-						<p:column headerText="Plataformas" sortBy="#{anuncioBean.numberOnlinePlats(anuncio)}"
+						<p:column headerText="Plataformas (Online/Total)" sortBy="#{anuncioBean.numberOnlinePlats(anuncio)}"
 							filterBy="#{anuncioBean.numberOnlinePlats(anuncio)}" filterMatchMode="contains">
 							<p:button outcome="listarAnunPlat?faces-redirect=true"
-								value="#{anuncioBean.numberOnlinePlats(anuncio)} / #{anuncioBean.numberAnunPlats(anuncio)}">
+								value="#{ anuncioBean.numberOnlinePlats(anuncio)}  / #{anuncioBean.numberAnunPlats(anuncio)}  ">
 								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
 								
 							</p:button>

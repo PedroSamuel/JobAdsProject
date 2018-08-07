@@ -20,6 +20,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,6 +34,9 @@ import java.time.*;
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "AnuncioPlataforma.getAll", query = "SELECT e FROM AnuncioPlataforma e"),
+	@NamedQuery(name = "AnuncioPlataforma.getEverything", query = "SELECT e FROM AnuncioPlataforma e LEFT JOIN FETCH e.anuncio LEFT JOIN FETCH e.plataforma"),
+	@NamedQuery(name = "AnuncioPlataforma.selectAnunPlat", query = "SELECT e FROM AnuncioPlataforma e LEFT JOIN FETCH e.anuncio LEFT JOIN FETCH e.plataforma WHERE e.anuncio.id LIKE :idAnuncio") })
 @Table(name = "anuncioplataforma")
 public class AnuncioPlataforma implements Serializable{
 
@@ -57,13 +62,13 @@ public class AnuncioPlataforma implements Serializable{
 	}
 
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("anuncio_id")
 	@JoinColumn(name = "ANUNCIO_ID")
 	private Anuncio anuncio;
 
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("plataforma_id")
 	@JoinColumn(name = "PLATAFORMA_ID")
 	private Plataforma plataforma;

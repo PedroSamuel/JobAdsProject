@@ -3,6 +3,7 @@ package bean;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,17 +23,22 @@ public class PlataformaBean implements Serializable {
 
 	// isto serve para o primefaces poder filtrar
 	private Collection<Plataforma> filteredPlataformas;
+	private Collection<Plataforma> plataformaList;
 	
+	public Collection<Plataforma> getPlataformaList() {
+		return plataformaList;
+	}
+
+	public void setPlataformaList(Collection<Plataforma> plataformaList) {
+		this.plataformaList = plataformaList;
+	}
+
 	public Collection<Plataforma> getFilteredPlataformas() {
 		return filteredPlataformas;
 	}
 
 	public void setFilteredPlataformas(Collection<Plataforma> filteredPlataformas) {
 		this.filteredPlataformas = filteredPlataformas;
-	}
-
-	public Collection<Plataforma> getPlataformas() {
-		return plataformaControl.Plataformas();
 	}
 
 	public void removePlataforma(Plataforma plataforma) {
@@ -43,8 +49,10 @@ public class PlataformaBean implements Serializable {
 		Plataforma plataforma = (Plataforma) event.getObject();
 		plataformaControl.updatePlataforma(plataforma);
 	}
-
-	public void updateList() {
-		plataformaControl.updateList();
+	
+	@PostConstruct
+	public void plataformasLoad() {
+		plataformaList = plataformaControl.Plataformas();
 	}
+
 }
