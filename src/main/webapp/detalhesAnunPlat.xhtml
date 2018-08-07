@@ -84,18 +84,14 @@
 						value="#{anuncioplataformaBean.APList}"
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 						filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}"
-						selection="#{anuncioplataformaBean.selected}"
-						selectionMode="single" rowKey="#{anunPlat.id}" scrollable="true"
+						 rowKey="#{anunPlat.id}" scrollable="true"
 						scrollHeight="600" raggableColumns="false"
 						resizableColumns="false">
 
-						<p:ajax event="rowSelect" update="@([id$=AnunPlatDetail])"
-							oncomplete="PF('AnunPlatDialog').show()" />
-						 
-						 (
+					
 
 						<p:ajax event="rowEdit"
-							listener="#{anuncioPlataformaBean.onRowEdit}" />
+							listener="#{anuncioplataformaBean.onRowEdit}" />
 
 						<p:column headerText="Plataforma" sortBy="#{anunPlat.plataforma}"
 							style="width:100px" filterBy="#{anunPlat.plataforma}">

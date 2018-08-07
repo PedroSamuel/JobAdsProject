@@ -29,9 +29,8 @@
 					onkeypress="if (event.keyCode == 13){return false;}">
 					<p:dataTable id="dtplataforma" var="plataforma"
 						value="#{plataformaBean.plataformaList}" editable="true"
-						widgetVar="plataformaTable" style="margin-bottom:20px"
-						rowKey="#{plataforma.id}" selection="#{selected}"
-						selectionMode="single"
+						widgetVar="plataformaTable" 
+						rowKey="#{plataforma.id}" 
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 						filteredValue="#{plataformaBean.filteredPlataformas}">
 
@@ -48,7 +47,7 @@
 
 						<p:column headerText="Nome" sortBy="#{plataforma.nomePlataforma}"
 							filterMatchMode="contains"
-							filterBy="#{plataforma.nomePlataforma}">
+							filterBy="#{plataforma.nomePlataforma}" style="width:150px">
 
 							<p:cellEditor>
 								<f:facet name="output">
@@ -56,7 +55,7 @@
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{plataforma.nomePlataforma}"
-										style="width:100%" label="Nome" />
+										 />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
@@ -64,7 +63,7 @@
 
 						<p:column headerText="Renovação (dias)"
 							sortBy="#{plataforma.periodoRenovacao}"
-							filterBy="#{plataforma.periodoRenovacao}">
+							filterBy="#{plataforma.periodoRenovacao}" style="width:150px">
 
 							<p:cellEditor>
 								<f:facet name="output">
@@ -72,16 +71,16 @@
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{plataforma.periodoRenovacao}"
-										style="width:100%" label="periodoRenovacao" />
+										label="periodoRenovacao" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 
-						<p:column style="width:32px">
+						<p:column headerText="Editar" style="width:60px">
 							<p:rowEditor />
 						</p:column>
 
-						<p:column style="width:32px">
+						<p:column headerText="Eliminar" style="width:60px">
 							<p:commandButton icon="ui-icon-trash"
 								action="#{plataformaBean.removePlataforma(plataforma)}"
 								update="dtplataforma">
@@ -101,7 +100,7 @@
 
 			</div>
 
-			<div class="col-2">
+			<div class="col-4">
 				<h:form id="criar">
 					<h4>Criar Plataforma</h4>
 					<h5>Nome da Plataforma</h5>

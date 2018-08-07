@@ -50,39 +50,39 @@
 						</f:facet>
 
 						<p:column filterBy="#{anuncio.REF}" headerText="Referência"
-							sortBy="#{anuncio.REF}" filterMatchMode="contains">
+							sortBy="#{anuncio.REF}" filterMatchMode="contains" style="width:100px">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{anuncio.REF}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText value="#{anuncio.REF}" style="width:100%"
+									<p:inputText value="#{anuncio.REF}" 
 										label="Referência" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 
 						<p:column filterBy="#{anuncio.funcao}" headerText="Função"
-							sortBy="#{anuncio.funcao}" filterMatchMode="contains">
+							sortBy="#{anuncio.funcao}" filterMatchMode="contains" style="width:100px">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{anuncio.funcao}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText value="#{anuncio.funcao}" style="width:100%"
+									<p:inputText value="#{anuncio.funcao}" 
 										label="Função" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 
 						<p:column filterBy="#{anuncio.manager}" headerText="Manager"
-							sortBy="#{anuncio.manager}" filterMatchMode="contains">
+							sortBy="#{anuncio.manager}" filterMatchMode="contains" style="width:100px">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{anuncio.manager}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText value="#{anuncio.manager}" style="width:100%"
+									<p:inputText value="#{anuncio.manager}" 
 										label="Manager" />
 								</f:facet>
 							</p:cellEditor>
@@ -90,7 +90,7 @@
 
 
 
-						<p:column headerText="Estado" sortBy="#{anuncio.estado}"
+						<p:column headerText="Estado" sortBy="#{anuncio.estado}" style="width:100px"
 							filterBy="#{anuncio.estado}" filterMatchMode="contains">
 
 							<p:cellEditor>
@@ -111,7 +111,7 @@
 						</p:column>
 
 
-						<p:column headerText="Plataformas (Online/Offline)" style="width:150px">
+						<p:column headerText="Plataformas (Online/Offline)" style="width:50px">
 							<h:outputText
 								value="#{ anuncioBean.numberOnlinePlats(anuncio)}  / #{anuncioBean.numberAnunPlats(anuncio)}  " />
 						</p:column>
@@ -132,11 +132,11 @@
 
 
 
-						<p:column style="width:50px">
+						<p:column headerText="Editar" style="width:50px">
 							<p:rowEditor />
 						</p:column>
 
-						<p:column style="width:80px">
+						<p:column headerText="Eliminar" style="width:80px">
 							<p:commandButton icon="ui-icon-trash"
 								action="#{anuncioBean.removeAnuncio(anuncio)}"
 								update="dtanuncio">
