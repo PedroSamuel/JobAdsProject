@@ -48,6 +48,10 @@
 
 					<br />
 					<h:form>
+					<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
+						value="Associar">
+					</p:commandButton>
+					<br />
 					<h3><b>Associar Plataforma</b></h3>
 					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.plataforma}"
 						converter="omnifaces.SelectItemsConverter">
@@ -70,9 +74,7 @@
 					<br />
 					
 					
-					<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
-						value="Associar">
-					</p:commandButton>
+					
 					</h:form>
 
 				</div>
