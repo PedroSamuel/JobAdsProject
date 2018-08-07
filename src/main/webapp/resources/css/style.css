@@ -27,11 +27,11 @@ body{
 }
 
 p{
-	font-size: 25px;
+	font-size: 15px;
 }
 
 h3 b{
-	font-size: 35px;
+	font-size: 25px;
 	color: #e95d0b;
 }
 
@@ -45,7 +45,7 @@ h3 b{
 }
 
 .selectOneMenu{
-	font-size: 35px;
+	font-size: 25px;
 	padding: 5px;
 }
 
@@ -68,7 +68,7 @@ table{
 	padding: 1em;
 	border-color: black;
 	border:solid;
-	font-size:25px;
+	font-size:15px;
 }
 
 
@@ -90,7 +90,7 @@ th{
 
 .ui-menuitem-text, .ui-button-text{
 	color: white;
-	font-size: 25px;
+	font-size: 15px;
 	font-weight: bold;
 	padding: 0.5em;
 	background: #9a030380;
@@ -108,8 +108,7 @@ th{
 
 .ui-menuitem-text:hover, button:hover{
 	background: #60bfd8;
-	font-stretch: wider;
-	zoom: 1.1;<
+	zoom: 1.1;
 }
 
 .menuitem{
@@ -193,7 +192,7 @@ th{
 }
 
 .big-orange {
-	font-size: 50px;
+	font-size: 40px;
 	color: #e95d0b;
 }
 
@@ -211,13 +210,13 @@ div.filler {
 	padding: 1em;
 	font-size: 15px;
 	background-color: #fddd71;
-		border-color: black;
+	border-color: black;
 	border-style: solid;
 	border-radius: 25px;
 }
 
 
 .inputText{
-	font-size: 25px;
+	font-size: 15px;
 	
 }
