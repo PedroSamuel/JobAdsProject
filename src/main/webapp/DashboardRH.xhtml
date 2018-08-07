@@ -359,11 +359,12 @@
 			<br />
 
 			<h2><b>Gestão de Anuncios</b></h2>
-			<p> Existem <b>#{anuncioBean.comTarefa().size()}</b> Anúncios com tarefas por concluir. </p>
+			<p> Existem <b>#{anuncioBean.comTarefa.size()}</b> Anúncios com tarefas por concluir. </p>
+			
 
 			<p:dataTable id="dtanuncio" class="table table-condensed table-hover"
 
-				var="anuncio" value="#{anuncioBean.comTarefa()}" editable="true"
+				var="anuncio" value="#{anuncioBean.comTarefa}" editable="true"
 
 				rowKey="#{anuncio.id}" selection="#{selected}"
 
@@ -535,14 +536,14 @@
 							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 
 					</p:confirmDialog>
-
+			
 	
 
 
 
 			</p:dataTable>
 
-
+			
 
 			<h:form>
 

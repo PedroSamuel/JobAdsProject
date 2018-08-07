@@ -105,13 +105,13 @@ public class AnuncioPlataformaBean implements Serializable {
 
 	// codigo do ID chama a funcao load vinda f param do listar anun platf
 	public void load() {
-		anuncioControlPlataforma.reverContagem();
+		//anuncioControlPlataforma.reverContagem();
 		if (idAnuncio == (null)) {
 			System.out.println("Não Funcionou!");
 		} else {
 			long longID = Long.valueOf(idAnuncio);
 			setAnuncio(anuncioControl.getAnuncio(longID));
-			System.out.println("Ok" + longID);
+			System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
 		}
 
 	}
@@ -144,7 +144,8 @@ public class AnuncioPlataformaBean implements Serializable {
 	}
 
 	public void onlineDate(AnuncioPlataforma ap) {
-		if (ap.getEstado().equals("Online")) {
+		System.out.println("iniciar evento online date");
+		if (ap.getEstado().equals("Offline")) {
 			ap.setDatacriacao(LocalDateTime.now());
 			System.out.println("online:" + ap.getDatacriacao());
 
