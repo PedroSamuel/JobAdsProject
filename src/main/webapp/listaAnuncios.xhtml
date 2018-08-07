@@ -111,7 +111,8 @@
 						<p:column headerText="Plataformas (Online/Total)" sortBy="#{anuncioBean.numberOnlinePlats(anuncio)}"
 							filterBy="#{anuncioBean.numberOnlinePlats(anuncio)}" filterMatchMode="contains">
 							<p:button outcome="listarAnunPlat?faces-redirect=true"
-								value="#{ anuncioBean.numberOnlinePlats(anuncio)}  / #{anuncioBean.numberAnunPlats(anuncio)}  ">
+								value="#{ anuncioBean.numberOnlinePlats(anuncio)}  / #{anuncioBean.numberAnunPlats(anuncio)}  "
+								update="dtanuncio">
 								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
 								
 							</p:button>

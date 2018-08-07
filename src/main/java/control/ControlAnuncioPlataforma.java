@@ -69,6 +69,7 @@ public class ControlAnuncioPlataforma {
 			}
 		}
 		//List<AnuncioPlataforma> select = dbAP.selectAnunPlat(anuncio.getId());  * Está a causar problemas.
+	
 		return select;
 	}
 	
