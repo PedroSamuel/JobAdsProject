@@ -3,15 +3,10 @@
 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-
 	xmlns:h="http://java.sun.com/jsf/html"
-
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-
 	xmlns:f="http://java.sun.com/jsf/core"
-
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
-
 	xmlns:of="http://omnifaces.org/functions">
 
 <h:head>
@@ -73,34 +68,32 @@
 		<div id="Pedidos">
 
 			<h:form id="super"
-
 				onkeypress="if (event.keyCode == 13){return false;}">
 
 
 
 
 
-						<h2><b>Gestão de Pedidos </b></h2>
-						<p>		Existem <b>#{dashReqBean.porProcessar.size()}</b> pedidos por processar  </p>
-				
+				<h2>
+					<b>Gestão de Pedidos </b>
+				</h2>
+				<p>
+					Existem <b>#{dashReqBean.porProcessar.size()}</b> pedidos por
+					processar
+				</p>
 
+
+
+				<p:commandButton value="Ver todos Pedidos"
+					action="listaRequerimentos?faces-redirect=true" style="width:200px" />
+					
 				<p:dataTable id="dtreq" var="req"
-
-					value="#{dashReqBean.porProcessar}" editable="false"
-
+					value="#{dashReqBean.porProcessar}" 
 					class="table table-condensed table-hover" rowKey="#{req.id}"
-
-					selection="#{dashReqBean.selected}" selectionMode="single"
-
-					widgetVar="reqTable"
-
 					emptyMessage="Não foram encontrados resultados com os seguintes criterios"
-
 					filteredValue="#{dashReqBean.filteredRequerientos}"
-
-					scrollable="true" scrollHeight="250" raggableColumns="false" resizableColumns="false">
-
-
+					scrollable="true" scrollHeight="150" raggableColumns="false"
+					resizableColumns="false">
 
 
 
@@ -108,11 +101,12 @@
 
 
 
-					<p:column headerText="Data Envio" sortBy="#{req.data}" styleClass="wrap"
 
-						filterBy="#{req.data}" style="width: 100px;">
 
-						<h:outputText value="#{req.data.toLocalDate()}" escape="false"/>
+					<p:column headerText="Data Envio" sortBy="#{req.data}"
+						styleClass="wrap" filterBy="#{req.data}" style="width: 100px;">
+
+						<h:outputText value="#{req.data.toLocalDate()}" escape="false" />
 
 
 
@@ -123,20 +117,18 @@
 
 
 					<p:column headerText="requerente" sortBy="#{req.requerente}"
+						filterBy="#{req.requerente}" style="width: 100px;">
 
-						filterBy="#{req.requerente}"  style="width: 100px;">
-
-						<h:outputText value="#{req.requerente}" escape="false"/>
+						<h:outputText value="#{req.requerente}" escape="false" />
 
 					</p:column>
 
 
 
 					<p:column headerText="Funcao" sortBy="#{req.funcao}"
+						filterBy="#{req.funcao}" style="width: 100px;">
 
-						filterBy="#{req.funcao}"  style="width: 100px;">
-
-						<h:outputText value="#{req.funcao}" escape="false"/>
+						<h:outputText value="#{req.funcao}" escape="false" />
 
 					</p:column>
 
@@ -145,11 +137,25 @@
 
 
 					<p:column headerText="Estado" sortBy="#{req.email}"
+						filterBy="#{req.estado}" style="width: 100px;">
 
-						filterBy="#{req.estado}"  style="width: 100px;">
+						<h:outputText value="#{req.estado}" escape="false" />
 
-						<h:outputText value="#{req.estado}" escape="false"/>
+					</p:column>
 
+					<p:column headerText="Detalhes" style="width:30px;">
+
+						<p:button outcome="detalhesRequerimento?faces-redirect=true"
+							icon="ui-icon-search">
+							<f:param name="idRequerimento" value="#{req.id}"></f:param>
+						</p:button>
+
+					</p:column>
+					<p:column headerText="Criar Anuncio" style="width:30px;">
+						<p:button outcome="criarAnuncio?faces-redirect=true"
+							icon="ui-icon-plus">
+							<f:param name="idRequerimento" value="#{req.id}"></f:param>
+						</p:button>
 					</p:column>
 
 
@@ -158,177 +164,9 @@
 
 
 
-				<p:contextMenu for="dtreq">
-
-					<p:menuitem value="Criar Anuncio" icon="ui-icon-search"
-
-						action="#{dashReqBean.novoAnuncio()}">
-
-					</p:menuitem>
-
-					<p:menuitem value="Detalhes" icon="ui-icon-search"
-
-						oncomplete="PF('ReqDialog').show()" update=":super:dialog" />
-
-					<p:menuitem value="Delete" update="dtreq" icon="ui-icon-close"
-
-						actionListener="#{dashReqBean.deleteSelected()}">
-
-						<p:confirm header="Confirmar" message="Tem a certeza?"
-
-							icon="ui-icon-alert" />
-
-					</p:menuitem>
-
-				</p:contextMenu>
-
-
-
-
-
-
-
-				<p:dialog id="dialog" header="Detalhes" widgetVar="ReqDialog"
-
-					modal="true" showEffect="fade" hideEffect="fade" resizable="false"
-
-					dynamic="true">
-
-					<div>
-
-
-
-						<div class=" container" id="dreq">
-
-							<div class="col-sm"></div>
-
-							<div class="col-sm container1 ">
-
-								<h:form id="dreqForm">
-
-									<h1 style="text-align: center">Detalhes Pedido
-
-										#{dashReqBean.selected.id}</h1>
-
-
-
-
-
-									<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
-
-
-
-
-
-									<h4>Nome:</h4>
-
-									<h:outputText value="#{dashReqBean.selected.requerente}" />
-
-
-
-									<h3>Email</h3>
-
-									<h:outputText value="#{dashReqBean.selected.email}" />
-
-
-
-									<h2 style="margin-top: 0">Candidato</h2>
-
-									<br />
-
-
-
-									<h3>Função</h3>
-
-									<h:outputText value="#{dashReqBean.selected.funcao}" />
-
-
-
-									<h3>Requisitos do Candidato</h3>
-
-									<h:outputText value="#{dashReqBean.selected.requisitos}" />
-
-
-
-									<h3>Observações</h3>
-
-									<h:outputText value="#{dashReqBean.selected.notas}" />
-
-
-
-									<h3>Estado do Requerimento</h3>
-
-									<h:outputText value="#{dashReqBean.selected.estado}" />
-
-
-
-									<h3>Data do Requerimento</h3>
-
-									<h:outputText
-
-										value="#{of:formatDate(DRequemimento.requerimento.data, 'dd.MM.yyyy HH:mm')}" />
-
-								</h:form>
-
-
-
-
-
-								<h:form>
-
-
-
-									<p:button outcome="criarAnuncio?faces-redirect=true"
-
-										value="Criar Novo Anuncio">
-
-										<f:param name="idRequerimento"
-
-											value="#{dashReqBean.selected.id}"></f:param>
-
-									</p:button>
-
-									<p:button outcome="listaRequerimentos?faces-redirect=true"
-
-										value="Voltar">
-
-									</p:button>
-
-
-
-								</h:form>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</p:dialog>
-
-
-
-				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-
-					<p:commandButton value="Sim" type="button"
-
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-
-					<p:commandButton value="Não" type="button"
-
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-
-				</p:confirmDialog>
-
-
-
-
-
 			</h:form>
 
-			<p:commandButton value="Ver todos Pedidos"
 
-				action="listaRequerimentos?faces-redirect=true" style="width:500px" />
 
 		</div>
 
@@ -358,23 +196,33 @@
 
 			<br />
 
-			<h2><b>Gestão de Anuncios</b></h2>
-			<p> Existem <b>#{dashAnBean.comTarefa.size()}</b> Anúncios com tarefas por concluir. </p>
-			
+			<h2>
+				<b>Gestão de Anuncios</b>
+			</h2>
+			<p>
+				Existem <b>#{dashAnBean.comTarefa.size()}</b> Anúncios com tarefas
+				por concluir.
+			</p>
+
+			<p:commandButton value="Criar novo Anuncio"
+				action="criarAnuncio?faces-redirect=true" style="width:300px" />
+				
+			<p:commandButton value="Ver Todos Anúncios"
+				action="listaAnuncios?faces-redirect=true" style="width:300px" />
+				
+			<p:commandButton
+				value="Ver Plataformas (#{dashAnBean.platsSize()})"
+				action="listaPlataformas?faces-redirect=true" style="width:300px" />
+			<p:commandButton value=" Offline/a Expirar "
+				action="listaPlataformas?faces-redirect=true" style="width:300px" />
 
 			<p:dataTable id="dtanuncio" class="table table-condensed table-hover"
-
-				var="anuncio" value="#{dashAnBean.comTarefa}" editable="true"
-
-				rowKey="#{anuncio.id}" selection="#{selected}"
-
-				selectionMode="single" widgetVar="anucioTable"
-
+				var="anuncio" value="#{dashAnBean.comTarefa}" 
+				rowKey="#{anuncio.id}"  
 				emptyMessage="Não foram encontrados resultados com os seguintes criterios"
-
 				filteredValue="#{dashAnBean.filteredAnuncio}" scrollable="true"
-
-				scrollHeight="250" reflow="true" raggableColumns="false" resizableColumns="false">
+				scrollHeight="250" reflow="true" raggableColumns="false"
+				resizableColumns="false">
 
 
 
@@ -387,8 +235,8 @@
 
 
 				<p:column filterBy="#{anuncio.REF}" headerText="Referência"
-
-					sortBy="#{anuncio.REF}" filterMatchMode="contains" style="width: 100px;" escape="false">
+					sortBy="#{anuncio.REF}" filterMatchMode="contains"
+					style="width: 100px;" escape="false">
 
 					<p:cellEditor>
 
@@ -413,8 +261,8 @@
 
 
 				<p:column filterBy="#{anuncio.funcao}" headerText="Função"
-
-					sortBy="#{anuncio.funcao}" filterMatchMode="contains" style="width: 100px;" escape="false">
+					sortBy="#{anuncio.funcao}" filterMatchMode="contains"
+					style="width: 100px;" escape="false">
 
 					<p:cellEditor>
 
@@ -437,8 +285,8 @@
 
 
 				<p:column filterBy="#{anuncio.manager}" headerText="Manager"
-
-					sortBy="#{anuncio.manager}" filterMatchMode="contains" style="width: 100px;" escape="false">
+					sortBy="#{anuncio.manager}" filterMatchMode="contains"
+					style="width: 100px;" escape="false">
 
 					<p:cellEditor>
 
@@ -463,8 +311,8 @@
 
 
 				<p:column headerText="Estado" sortBy="#{anuncio.estado}"
-
-					filterBy="#{anuncio.estado}" filterMatchMode="contains" style="width: 100px;" escape="false">
+					filterBy="#{anuncio.estado}" filterMatchMode="contains"
+					style="width: 100px;" escape="false">
 
 
 
@@ -481,7 +329,6 @@
 							<h:selectOneMenu value="#{anuncio.estado}">
 
 								<f:selectItem itemLabel="Selecione um"
-
 									itemValue="#{anuncio.estado}" />
 
 								<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
@@ -504,97 +351,32 @@
 
 
 
-							<p:column headerText="Plataformas" sortBy="#{dashAnBean.numberOnlinePlats(anuncio)} Plataformas (Online/Total)" style="width:30px;"
-							filterBy="#{dashAnBean.numberOnlinePlats(anuncio)}" filterMatchMode="contains">
-							<p:button outcome="listarAnunPlat?faces-redirect=true"
-								value="#{dashAnBean.numberOnlinePlats(anuncio)} / #{dashAnBean.numberAnunPlats(anuncio)}" >
-								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
-							</p:button>
-						</p:column>
+				<p:column headerText="Plataformas"
+					sortBy="#{dashAnBean.numberOnlinePlats(anuncio)} Plataformas (Online/Total)"
+					style="width:30px;"
+					filterBy="#{dashAnBean.numberOnlinePlats(anuncio)}"
+					filterMatchMode="contains">
+					<h:outputText
+						value="#{dashAnBean.numberOnlinePlats(anuncio)} / #{dashAnBean.numberAnunPlats(anuncio)}" />
+				</p:column>
 
 
-						<p:column headerText="Tarefas" sortBy="#{anuncio.tarefas}" style="width:30px;"
-							filterBy="#{anuncio.tarefas}" filterMatchMode="contains">
-							<h:outputText value="#{anuncio.tarefas}" />
-						</p:column>
-
-
-
-			
-
-
-				
-
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-
-						<p:commandButton value="Sim" type="button"
-
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-
-						<p:commandButton value="Não" type="button"
-
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-
-					</p:confirmDialog>
-			
-	
-
+				<p:column headerText="Detalhes" style="width:30px;">
+					<p:button outcome="detalhesAnunPlat?faces-redirect=true"
+						icon="ui-icon-search">
+						<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
+					</p:button>
+				</p:column>
 
 
 			</p:dataTable>
+			<br />
+			<br />
 
-			
-
-			<h:form>
-
-				<p:contextMenu for="dtanuncio">
-
-					<p:menuitem value="Criar Anuncio" icon="ui-icon-search"
-
-						action = "criarAnuncio?faces-redirect=true">
-
-					</p:menuitem>
-
-					<p:menuitem value="Detalhes e Plataformas" icon="ui-icon-search"
-
-						action="#{dashAnBean.listAnunPlat(selected)}" />
-	
-
-					<p:menuitem value="Delete" update="dtanuncio" icon="ui-icon-close"
-
-						actionListener="#{dashAnBean.removeAnuncio(selected)}">
-
-						<p:confirm header="Confirmar" message="Tem a certeza?"
-
-							icon="ui-icon-alert" />
-
-					</p:menuitem>
-
-				</p:contextMenu>
-
-			</h:form>
-
-			
-
-
-
-
-
-			<p:commandButton value="Ver Todos Anúncios"
-
-				action="listaAnuncios?faces-redirect=true" style="width:500px" />
-
-			<br /> <br />
 
 		</div>
 
 
-	
-
-
-		
-
-		
 
 	</div>
 

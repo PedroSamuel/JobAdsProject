@@ -73,11 +73,18 @@ table{
 
 
 
+
 th{
 	font-weight: bold;
 	padding:0.5em;
 	background :#60bfd8;
 }
+
+tr:hover{
+	background: #c9f5ff;
+}
+
+
 
 .ui-menu{
 	background-color: #e7480e;

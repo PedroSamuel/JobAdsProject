@@ -25,12 +25,14 @@
 		<div class="container-fluid">
 			<div class="row">
 
-				<div class="col-sm" >
-<br /> 
+				<div class="col-sm">
+					<br />
+						<p:commandButton value="Criar Anúncio"
+						action="criarAnuncio?faces-redirect=true" />
 					<p:dataTable id="dtanuncio" var="anuncio"
 						value="#{anuncioBean.anuncioList}" editable="true"
 						style="margin-bottom:20px" rowKey="#{anuncio.id}"
-						selection="#{selected}" selectionMode="single"		
+						selection="#{selected}" selectionMode="single"
 						widgetVar="anucioTable"
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 						filteredValue="#{anuncioBean.filteredAnuncio}">
@@ -95,8 +97,9 @@
 									<h:outputText value="#{anuncio.estado}" />
 								</f:facet>
 								<f:facet name="input">
-									<h:selectOneMenu value="#{anuncio.estado}" style="width:125%">
-										<f:selectItem itemLabel="Selecione um" itemValue="#{anuncio.estado}" />
+									<h:selectOneMenu value="#{anuncio.estado}" style="width:80px">
+										<f:selectItem itemLabel="Selecione um"
+											itemValue="#{anuncio.estado}" />
 										<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
 										<f:selectItem itemLabel="Manter" itemValue="Manter" />
 										<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
@@ -105,25 +108,30 @@
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
-						
-	
 
-						<p:column headerText="Plataformas (Online/Total)" sortBy="#{anuncioBean.numberOnlinePlats(anuncio)}"
-							filterBy="#{anuncioBean.numberOnlinePlats(anuncio)}" filterMatchMode="contains">
-							<p:button outcome="listarAnunPlat?faces-redirect=true"
-								value="#{ anuncioBean.numberOnlinePlats(anuncio)}  / #{anuncioBean.numberAnunPlats(anuncio)}  ">
-								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
-								
-							</p:button>
+
+						<p:column headerText="Plataformas (Online/Offline)" style="width:150px">
+							<h:outputText
+								value="#{ anuncioBean.numberOnlinePlats(anuncio)}  / #{anuncioBean.numberAnunPlats(anuncio)}  " />
 						</p:column>
+
 						<p:column headerText="Tarefas" sortBy="#{anuncio.tarefas}"
-							filterBy="#{anuncio.tarefas}" filterMatchMode="contains">
+							filterBy="#{anuncio.tarefas}" filterMatchMode="contains" style="width:80px">
 							<h:outputText value="#{anuncio.tarefas}" />
 						</p:column>
-						
+
+						<p:column headerText="Detalhes)" style="width:80px">
+							<p:button outcome="detalhesAnunPlat?faces-redirect=true"
+								icon="ui-icon-search">
+								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
+
+							</p:button>
+						</p:column>
 
 
-					<p:column style="width:50px">
+
+
+						<p:column style="width:50px">
 							<p:rowEditor />
 						</p:column>
 
@@ -144,33 +152,10 @@
 						</p:column>
 
 					</p:dataTable>
-					
-					<p:contextMenu for="dtanuncio">
-
-					<p:menuitem value="Criar Anuncio" icon="ui-icon-search"
-
-						action = "criarAnuncio?faces-redirect=true">
-
-					</p:menuitem>
-
-					<p:menuitem value="Detalhes e Plataformas" icon="ui-icon-search"
-
-						action="#{anuncioBean.listAnunPlat(selected)}" />
 
 
 
-					<p:menuitem value="Delete" update="dtanuncio" icon="ui-icon-close"
 
-						actionListener="#{anuncioBean.removeAnuncio(selected)}">
-
-						<p:confirm header="Confirmar" message="Tem a certeza?"
-
-							icon="ui-icon-alert" />
-					</p:menuitem>
-					</p:contextMenu>
-
-
-					<p:commandButton value="Criar Anúncio" action="criarAnuncio?faces-redirect=true" />
 
 				</div>
 			</div>
