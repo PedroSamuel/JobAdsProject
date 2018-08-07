@@ -7,12 +7,13 @@ import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 import model.AnuncioPlataforma;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Plataforma.getAll", query = "SELECT s FROM Plataforma s"),
-	@NamedQuery(name = "Plataforma.getAllWithAnuncios", query = "SELECT s FROM Plataforma s LEFT JOIN FETCH s.anuncios") })
+	@NamedQuery(name = "Plataforma.getAllWithAnuncios", query = "SELECT distinct s FROM Plataforma s LEFT JOIN FETCH s.anuncios") })
 public class Plataforma extends Entidade {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "plataforma") //, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
@@ -67,6 +68,10 @@ public class Plataforma extends Entidade {
 		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
 	}
 	
+	@PreRemove
+	private void preRemove() {
+		this.anuncios.remove(this);
+		}
 	/*
 	public List<AnuncioPlataforma> getListaAnuncios() {
 		return listaAnuncios;

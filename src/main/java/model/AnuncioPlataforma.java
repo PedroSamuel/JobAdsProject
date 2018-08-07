@@ -141,6 +141,7 @@ public class AnuncioPlataforma implements Serializable{
 	@PreRemove
 	private void preRemove() {
 		this.anuncio.getPlataformas().remove(this);
+		this.plataforma.getAnuncios().remove(this);
 	}
 	
 	
