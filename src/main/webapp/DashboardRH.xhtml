@@ -81,22 +81,22 @@
 
 
 						<h2><b>Gestão de Pedidos </b></h2>
-						<p>		Existem <b>#{requerimentoBean.porProcessar.size()}</b> pedidos por processar  </p>
+						<p>		Existem <b>#{dashReqBean.porProcessar.size()}</b> pedidos por processar  </p>
 				
 
 				<p:dataTable id="dtreq" var="req"
 
-					value="#{requerimentoBean.porProcessar}" editable="false"
+					value="#{dashReqBean.porProcessar}" editable="false"
 
 					class="table table-condensed table-hover" rowKey="#{req.id}"
 
-					selection="#{requerimentoBean.selected}" selectionMode="single"
+					selection="#{dashReqBean.selected}" selectionMode="single"
 
 					widgetVar="reqTable"
 
 					emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 
-					filteredValue="#{requerimentoBean.filteredRequerientos}"
+					filteredValue="#{dashReqBean.filteredRequerientos}"
 
 					scrollable="true" scrollHeight="250" raggableColumns="false" resizableColumns="false">
 
@@ -162,7 +162,7 @@
 
 					<p:menuitem value="Criar Anuncio" icon="ui-icon-search"
 
-						action="#{requerimentoBean.novoAnuncio()}">
+						action="#{dashReqBean.novoAnuncio()}">
 
 					</p:menuitem>
 
@@ -172,7 +172,7 @@
 
 					<p:menuitem value="Delete" update="dtreq" icon="ui-icon-close"
 
-						actionListener="#{requerimentoBean.deleteSelected()}">
+						actionListener="#{dashReqBean.deleteSelected()}">
 
 						<p:confirm header="Confirmar" message="Tem a certeza?"
 
@@ -208,7 +208,7 @@
 
 									<h1 style="text-align: center">Detalhes Pedido
 
-										#{requerimentoBean.selected.id}</h1>
+										#{dashReqBean.selected.id}</h1>
 
 
 
@@ -222,13 +222,13 @@
 
 									<h4>Nome:</h4>
 
-									<h:outputText value="#{requerimentoBean.selected.requerente}" />
+									<h:outputText value="#{dashReqBean.selected.requerente}" />
 
 
 
 									<h3>Email</h3>
 
-									<h:outputText value="#{requerimentoBean.selected.email}" />
+									<h:outputText value="#{dashReqBean.selected.email}" />
 
 
 
@@ -240,25 +240,25 @@
 
 									<h3>Função</h3>
 
-									<h:outputText value="#{requerimentoBean.selected.funcao}" />
+									<h:outputText value="#{dashReqBean.selected.funcao}" />
 
 
 
 									<h3>Requisitos do Candidato</h3>
 
-									<h:outputText value="#{requerimentoBean.selected.requisitos}" />
+									<h:outputText value="#{dashReqBean.selected.requisitos}" />
 
 
 
 									<h3>Observações</h3>
 
-									<h:outputText value="#{requerimentoBean.selected.notas}" />
+									<h:outputText value="#{dashReqBean.selected.notas}" />
 
 
 
 									<h3>Estado do Requerimento</h3>
 
-									<h:outputText value="#{requerimentoBean.selected.estado}" />
+									<h:outputText value="#{dashReqBean.selected.estado}" />
 
 
 
@@ -284,7 +284,7 @@
 
 										<f:param name="idRequerimento"
 
-											value="#{requerimentoBean.selected.id}"></f:param>
+											value="#{dashReqBean.selected.id}"></f:param>
 
 									</p:button>
 
@@ -359,12 +359,12 @@
 			<br />
 
 			<h2><b>Gestão de Anuncios</b></h2>
-			<p> Existem <b>#{anuncioBean.anuncioList.size()}</b> Anúncios com tarefas por concluir. </p>
+			<p> Existem <b>#{dashAnBean.comTarefa.size()}</b> Anúncios com tarefas por concluir. </p>
 			
 
 			<p:dataTable id="dtanuncio" class="table table-condensed table-hover"
 
-				var="anuncio" value="#{anuncioBean.anuncioList}" editable="true"
+				var="anuncio" value="#{dashAnBean.comTarefa}" editable="true"
 
 				rowKey="#{anuncio.id}" selection="#{selected}"
 
@@ -372,7 +372,7 @@
 
 				emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 
-				filteredValue="#{anuncioBean.filteredAnuncio}" scrollable="true"
+				filteredValue="#{dashAnBean.filteredAnuncio}" scrollable="true"
 
 				scrollHeight="250" reflow="true" raggableColumns="false" resizableColumns="false">
 
@@ -380,7 +380,7 @@
 
 
 
-				<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />
+				<p:ajax event="rowEdit" listener="#{dashAnBean.onRowEdit}" />
 
 
 
@@ -504,10 +504,10 @@
 
 
 
-							<p:column headerText="Plataformas" sortBy="#{anuncioBean.numberOnlinePlats(anuncio)} Plataformas (Online/Total)" style="width:30px;"
-							filterBy="#{anuncioBean.numberOnlinePlats(anuncio)}" filterMatchMode="contains">
+							<p:column headerText="Plataformas" sortBy="#{dashAnBean.numberOnlinePlats(anuncio)} Plataformas (Online/Total)" style="width:30px;"
+							filterBy="#{dashAnBean.numberOnlinePlats(anuncio)}" filterMatchMode="contains">
 							<p:button outcome="listarAnunPlat?faces-redirect=true"
-								value="#{anuncioBean.numberOnlinePlats(anuncio)} / #{anuncioBean.numberAnunPlats(anuncio)}" >
+								value="#{dashAnBean.numberOnlinePlats(anuncio)} / #{dashAnBean.numberAnunPlats(anuncio)}" >
 								<f:param name="idAnuncio" value="#{anuncio.id}"></f:param>
 							</p:button>
 						</p:column>
@@ -557,12 +557,12 @@
 
 					<p:menuitem value="Detalhes e Plataformas" icon="ui-icon-search"
 
-						action="#{anuncioBean.listAnunPlat(selected)}" />
+						action="#{dashAnBean.listAnunPlat(selected)}" />
 	
 
 					<p:menuitem value="Delete" update="dtanuncio" icon="ui-icon-close"
 
-						actionListener="#{anuncioBean.removeAnuncio(selected)}">
+						actionListener="#{dashAnBean.removeAnuncio(selected)}">
 
 						<p:confirm header="Confirmar" message="Tem a certeza?"
 

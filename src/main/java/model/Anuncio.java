@@ -21,8 +21,8 @@ import javax.persistence.PreRemove;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Anuncio.getAll", query = "SELECT e FROM Anuncio e"),
-	@NamedQuery(name = "Anuncio.getAllWithPlataformas", query = "SELECT e FROM Anuncio e LEFT JOIN FETCH e.plataformas"),
-	@NamedQuery(name = "Anuncio.comTarefa", query = "SELECT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.tarefas LIKE :tarefas")})
+	@NamedQuery(name = "Anuncio.getAllWithPlataformas", query = "SELECT DISTINCT e FROM Anuncio e LEFT JOIN FETCH e.plataformas"),
+	@NamedQuery(name = "Anuncio.comTarefa", query = "SELECT DISTINCT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.tarefas LIKE :tarefas")})
 public class Anuncio extends Entidade {
 
 	private String REF;
