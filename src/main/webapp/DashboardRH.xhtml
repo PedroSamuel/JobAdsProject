@@ -81,12 +81,12 @@
 
 
 						<h2><b>Gestão de Pedidos </b></h2>
-						<p>		Existem <b>#{requerimentoBean.porProcessar().size()}</b> pedidos por processar  </p>
+						<p>		Existem <b>#{requerimentoBean.porProcessar.size()}</b> pedidos por processar  </p>
 				
 
 				<p:dataTable id="dtreq" var="req"
 
-					value="#{requerimentoBean.porProcessar()}" editable="false"
+					value="#{requerimentoBean.porProcessar}" editable="false"
 
 					class="table table-condensed table-hover" rowKey="#{req.id}"
 

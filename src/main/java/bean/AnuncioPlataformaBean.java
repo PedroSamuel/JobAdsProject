@@ -112,7 +112,7 @@ public class AnuncioPlataformaBean implements Serializable {
 			long longID = Long.valueOf(idAnuncio);
 			setAnuncio(anuncioControl.getAnuncio(longID));
 			System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
-			APList = getSelectAnPlat();
+			APList = anuncioControlPlataforma.SelectAnPlat(anuncio);
 		}
 
 	}
@@ -145,14 +145,17 @@ public class AnuncioPlataformaBean implements Serializable {
 	}
 
 	public void onlineDate(AnuncioPlataforma ap) {
+		
 		System.out.println("iniciar evento online date");
-		if (ap.getEstado().equals("Offline")) {
+		System.out.println(ap.getEstado());
+		if (ap.getEstado().equals("Online")) {
 			ap.setDatacriacao(LocalDateTime.now());
 			System.out.println("online:" + ap.getDatacriacao());
 
 		} else if (ap.getEstado().equals("Offline")) {
 			ap.setDatacriacao(null);
 			System.out.println("data nula");
+			System.out.println("Offline;" + ap.getDatacriacao());
 
 		}
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
