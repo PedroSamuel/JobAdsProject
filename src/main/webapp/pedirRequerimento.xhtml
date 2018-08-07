@@ -14,104 +14,75 @@
 	<h:outputStylesheet library="css" name="style.css" />
 	<title>Efectuar Pedido</title>
 
-	<script>
-PrimeFaces.locales['pt'] = {
-        closeText: 'Fechar',
-            prevText: 'Anterior',
-            nextText: 'Próximo',
-            currentText: 'Começo',
-            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],                         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Des'],
-            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-            weekHeader: 'Semana',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: '',
-            timeOnlyTitle: 'Só Horas',
-            timeText: 'Tempo',
-            hourText: 'Hora',
-            minuteText: 'Minuto',
-            secondText: 'Segundo',
-            ampm: false,
-            month: 'Mês',
-            week: 'Semana',
-            day: 'Dia',
-            allDayText: 'Todo Dia'
-        };
-</script>
+
+
 
 </h:head>
 
 <h:body>
-<br />
-	<br />
-	<br />
 
-	<div class="row">
 
-	<div class="container">
-		<div class="col-sm-1"></div>
 
-		<div class="col-sm-10 container1 ">
-			<br />
-			<h:graphicImage value="resources/images/aubayImg.png" width="150"
-				class="mx-auto d-block" />
 
-			<br />
-		
-
-			
+	<div class="container displayinfo">
 
 	
-			<br />
-				
-	<h:form>
-		
+			
+<h:graphicImage value="resources/images/aubayImg.png" width="100" class="d-block mx-auto" />
+<br />
+	
 
-		<h4 style="margin-top: 0">Requerente (Business Manager)</h4>
+		<h:form>
 
-		<h5>Nome</h5>
-		<p:inputTextarea value="#{requerimentoCreate.requerimento.requerente}" rows="1" cols="50" autoResize = "false"/>
+			<div class="row">
+			
+				<div class="col-sm-6">
+					<h3 style="margin-top: 0">Requerente (Business Manager)</h3>
 
-		<h5>Email</h5>
-		<p:inputTextarea value="#{requerimentoCreate.requerimento.email}"  rows="1" cols="50" autoResize = "false"/>
-		<br />
-		<br />
-		<br />
-		<h4 style="margin-top: 0">Candidato</h4>
-		<br />
+					<h5>Nome</h5>
+					<p:inputTextarea
+						value="#{requerimentoCreate.requerimento.requerente}" rows="1"
+						cols="50" autoResize="false" />
 
-		<h5>Função</h5>
-		<p:inputTextarea value="#{requerimentoCreate.requerimento.funcao}" rows="1" cols="50" autoResize = "false"/>
-
-		<h4>Requisitos do Candidato</h4>
-		<p:inputTextarea value="#{requerimentoCreate.requerimento.requisitos}" rows="10" cols="80"
-			autoResize="false" />
-		<h:outputText id="display" />
-
-		<h5>Observações</h5>
-		<p:inputTextarea value="#{requerimentoCreate.requerimento.notas}" rows="3" cols="80" counter="display1"
-			maxlength="500" counterTemplate="{0} characters remaining."
-			autoResize="false" />
-		<h:outputText id="display1" />
-		
+					<h5>Email</h5>
+					<p:inputTextarea value="#{requerimentoCreate.requerimento.email}"
+						rows="1" cols="50" autoResize="false" />
+					<h5>Observações</h5>
+					<p:inputTextarea value="#{requerimentoCreate.requerimento.notas}"
+						rows="4" cols="60" counter="display1" maxlength="500"
+						counterTemplate="{0} characters remaining." autoResize="false" />
+					<h:outputText id="display1" />
 
 
-		
-
-<br/>
-
-		<p:commandButton value="Enviar" action="#{requerimentoCreate.salvarRequerimento()}" />
-		<p:commandButton value="Voltar" action="index?faces-redirect=true" />
-
-	</h:form>
-		<div class="col-sm-1"></div>
-
-					</div>
+					<br />
 				</div>
+				<div class="col-sm-6">
+					<h3 style="margin-top: 0">Candidato</h3>
+					<h5>Função</h5>
+					<p:inputTextarea value="#{requerimentoCreate.requerimento.funcao}"
+						rows="1" cols="50" autoResize="false" />
+
+					<h4>Requisitos do Candidato</h4>
+					<p:inputTextarea
+						value="#{requerimentoCreate.requerimento.requisitos}" rows="10"
+						cols="60" autoResize="false" />
+					<h:outputText id="display" />
 				</div>
-		
+				<div class="row"></div>
+
+
+
+				<br />
+
+				<p:commandButton value="Enviar"
+					action="#{requerimentoCreate.salvarRequerimento()}" />
+				<p:commandButton value="Voltar" action="index?faces-redirect=true" />
+			</div>
+		</h:form>
+
+
+	</div>
+
+
 </h:body>
 </html>
