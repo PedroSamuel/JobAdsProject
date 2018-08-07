@@ -47,6 +47,8 @@ h3 b{
 .selectOneMenu{
 	font-size: 25px;
 	padding: 5px;
+	background: #c9f5ff;
+	
 }
 
 .green{
@@ -145,7 +147,7 @@ tr:hover{
 }
 
 .container-fluid{
-	top: 5em;
+	top: 1em;
 	position: relative;
 }
 
@@ -227,3 +229,4 @@ div.filler {
 	font-size: 15px;
 	
 }
+

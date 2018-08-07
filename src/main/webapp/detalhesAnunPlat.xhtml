@@ -26,7 +26,7 @@
 		</ui:insert>
 	</div>
 	<h:form id="su" onkeypress="if (event.keyCode == 13){return false;}">
-		    <p:growl id="growl" showDetail="true" sticky="true" life="3000" />  
+		<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 
 		<div class="container-fluid">
 			<div class="row">
@@ -41,21 +41,21 @@
 					</h3>
 					<br /> <br />
 					<h3>
-						<b>Manager: </b> #{anuncioplataformaBean.anuncio.manager}
-					</h3>
+						<b>Manager: </b> #{anuncioplataformaBean.anuncio.manager}</h3>
 
-					<h:selectOneMenu class="selectOneMenu" value="#{anuncioplataformaBean.anuncio.estado}" >
+					<h3> <b>Estado: </b></h3>
+					<h:selectOneMenu class="selectOneMenu"
+						value="#{anuncioplataformaBean.anuncio.estado}">
 
 						<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
-						<br />
 						<f:selectItem itemLabel="Manter" itemValue="Manter" />
-						<br />
 						<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
-						<p:ajax event="change" 
-								listener="#{anuncioplataformaBean.updateAnuncio()}" update="growl"/>
-					
+						<p:ajax event="change"
+							listener="#{anuncioplataformaBean.updateAnuncio()}"
+							update="growl" />
+
 					</h:selectOneMenu>
-					<br />
+				
 
 				</div>
 
@@ -74,137 +74,142 @@
 
 				<br />
 				<h:form>
-				<p:dataTable editable="true" style="margin-bottom:20px"
-					id="dtAnunPlat" var="anunPlat"
-					value="#{anuncioplataformaBean.APList}"
-					emptyMessage="Não foram encontrados resultados com os seguintes criterios"
-					filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}"
-					selection="#{anuncioplataformaBean.selected}"
-					selectionMode="single" rowKey="#{anunPlat.id}">
 
-					<p:ajax event="rowSelect" update="@([id$=AnunPlatDetail])"
-						oncomplete="PF('AnunPlatDialog').show()" />
+					<p:button outcome="criarAnunPlat?faces-redirect=true"
+						value=" Associar Plataforma" style="width:300px">
+						<f:param name="idAnuncio"
+							value="#{anuncioplataformaBean.idAnuncio}"></f:param>
+					</p:button>
+					<p:dataTable editable="true" id="dtAnunPlat" var="anunPlat"
+						value="#{anuncioplataformaBean.APList}"
+						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
+						filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}"
+						selection="#{anuncioplataformaBean.selected}"
+						selectionMode="single" rowKey="#{anunPlat.id}" scrollable="true"
+						scrollHeight="600" raggableColumns="false"
+						resizableColumns="false">
+
+						<p:ajax event="rowSelect" update="@([id$=AnunPlatDetail])"
+							oncomplete="PF('AnunPlatDialog').show()" />
 						 
 						 (
 
 						<p:ajax event="rowEdit"
-						listener="#{anuncioPlataformaBean.onRowEdit}" />
+							listener="#{anuncioPlataformaBean.onRowEdit}" />
 
-					<p:column headerText="Plataforma" sortBy="#{anunPlat.plataforma}"
-						filterBy="#{anunPlat.plataforma}">
+						<p:column headerText="Plataforma" sortBy="#{anunPlat.plataforma}"
+							style="width:100px" filterBy="#{anunPlat.plataforma}">
 
-						<h:outputText value="#{anunPlat.plataforma}" />
+							<h:outputText value="#{anunPlat.plataforma}" />
 
-					</p:column>
-
-
-					<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
-						filterBy="#{anunPlat.estado}" filterMatchMode="contains">
-						
-						<p:selectOneButton value="#{anunPlat.estado}" unselectable="false">
-
-							<f:selectItem class="on selectOnebutton" itemLabel="Offline" itemValue="Offline" />
-							<f:selectItem class="off selectOnebutton" itemLabel="Online" itemValue="Online" />
-							<p:ajax event="change" 
-								listener="#{anuncioplataformaBean.onlineDate(anunPlat)}" update="dtAnunPlat"/>
-						</p:selectOneButton>
-					
-					</p:column>
-
-					<p:column headerText="Anúncio Criado"
-						sortBy="#{anunPlat.datacriacao}"
-						filterBy="#{anunPlat.datacriacao}" filterMatchMode="contains">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{anunPlat.datacriacao}" style="width:100%"
-									label="Função" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-
-					<p:column headerText="Anúncio Expira em:"
-						sortBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
-						filterBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
-						filterMatchMode="contains">
-
-						<h:outputText
-							value="#{anuncioplataformaBean.expirationDate(anunPlat).toLocalDate()}" />
-
-					</p:column>
-
-					<p:column headerText="Link" sortBy="#{anunPlat.link}"
-						filterBy="#{anunPlat.link}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:commandLink value="#{anunPlat.link}"
-									action="#{anuncioPlataforma.redirect()}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{anunPlat.link}" style="width:100%"
-									label="Função" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
+						</p:column>
 
 
+						<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
+							filterBy="#{anunPlat.estado}" filterMatchMode="contains"
+							style="width:100px">
 
-					<p:column headerText="Dias até expirar:"
-						sortBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"
-						filterBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}">
-						<h:outputText
-							value="#{anuncioplataformaBean.daysToExpire(anunPlat)}" />
-					</p:column>
+							<p:selectOneButton value="#{anunPlat.estado}"
+								unselectable="false">
+
+								<f:selectItem class="on selectOnebutton" itemLabel="Offline"
+									itemValue="Offline" />
+								<f:selectItem class="off selectOnebutton" itemLabel="Online"
+									itemValue="Online" />
+								<p:ajax event="change"
+									listener="#{anuncioplataformaBean.onlineDate(anunPlat)}"
+									update="dtAnunPlat" />
+							</p:selectOneButton>
+
+						</p:column>
+
+						<p:column headerText="Anúncio Criado"
+							sortBy="#{anunPlat.datacriacao}"
+							filterBy="#{anunPlat.datacriacao}" filterMatchMode="contains"
+							style="width:100px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.datacriacao}" label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Anúncio Expira em:"
+							sortBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
+							filterBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
+							filterMatchMode="contains" style="width:100px">
+
+							<h:outputText
+								value="#{anuncioplataformaBean.expirationDate(anunPlat).toLocalDate()}" />
+
+						</p:column>
+
+						<p:column headerText="Link" sortBy="#{anunPlat.link}"
+							filterBy="#{anunPlat.link}" style="width:100px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:commandLink value="#{anunPlat.link}"
+										action="#{anuncioPlataforma.redirect()}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.link}" style="width:100px"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
 
 
+						<p:column headerText="Dias até expirar:"
+							sortBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"
+							filterBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"
+							style="width:70px">
+							<h:outputText
+								value="#{anuncioplataformaBean.daysToExpire(anunPlat)}" />
+						</p:column>
 
-					<p:column style="width:32px">
-						<p:rowEditor />
-					</p:column>
+
+
+
+						<p:column headerText="Editar" style="width:70px">
+							<p:rowEditor />
+						</p:column>
 
 
 
 
-					<p:column style="width:70px">
-						<p:commandButton icon="ui-icon-trash"
-							action="#{anuncioplataformaBean.removeAnunPlat(anunPlat)}"
-							update="dtAnunPlat">
-							<p:confirm header="Confirmação" message="Tem a certeza?"
-								icon="ui-icon-alert" />
-						</p:commandButton>
+						<p:column headerText="Eliminar" style="width:70px">
+							<p:commandButton icon="ui-icon-trash"
+								action="#{anuncioplataformaBean.removeAnunPlat(anunPlat)}"
+								update="dtAnunPlat">
+								<p:confirm header="Confirmação" message="Tem a certeza?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
 
-						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-							<p:commandButton value="Sim" type="button"
-								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-							<p:commandButton value="Não" type="button"
-								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-						</p:confirmDialog>
-					</p:column>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</p:column>
 
-				</p:dataTable>
+					</p:dataTable>
 
-				<p:contextMenu for="dtAnunPlat">
-					<p:menuitem value="Associar Plataforma" icon="ui-icon-search"
-						action="#{anuncioplataformaBean.newAnunPlat()}" />
-					<p:menuitem value="Ir para Link" action="#{anuncioplataformaBean.redirect()}"
-						icon="ui-icon-search" />
-					<p:menuitem value="Delete" update="dtAnunPlat" icon="ui-icon-close"
-						actionListener="#{anuncioplataformaBean.deleteSelected()}" />
-				</p:contextMenu>
 
-				<p:button outcome="criarAnunPlat?faces-redirect=true"
-					value=" Associar Plataforma">
-					<f:param name="idAnuncio"
-						value="#{anuncioplataformaBean.idAnuncio}"></f:param>
-				</p:button>
+
 				</h:form>
+
 
 
 			</div>
 		</div>
 	</h:form>
+	<br />
+	<br />
 </h:body>
 </html>
