@@ -65,7 +65,7 @@
 				<div class="col-sm-4 text-center">
 					<h:form>
 						<div>
-							<h:outputLink value="javascript:void(0)" onclick="PF('dlgRH').show();"
+							<h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();"
 								styleClass="clickAll">
 								<h:graphicImage value="resources/images/rh.png" class="userImg" />
 							</h:outputLink>
@@ -78,7 +78,7 @@
 				<div class="col-sm-4 text-center">
 					<h:form>
 						<div>
-							<h:outputLink value="javascript:void(0)" onclick="PF('dlgAdmin').show();"
+							<h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();"
 								styleClass="clickAll">
 								<h:graphicImage value="resources/images/admin.png"
 									class="userImg" />
@@ -97,7 +97,7 @@
 	<br />
 	<h:form>
 		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-		<p:dialog header="Login" widgetVar="dlgRH" resizable="false">
+		<p:dialog header="Login" widgetVar="dlg" resizable="false">
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="username" value="Username:" />
 				<p:inputText id="username" value="#{login.username}"
@@ -109,31 +109,13 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Login" update="growl"
-						actionListener = "#{login.submitRH}" />
+						actionListener = "#{login.submit}" />
 				</f:facet>
 			</h:panelGrid>
 		</p:dialog>
 	</h:form>
 	
-	<h:form>
-		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-		<p:dialog header="Login" widgetVar="dlgAdmin" resizable="false">
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel for="username" value="Username:" />
-				<p:inputText id="username" value="#{login.username}"
-					label="username" />
-
-				<h:outputLabel for="password" value="Password:" />
-				<p:password id="password" value="#{login.password}"
-					label="password" />
-
-				<f:facet name="footer">
-					<p:commandButton value="Login" update="growl"
-						actionListener = "#{login.submitAdmin}" />
-				</f:facet>
-			</h:panelGrid>
-		</p:dialog>
-	</h:form>
+	
 
 
 </h:body>

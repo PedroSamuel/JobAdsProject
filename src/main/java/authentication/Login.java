@@ -25,7 +25,7 @@ public class Login {
     private String password;
 
 
-    public void submitRH() throws IOException {
+    public void submit() throws IOException {
         try {
             SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));
             SavedRequest savedRequest = WebUtils.getAndClearSavedRequest(Faces.getRequest());
