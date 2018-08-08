@@ -46,6 +46,13 @@ public class Anuncio extends Entidade {
 	public Set<AnuncioPlataforma> getPlataformas() {
 		return plataformas;
 	}
+	
+	public int countPlataformas() {
+		return plataformas.size();
+	}
+	public long countPlataformasOnline() {
+		return plataformas.stream().filter( p -> p.getEstado().equals("Online") ).collect(List<Plataformas>).count();
+	}
 
 	public void setPlataformas(Set<AnuncioPlataforma> plataformas) {
 		this.plataformas = plataformas;

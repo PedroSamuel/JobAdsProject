@@ -111,7 +111,7 @@ tr:hover{
 	background: #e42813;
 }
 
-.on.selectOnebutton .ui-button-text {
+span.ui-button-text.ui-c:active {
 	background: green;
 }
 
