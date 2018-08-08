@@ -1,6 +1,6 @@
 package bean;
 
-import java.util.List;
+
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -15,8 +15,7 @@ import control.ControlAnuncio;
 import control.ControlAnuncioPlataforma;
 import control.ControlPlataforma;
 import model.Anuncio;
-import model.AnuncioPlataforma;
-import model.Plataforma;
+
 
 @Named("dashAnBean")
 @ViewScoped
