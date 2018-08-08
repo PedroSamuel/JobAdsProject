@@ -9,7 +9,7 @@ import javax.inject.Named;
 import java.time.*;
 
 import control.ControlRequerimento;
-
+import mail.SSLEmail;
 import model.Requerimento;
 
 
@@ -34,6 +34,7 @@ public class CriarRequerimento {
 	
 		requerimento.setData(LocalDateTime.now());
 		controlRequerimento.criarRequerimento(requerimento);
+		SSLEmail.SSl(requerimento.getEmail(), requerimento.getFuncao(), requerimento.getRequisitos());
 		return "pedirRequerimento?faces-redirect=true";
 	}
 

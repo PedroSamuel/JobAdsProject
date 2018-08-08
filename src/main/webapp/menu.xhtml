@@ -45,6 +45,9 @@
          <p:menuitem value="Plataformas" action="listaPlataformas?faces-redirect=true"  />
          
           <p:menuitem value="Registos em Plataformas" action="listarAnunPlat?faces-redirect=true"  />
+          
+          
+            <p:menuitem value="Criar Utilizador" action="criarUser?faces-redirect=true"  />
         
       
         
@@ -53,7 +56,7 @@
  
         <f:facet name="options">
          
-            <p:button id="logout" class="mybutton" type="button" value="Logout" icon="ui-icon-extlink" outcome="index.xhtml?faces-redirect=true" />
+            <p:commandLink id="logout" class="mybutton" type="button" value="Logout" icon="ui-icon-extlink" action="#{logout.submit}" />
 
 	
             
