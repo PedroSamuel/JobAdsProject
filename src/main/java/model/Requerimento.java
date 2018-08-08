@@ -13,6 +13,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Requerimento.getAll", query = "SELECT e FROM Requerimento e"),
+	@NamedQuery(name = "Requerimento.countAll", query = "SELECT COUNT(e.id) FROM Requerimento e"),
 	@NamedQuery(name = "Requerimento.porProcessar", query = "SELECT e FROM Requerimento e WHERE e.estado LIKE :estado") })
 public class Requerimento extends Entidade {
 	
@@ -104,7 +105,7 @@ public class Requerimento extends Entidade {
 
 
 	public void processar() {
-		setEstado("Processado");
+		setEstado("Processado a " + LocalDateTime.now().toLocalDate());
 		
 	}
 	

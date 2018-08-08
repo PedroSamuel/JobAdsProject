@@ -35,8 +35,10 @@ import java.time.*;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "AnuncioPlataforma.getAll", query = "SELECT e FROM AnuncioPlataforma e"),
-	@NamedQuery(name = "AnuncioPlataforma.getEverything", query = "SELECT e FROM AnuncioPlataforma e LEFT JOIN FETCH e.anuncio LEFT JOIN FETCH e.plataforma"),
-	@NamedQuery(name = "AnuncioPlataforma.selectAnunPlat", query = "SELECT e FROM AnuncioPlataforma e LEFT JOIN FETCH e.anuncio LEFT JOIN FETCH e.plataforma WHERE e.anuncio.id LIKE :idAnuncio") })
+	@NamedQuery(name = "AnuncioPlataforma.getEverything", query = "SELECT DISTINCT e FROM AnuncioPlataforma e LEFT JOIN FETCH e.anuncio LEFT JOIN FETCH e.plataforma"),
+	@NamedQuery(name = "AnuncioPlataforma.countAll", query = "SELECT COUNT(e) FROM AnuncioPlataforma e"),
+	@NamedQuery(name = "AnuncioPlataforma.getOnline", query = "SELECT e FROM AnuncioPlataforma e WHERE e.Estado LIKE :estado"),
+	@NamedQuery(name = "AnuncioPlataforma.selectAnunPlat", query = "SELECT DISTINCT e FROM AnuncioPlataforma e LEFT JOIN FETCH e.anuncio LEFT JOIN FETCH e.plataforma WHERE e.anuncio.id LIKE :idAnuncio") })
 @Table(name = "anuncioplataforma")
 public class AnuncioPlataforma implements Serializable{
 
@@ -76,7 +78,8 @@ public class AnuncioPlataforma implements Serializable{
 
 	private LocalDateTime Datacriacao;
 	
-	private LocalDateTime DataModificacao;
+	private LocalDateTime DataExpiracao;
+	private int diasRestantes;
 	private String Estado; // mudar para enum
 	private String link;
 	
@@ -118,12 +121,6 @@ public class AnuncioPlataforma implements Serializable{
 	public void setDatacriacao(LocalDateTime datacriacao) {
 		Datacriacao = datacriacao;
 	}
-	public LocalDateTime getDataModificacao() {
-		return DataModificacao;
-	}
-	public void setDataModificacao(LocalDateTime dataModificacao) {
-		DataModificacao = dataModificacao;
-	}
 	
 	public String getEstado() {
 		return Estado;
@@ -163,6 +160,26 @@ public class AnuncioPlataforma implements Serializable{
         AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
         return Objects.equals(getId(), anuncioPlataforma.getId());
     }
+
+
+	public int getDiasRestantes() {
+		return diasRestantes;
+	}
+
+
+	public void setDiasRestantes(int diasRestantes) {
+		this.diasRestantes = diasRestantes;
+	}
+
+
+	public LocalDateTime getDataExpiracao() {
+		return DataExpiracao;
+	}
+
+
+	public void setDataExpiracao(LocalDateTime dataExpiracao) {
+		DataExpiracao = dataExpiracao;
+	}
     
    
     

@@ -56,7 +56,6 @@
 				<h3 class="inline"  >  Estado </h3>
 				<p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}"
 				style="width:160px">
-								<f:selectItem itemLabel="Selecione um" itemValue="Aplicar" />
 				<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
 				<f:selectItem itemLabel="Manter" itemValue="Manter" />
 				<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
@@ -87,7 +86,7 @@
 				<br />
 				<br />
 
-				<p:commandButton value="Guardar"
+				<p:commandButton value="Guardar" class="mybutton"
 					action="#{anuncioCreate.salvarAnuncio()}" />
 
 				

@@ -26,6 +26,19 @@ public class RepositorioAnuncios extends EntityRepository<Anuncio> {
 		return em.createNamedQuery("Anuncio.comTarefa", Anuncio.class).setParameter("tarefas", "!!!!").getResultList();
 	}
 
+	public Long countAnuncios() {
+		return em.createNamedQuery("Anuncio.countAll", Long.class).getSingleResult();
+	}
+
+	public Anuncio getAnuncioWithPlataformasById(Long id) {
+		return em.createNamedQuery("Anuncio.getWithPlataformasById", Anuncio.class).setParameter("id", id).getSingleResult();
+
+	}
+	
+	public List<Anuncio> getAnunciosAplicar() {
+		return em.createNamedQuery("Anuncio.getAnunciosAplicar", Anuncio.class).setParameter("estado", "Aplicar").getResultList();
+	}
+
 	
 
 }

@@ -32,21 +32,15 @@ public class AnuncioBean implements Serializable {
 	ControlAnuncio anuncioControl;
 
 	@Inject
-	ControlPlataforma plats;
+	ControlPlataforma controlPlataformas;
 	
 	private Collection<Anuncio> anuncioList;
 	
-
-
-	private Collection<Anuncio> comTarefa;
-
 	// classes criada para o search bar
 	private Collection<Anuncio> filteredAnuncio;
-
-
-	private Anuncio selected;
 	
-	
+
+		
 	public Collection<Anuncio> getFilteredAnuncio() {
 		return filteredAnuncio;
 	}
@@ -70,101 +64,84 @@ public class AnuncioBean implements Serializable {
 
 	
 
-	public Anuncio getSelected() {
-		return selected;
-	}
-
-	public void setSelected(Anuncio selected) {
-		this.selected = selected;
-	}
-
 	public int numberAnunPlats(Anuncio anuncio) {
 		return anuncio.getPlataformas().size();
 	}
 
-	public int numberOnlinePlats(Anuncio anuncio) {
-		
-		int count = 0;
-		for (AnuncioPlataforma ap : anuncio.getPlataformas()) {
-			if (ap.getEstado().equals("Online")) {
-				count++;
-			}
-		}
-		return count;
+	public long numberOnlinePlats(Anuncio anuncio) {
+		return anuncio.countPlataformasOnline();
 	}
 
 	
-	public void tarefas(Collection<Anuncio> list) {
-		for (Anuncio anuncio : list) {
-			switch(anuncio.getEstado()) {
-				case "Aplicar":
-					if (numberAnunPlats(anuncio) == plats.Plataformas().size()) {
-						anuncio.setEstado("Manter");
-						anuncio.setTarefas("Feito");
-						break;
-					} else {
-						anuncio.setTarefas("!!!!");
-						
-						break;
-					}
-				case "Manter":
-					if (numberOnlinePlats(anuncio) == numberAnunPlats(anuncio)) {
-						anuncio.setTarefas("Feito");
-						break;
-						
-					} else {
-						anuncio.setTarefas("!!!!");
-						break;
-					}
-				case "Retirar":
-					if (numberOnlinePlats(anuncio) == 0) {
-						anuncio.setTarefas("Feito");
-						break;
-					} else {
-						anuncio.setTarefas("!!!!");
-						break;
-					}
-				default:
-					anuncio.setTarefas("ERRO");
-					break;
-				}
-				anuncioControl.updateAnuncio(anuncio);		
-		}
-		
-	}
+//	public void tarefas(Collection<Anuncio> list) {
+//		for (Anuncio anuncio : list) {
+//			switch(anuncio.getEstado()) {
+//				case "Aplicar":
+//					if (numberAnunPlats(anuncio) == plats.Plataformas().size()) {
+//						anuncio.setEstado("Manter");
+//						anuncio.setTarefas("Feito");
+//						break;
+//					} else {
+//						anuncio.setTarefas("!!!!");
+//						
+//						break;
+//					}
+//				case "Manter":
+//					if (numberOnlinePlats(anuncio) == numberAnunPlats(anuncio)) {
+//						anuncio.setTarefas("Feito");
+//						break;
+//						
+//					} else {
+//						anuncio.setTarefas("!!!!");
+//						break;
+//					}
+//				case "Retirar":
+//					if (numberOnlinePlats(anuncio) == 0) {
+//						anuncio.setTarefas("Feito");
+//						break;
+//					} else {
+//						anuncio.setTarefas("!!!!");
+//						break;
+//					}
+//				default:
+//					anuncio.setTarefas("ERRO");
+//					break;
+//				}
+//				anuncioControl.updateAnuncio(anuncio);		
+//		}
+//		
+//	}
 	
 	
 	public String listAnunPlat(Anuncio anuncio) {
-		return "listarAnunPlat?faces-redirect=true&idAnuncio=" + anuncio.getId(); 
+		return "DetalhesAnunPlat?faces-redirect=true&idAnuncio=" + anuncio.getId(); 
 
 	}
 
-	public int platsSize() {
-		return plats.Plataformas().size();
+	public Long countPlataformas() {
+		return controlPlataformas.countPlataformas();
 	}
 	
 	@PostConstruct
+	public void load() {
+		System.out.println("load");
+		loadAnuncios();		
+	}
+	
+	
 	public void loadAnuncios() {
-		setAnuncioList(anuncioControl.Anuncios());
-		tarefas(anuncioList);
-		setComTarefa(anuncioControl.comTarefa());
+		System.out.println("load Anuncios");
+		anuncioList = anuncioControl.Anuncios();
+//		tarefas(anuncioList);
+//		setComTarefa(anuncioControl.comTarefa());
 	}
 
-	public Collection<Anuncio> getComTarefa() {
-		return comTarefa;
-	}
 
-	public void setComTarefa(Collection<Anuncio> comTarefa) {
-		this.comTarefa = comTarefa;
-	}
 	
 	public Collection<Anuncio> getAnuncioList() {
 		return anuncioList;
 	}
 
-	public void setAnuncioList(Collection<Anuncio> anuncioList) {
-		this.anuncioList = anuncioList;
-	}
 		
 
 }

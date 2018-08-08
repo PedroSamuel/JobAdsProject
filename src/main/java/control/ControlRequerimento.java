@@ -40,6 +40,11 @@ public class ControlRequerimento {
 	public void removeRequerimento(Requerimento requerimento) {
 		dbR.removeEntity(requerimento);
 	}
+
+	public Long countRequerimentos() {
+		return dbR.countAll();
+		
+	}
 		
 
 

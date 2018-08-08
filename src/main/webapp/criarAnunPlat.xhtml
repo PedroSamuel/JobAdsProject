@@ -26,9 +26,7 @@
 			<ui:include src="menu.xhtml" />
 		</ui:insert>
 	</div>
-	<br />
-	<br />
-	<br />
+
 
 		<div class="container-fluid">
 			<div class="row">
@@ -48,11 +46,13 @@
 
 					<br />
 					<h:form>
+					
+					<b>Plataformas Associadas: </b> #{newAnunPlat.listaPlataformas}
 					<h3><b>Associar Plataforma</b></h3>
 					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.plataforma}"
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Plataformas" itemValue="" />
-						<f:selectItems value="#{newAnunPlat.listaPlataformas()}"
+						<f:selectItems value="#{newAnunPlat.naoAssociadas}"
 							var="plataforma" itemLabel="#{plataforma.nomePlataforma}"
 							itemValue="#{plataforma}" />
 					</h:selectOneMenu>
@@ -70,7 +70,7 @@
 					<br />
 					
 					
-					<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
+					<p:commandButton class="mybutton" action="#{newAnunPlat.salvarAnunPlat()}"
 						value="Associar">
 					</p:commandButton>
 					</h:form>

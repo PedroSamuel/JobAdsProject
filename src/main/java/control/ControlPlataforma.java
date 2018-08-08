@@ -21,7 +21,7 @@ public class ControlPlataforma {
 	}
 	
 	public List<Plataforma> Plataformas(){
-		return dbP.getAll();
+		return dbP.getAllWithAnuncios();
 	}
 	
 	public Plataforma getPlataforma (Long id) {
@@ -36,6 +36,10 @@ public class ControlPlataforma {
 	public void removePlataforma(Plataforma plataforma) {
 		dbP.removeEntity(plataforma);
 		
+	}
+
+	public Long countPlataformas() {
+		return dbP.countPlataformas();
 	}
 	
 

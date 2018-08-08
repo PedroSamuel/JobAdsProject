@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Gestão de Anúncios</title>
+
+</h:head>
+<f:metadata>
+	<f:viewParam name="idAnuncio"
+		value="#{anuncioPlataformaBean.idAnuncio}"></f:viewParam>
+	<f:event listener="#{anuncioPlataformaBean.load}" type="preRenderView"></f:event>
+
+</f:metadata>
+<h:body>
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
+	<h:form id="su" onkeypress="if (event.keyCode == 13){return false;}">
+		<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+
+		<div class="container-fluid">
+			<div class="row">
+				<h3 class="big-orange">Anúncio:
+					#{anuncioPlataformaBean.anuncio.REF}</h3>
+			</div>
+			<div class="displayinfo row">
+
+				<div class="col-sm-6">
+					<h3>
+						<b>Função:</b> #{anuncioPlataformaBean.anuncio.funcao}
+					</h3>
+					<br /> <br />
+					<h3>
+						<b>Manager: </b> #{anuncioPlataformaBean.anuncio.manager}
+					</h3>
+
+					<h3>
+						<b>Estado: </b>
+					</h3>
+					<h:selectOneMenu class="selectOneMenu"
+						value="#{anuncioPlataformaBean.anuncio.estado}">
+
+						<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
+						<f:selectItem itemLabel="Manter" itemValue="Manter" />
+						<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
+						<p:ajax event="change"
+							listener="#{anuncioPlataformaBean.updateAnuncio()}"
+							update="growl su" />
+
+					</h:selectOneMenu>
+					<br/>
+					<b>Tarefas: </b> #{anuncioPlataformaBean.anuncio.tarefas};
+				
+
+				</div>
+
+				<div class="col-sm-6">
+					<h3>
+						<b>Requisitos: </b>
+					</h3>
+
+					<p>#{anuncioPlataformaBean.anuncio.requisitos}</p>
+
+
+				</div>
+			</div>
+			<br /> <br />
+
+			<div class="row">
+
+
+
+				<h:form>
+
+					<p:button outcome="criarAnunPlat?faces-redirect=true"
+						value=" Associar Plataforma" class="mybutton" style="width:300px">
+						<f:param name="idAnuncio"
+							value="#{anuncioPlataformaBean.idAnuncio}"></f:param>
+					</p:button>
+					<p:commandButton
+						value="Ver Todos Anúncios (#{anuncioPlataformaBean.countAnuncios})"
+						action="listaAnuncios?faces-redirect=true" style="width:300px" />
+
+					<p:commandButton
+						value="Ver Plataformas (#{anuncioPlataformaBean.countPlataformas})"
+						action="listaPlataformas?faces-redirect=true" style="width:300px" />
+					<p:commandButton
+						value=" Registos em Plataformas (#{anuncioPlataformaBean.countAnunPlats})"
+						action="listarAnunPlat?faces-redirect=true" style="width:300px" />
+
+
+					<p:dataTable editable="true" id="dtAnunPlat" var="anunPlat"
+						value="#{anuncioPlataformaBean.APList}"
+						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
+						filteredValue="#{anuncioPlataformaBean.filteredAnuncioPlataforma}"
+						rowKey="#{anunPlat.id}" scrollable="true" scrollHeight="600"
+						raggableColumns="false" resizableColumns="false">
+
+
+
+						<p:ajax event="rowEdit"
+							listener="#{anuncioPlataformaBean.onRowEdit}" />
+
+						<p:column headerText="Plataforma" sortBy="#{anunPlat.plataforma}"
+							style="width:100px" filterBy="#{anunPlat.plataforma}">
+
+							<h:outputText value="#{anunPlat.plataforma}" />
+
+						</p:column>
+
+
+						<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
+							filterBy="#{anunPlat.estado}" filterMatchMode="contains"
+							style="width:100px">
+
+							<p:selectOneButton value="#{anunPlat.estado}"
+								unselectable="false">
+
+								<f:selectItem class="on selectOnebutton" itemLabel="Offline"
+									itemValue="Offline" />
+								<f:selectItem class="off selectOnebutton" itemLabel="Online"
+									itemValue="Online" />
+								<p:ajax event="change"
+									listener="#{anuncioPlataformaBean.onlineDate(anunPlat)}"
+									update="dtAnunPlat su" />
+							</p:selectOneButton>
+
+						</p:column>
+
+						<p:column headerText="Anúncio Criado"
+							sortBy="#{anunPlat.datacriacao}"
+							filterBy="#{anunPlat.datacriacao}" filterMatchMode="contains"
+							style="width:100px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.datacriacao}" label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Anúncio Expira em:"
+							sortBy="#{anunPlat.dataExpiracao}"
+							filterBy="#{anunPlat.dataExpiracao}" filterMatchMode="contains"
+							style="width:100px">
+
+							<h:outputText value="#{anunPlat.dataExpiracao.toLocalDate()}" />
+
+						</p:column>
+
+						<p:column headerText="Dias até expirar:"
+							sortBy="#{anunPlat.diasRestantes}"
+							filterBy="#{anunPlat.diasRestantes}" style="width:70px">
+							<h:outputText value="#{anunPlat.diasRestantes}" />
+						</p:column>
+
+
+						<p:column headerText="Link" sortBy="#{anunPlat.link}"
+							filterBy="#{anunPlat.link}" style="width:100px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:commandLink value="#{anunPlat.link}"
+										action="#{anuncioPlataforma.redirect()}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{anunPlat.link}" style="width:100px"
+										label="Função" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+
+
+
+
+
+
+						<p:column headerText="Editar" style="width:70px">
+							<p:rowEditor />
+						</p:column>
+
+
+
+
+						<p:column headerText="Eliminar" style="width:70px">
+							<p:commandButton icon="ui-icon-trash"
+								action="#{anuncioPlataformaBean.removeAnunPlat(anunPlat)}"
+								update="dtAnunPlat">
+								<p:confirm header="Confirmação" message="Tem a certeza?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Sim" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</p:column>
+
+					</p:dataTable>
+
+
+
+				</h:form>
+
+
+
+			</div>
+		</div>
+	</h:form>
+	<br />
+	<br />
+</h:body>
+</html>

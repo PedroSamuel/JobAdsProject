@@ -32,6 +32,7 @@ public class DashReqBean implements Serializable{
 	@Inject
 	ControlRequerimento requerimentoControl;
 	
+	private Long countRequerimentos;
 
 
 	private Requerimento selected;
@@ -88,10 +89,27 @@ public class DashReqBean implements Serializable{
 		this.porProcessar = porProcessar;
 	}
 	
-	@PostConstruct
+	public Long countReqs() {
+		System.out.println("Count Requerimentos");
+		return requerimentoControl.countRequerimentos();
+	}
+	
+
+	public Long getCountRequerimentos() {
+		return countRequerimentos;
+	}
+
 	private void loadRequerimentos() {
+		System.out.println("load requerimentos");
 		porProcessar = requerimentoControl.porProcessar();
+		
 				
+	}
+	
+	@PostConstruct
+	private void load() {
+		countRequerimentos = countReqs();
+		loadRequerimentos();
 	}
 	
 	

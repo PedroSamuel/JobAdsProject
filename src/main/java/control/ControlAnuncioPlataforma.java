@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -30,14 +29,17 @@ public class ControlAnuncioPlataforma {
    RepositorioAnuncios dbA;
    @Inject
    RepositorioPlataformas dbP;
+   @Inject
+   ControlAnuncio anuncioControl;
    
    @Transactional
    public void criarAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
+
 	   System.out.println("anuncio: " + anuncioPlataforma.getAnuncio());
 	   System.out.println("plataforma: " + anuncioPlataforma.getPlataforma());
 	   System.out.println("estado: " + anuncioPlataforma.getEstado() );
 	   System.out.println("A iniciar control-criaranunplat");
-	    dbA.updateEntity(anuncioPlataforma.getAnuncio());
+	    anuncioControl.updateAnuncio(anuncioPlataforma.getAnuncio());
 	    System.out.println("updateAnuncio ok " + anuncioPlataforma.getAnuncio());
 	    System.out.println(anuncioPlataforma.getAnuncio().getId());
 	    
@@ -50,7 +52,13 @@ public class ControlAnuncioPlataforma {
 	    anuncioPlataforma.setId(new AnuncioPlataformaId(anuncio.getId(), plataforma.getId()));
 	    System.out.println("id composto ok");
 	    dbAP.updateEntity(anuncioPlataforma);
+		anuncioPlataforma.setDiasRestantes(daysToExpire(anuncioPlataforma));
+		anuncioPlataforma.setDataExpiracao(expirationDate(anuncioPlataforma));
+		reverContagem(anuncioPlataforma);
+		dbAP.updateEntity(anuncioPlataforma);
+	 
 		System.out.println("update anuncioPlataforma ok");
+		
 	}
 	
 	public List<AnuncioPlataforma> AnunciosPlataforma(){
@@ -63,7 +71,6 @@ public class ControlAnuncioPlataforma {
 	public Collection<AnuncioPlataforma> SelectAnPlat(Anuncio anuncio) {
 		ArrayList<AnuncioPlataforma> select = new ArrayList<AnuncioPlataforma>(); 
 		for (AnuncioPlataforma AP : AnunciosPlataforma()){
-			reverContagem(AP);
 			if (AP.getAnuncio().equals(anuncio)){
 				select.add(AP);
 			}
@@ -74,33 +81,50 @@ public class ControlAnuncioPlataforma {
 	
 
 	public void reverContagem(AnuncioPlataforma ap) {
-			if ((ap.getPlataforma().getPeriodoRenovacao() != 0) && (daysToExpire(ap)== 0) && (ap.getDatacriacao()!= null)){
+			if ((ap.getPlataforma().getPeriodoRenovacao() != 0) && (ap.getDiasRestantes()== 0) && (ap.getDatacriacao()!= null)){
 				ap.setEstado("Offline");
-				dbAP.updateEntity(ap);
+				System.out.println("expirou anuncioPlataforma " + ap.getId());
 			}
 		}
 	
-
-	public void reverContagem() {
-		System.out.println("A iniciar rever contagem");
-		for (AnuncioPlataforma ap: AnunciosPlataforma()) {
-			reverContagem(ap);
-		}
-		System.out.println("rever contagem ok");
-	}
 	
 
-	 public int daysToExpire(AnuncioPlataforma anuncioPlataforma){
-	    	if (!(anuncioPlataforma.getDatacriacao() == null)){
-	    	Duration duration = Duration.between( anuncioPlataforma.getDatacriacao(),LocalDateTime.now());
-	    	int days  = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
-	    	
-	    	
+
+	
+
+	public int daysToExpire(AnuncioPlataforma anuncioPlataforma) {
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			Duration duration = Duration.between(anuncioPlataforma.getDatacriacao(), LocalDateTime.now());
+			int days = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
+
 			return days;
-	    	}
-	    	return 0;
-	  
-	    }
+		}
+		return 0;
+
+	}
+
+	public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma) {
+
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			LocalDateTime date = anuncioPlataforma.getDatacriacao()
+					.plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
+
+			return date;
+		}
+		return null;
+	}
+	
+	public void verifyDates(){
+		int i = 0;
+		for (AnuncioPlataforma ap : dbAP.getOnline()) {
+			i++;
+			ap.setDiasRestantes(daysToExpire(ap));
+			ap.setDataExpiracao(expirationDate(ap));
+			reverContagem(ap);
+			updateAnuncioPlataforma(ap);
+		}
+		System.out.println(i + "plataformas online");
+	}
 	
 	
 	
@@ -114,6 +138,7 @@ public class ControlAnuncioPlataforma {
 	
 	public AnuncioPlataforma updateAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
 		    dbAP.updateEntity(anuncioPlataforma);
+		    anuncioControl.updateAnuncio(anuncioPlataforma.getAnuncio());
 		return anuncioPlataforma;
 	}
 	
@@ -121,10 +146,17 @@ public class ControlAnuncioPlataforma {
 	@Transactional
 	public void removeAnuncioPlataforma(AnuncioPlataforma anuncioplataforma) {
 		anuncioplataforma.getAnuncio().getPlataformas().remove(anuncioplataforma);
-		dbA.updateEntity(anuncioplataforma.getAnuncio());
+		anuncioControl.updateAnuncio(anuncioplataforma.getAnuncio());
 		anuncioplataforma.getPlataforma().getAnuncios().remove(anuncioplataforma);
 		dbP.updateEntity(anuncioplataforma.getPlataforma());
 		dbAP.removeEntity(anuncioplataforma);
+	}
+	
+	
+
+
+	public Long countAnunciosPlataforma() {
+		return dbAP.countAnunPlats();
 	}
 	
 

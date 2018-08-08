@@ -15,6 +15,10 @@ public class RepositorioPlataformas extends EntityRepository<Plataforma> {
 		return em.createNamedQuery("Plataforma.getAllWithAnuncios", Plataforma.class).getResultList();
 	}
 
+	public Long countPlataformas() {
+			return em.createNamedQuery("Plataforma.countAll", Long.class).getSingleResult();
+	}
+
 }
 	
 	

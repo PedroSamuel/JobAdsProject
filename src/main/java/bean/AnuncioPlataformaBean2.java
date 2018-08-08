@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -19,13 +20,12 @@ import org.primefaces.event.RowEditEvent;
 
 import control.ControlAnuncio;
 import control.ControlAnuncioPlataforma;
-import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
 
-@Named("anuncioPlataformaBean")
+@Named("anuncioplataformaBean2")
 @ViewScoped
-public class AnuncioPlataformaBean implements Serializable {
+public class AnuncioPlataformaBean2 implements Serializable {
 
 	/**
 	 * 
@@ -37,9 +37,6 @@ public class AnuncioPlataformaBean implements Serializable {
 	@Inject
 	private ControlAnuncio anuncioControl;
 
-	@Inject
-	private ControlPlataforma plataformaControl;
-
 	private Anuncio anuncio;
 	private AnuncioPlataforma selected;
 
@@ -49,18 +46,13 @@ public class AnuncioPlataformaBean implements Serializable {
 	private Collection<AnuncioPlataforma> filteredAnuncioPlataforma;
 	private Collection<AnuncioPlataforma> APList;
 
-	private Long countAnunPlats;
-	private Long countAnuncios;
-	private Long countPlataformas;
-
 	public void updateAnuncio() {
 		anuncioControl.updateAnuncio(anuncio);
 
-		// FacesContext context = FacesContext.getCurrentInstance();
+		FacesContext context = FacesContext.getCurrentInstance();
 
-		// context.addMessage("null",
-		// new FacesMessage("Estado do Anúncio " + anuncio.getREF() + " alterado para ",
-		// anuncio.getEstado()));
+		context.addMessage("null",
+				new FacesMessage("Estado do Anúncio " + anuncio.getREF() + " alterado para ", anuncio.getEstado()));
 	}
 
 	public Collection<AnuncioPlataforma> getFilteredAnuncioPlataforma() {
@@ -73,8 +65,9 @@ public class AnuncioPlataformaBean implements Serializable {
 
 
 
+
+
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
-		//anuncioControl.updateAnuncio(anuncioplataforma.getAnuncio());
 		anuncioControlPlataforma.removeAnuncioPlataforma(anuncioplataforma);
 		load();
 	}
@@ -83,6 +76,8 @@ public class AnuncioPlataformaBean implements Serializable {
 		AnuncioPlataforma anuncioplataforma = (AnuncioPlataforma) event.getObject();
 		anuncioControlPlataforma.updateAnuncioPlataforma(anuncioplataforma);
 	}
+
+	
 
 	public Anuncio getAnuncio() {
 
@@ -106,30 +101,38 @@ public class AnuncioPlataformaBean implements Serializable {
 		idAnuncio = idx;
 	}
 
+
+
+	
+
+	public AnuncioPlataforma getSelected() {
+		return selected;
+	}
+
+	public void setSelected(AnuncioPlataforma selected) {
+		this.selected = selected;
+	}
+
+	public void deleteSelected() {
+		anuncioControlPlataforma.removeAnuncioPlataforma(selected);
+		selected = null;
+	}
+
 	public String newAnunPlat() {
 		return "criarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
 	}
 
-	public void onlineDate(AnuncioPlataforma ap) {
+	public void updateSelected() {
+		anuncioControlPlataforma.updateAnuncioPlataforma(selected);
 
-		System.out.println("iniciar evento online date");
-		System.out.println(ap.getEstado());
-		if (ap.getEstado().equals("Online")) {
-			ap.setDatacriacao(LocalDateTime.now());
-			System.out.println("online:" + ap.getDatacriacao());
-		} else if (ap.getEstado().equals("Offline")) {
-			ap.setDatacriacao(null);
-			System.out.println("data nula");
-			System.out.println("Offline;" + ap.getDatacriacao());
-		}
-		// anuncioControlPlataforma.updateAnuncioPlataforma(ap);
-		ap.setDiasRestantes(daysToExpire(ap));
-		ap.setDataExpiracao(expirationDate(ap));
-		System.out.println("update AP");
-		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
-//		System.out.println("update An");
-//		anuncioControl.updateAnuncio(ap.getAnuncio());
 	}
+
+	public void updateSelected(AnuncioPlataforma ap) {
+		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+
+	}
+
+
 
 	public void redirect() throws IOException {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -137,12 +140,34 @@ public class AnuncioPlataformaBean implements Serializable {
 	}
 
 	public int daysToExpire(AnuncioPlataforma anuncioPlataforma) {
-		return anuncioControlPlataforma.daysToExpire(anuncioPlataforma);
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			Duration duration = Duration.between(anuncioPlataforma.getDatacriacao(), LocalDateTime.now());
+			int days = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
+
+			return days;
+		}
+		return 0;
 
 	}
 
 	public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma) {
-		return anuncioControlPlataforma.expirationDate(anuncioPlataforma);
+
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			LocalDateTime date = anuncioPlataforma.getDatacriacao()
+					.plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
+
+			return date;
+		}
+		return null;
+	}
+	
+	public Collection<AnuncioPlataforma> verifyDates(Collection<AnuncioPlataforma> list){
+		for (AnuncioPlataforma ap : list) {
+			ap.setDiasRestantes(daysToExpire(ap));
+			ap.setDataExpiracao(expirationDate(ap));
+			anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+		}
+		return list;
 	}
 
 	public Collection<AnuncioPlataforma> getAPList() {
@@ -153,44 +178,11 @@ public class AnuncioPlataformaBean implements Serializable {
 		APList = aPList;
 	}
 
-	public Long getCountAnunPlats() {
-		return countAnunPlats;
-	}
 
-	public Long getCountAnuncios() {
-		return countAnuncios;
-	}
-
-	public Long getCountPlataformas() {
-		return countPlataformas;
-	}
-
-	public void countAllAnunPlats() {
-		System.out.println("Count AnunPlats");
-		countAnunPlats = anuncioControlPlataforma.countAnunciosPlataforma();
-	}
-
-	public void countAllAnuncios() {
-		System.out.println("count Anuncios");
-		countAnuncios = anuncioControl.countAnuncios();
-	}
-
-	public void countPlataformas() {
-		System.out.println("count Plataformas");
-		countPlataformas = plataformaControl.countPlataformas();
-	}
-
+	@PostConstruct
 	public void load() {
-		System.out.println("load");
-		countAllAnuncios();
-		countAllAnunPlats();
-		countPlataformas();
-		long longID = Long.valueOf(idAnuncio);
-		System.out.println("Set Anuncio");
-		setAnuncio(anuncioControl.getAnuncio(longID));
-		System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
-		APList = anuncioControlPlataforma.SelectAnPlat(anuncio);
+		APList = (anuncioControlPlataforma.AnunciosPlataforma());
+		
 	}
-
 
 }
