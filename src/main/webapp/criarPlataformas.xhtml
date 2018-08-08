@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Gestão de Anúncios</title>
+
+	<style type="text/css">
+
+</style>
+</h:head>
+
+<h:body>
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
+<br />
+	<br />
+	<br />
+
+	<div class="container">
+
+		<div class="col-sm"></div>
+
+
+
+		<div class="col-sm container1 ">
+			<br />
+			<h:graphicImage value="resources/images/aubayImg.png" width="150"
+				class="mx-auto d-block" />
+
+			<br />
+			<p:growl id="growl" showDetail="true" sticky="true" />
+	
+			<br />
+
+	<h:form>
+		<h4>Criar Plataforma</h4>
+		<h5>Nome da Plataforma</h5>
+		<p:inputTextarea
+			value="#{plataformaCreate.plataforma.nomePlataforma}"
+			rows="1" cols="15" autoResize = "false"/>
+		<h5>Renovação</h5>
+		<p:inputTextarea
+			value="#{plataformaCreate.plataforma.periodoRenovacao}" rows="1"
+			cols="15" autoResize = "false"/>
+
+		<br />
+		<br />
+		<p:commandButton value="Guardar"
+			action="#{plataformaCreate.salvarPlataforma()}" />
+		
+
+	</h:form>
+
+
+						<div class="col-sm"></div>
+
+					</div>
+				</div>
+</h:body>
+</html>

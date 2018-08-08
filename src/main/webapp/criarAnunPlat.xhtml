@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Gestão de Anúncios</title>
+
+</h:head>
+
+<f:metadata>
+	<f:viewParam name="idAnuncio" value="#{newAnunPlat.idAnuncio}"></f:viewParam>
+	<f:event listener="#{newAnunPlat.load}" type="preRenderView"></f:event>
+</f:metadata>
+
+<h:body>
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
+	<br />
+	<br />
+	<br />
+
+		<div class="container-fluid">
+			<div class="row">
+				<h3 class="big-orange">Anúncio:
+					#{newAnunPlat.anuncio.REF}</h3>
+			</div>
+			<div class="displayinfo row">
+
+				<div class="col-sm-6">
+					<h3>
+						<b>Função:</b> #{newAnunPlat.anuncio.funcao}
+					</h3>
+					<br /> <br />
+					<h3>
+						<b>Manager: </b> #{newAnunPlat.anuncio.manager}
+					</h3>
+
+					<br />
+					<h:form>
+					<h3><b>Associar Plataforma</b></h3>
+					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.plataforma}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Plataformas" itemValue="" />
+						<f:selectItems value="#{newAnunPlat.listaPlataformas()}"
+							var="plataforma" itemLabel="#{plataforma.nomePlataforma}"
+							itemValue="#{plataforma}" />
+					</h:selectOneMenu>
+					
+					<h3><b>Estado </b></h3>
+					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.anuncioPlataforma.estado}">
+						<f:selectItem itemLabel="Offline" itemValue="Offline" />
+						<f:selectItem itemLabel="Online" itemValue="Online" />
+						</h:selectOneMenu>
+
+					
+					<h3><b>Link</b></h3>
+					<p:inputTextarea class="inputText" value="#{newAnunPlat.anuncioPlataforma.link}"
+						rows="1" cols="80" />
+					<br />
+					
+					
+					<p:commandButton action="#{newAnunPlat.salvarAnunPlat()}"
+						value="Associar">
+					</p:commandButton>
+					</h:form>
+
+				</div>
+
+				<div class="col-sm-6">
+	
+					<h3>
+						<b>Requisitos: </b>
+					</h3>
+
+					<p>#{newAnunPlat.anuncio.requisitos}</p>
+
+
+				</div>
+			</div>
+
+		<div class="row">
+			<div class="col-sm"></div>
+
+
+		</div>
+	</div>
+</h:body>
+</html>

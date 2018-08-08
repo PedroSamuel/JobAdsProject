@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+
+
+	<title>Gestão de Anúncios</title>
+
+
+</h:head>
+<f:metadata>
+	<f:viewParam name="idRequerimento" value="#{anuncioCreate.idRequerimento}"></f:viewParam>
+	<f:event listener="#{anuncioCreate.load}" type="preRenderView"></f:event>
+</f:metadata>
+<h:body>
+
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
+	<br />
+	<br />
+	<br />
+
+
+		<div class=" container">
+		<div class="col-sm"></div>
+		<div class="col-sm container1 displayinfo ">
+
+
+			<br />
+			<p:growl id="growl" showDetail="true" sticky="true" />
+
+
+
+
+			<br />
+
+		<h:form>
+
+			<h2 class="big-orange">Criar Anúncio</h2>
+			<br />
+
+					<h3 class="inline">Referência</h3>
+			<p:inputTextarea class="inline" escape="false" value="#{anuncioCreate.anuncio.REF}" rows="1"
+				cols="15" autoResize="false" />
+				<h3 class="inline"  >  Estado </h3>
+				<p:selectOneMenu id="estado" value="#{anuncioCreate.anuncio.estado}"
+				style="width:160px">
+								<f:selectItem itemLabel="Selecione um" itemValue="Aplicar" />
+				<f:selectItem itemLabel="Aplicar" itemValue="Aplicar" />
+				<f:selectItem itemLabel="Manter" itemValue="Manter" />
+				<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
+
+			</p:selectOneMenu>
+			<br/>
+			<br></br>
+			
+			<h3>Função</h3>
+			<p:inputTextarea  value="#{anuncioCreate.anuncio.funcao}" rows="1"
+				cols="100" autoResize="false" />
+			<h3>Manager</h3>
+			<p:inputTextarea value="#{anuncioCreate.anuncio.manager}" rows="1"
+				cols="100" autoResize="false" />
+				<br />
+				<br />
+	
+
+			<br />
+			<br />
+		
+			
+				<h3>Requisitos</h3>
+				<p:inputTextarea rows="15" cols="120"
+					value="#{anuncioCreate.anuncio.requisitos}" />
+
+	
+				<br />
+				<br />
+
+				<p:commandButton value="Guardar"
+					action="#{anuncioCreate.salvarAnuncio()}" />
+
+				
+
+
+
+			</h:form>
+			</div>
+		
+	</div>
+</h:body>
+</html>
