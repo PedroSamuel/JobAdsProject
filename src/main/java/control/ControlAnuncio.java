@@ -47,7 +47,7 @@ public class ControlAnuncio {
 	}
 	
 	public void updateAnuncio(Anuncio a) {
-		verificarTarefa(a);
+		a = verificarTarefa(a);
 		dbA.updateEntity(a);
 	}
 	
@@ -72,7 +72,7 @@ public class ControlAnuncio {
 	
 	
 	
-	public void verificarTarefa(Anuncio anuncio) {
+	public Anuncio verificarTarefa(Anuncio anuncio) {
 		anuncio = getAnuncioWithPlataformasById(anuncio.getId());
 		System.out.println("verificar tarefa");
 		boolean alterado = false;
@@ -132,8 +132,9 @@ public class ControlAnuncio {
 			break;
 		}
 		//if (alterado == true) {
-			//updateAnuncio(anuncio);
+			//dbA.updateEntity(anuncio);
 		//}
+		return anuncio;
 	}
 
 	private Anuncio getAnuncioWithPlataformasById(Long id) {
