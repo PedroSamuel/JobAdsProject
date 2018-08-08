@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
 
+import control.ControlAnuncio;
 import control.ControlAnuncioPlataforma;
 import control.ControlPlataforma;
 import model.Plataforma;
@@ -23,6 +24,8 @@ public class PlataformaBean implements Serializable {
 	private ControlPlataforma plataformaControl;
 	@Inject
 	private ControlAnuncioPlataforma anuncioPlataformaControl;
+	@Inject
+	private ControlAnuncio anuncioControl;
 	
 	private long countAnunPlats;
 
@@ -50,6 +53,7 @@ public class PlataformaBean implements Serializable {
 
 	public void removePlataforma(Plataforma plataforma) {
 		plataformaControl.removePlataforma(plataforma);
+		anuncioControl.verificarTarefaAplicar();
 		plataformasLoad();
 	}
 

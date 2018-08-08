@@ -127,8 +127,8 @@ public class AnuncioPlataformaBean implements Serializable {
 		ap.setDataExpiracao(expirationDate(ap));
 		System.out.println("update AP");
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
-		System.out.println("update An");
-		anuncioControl.updateAnuncio(ap.getAnuncio());
+//		System.out.println("update An");
+//		anuncioControl.updateAnuncio(ap.getAnuncio());
 	}
 
 	public void redirect() throws IOException {

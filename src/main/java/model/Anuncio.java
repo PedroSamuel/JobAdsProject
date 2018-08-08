@@ -26,7 +26,9 @@ import javax.persistence.PreRemove;
 	@NamedQuery(name = "Anuncio.getAllWithPlataformas", query = "SELECT DISTINCT e FROM Anuncio e LEFT JOIN FETCH e.plataformas"),
 	@NamedQuery(name = "Anuncio.getWithPlataformasById", query = "SELECT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.id LIKE :id"),
 	@NamedQuery(name = "Anuncio.countAll", query = "SELECT COUNT(e.id) FROM Anuncio e"),
-	@NamedQuery(name = "Anuncio.comTarefa", query = "SELECT DISTINCT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.tarefas LIKE :tarefas")})
+	@NamedQuery(name = "Anuncio.comTarefa", query = "SELECT DISTINCT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.tarefas LIKE :tarefas"),
+	@NamedQuery(name = "Anuncio.getAnunciosAplicar", query = "SELECT DISTINCT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.estado LIKE :estado")})
+
 
 
 

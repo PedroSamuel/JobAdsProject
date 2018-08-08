@@ -111,7 +111,7 @@ public class ControlAnuncio {
 			}
 		case "Retirar":
 			System.out.println("Estado Retirar");
-			if (numPlataformas == 0){
+			if (numPlataformasOnline == 0){
 				anuncio.feito();
 				System.out.println("Anuncio completamente retirado " + anuncio.getREF());
 
@@ -135,6 +135,12 @@ public class ControlAnuncio {
 		return dbA.getAnuncioWithPlataformasById(id);
 		
 		
+	}
+
+	public void verificarTarefaAplicar() {
+		for (Anuncio a : dbA.getAnunciosAplicar()) {
+			verificarTarefa(a);
+		}
 	}
 
 	

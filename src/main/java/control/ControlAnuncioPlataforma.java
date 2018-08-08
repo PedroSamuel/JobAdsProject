@@ -34,6 +34,7 @@ public class ControlAnuncioPlataforma {
    
    @Transactional
    public void criarAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
+
 	   System.out.println("anuncio: " + anuncioPlataforma.getAnuncio());
 	   System.out.println("plataforma: " + anuncioPlataforma.getPlataforma());
 	   System.out.println("estado: " + anuncioPlataforma.getEstado() );
@@ -51,6 +52,11 @@ public class ControlAnuncioPlataforma {
 	    anuncioPlataforma.setId(new AnuncioPlataformaId(anuncio.getId(), plataforma.getId()));
 	    System.out.println("id composto ok");
 	    dbAP.updateEntity(anuncioPlataforma);
+		anuncioPlataforma.setDiasRestantes(daysToExpire(anuncioPlataforma));
+		anuncioPlataforma.setDataExpiracao(expirationDate(anuncioPlataforma));
+		reverContagem(anuncioPlataforma);
+		dbAP.updateEntity(anuncioPlataforma);
+	 
 		System.out.println("update anuncioPlataforma ok");
 		
 	}
@@ -132,6 +138,7 @@ public class ControlAnuncioPlataforma {
 	
 	public AnuncioPlataforma updateAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
 		    dbAP.updateEntity(anuncioPlataforma);
+		    anuncioControl.updateAnuncio(anuncioPlataforma.getAnuncio());
 		return anuncioPlataforma;
 	}
 	
