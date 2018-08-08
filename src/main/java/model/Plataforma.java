@@ -12,7 +12,7 @@ import model.AnuncioPlataforma;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Plataforma.getAll", query = "SELECT s FROM Plataforma s"),
-	@NamedQuery(name = "Plataforma.getAllWithAnuncios", query = "SELECT s FROM Plataforma s LEFT JOIN FETCH s.anuncios") })
+	@NamedQuery(name = "Plataforma.getAllWithAnuncios", query = "SELECT  DISTINCT s FROM Plataforma s LEFT JOIN FETCH s.anuncios") })
 public class Plataforma extends Entidade {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "plataforma") //, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
