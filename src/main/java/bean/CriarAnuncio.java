@@ -43,6 +43,7 @@ public class CriarAnuncio implements Serializable {
 	}
 
 	public String salvarAnuncio() {
+		System.out.println("Metodo Salvar Anuncio");
 		controlAnuncio.criarAnuncio(anuncio);
 		if (idRequerimento != null) {
 			processarReq();
