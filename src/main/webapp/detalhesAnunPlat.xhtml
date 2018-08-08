@@ -134,14 +134,23 @@
 						</p:column>
 
 						<p:column headerText="Anúncio Expira em:"
-							sortBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
-							filterBy="#{anuncioplataformaBean.expirationDate(anunPlat)}"
+							sortBy="#{anunPlat.dataExpiracao}"
+							filterBy="#{anunPlat.dataExpiracao}"
 							filterMatchMode="contains" style="width:100px">
 
 							<h:outputText
-								value="#{anuncioplataformaBean.expirationDate(anunPlat).toLocalDate()}" />
+								value="#{anunPlat.dataExpiracao.toLocalDate()}" />
 
 						</p:column>
+
+						<p:column headerText="Dias até expirar:"
+							sortBy="#{anunPlat.diasRestantes}"
+							filterBy="#{anunPlat.diasRestantes}"
+							style="width:70px">
+							<h:outputText
+								value="#{anunPlat.diasRestantes}" />
+						</p:column>
+
 
 						<p:column headerText="Link" sortBy="#{anunPlat.link}"
 							filterBy="#{anunPlat.link}" style="width:100px">
@@ -159,13 +168,6 @@
 
 
 
-						<p:column headerText="Dias até expirar:"
-							sortBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"
-							filterBy="#{anuncioplataformaBean.daysToExpire(anunPlat)}"
-							style="width:70px">
-							<h:outputText
-								value="#{anuncioplataformaBean.daysToExpire(anunPlat)}" />
-						</p:column>
 
 
 

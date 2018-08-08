@@ -63,8 +63,6 @@ public class AnuncioPlataformaBean implements Serializable {
 		this.filteredAnuncioPlataforma = filteredAnuncioPlataforma;
 	}
 
-
-
 	public Collection<AnuncioPlataforma> SelectAnPlat() {
 		return SelectAnPlat;
 	}
@@ -78,8 +76,6 @@ public class AnuncioPlataformaBean implements Serializable {
 		AnuncioPlataforma anuncioplataforma = (AnuncioPlataforma) event.getObject();
 		anuncioControlPlataforma.updateAnuncioPlataforma(anuncioplataforma);
 	}
-
-	
 
 	public Anuncio getAnuncio() {
 
@@ -105,7 +101,7 @@ public class AnuncioPlataformaBean implements Serializable {
 
 	// codigo do ID chama a funcao load vinda f param do listar anun platf
 	public void load() {
-		//anuncioControlPlataforma.reverContagem();
+		// anuncioControlPlataforma.reverContagem();
 		if (idAnuncio == (null)) {
 			System.out.println("Não Funcionou!");
 			APList = anuncioControlPlataforma.AnunciosPlataforma();
@@ -146,11 +142,12 @@ public class AnuncioPlataformaBean implements Serializable {
 	}
 
 	public void onlineDate(AnuncioPlataforma ap) {
-		
+
 		System.out.println("iniciar evento online date");
 		System.out.println(ap.getEstado());
 		if (ap.getEstado().equals("Online")) {
 			ap.setDatacriacao(LocalDateTime.now());
+			
 			System.out.println("online:" + ap.getDatacriacao());
 
 		} else if (ap.getEstado().equals("Offline")) {
@@ -160,6 +157,10 @@ public class AnuncioPlataformaBean implements Serializable {
 
 		}
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+		ap.setDiasRestantes(daysToExpire(ap));
+		ap.setDataExpiracao(expirationDate(ap));
+		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+
 	}
 
 	public void redirect() throws IOException {
@@ -171,9 +172,10 @@ public class AnuncioPlataformaBean implements Serializable {
 		if (!(anuncioPlataforma.getDatacriacao() == null)) {
 			Duration duration = Duration.between(anuncioPlataforma.getDatacriacao(), LocalDateTime.now());
 			int days = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
-
+			System.out.println("Dias= " + days);
 			return days;
 		}
+		System.out.println("dias nao funcou");
 		return 0;
 
 	}

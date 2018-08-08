@@ -57,10 +57,10 @@
 						</p:column>
 
 						<p:column id="dias" headerText="Dias até expirar:" 
-							sortBy="#{anuncioplataformaBean2.daysToExpire(anunPlat)}"
-							filterBy="#{anuncioplataformaBean2.daysToExpire(anunPlat)}">
+							sortBy="#{anunPlat.diasRestantes}"
+							filterBy="#{anunPlat.diasRestantes}">
 							<h:outputText
-								value="#{anuncioplataformaBean2.daysToExpire(anunPlat)}" />
+								value="#{anunPlat.diasRestantes}" />
 						</p:column>
 
 
@@ -97,12 +97,12 @@
 						</p:column>
 
 						<p:column headerText="Anúncio Expira em:"
-							sortBy="#{anunPlat.dataModificacao}"
-							filterBy="#{anunPlat.dataModificacao}"
+							sortBy="#{anunPlat.dataExpiracao}"
+							filterBy="#{anunPlat.dataExpiracao}"
 							filterMatchMode="contains">
 
 							<h:outputText
-								value="#{anunPlat.dataModificacao}" />
+								value="#{anunPlat.dataExpiracao}" />
 
 						</p:column>
 

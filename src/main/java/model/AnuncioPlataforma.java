@@ -76,7 +76,8 @@ public class AnuncioPlataforma implements Serializable{
 
 	private LocalDateTime Datacriacao;
 	
-	private LocalDateTime DataModificacao;
+	private LocalDateTime DataExpiracao;
+	private int diasRestantes;
 	private String Estado; // mudar para enum
 	private String link;
 	
@@ -118,12 +119,6 @@ public class AnuncioPlataforma implements Serializable{
 	public void setDatacriacao(LocalDateTime datacriacao) {
 		Datacriacao = datacriacao;
 	}
-	public LocalDateTime getDataModificacao() {
-		return DataModificacao;
-	}
-	public void setDataModificacao(LocalDateTime dataModificacao) {
-		DataModificacao = dataModificacao;
-	}
 	
 	public String getEstado() {
 		return Estado;
@@ -163,6 +158,26 @@ public class AnuncioPlataforma implements Serializable{
         AnuncioPlataforma anuncioPlataforma = (AnuncioPlataforma) o;
         return Objects.equals(getId(), anuncioPlataforma.getId());
     }
+
+
+	public int getDiasRestantes() {
+		return diasRestantes;
+	}
+
+
+	public void setDiasRestantes(int diasRestantes) {
+		this.diasRestantes = diasRestantes;
+	}
+
+
+	public LocalDateTime getDataExpiracao() {
+		return DataExpiracao;
+	}
+
+
+	public void setDataExpiracao(LocalDateTime dataExpiracao) {
+		DataExpiracao = dataExpiracao;
+	}
     
    
     

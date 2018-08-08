@@ -132,51 +132,14 @@ public class AnuncioPlataformaBean2 implements Serializable {
 
 	}
 
-	public void onlineDate(AnuncioPlataforma ap) {
-		
-		System.out.println("iniciar evento online date");
-		System.out.println(ap.getEstado());
-		if (ap.getEstado().equals("Online")) {
-			ap.setDatacriacao(LocalDateTime.now());
-			ap.setDataModificacao(ap.getDatacriacao().plusDays(ap.getPlataforma().getPeriodoRenovacao()));
-			System.out.println("online:" + ap.getDatacriacao());
 
-		} else if (ap.getEstado().equals("Offline")) {
-			ap.setDatacriacao(null);
-			ap.setDataModificacao(null);
-			System.out.println("data nula");
-			System.out.println("Offline;" + ap.getDatacriacao());
-
-		}
-		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
-	}
 
 	public void redirect() throws IOException {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		externalContext.redirect(selected.getLink());
 	}
 
-	public int daysToExpire(AnuncioPlataforma anuncioPlataforma) {
-		if (!(anuncioPlataforma.getDatacriacao() == null)) {
-			Duration duration = Duration.between(anuncioPlataforma.getDatacriacao(), LocalDateTime.now());
-			int days = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
 
-			return days;
-		}
-		return 0;
-
-	}
-
-	public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma) {
-
-		if (!(anuncioPlataforma.getDatacriacao() == null)) {
-			LocalDateTime date = anuncioPlataforma.getDatacriacao()
-					.plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
-
-			return date;
-		}
-		return null;
-	}
 
 	public Collection<AnuncioPlataforma> getAPList() {
 		return APList;
