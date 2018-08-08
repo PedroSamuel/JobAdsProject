@@ -146,6 +146,10 @@ public class ControlAnuncioPlataforma {
 		System.out.println("Contagens Revistas");
 		
 	}
+
+	public Long countAnunciosPlataforma() {
+		return dbAP.countAnunPlats();
+	}
 	
 
 }

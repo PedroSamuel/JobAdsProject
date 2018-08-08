@@ -15,8 +15,8 @@ public class RepositorioRequerimentos extends EntityRepository <Requerimento>{
 	public List<Requerimento> getAll() {
 		return em.createNamedQuery("Requerimento.getAll", Requerimento.class).getResultList();
 	}
-	public List<Requerimento> countAll() {
-		return em.createNamedQuery("Requerimento.countAll", Requerimento.class).getResultList();
+	public Long countAll() {
+		return em.createNamedQuery("Requerimento.countAll", Long.class).getSingleResult();
 	}
 	
 

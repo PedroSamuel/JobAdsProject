@@ -1,13 +1,10 @@
 package bean;
 
-import java.awt.List;
-import java.io.IOException;
+import java.util.List;
 import java.io.Serializable;
 import java.util.Collection;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,6 +16,7 @@ import control.ControlAnuncioPlataforma;
 import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
+import model.Plataforma;
 
 @Named("dashAnBean")
 @ViewScoped
@@ -30,19 +28,26 @@ public class DashAnBean implements Serializable {
 	private static final long serialVersionUID = 372562415933083083L;
 
 	@Inject
-	ControlAnuncio anuncioControl;
+	private ControlAnuncio anuncioControl;
 
 	@Inject
-	ControlPlataforma plats;
+	private ControlPlataforma controlPlataforma;
 	
 	@Inject
-	ControlAnuncioPlataforma anPlats;
+	private ControlAnuncioPlataforma controlAnunPlats;
+
 	
 
 	private Collection<Anuncio> comTarefa;
 
 	// classes criada para o search bar
 	private Collection<Anuncio> filteredAnuncio;
+	
+	private Long countAnunPlats;
+	private Long countAnuncios;
+
+	private Long countPlataformas;
+	
 
 
 	private Anuncio selected;
@@ -52,14 +57,9 @@ public class DashAnBean implements Serializable {
 		return filteredAnuncio;
 	}
 
-	public void setFilteredAnuncio(Collection<Anuncio> filteredAnuncio) {
-		this.filteredAnuncio = filteredAnuncio;
-	}
-	
-
 	public void removeAnuncio(Anuncio anuncio) {
 		anuncioControl.removeAnuncio(anuncio);
-		loadAnuncios();
+		load();
 	}
 
 	// class para a tabela editar vindo do primefaces
@@ -79,96 +79,102 @@ public class DashAnBean implements Serializable {
 		this.selected = selected;
 	}
 
-	public int numberAnunPlats(Anuncio anuncio) {
-		return anuncio.getPlataformas().size();
-	}
 
-	public int numberOnlinePlats(Anuncio anuncio) {
-		
-		int count = 0;
-		for (AnuncioPlataforma ap : anuncio.getPlataformas()) {
-			if (ap.getEstado().equals("Online")) {
-				count++;
-			}
-		}
-		return count;
-	}
 
-	public int numberAllPlats() {
-		return plats.Plataformas().size();
+	public void countAllAnunPlats() {
+		System.out.println("Count AnunPlats");
+		countAnunPlats = controlAnunPlats.countAnunciosPlataforma();
 	}
 	
-	public int numberAllAnPlats() {
-		return anPlats.AnunciosPlataforma().size();
+	public void countAllAnuncios() {
+		System.out.println("count Anuncios");
+		countAnuncios = anuncioControl.countAnuncios();
 	}
 	
-	public int numberAllAnunc() {
-		return anuncioControl.Anuncios().size();
+	public void countPlataformas() {
+		System.out.println("count Plataformas");
+		countPlataformas = controlPlataforma.countPlataformas();
 	}
 	
-	public void tarefas(Collection<Anuncio> list) {
-		for (Anuncio anuncio : list) {
-			switch(anuncio.getEstado()) {
-				case "Aplicar":
-					if (numberAnunPlats(anuncio) == plats.Plataformas().size()) {
-						anuncio.setEstado("Manter");
-						anuncio.setTarefas("Feito");
-						break;
-					} else {
-						anuncio.setTarefas("!!!!");
-						
-						break;
-					}
-				case "Manter":
-					if (numberOnlinePlats(anuncio) == numberAnunPlats(anuncio)) {
-						anuncio.setTarefas("Feito");
-						break;
-						
-					} else {
-						anuncio.setTarefas("!!!!");
-						break;
-					}
-				case "Retirar":
-					if (numberOnlinePlats(anuncio) == 0) {
-						anuncio.setTarefas("Feito");
-						break;
-					} else {
-						anuncio.setTarefas("!!!!");
-						break;
-					}
-				default:
-					anuncio.setTarefas("ERRO");
-					break;
-				}
-				anuncioControl.updateAnuncio(anuncio);		
-		}
-		
-	}
+	
+	
+	
+//	public void tarefas(Collection<Anuncio> list) {
+//		for (Anuncio anuncio : list) {
+//			switch(anuncio.getEstado()) {
+//				case "Aplicar":
+//					if (anuncio.countPlataformas() == countListaPlataformas) {
+//						anuncio.setEstado("Manter");
+//						anuncio.setTarefas("Feito");
+//						break;
+//					} else {
+//						anuncio.setTarefas("!!!!");
+//						
+//						break;
+//					}
+//				case "Manter":
+//					if (numberOnlinePlats(anuncio) == numberAnunPlats(anuncio)) {
+//						anuncio.setTarefas("Feito");
+//						break;
+//						
+//					} else {
+//						anuncio.setTarefas("!!!!");
+//						break;
+//					}
+//				case "Retirar":
+//					if (numberOnlinePlats(anuncio) == 0) {
+//						anuncio.setTarefas("Feito");
+//						break;
+//					} else {
+//						anuncio.setTarefas("!!!!");
+//						break;
+//					}
+//				default:
+//					anuncio.setTarefas("ERRO");
+//					break;
+//				}
+//				anuncioControl.updateAnuncio(anuncio);
+//		}
+//		
+//	}
 	
 	
 	public String listAnunPlat(Anuncio anuncio) {
+		System.out.println("redirect listar anunPlat");
 		return "listarAnunPlat?faces-redirect=true&idAnuncio=" + anuncio.getId(); 
 
 	}
 
-	public int platsSize() {
-		return plats.Plataformas().size();
-	}
+
 	
 	@PostConstruct
-	public void loadAnuncios() {
-		tarefas(anuncioControl.Anuncios());
-		setComTarefa(anuncioControl.comTarefa());
+	public void load() {
+		System.out.println("load");
+		countAllAnuncios();
+		countAllAnunPlats();
+		countPlataformas();
+//		tarefas(anuncioControl.Anuncios());
+		comTarefa = anuncioControl.comTarefa();
+		System.out.println("get comTarefa");
 	}
 
 	public Collection<Anuncio> getComTarefa() {
+		
 		return comTarefa;
-	}
-
-	public void setComTarefa(Collection<Anuncio> comTarefa) {
-		this.comTarefa = comTarefa;
 	}
 	
 		
+	public Long getCountAnunPlats() {
+		return countAnunPlats;
+	}
+
+	public Long getCountAnuncios() {
+		return countAnuncios;
+	}
+
+	public Long getCountPlataformas() {
+		return countPlataformas;
+	}
+
 
 }

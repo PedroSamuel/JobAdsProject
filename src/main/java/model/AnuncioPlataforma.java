@@ -36,6 +36,7 @@ import java.time.*;
 @Entity
 @NamedQueries({ @NamedQuery(name = "AnuncioPlataforma.getAll", query = "SELECT e FROM AnuncioPlataforma e"),
 	@NamedQuery(name = "AnuncioPlataforma.getEverything", query = "SELECT e FROM AnuncioPlataforma e LEFT JOIN FETCH e.anuncio LEFT JOIN FETCH e.plataforma"),
+	@NamedQuery(name = "AnuncioPlataforma.countAll", query = "SELECT COUNT(e) FROM AnuncioPlataforma e"),
 	@NamedQuery(name = "AnuncioPlataforma.selectAnunPlat", query = "SELECT e FROM AnuncioPlataforma e LEFT JOIN FETCH e.anuncio LEFT JOIN FETCH e.plataforma WHERE e.anuncio.id LIKE :idAnuncio") })
 @Table(name = "anuncioplataforma")
 public class AnuncioPlataforma implements Serializable{

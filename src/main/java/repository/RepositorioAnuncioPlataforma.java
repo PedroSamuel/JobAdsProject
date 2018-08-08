@@ -54,6 +54,11 @@ public class RepositorioAnuncioPlataforma{
 	public List<AnuncioPlataforma> selectAnunPlat(long idAnuncio) {
 		return em.createNamedQuery("AnuncioPlataforma.getAllWithAnunciosAndPlataformas", AnuncioPlataforma.class).setParameter("idAnuncio", "idAnuncior").getResultList();
 	}
+
+	public Long countAnunPlats() {
+	
+			return em.createNamedQuery("AnuncioPlataforma.countAll", Long.class).getSingleResult();
+	}
 	
 
 	// unitName defined in persistence.xml

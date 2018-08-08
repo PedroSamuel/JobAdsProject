@@ -53,5 +53,9 @@ public class ControlAnuncio {
 		return dbA.comTarefa();
 		
 	}
+
+	public Long countAnuncios() {
+		return dbA.countAnuncios();
+	}
 	
 }

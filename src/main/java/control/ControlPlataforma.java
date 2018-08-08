@@ -37,6 +37,10 @@ public class ControlPlataforma {
 		dbP.removeEntity(plataforma);
 		
 	}
+
+	public Long countPlataformas() {
+		return dbP.countPlataformas();
+	}
 	
 
 	
