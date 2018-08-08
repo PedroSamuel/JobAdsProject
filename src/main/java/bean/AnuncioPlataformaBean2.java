@@ -181,9 +181,8 @@ public class AnuncioPlataformaBean2 implements Serializable {
 
 	@PostConstruct
 	public void load() {
-		APList = anuncioControlPlataforma.verifyDates(anuncioControlPlataforma.AnunciosPlataforma());
+		APList = (anuncioControlPlataforma.AnunciosPlataforma());
 		
-
 	}
 
 }

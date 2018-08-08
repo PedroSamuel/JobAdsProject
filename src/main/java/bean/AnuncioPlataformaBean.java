@@ -36,7 +36,7 @@ public class AnuncioPlataformaBean implements Serializable {
 	private ControlAnuncioPlataforma anuncioControlPlataforma;
 	@Inject
 	private ControlAnuncio anuncioControl;
-	
+
 	@Inject
 	private ControlPlataforma plataformaControl;
 
@@ -48,21 +48,19 @@ public class AnuncioPlataformaBean implements Serializable {
 
 	private Collection<AnuncioPlataforma> filteredAnuncioPlataforma;
 	private Collection<AnuncioPlataforma> APList;
-	private Collection<AnuncioPlataforma> SelectAnPlat;
-	
+
 	private Long countAnunPlats;
 	private Long countAnuncios;
-	
-
 	private Long countPlataformas;
 
 	public void updateAnuncio() {
 		anuncioControl.updateAnuncio(anuncio);
 
-		FacesContext context = FacesContext.getCurrentInstance();
+		// FacesContext context = FacesContext.getCurrentInstance();
 
-		context.addMessage("null",
-				new FacesMessage("Estado do Anúncio " + anuncio.getREF() + " alterado para ", anuncio.getEstado()));
+		// context.addMessage("null",
+		// new FacesMessage("Estado do Anúncio " + anuncio.getREF() + " alterado para ",
+		// anuncio.getEstado()));
 	}
 
 	public Collection<AnuncioPlataforma> getFilteredAnuncioPlataforma() {
@@ -73,9 +71,7 @@ public class AnuncioPlataformaBean implements Serializable {
 		this.filteredAnuncioPlataforma = filteredAnuncioPlataforma;
 	}
 
-	public Collection<AnuncioPlataforma> SelectAnPlat() {
-		return SelectAnPlat;
-	}
+
 
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
 		anuncioControlPlataforma.removeAnuncioPlataforma(anuncioplataforma);
@@ -109,34 +105,8 @@ public class AnuncioPlataformaBean implements Serializable {
 		idAnuncio = idx;
 	}
 
-
-
-
-	public AnuncioPlataforma getSelected() {
-		return selected;
-	}
-
-	public void setSelected(AnuncioPlataforma selected) {
-		this.selected = selected;
-	}
-
-	public void deleteSelected() {
-		anuncioControlPlataforma.removeAnuncioPlataforma(selected);
-		selected = null;
-	}
-
 	public String newAnunPlat() {
 		return "criarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
-	}
-
-	public void updateSelected() {
-		anuncioControlPlataforma.updateAnuncioPlataforma(selected);
-
-	}
-
-	public void updateSelected(AnuncioPlataforma ap) {
-		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
-
 	}
 
 	public void onlineDate(AnuncioPlataforma ap) {
@@ -145,20 +115,16 @@ public class AnuncioPlataformaBean implements Serializable {
 		System.out.println(ap.getEstado());
 		if (ap.getEstado().equals("Online")) {
 			ap.setDatacriacao(LocalDateTime.now());
-			
 			System.out.println("online:" + ap.getDatacriacao());
-
 		} else if (ap.getEstado().equals("Offline")) {
 			ap.setDatacriacao(null);
 			System.out.println("data nula");
 			System.out.println("Offline;" + ap.getDatacriacao());
-
 		}
-		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+		// anuncioControlPlataforma.updateAnuncioPlataforma(ap);
 		ap.setDiasRestantes(daysToExpire(ap));
 		ap.setDataExpiracao(expirationDate(ap));
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
-
 	}
 
 	public void redirect() throws IOException {
@@ -183,14 +149,6 @@ public class AnuncioPlataformaBean implements Serializable {
 		APList = aPList;
 	}
 
-	public Collection<AnuncioPlataforma> getSelectAnPlat() {
-		return SelectAnPlat;
-	}
-
-	public void setSelectAnPlat(Collection<AnuncioPlataforma> selectAnPlat) {
-		SelectAnPlat = selectAnPlat;
-	}
-	
 	public Long getCountAnunPlats() {
 		return countAnunPlats;
 	}
@@ -202,41 +160,33 @@ public class AnuncioPlataformaBean implements Serializable {
 	public Long getCountPlataformas() {
 		return countPlataformas;
 	}
-	
 
 	public void countAllAnunPlats() {
 		System.out.println("Count AnunPlats");
 		countAnunPlats = anuncioControlPlataforma.countAnunciosPlataforma();
 	}
-	
+
 	public void countAllAnuncios() {
 		System.out.println("count Anuncios");
 		countAnuncios = anuncioControl.countAnuncios();
 	}
-	
+
 	public void countPlataformas() {
 		System.out.println("count Plataformas");
 		countPlataformas = plataformaControl.countPlataformas();
 	}
-	
-	
-	
+
 	public void load() {
 		System.out.println("load");
 		countAllAnuncios();
 		countAllAnunPlats();
 		countPlataformas();
-		
-		if (idAnuncio == (null)) {
-			System.out.println("Não Funcionou!");
-			APList = anuncioControlPlataforma.verifyDates(anuncioControlPlataforma.AnunciosPlataforma());
-		} else {
-			long longID = Long.valueOf(idAnuncio);
-			setAnuncio(anuncioControl.getAnuncio(longID));
-			System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
-			APList = anuncioControlPlataforma.verifyDates(anuncioControlPlataforma.SelectAnPlat(anuncio));
-		}
-
+		long longID = Long.valueOf(idAnuncio);
+		System.out.println("Set Anuncio");
+		setAnuncio(anuncioControl.getAnuncio(longID));
+		System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
+		APList = anuncioControlPlataforma.SelectAnPlat(anuncio);
 	}
+
 
 }

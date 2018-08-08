@@ -41,6 +41,10 @@ public class RepositorioAnuncioPlataforma{
 	public List<AnuncioPlataforma> getAll() {
 		return em.createNamedQuery("AnuncioPlataforma.getAll", AnuncioPlataforma.class).getResultList();
 	}
+	
+	public List<AnuncioPlataforma> getOnline() {
+		return em.createNamedQuery("AnuncioPlataforma.getOnline", AnuncioPlataforma.class).setParameter("estado", "Online").getResultList();
+	}
 
 	
 	public AnuncioPlataforma getEntity(Class<AnuncioPlataforma> entClass, Long id) {
@@ -52,7 +56,7 @@ public class RepositorioAnuncioPlataforma{
 	}
 
 	public List<AnuncioPlataforma> selectAnunPlat(long idAnuncio) {
-		return em.createNamedQuery("AnuncioPlataforma.getAllWithAnunciosAndPlataformas", AnuncioPlataforma.class).setParameter("idAnuncio", "idAnuncior").getResultList();
+		return em.createNamedQuery("AnuncioPlataforma.getAllWithAnunciosAndPlataformas", AnuncioPlataforma.class).setParameter("idAnuncio", idAnuncio).getResultList();
 	}
 
 	public Long countAnunPlats() {

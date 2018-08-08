@@ -32,27 +32,22 @@ public class DashAnBean implements Serializable {
 
 	@Inject
 	private ControlPlataforma controlPlataforma;
-	
+
 	@Inject
 	private ControlAnuncioPlataforma controlAnunPlats;
-
-	
 
 	private Collection<Anuncio> comTarefa;
 
 	// classes criada para o search bar
 	private Collection<Anuncio> filteredAnuncio;
-	
+
 	private Long countAnunPlats;
 	private Long countAnuncios;
 
 	private Long countPlataformas;
-	
-
 
 	private Anuncio selected;
-	
-	
+
 	public Collection<Anuncio> getFilteredAnuncio() {
 		return filteredAnuncio;
 	}
@@ -66,10 +61,8 @@ public class DashAnBean implements Serializable {
 	public void onRowEdit(RowEditEvent event) {
 		Anuncio anuncio = (Anuncio) event.getObject();
 		anuncioControl.updateAnuncio(anuncio);
-	
-	}
 
-	
+	}
 
 	public Anuncio getSelected() {
 		return selected;
@@ -79,91 +72,47 @@ public class DashAnBean implements Serializable {
 		this.selected = selected;
 	}
 
-
-
 	public void countAllAnunPlats() {
 		System.out.println("Count AnunPlats");
 		countAnunPlats = controlAnunPlats.countAnunciosPlataforma();
 	}
-	
+
 	public void countAllAnuncios() {
 		System.out.println("count Anuncios");
 		countAnuncios = anuncioControl.countAnuncios();
 	}
-	
+
 	public void countPlataformas() {
 		System.out.println("count Plataformas");
 		countPlataformas = controlPlataforma.countPlataformas();
 	}
+
+
+
+
 	
-	
-	
-	
-//	public void tarefas(Collection<Anuncio> list) {
-//		for (Anuncio anuncio : list) {
-//			switch(anuncio.getEstado()) {
-//				case "Aplicar":
-//					if (anuncio.countPlataformas() == countListaPlataformas) {
-//						anuncio.setEstado("Manter");
-//						anuncio.setTarefas("Feito");
-//						break;
-//					} else {
-//						anuncio.setTarefas("!!!!");
-//						
-//						break;
-//					}
-//				case "Manter":
-//					if (numberOnlinePlats(anuncio) == numberAnunPlats(anuncio)) {
-//						anuncio.setTarefas("Feito");
-//						break;
-//						
-//					} else {
-//						anuncio.setTarefas("!!!!");
-//						break;
-//					}
-//				case "Retirar":
-//					if (numberOnlinePlats(anuncio) == 0) {
-//						anuncio.setTarefas("Feito");
-//						break;
-//					} else {
-//						anuncio.setTarefas("!!!!");
-//						break;
-//					}
-//				default:
-//					anuncio.setTarefas("ERRO");
-//					break;
-//				}
-//				anuncioControl.updateAnuncio(anuncio);
-//		}
-//		
-//	}
-	
-	
+
 	public String listAnunPlat(Anuncio anuncio) {
 		System.out.println("redirect listar anunPlat");
-		return "listarAnunPlat?faces-redirect=true&idAnuncio=" + anuncio.getId(); 
+		return "listarAnunPlat?faces-redirect=true&idAnuncio=" + anuncio.getId();
 
 	}
 
-
-	
 	@PostConstruct
 	public void load() {
 		System.out.println("load");
 		countAllAnuncios();
 		countAllAnunPlats();
 		countPlataformas();
-//		tarefas(anuncioControl.Anuncios());
 		comTarefa = anuncioControl.comTarefa();
 		System.out.println("get comTarefa");
 	}
 
 	public Collection<Anuncio> getComTarefa() {
-		
+
 		return comTarefa;
 	}
-	
-		
+
 	public Long getCountAnunPlats() {
 		return countAnunPlats;
 	}
@@ -175,6 +124,5 @@ public class DashAnBean implements Serializable {
 	public Long getCountPlataformas() {
 		return countPlataformas;
 	}
-
 
 }

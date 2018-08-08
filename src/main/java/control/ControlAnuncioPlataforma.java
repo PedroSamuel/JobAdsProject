@@ -75,8 +75,10 @@ public class ControlAnuncioPlataforma {
 	public void reverContagem(AnuncioPlataforma ap) {
 			if ((ap.getPlataforma().getPeriodoRenovacao() != 0) && (ap.getDiasRestantes()== 0) && (ap.getDatacriacao()!= null)){
 				ap.setEstado("Offline");
+				System.out.println("expirou anuncioPlataforma " + ap.getId());
 			}
 		}
+	
 	
 
 
@@ -104,15 +106,16 @@ public class ControlAnuncioPlataforma {
 		return null;
 	}
 	
-	public Collection<AnuncioPlataforma> verifyDates(Collection<AnuncioPlataforma> list){
-		for (AnuncioPlataforma ap : list) {
+	public void verifyDates(){
+		int i = 0;
+		for (AnuncioPlataforma ap : dbAP.getOnline()) {
+			i++;
 			ap.setDiasRestantes(daysToExpire(ap));
 			ap.setDataExpiracao(expirationDate(ap));
 			reverContagem(ap);
 			updateAnuncioPlataforma(ap);
-			
 		}
-		return list;
+		System.out.println(i + "plataformas online");
 	}
 	
 	
@@ -141,11 +144,7 @@ public class ControlAnuncioPlataforma {
 	}
 	
 	
-	public void load(){
-		verifyDates(AnunciosPlataforma());
-		System.out.println("Contagens Revistas");
-		
-	}
+
 
 	public Long countAnunciosPlataforma() {
 		return dbAP.countAnunPlats();

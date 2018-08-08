@@ -158,9 +158,17 @@ public class Anuncio extends Entidade {
 		return tarefas;
 	}
 
-	public void setTarefas(String tarefas) {
-		this.tarefas = tarefas;
+	
+	public void temTarefa() {
+		tarefas = "!!!!";
 	}
+	
+	public void feito() {
+		tarefas = "Feito";
+	}
+	
+	
+	
 
 }
 	

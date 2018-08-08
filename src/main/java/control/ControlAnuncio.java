@@ -9,12 +9,16 @@ import javax.transaction.Transactional;
 
 import model.Anuncio;
 import repository.RepositorioAnuncios;
+import repository.RepositorioPlataformas;
 
 @Transactional
 @RequestScoped
 public class ControlAnuncio {
 	@Inject
-	RepositorioAnuncios dbA ;
+	private RepositorioAnuncios dbA ;
+	
+	@Inject
+	private RepositorioPlataformas dbP;
 	
 	public void criarAnuncio(Anuncio anuncio) {
 		dbA.createEntity(anuncio);
@@ -57,5 +61,71 @@ public class ControlAnuncio {
 	public Long countAnuncios() {
 		return dbA.countAnuncios();
 	}
+	
+	
+	
+	public void verificarTarefa(Anuncio anuncio) {
+		boolean alterado = false;
+		long numPlataformas = anuncio.countPlataformas();
+		long numPlataformasOnline = anuncio.countPlataformasOnline();
+		long countPlataformas = dbP.countPlataformas();
+		switch (anuncio.getEstado()) {
+		case "Aplicar":
+
+			if ((countPlataformas > 0) && (numPlataformas == countPlataformas)) {
+				anuncio.setEstado("Manter");
+				anuncio.feito();
+				System.out.println("Totalmente Aplicado o Anuncio, mudado para manter:" + anuncio.getREF());
+				alterado = true;
+				break;
+			} else {
+				if (!anuncio.getTarefas().equals("!!!!"))
+					;
+				anuncio.temTarefa();
+				System.out.println("tem plataformas por aplicar o anuncio " + anuncio.getREF());
+				alterado = true;
+				break;
+			}
+		case "Manter":
+			if (numPlataformasOnline == numPlataformas) {
+				if (anuncio.getTarefas().equals("!!!!")) {
+					anuncio.feito();
+					alterado = true;
+					System.out.println(
+							"Todas as plataformas registadas estao online para o anuncio que tem estado manter: "
+									+ anuncio.getREF());
+					break;
+				}
+			} else if (anuncio.getTarefas().equals("Feito")) {
+				anuncio.temTarefa();
+				System.out.println("plataformas offline no anuncio que tem estado manter: " + anuncio.getREF());
+				alterado = true;
+				break;
+			}
+		case "Retirar":
+			if ((numPlataformas == 0) && (anuncio.getTarefas() == "!!!!")) {
+				anuncio.feito();
+				System.out.println("Anuncio completamente retirado " + anuncio.getREF());
+				alterado = true;
+				break;
+			} else if (anuncio.getTarefas() == "Feito") {
+				System.out.println("anuncio tem plataformas por retirar " + anuncio.getREF());
+				anuncio.temTarefa();
+				alterado = true;
+				break;
+			}
+		default:
+			System.out.println("Erro no anuncio " + anuncio.getREF());
+			break;
+		}
+		if (alterado == true) {
+			updateAnuncio(anuncio);
+		}
+	}
+
+	
+	
+	
+	
 	
 }
