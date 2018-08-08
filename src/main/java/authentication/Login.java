@@ -18,7 +18,7 @@ import org.omnifaces.util.Faces;
 public class Login {
 	
 	
-    public static final String HOME_URL = "index.xhtml";
+    public static final String HOME_URL = "DashboardRH.xhtml";
 
     private String username;
     private String password;
