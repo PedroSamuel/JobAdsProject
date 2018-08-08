@@ -19,10 +19,11 @@ import org.primefaces.event.RowEditEvent;
 
 import control.ControlAnuncio;
 import control.ControlAnuncioPlataforma;
+import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
 
-@Named("anuncioplataformaBean")
+@Named("anuncioPlataformaBean")
 @ViewScoped
 public class AnuncioPlataformaBean implements Serializable {
 
@@ -35,6 +36,9 @@ public class AnuncioPlataformaBean implements Serializable {
 	private ControlAnuncioPlataforma anuncioControlPlataforma;
 	@Inject
 	private ControlAnuncio anuncioControl;
+	
+	@Inject
+	private ControlPlataforma plataformaControl;
 
 	private Anuncio anuncio;
 	private AnuncioPlataforma selected;
@@ -45,6 +49,12 @@ public class AnuncioPlataformaBean implements Serializable {
 	private Collection<AnuncioPlataforma> filteredAnuncioPlataforma;
 	private Collection<AnuncioPlataforma> APList;
 	private Collection<AnuncioPlataforma> SelectAnPlat;
+	
+	private Long countAnunPlats;
+	private Long countAnuncios;
+	
+
+	private Long countPlataformas;
 
 	public void updateAnuncio() {
 		anuncioControl.updateAnuncio(anuncio);
@@ -181,7 +191,41 @@ public class AnuncioPlataformaBean implements Serializable {
 		SelectAnPlat = selectAnPlat;
 	}
 	
+	public Long getCountAnunPlats() {
+		return countAnunPlats;
+	}
+
+	public Long getCountAnuncios() {
+		return countAnuncios;
+	}
+
+	public Long getCountPlataformas() {
+		return countPlataformas;
+	}
+	
+
+	public void countAllAnunPlats() {
+		System.out.println("Count AnunPlats");
+		countAnunPlats = anuncioControlPlataforma.countAnunciosPlataforma();
+	}
+	
+	public void countAllAnuncios() {
+		System.out.println("count Anuncios");
+		countAnuncios = anuncioControl.countAnuncios();
+	}
+	
+	public void countPlataformas() {
+		System.out.println("count Plataformas");
+		countPlataformas = plataformaControl.countPlataformas();
+	}
+	
+	
+	
 	public void load() {
+		System.out.println("load");
+		countAllAnuncios();
+		countAllAnunPlats();
+		countPlataformas();
 		
 		if (idAnuncio == (null)) {
 			System.out.println("Não Funcionou!");
