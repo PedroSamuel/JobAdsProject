@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import model.Anuncio;
+import model.AnuncioPlataforma;
 import repository.RepositorioAnuncios;
 import repository.RepositorioPlataformas;
 
@@ -19,6 +20,9 @@ public class ControlAnuncio {
 	
 	@Inject
 	private RepositorioPlataformas dbP;
+	
+	@Inject
+	private ControlAnuncioPlataforma APControl;
 	
 	public void criarAnuncio(Anuncio anuncio) {
 		dbA.createEntity(anuncio);
@@ -43,11 +47,15 @@ public class ControlAnuncio {
 	}
 	
 	public void updateAnuncio(Anuncio a) {
+		verificarTarefa(a);
 		dbA.updateEntity(a);
 	}
 	
 	
 	public void removeAnuncio(Anuncio anuncio) {
+		for (AnuncioPlataforma ap : anuncio.getPlataformas()){
+			APControl.removeAnuncioPlataforma(ap);
+		}
 		dbA.removeEntity(anuncio);
 	}
 	
@@ -65,12 +73,17 @@ public class ControlAnuncio {
 	
 	
 	public void verificarTarefa(Anuncio anuncio) {
+		anuncio = getAnuncioWithPlataformasById(anuncio.getId());
+		System.out.println("verificar tarefa");
 		boolean alterado = false;
 		long numPlataformas = anuncio.countPlataformas();
+		System.out.println("count plataformas associadas" + numPlataformas);
 		long numPlataformasOnline = anuncio.countPlataformasOnline();
+		System.out.println("count Plats Online " + numPlataformasOnline);
 		long countPlataformas = dbP.countPlataformas();
+		System.out.println("count todas Plataformas " + countPlataformas);
 		switch (anuncio.getEstado()) {
-		case "Aplicar":
+			case "Aplicar":
 
 			if ((countPlataformas > 0) && (numPlataformas == countPlataformas)) {
 				anuncio.setEstado("Manter");
@@ -118,9 +131,15 @@ public class ControlAnuncio {
 			System.out.println("Erro no anuncio " + anuncio.getREF());
 			break;
 		}
-		if (alterado == true) {
-			updateAnuncio(anuncio);
-		}
+		//if (alterado == true) {
+			//updateAnuncio(anuncio);
+		//}
+	}
+
+	private Anuncio getAnuncioWithPlataformasById(Long id) {
+		return dbA.getAnuncioWithPlataformasById(id);
+		
+		
 	}
 
 	

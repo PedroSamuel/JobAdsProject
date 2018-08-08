@@ -81,7 +81,7 @@
 				<h:form>
 
 					<p:button outcome="criarAnunPlat?faces-redirect=true"
-						value=" Associar Plataforma" style="width:300px">
+						value=" Associar Plataforma" class="mybutton" style="width:300px">
 						<f:param name="idAnuncio"
 							value="#{anuncioPlataformaBean.idAnuncio}"></f:param>
 					</p:button>
@@ -130,7 +130,7 @@
 									itemValue="Online" />
 								<p:ajax event="change"
 									listener="#{anuncioPlataformaBean.onlineDate(anunPlat)}"
-									update="dtAnunPlat" />
+									update="dtAnunPlat su" />
 							</p:selectOneButton>
 
 						</p:column>

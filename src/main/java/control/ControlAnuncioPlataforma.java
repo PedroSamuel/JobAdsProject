@@ -29,6 +29,8 @@ public class ControlAnuncioPlataforma {
    RepositorioAnuncios dbA;
    @Inject
    RepositorioPlataformas dbP;
+   @Inject
+   ControlAnuncio anuncioControl;
    
    @Transactional
    public void criarAnuncioPlataforma(AnuncioPlataforma anuncioPlataforma) {
@@ -136,7 +138,7 @@ public class ControlAnuncioPlataforma {
 	@Transactional
 	public void removeAnuncioPlataforma(AnuncioPlataforma anuncioplataforma) {
 		anuncioplataforma.getAnuncio().getPlataformas().remove(anuncioplataforma);
-		dbA.updateEntity(anuncioplataforma.getAnuncio());
+		anuncioControl.updateAnuncio(anuncioplataforma.getAnuncio());
 		anuncioplataforma.getPlataforma().getAnuncios().remove(anuncioplataforma);
 		dbP.updateEntity(anuncioplataforma.getPlataforma());
 		dbAP.removeEntity(anuncioplataforma);

@@ -30,6 +30,11 @@ public class RepositorioAnuncios extends EntityRepository<Anuncio> {
 		return em.createNamedQuery("Anuncio.countAll", Long.class).getSingleResult();
 	}
 
+	public Anuncio getAnuncioWithPlataformasById(Long id) {
+		return em.createNamedQuery("Anuncio.getWithPlataformasById", Anuncio.class).setParameter("id", id).getSingleResult();
+
+	}
+
 	
 
 }

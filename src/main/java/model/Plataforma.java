@@ -69,6 +69,17 @@ public class Plataforma extends Entidade {
 		return (id != null) ? (this.getClass().hashCode() + id.hashCode()) : super.hashCode();
 	}
 	
+	public void removerAnuncio(AnuncioPlataforma anuncioplataforma) {
+		anuncios.remove(anuncioplataforma);
+	}
+	
+//	public void preRemove() {
+//		for ( AnuncioPlataforma ap : getAnuncios()) {
+//			ap.setPlataforma(null);
+//		}
+//	}
+	
+	
 	/*
 	public List<AnuncioPlataforma> getListaAnuncios() {
 		return listaAnuncios;

@@ -74,6 +74,7 @@ public class AnuncioPlataformaBean implements Serializable {
 
 
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {
+		//anuncioControl.updateAnuncio(anuncioplataforma.getAnuncio());
 		anuncioControlPlataforma.removeAnuncioPlataforma(anuncioplataforma);
 		load();
 	}
@@ -124,7 +125,10 @@ public class AnuncioPlataformaBean implements Serializable {
 		// anuncioControlPlataforma.updateAnuncioPlataforma(ap);
 		ap.setDiasRestantes(daysToExpire(ap));
 		ap.setDataExpiracao(expirationDate(ap));
+		System.out.println("update AP");
 		anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+		System.out.println("update An");
+		anuncioControl.updateAnuncio(ap.getAnuncio());
 	}
 
 	public void redirect() throws IOException {

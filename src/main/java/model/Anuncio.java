@@ -24,8 +24,12 @@ import javax.persistence.PreRemove;
 @Entity
 @NamedQueries({ @NamedQuery(name = "Anuncio.getAll", query = "SELECT e FROM Anuncio e"),
 	@NamedQuery(name = "Anuncio.getAllWithPlataformas", query = "SELECT DISTINCT e FROM Anuncio e LEFT JOIN FETCH e.plataformas"),
+	@NamedQuery(name = "Anuncio.getWithPlataformasById", query = "SELECT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.id LIKE :id"),
 	@NamedQuery(name = "Anuncio.countAll", query = "SELECT COUNT(e.id) FROM Anuncio e"),
 	@NamedQuery(name = "Anuncio.comTarefa", query = "SELECT DISTINCT e FROM Anuncio e LEFT JOIN FETCH e.plataformas WHERE e.tarefas LIKE :tarefas")})
+
+
+
 public class Anuncio extends Entidade {
 
 	private String REF;
@@ -165,6 +169,11 @@ public class Anuncio extends Entidade {
 	
 	public void feito() {
 		tarefas = "Feito";
+	}
+
+	public void removerPlataforma(AnuncioPlataforma anuncioplataforma) {
+		plataformas.remove(anuncioplataforma);
+		
 	}
 	
 	
