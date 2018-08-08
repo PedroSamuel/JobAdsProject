@@ -38,7 +38,7 @@ public class ControlAnuncioPlataforma {
 	   System.out.println("plataforma: " + anuncioPlataforma.getPlataforma());
 	   System.out.println("estado: " + anuncioPlataforma.getEstado() );
 	   System.out.println("A iniciar control-criaranunplat");
-	    dbA.updateEntity(anuncioPlataforma.getAnuncio());
+	    anuncioControl.updateAnuncio(anuncioPlataforma.getAnuncio());
 	    System.out.println("updateAnuncio ok " + anuncioPlataforma.getAnuncio());
 	    System.out.println(anuncioPlataforma.getAnuncio().getId());
 	    
@@ -52,6 +52,7 @@ public class ControlAnuncioPlataforma {
 	    System.out.println("id composto ok");
 	    dbAP.updateEntity(anuncioPlataforma);
 		System.out.println("update anuncioPlataforma ok");
+		
 	}
 	
 	public List<AnuncioPlataforma> AnunciosPlataforma(){

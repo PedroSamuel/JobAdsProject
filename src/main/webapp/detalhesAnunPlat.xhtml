@@ -55,10 +55,12 @@
 						<f:selectItem itemLabel="Retirar" itemValue="Retirar" />
 						<p:ajax event="change"
 							listener="#{anuncioPlataformaBean.updateAnuncio()}"
-							update="growl" />
+							update="growl su" />
 
 					</h:selectOneMenu>
-
+					<br/>
+					<b>Tarefas: </b> #{anuncioPlataformaBean.anuncio.tarefas};
+				
 
 				</div>
 

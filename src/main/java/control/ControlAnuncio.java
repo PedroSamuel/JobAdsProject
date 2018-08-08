@@ -72,59 +72,53 @@ public class ControlAnuncio {
 	
 	
 	
-	public Anuncio verificarTarefa(Anuncio anuncio) {
-		anuncio = getAnuncioWithPlataformasById(anuncio.getId());
+	public Anuncio verificarTarefa(Anuncio anuncioTemp) {
+		Anuncio anuncio = getAnuncioWithPlataformasById(anuncioTemp.getId());
+		anuncio.setEstado(anuncioTemp.getEstado());
 		System.out.println("verificar tarefa");
-		boolean alterado = false;
 		long numPlataformas = anuncio.countPlataformas();
 		System.out.println("count plataformas associadas" + numPlataformas);
 		long numPlataformasOnline = anuncio.countPlataformasOnline();
 		System.out.println("count Plats Online " + numPlataformasOnline);
-		long countPlataformas = dbP.countPlataformas();
-		System.out.println("count todas Plataformas " + countPlataformas);
+		long numTotalPlataformas = dbP.countPlataformas();
+		System.out.println("count todas Plataformas " + numTotalPlataformas);
 		switch (anuncio.getEstado()) {
 			case "Aplicar":
-
-			if ((countPlataformas > 0) && (numPlataformas == countPlataformas)) {
-				anuncio.setEstado("Manter");
-				anuncio.feito();
-				System.out.println("Totalmente Aplicado o Anuncio, mudado para manter:" + anuncio.getREF());
-				alterado = true;
-				break;
+				System.out.println("Estado Aplicar");
+				if (numPlataformasOnline == numTotalPlataformas){
+					anuncio.setEstado("Manter");
+					anuncio.feito();
+					System.out.println("Totalmente Aplicado o Anuncio, mudado para manter:" + anuncio.getREF());
+					break;
 			} else {
-				if (!anuncio.getTarefas().equals("!!!!"))
-					;
 				anuncio.temTarefa();
-				System.out.println("tem plataformas por aplicar o anuncio " + anuncio.getREF());
-				alterado = true;
 				break;
 			}
 		case "Manter":
+			System.out.println("Estado Manter");
 			if (numPlataformasOnline == numPlataformas) {
 				if (anuncio.getTarefas().equals("!!!!")) {
 					anuncio.feito();
-					alterado = true;
 					System.out.println(
 							"Todas as plataformas registadas estao online para o anuncio que tem estado manter: "
 									+ anuncio.getREF());
 					break;
 				}
-			} else if (anuncio.getTarefas().equals("Feito")) {
+			} else {
 				anuncio.temTarefa();
 				System.out.println("plataformas offline no anuncio que tem estado manter: " + anuncio.getREF());
-				alterado = true;
 				break;
 			}
 		case "Retirar":
-			if ((numPlataformas == 0) && (anuncio.getTarefas() == "!!!!")) {
+			System.out.println("Estado Retirar");
+			if (numPlataformas == 0){
 				anuncio.feito();
 				System.out.println("Anuncio completamente retirado " + anuncio.getREF());
-				alterado = true;
+
 				break;
-			} else if (anuncio.getTarefas() == "Feito") {
+			} else {
 				System.out.println("anuncio tem plataformas por retirar " + anuncio.getREF());
 				anuncio.temTarefa();
-				alterado = true;
 				break;
 			}
 		default:
