@@ -21,7 +21,7 @@ public class ControlPlataforma {
 	}
 	
 	public List<Plataforma> Plataformas(){
-		return dbP.getAll();
+		return dbP.getAllWithAnuncios();
 	}
 	
 	public Plataforma getPlataforma (Long id) {

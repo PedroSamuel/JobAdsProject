@@ -99,20 +99,8 @@ public class AnuncioPlataformaBean implements Serializable {
 		idAnuncio = idx;
 	}
 
-	// codigo do ID chama a funcao load vinda f param do listar anun platf
-	public void load() {
-		// anuncioControlPlataforma.reverContagem();
-		if (idAnuncio == (null)) {
-			System.out.println("Não Funcionou!");
-			APList = anuncioControlPlataforma.AnunciosPlataforma();
-		} else {
-			long longID = Long.valueOf(idAnuncio);
-			setAnuncio(anuncioControl.getAnuncio(longID));
-			System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
-			APList = anuncioControlPlataforma.SelectAnPlat(anuncio);
-		}
 
-	}
+
 
 	public AnuncioPlataforma getSelected() {
 		return selected;
@@ -169,26 +157,12 @@ public class AnuncioPlataformaBean implements Serializable {
 	}
 
 	public int daysToExpire(AnuncioPlataforma anuncioPlataforma) {
-		if (!(anuncioPlataforma.getDatacriacao() == null)) {
-			Duration duration = Duration.between(anuncioPlataforma.getDatacriacao(), LocalDateTime.now());
-			int days = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
-			System.out.println("Dias= " + days);
-			return days;
-		}
-		System.out.println("dias nao funcou");
-		return 0;
+		return anuncioControlPlataforma.daysToExpire(anuncioPlataforma);
 
 	}
 
 	public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma) {
-
-		if (!(anuncioPlataforma.getDatacriacao() == null)) {
-			LocalDateTime date = anuncioPlataforma.getDatacriacao()
-					.plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
-
-			return date;
-		}
-		return null;
+		return anuncioControlPlataforma.expirationDate(anuncioPlataforma);
 	}
 
 	public Collection<AnuncioPlataforma> getAPList() {
@@ -205,6 +179,20 @@ public class AnuncioPlataformaBean implements Serializable {
 
 	public void setSelectAnPlat(Collection<AnuncioPlataforma> selectAnPlat) {
 		SelectAnPlat = selectAnPlat;
+	}
+	
+	public void load() {
+		
+		if (idAnuncio == (null)) {
+			System.out.println("Não Funcionou!");
+			APList = anuncioControlPlataforma.verifyDates(anuncioControlPlataforma.AnunciosPlataforma());
+		} else {
+			long longID = Long.valueOf(idAnuncio);
+			setAnuncio(anuncioControl.getAnuncio(longID));
+			System.out.println("A iniciar AnuncioPlataformaBean com anuncio " + longID);
+			APList = anuncioControlPlataforma.verifyDates(anuncioControlPlataforma.SelectAnPlat(anuncio));
+		}
+
 	}
 
 }

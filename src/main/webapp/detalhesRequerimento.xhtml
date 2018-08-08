@@ -31,49 +31,42 @@
 
 
 		<div class=" container">
+		<br></br>
+		<h3 class="big-orange" >Detalhes Pedido #{DRequerimento.requerimento.id}</h3>
+		<h5><b>Requerido a: #{DRequerimento.requerimento.data.toLocalDate()} / #{DRequerimento.requerimento.estado}</b> </h5>
+
 			<div class="col-sm"></div>
-			<div class="col-sm container1 ">
-				<h:form>
-					<h1 style="text-align: center">Detalhes Pedido</h1>
+			
+			<div class="col-sm container1 displayinfo ">
+	
+				<div class="row">
+					<div class="col-4">
+					<h3><b>Requerente (Business Manager)</b></h3>
 
-					<h2 style="margin-top: 0">Requerente (Business Manager)</h2>
 
-					<h3>Id Requerimento</h3>
-					<h:outputText value="#{DRequerimento.requerimento.id}" />
+					<h4><b>Nome: </b>#{DRequerimento.requerimento.requerente}" </h4>
 
-					<h3>Nome</h3>
-					<h:outputText value="#{DRequerimento.requerimento.requerente}" />
-
-					<h3>Email</h3>
-					<h:outputText value="#{DRequerimento.requerimento.email}" />
+					<h4><b>Email: </b>#{DRequerimento.requerimento.email}" </h4>
 					<br />
 					<br />
 					<br />
-					<h2 style="margin-top: 0">Candidato</h2>
+					</div>
+					<div class="col">
+					<h3><b>Candidato</b></h3>
 					<br />
 
-					<h3>Função</h3>
-					<h:outputText value="#{DRequerimento.requerimento.funcao}" />
+					<h4><b>Função: </b> #{DRequerimento.requerimento.funcao}" </h4>
 
-					<h3>Requisitos do Candidato</h3>
-					<h:outputText value="#{DRequerimento.requerimento.requisitos}" />
+					<h4><b>Requisitos do Candidato: </b></h4>
+					<p>#{DRequerimento.requerimento.requisitos}"</p>
 
-					<h3>Observações</h3>
-					<h:outputText value="#{DRequerimento.requerimento.notas}" />
+					<h4><b>Observações</b></h4>
+					<p>#{DRequerimento.requerimento.notas}" </p>
+					</div>
 
-					<h3>Estado do Requerimento</h3>
-					<h:outputText value="#{DRequerimento.requerimento.estado}" />
-
-
-		<h3>Data do Requerimento</h3>
-		<h:outputText value="#{DRequemimento.requerimento.data.toLocalDate()}" >
-		
-		</h:outputText>
+					</div>
 
 
-
-
-				</h:form>
 
 
 

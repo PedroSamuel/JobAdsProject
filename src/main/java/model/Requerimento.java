@@ -104,7 +104,7 @@ public class Requerimento extends Entidade {
 
 
 	public void processar() {
-		setEstado("Processado");
+		setEstado("Processado a " + LocalDateTime.now().toLocalDate());
 		
 	}
 	

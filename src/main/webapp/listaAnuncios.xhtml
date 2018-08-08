@@ -27,16 +27,14 @@
 
 				<div class="col-sm">
 					<br />
-						<p:commandButton value="Criar Anúncio"
+						<p:commandButton value="Criar Anúncio" class="mybutton"
 						action="criarAnuncio?faces-redirect=true" />
 					<p:dataTable id="dtanuncio" var="anuncio"
 						value="#{anuncioBean.anuncioList}" editable="true"
 						style="margin-bottom:20px" rowKey="#{anuncio.id}"
-						selection="#{selected}" selectionMode="single"
-						widgetVar="anucioTable"
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 						filteredValue="#{anuncioBean.filteredAnuncio}" scrollable="true" scrollHeight="600" raggableColumns="false"
-					    resizableColumns="false">
+					    resizableColumns="false" >
 
 
 						<p:ajax event="rowEdit" listener="#{anuncioBean.onRowEdit}" />

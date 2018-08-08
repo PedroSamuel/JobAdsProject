@@ -15,6 +15,7 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 import control.ControlAnuncio;
+import control.ControlAnuncioPlataforma;
 import control.ControlPlataforma;
 import model.Anuncio;
 import model.AnuncioPlataforma;
@@ -33,6 +34,9 @@ public class DashAnBean implements Serializable {
 
 	@Inject
 	ControlPlataforma plats;
+	
+	@Inject
+	ControlAnuncioPlataforma anPlats;
 	
 
 	private Collection<Anuncio> comTarefa;
@@ -90,6 +94,17 @@ public class DashAnBean implements Serializable {
 		return count;
 	}
 
+	public int numberAllPlats() {
+		return plats.Plataformas().size();
+	}
+	
+	public int numberAllAnPlats() {
+		return anPlats.AnunciosPlataforma().size();
+	}
+	
+	public int numberAllAnunc() {
+		return anuncioControl.Anuncios().size();
+	}
 	
 	public void tarefas(Collection<Anuncio> list) {
 		for (Anuncio anuncio : list) {

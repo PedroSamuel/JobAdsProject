@@ -63,7 +63,6 @@ public class ControlAnuncioPlataforma {
 	public Collection<AnuncioPlataforma> SelectAnPlat(Anuncio anuncio) {
 		ArrayList<AnuncioPlataforma> select = new ArrayList<AnuncioPlataforma>(); 
 		for (AnuncioPlataforma AP : AnunciosPlataforma()){
-			reverContagem(AP);
 			if (AP.getAnuncio().equals(anuncio)){
 				select.add(AP);
 			}
@@ -74,33 +73,47 @@ public class ControlAnuncioPlataforma {
 	
 
 	public void reverContagem(AnuncioPlataforma ap) {
-			if ((ap.getPlataforma().getPeriodoRenovacao() != 0) && (daysToExpire(ap)== 0) && (ap.getDatacriacao()!= null)){
+			if ((ap.getPlataforma().getPeriodoRenovacao() != 0) && (ap.getDiasRestantes()== 0) && (ap.getDatacriacao()!= null)){
 				ap.setEstado("Offline");
-				dbAP.updateEntity(ap);
 			}
 		}
 	
 
-	public void reverContagem() {
-		System.out.println("A iniciar rever contagem");
-		for (AnuncioPlataforma ap: AnunciosPlataforma()) {
-			reverContagem(ap);
-		}
-		System.out.println("rever contagem ok");
-	}
+
 	
 
-	 public int daysToExpire(AnuncioPlataforma anuncioPlataforma){
-	    	if (!(anuncioPlataforma.getDatacriacao() == null)){
-	    	Duration duration = Duration.between( anuncioPlataforma.getDatacriacao(),LocalDateTime.now());
-	    	int days  = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
-	    	
-	    	
+	public int daysToExpire(AnuncioPlataforma anuncioPlataforma) {
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			Duration duration = Duration.between(anuncioPlataforma.getDatacriacao(), LocalDateTime.now());
+			int days = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
+
 			return days;
-	    	}
-	    	return 0;
-	  
-	    }
+		}
+		return 0;
+
+	}
+
+	public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma) {
+
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			LocalDateTime date = anuncioPlataforma.getDatacriacao()
+					.plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
+
+			return date;
+		}
+		return null;
+	}
+	
+	public Collection<AnuncioPlataforma> verifyDates(Collection<AnuncioPlataforma> list){
+		for (AnuncioPlataforma ap : list) {
+			ap.setDiasRestantes(daysToExpire(ap));
+			ap.setDataExpiracao(expirationDate(ap));
+			reverContagem(ap);
+			updateAnuncioPlataforma(ap);
+			
+		}
+		return list;
+	}
 	
 	
 	
@@ -125,6 +138,13 @@ public class ControlAnuncioPlataforma {
 		anuncioplataforma.getPlataforma().getAnuncios().remove(anuncioplataforma);
 		dbP.updateEntity(anuncioplataforma.getPlataforma());
 		dbAP.removeEntity(anuncioplataforma);
+	}
+	
+	
+	public void load(){
+		verifyDates(AnunciosPlataforma());
+		System.out.println("Contagens Revistas");
+		
 	}
 	
 

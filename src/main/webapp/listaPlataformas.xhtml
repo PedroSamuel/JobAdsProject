@@ -24,7 +24,9 @@
 
 			<div class="col" id="lista">
 				<br />
-
+					<p:commandButton
+						value=" Registos em Plataformas (#{dashAnBean.numberAllAnPlats()})"
+						action="listarAnunPlat?faces-redirect=true" style="width:300px" />
 				<h:form id="plat"
 					onkeypress="if (event.keyCode == 13){return false;}">
 					<p:dataTable id="dtplataforma" var="plataforma"
@@ -75,10 +77,15 @@
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
-
-						<p:column headerText="Editar" style="width:60px">
+					
+						<p:column headerText="Anuncios Registados" style="width:60px">
+							<h:outputText value="#{plataforma.anuncios.size()}" />
+						</p:column>	
+						
+							<p:column headerText="Editar" style="width:60px">
 							<p:rowEditor />
 						</p:column>
+
 
 						<p:column headerText="Eliminar" style="width:60px">
 							<p:commandButton icon="ui-icon-trash"
@@ -114,7 +121,7 @@
 
 					<br />
 					<br />
-					<p:commandButton value="Guardar"
+					<p:commandButton value="Guardar" class="mybutton"
 						action="#{plataformaCreate.salvarPlataforma()}" />
 						
 				</h:form>

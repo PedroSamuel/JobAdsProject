@@ -88,7 +88,7 @@ public class AssociarAnuncioPlataforma implements Serializable {
 		controlAnuncioPlataforma.criarAnuncioPlataforma(anuncioPlataforma);
 		System.out.println("anunplat criada. a returnar para listarAnunPlat");
 		;
-		return "listarAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
+		return "detalhesAnunPlat?faces-redirect=true&idAnuncio=" + idAnuncio;
 	}
 
 	public void criarAnunPlat() {

@@ -84,7 +84,7 @@
 
 
 
-				<p:commandButton value="Ver todos Pedidos"
+				<p:commandButton value="Ver todos Pedidos #{dashReqBean.numReqs()}"
 					action="listaRequerimentos?faces-redirect=true" style="width:200px" />
 					
 				<p:dataTable id="dtreq" var="req"
@@ -205,16 +205,16 @@
 				
 			</p>
 
-			<p:commandButton value="Criar novo Anuncio"
+			<p:commandButton value="Criar novo Anuncio" class="mybutton"
 				action="criarAnuncio?faces-redirect=true" style="width:300px" />
 				
-			<p:commandButton value="Ver Todos Anúncios"
+			<p:commandButton value="Ver Todos Anúncios (#{dashAnBean.numberAllAnunc()})"
 				action="listaAnuncios?faces-redirect=true" style="width:300px" />
 				
 			<p:commandButton
 				value="Ver Plataformas (#{dashAnBean.platsSize()})"
 				action="listaPlataformas?faces-redirect=true" style="width:300px" />
-			<p:commandButton value=" Offline/a Expirar "
+			<p:commandButton value=" Registos em Plataformas (#{dashAnBean.numberAllAnPlats()})"
 				action="listarAnunPlat?faces-redirect=true" style="width:300px" />
 
 			<p:dataTable id="dtanuncio" class="table table-condensed table-hover"

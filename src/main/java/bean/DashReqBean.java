@@ -88,6 +88,10 @@ public class DashReqBean implements Serializable{
 		this.porProcessar = porProcessar;
 	}
 	
+	public int numReqs() {
+		return requerimentoControl.Requerimentos().size();
+	}
+	
 	@PostConstruct
 	private void loadRequerimentos() {
 		porProcessar = requerimentoControl.porProcessar();

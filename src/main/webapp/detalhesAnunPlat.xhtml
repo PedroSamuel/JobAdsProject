@@ -41,9 +41,12 @@
 					</h3>
 					<br /> <br />
 					<h3>
-						<b>Manager: </b> #{anuncioplataformaBean.anuncio.manager}</h3>
+						<b>Manager: </b> #{anuncioplataformaBean.anuncio.manager}
+					</h3>
 
-					<h3> <b>Estado: </b></h3>
+					<h3>
+						<b>Estado: </b>
+					</h3>
 					<h:selectOneMenu class="selectOneMenu"
 						value="#{anuncioplataformaBean.anuncio.estado}">
 
@@ -55,7 +58,7 @@
 							update="growl" />
 
 					</h:selectOneMenu>
-				
+
 
 				</div>
 
@@ -69,10 +72,12 @@
 
 				</div>
 			</div>
+			<br /> <br />
 
 			<div class="row">
 
-				<br />
+
+
 				<h:form>
 
 					<p:button outcome="criarAnunPlat?faces-redirect=true"
@@ -80,15 +85,26 @@
 						<f:param name="idAnuncio"
 							value="#{anuncioplataformaBean.idAnuncio}"></f:param>
 					</p:button>
+					<p:commandButton
+						value="Ver Todos Anúncios (#{dashAnBean.numberAllAnunc()})"
+						action="listaAnuncios?faces-redirect=true" style="width:300px" />
+
+					<p:commandButton
+						value="Ver Plataformas (#{dashAnBean.platsSize()})"
+						action="listaPlataformas?faces-redirect=true" style="width:300px" />
+					<p:commandButton
+						value=" Registos em Plataformas (#{dashAnBean.numberAllAnPlats()})"
+						action="listarAnunPlat?faces-redirect=true" style="width:300px" />
+
+
 					<p:dataTable editable="true" id="dtAnunPlat" var="anunPlat"
 						value="#{anuncioplataformaBean.APList}"
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 						filteredValue="#{anuncioplataformaBean.filteredAnuncioPlataforma}"
-						 rowKey="#{anunPlat.id}" scrollable="true"
-						scrollHeight="600" raggableColumns="false"
-						resizableColumns="false">
+						rowKey="#{anunPlat.id}" scrollable="true" scrollHeight="600"
+						raggableColumns="false" resizableColumns="false">
 
-					
+
 
 						<p:ajax event="rowEdit"
 							listener="#{anuncioplataformaBean.onRowEdit}" />
@@ -135,20 +151,17 @@
 
 						<p:column headerText="Anúncio Expira em:"
 							sortBy="#{anunPlat.dataExpiracao}"
-							filterBy="#{anunPlat.dataExpiracao}"
-							filterMatchMode="contains" style="width:100px">
+							filterBy="#{anunPlat.dataExpiracao}" filterMatchMode="contains"
+							style="width:100px">
 
-							<h:outputText
-								value="#{anunPlat.dataExpiracao.toLocalDate()}" />
+							<h:outputText value="#{anunPlat.dataExpiracao.toLocalDate()}" />
 
 						</p:column>
 
 						<p:column headerText="Dias até expirar:"
 							sortBy="#{anunPlat.diasRestantes}"
-							filterBy="#{anunPlat.diasRestantes}"
-							style="width:70px">
-							<h:outputText
-								value="#{anunPlat.diasRestantes}" />
+							filterBy="#{anunPlat.diasRestantes}" style="width:70px">
+							<h:outputText value="#{anunPlat.diasRestantes}" />
 						</p:column>
 
 

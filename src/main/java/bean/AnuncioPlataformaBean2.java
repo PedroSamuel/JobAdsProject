@@ -139,7 +139,36 @@ public class AnuncioPlataformaBean2 implements Serializable {
 		externalContext.redirect(selected.getLink());
 	}
 
+	public int daysToExpire(AnuncioPlataforma anuncioPlataforma) {
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			Duration duration = Duration.between(anuncioPlataforma.getDatacriacao(), LocalDateTime.now());
+			int days = anuncioPlataforma.getPlataforma().getPeriodoRenovacao() - (int) duration.toDays();
 
+			return days;
+		}
+		return 0;
+
+	}
+
+	public LocalDateTime expirationDate(AnuncioPlataforma anuncioPlataforma) {
+
+		if (!(anuncioPlataforma.getDatacriacao() == null)) {
+			LocalDateTime date = anuncioPlataforma.getDatacriacao()
+					.plusDays(anuncioPlataforma.getPlataforma().getPeriodoRenovacao());
+
+			return date;
+		}
+		return null;
+	}
+	
+	public Collection<AnuncioPlataforma> verifyDates(Collection<AnuncioPlataforma> list){
+		for (AnuncioPlataforma ap : list) {
+			ap.setDiasRestantes(daysToExpire(ap));
+			ap.setDataExpiracao(expirationDate(ap));
+			anuncioControlPlataforma.updateAnuncioPlataforma(ap);
+		}
+		return list;
+	}
 
 	public Collection<AnuncioPlataforma> getAPList() {
 		return APList;
@@ -152,7 +181,8 @@ public class AnuncioPlataformaBean2 implements Serializable {
 
 	@PostConstruct
 	public void load() {
-		APList = anuncioControlPlataforma.AnunciosPlataforma();
+		APList = anuncioControlPlataforma.verifyDates(anuncioControlPlataforma.AnunciosPlataforma());
+		
 
 	}
 
