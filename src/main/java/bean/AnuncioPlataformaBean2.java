@@ -64,7 +64,7 @@ public class AnuncioPlataformaBean2 implements Serializable {
 	}
 
 
-
+	
 
 
 	public void removeAnunPlat(AnuncioPlataforma anuncioplataforma) {

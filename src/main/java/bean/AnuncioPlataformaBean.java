@@ -193,4 +193,12 @@ public class AnuncioPlataformaBean implements Serializable {
 	}
 
 
+	
+	public String verificarLink(AnuncioPlataforma ap) {
+		if (ap.getLink() == "") {
+			return "Sem Link";
+		} else {
+			return "Link";
+		}
+	}
 }

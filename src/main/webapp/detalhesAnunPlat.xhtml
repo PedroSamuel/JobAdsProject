@@ -104,7 +104,7 @@
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 						filteredValue="#{anuncioPlataformaBean.filteredAnuncioPlataforma}"
 						rowKey="#{anunPlat.id}" scrollable="true" scrollHeight="600"
-						raggableColumns="false" resizableColumns="false">
+						raggableColumns="false" resizableColumns="false" filterDelay="500">
 
 
 
@@ -141,14 +141,9 @@
 							sortBy="#{anunPlat.datacriacao}"
 							filterBy="#{anunPlat.datacriacao}" filterMatchMode="contains"
 							style="width:100px">
-							<p:cellEditor>
-								<f:facet name="output">
+
 									<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{anunPlat.datacriacao}" label="Função" />
-								</f:facet>
-							</p:cellEditor>
+							
 						</p:column>
 
 						<p:column headerText="Anúncio Expira em:"
@@ -171,7 +166,7 @@
 							filterBy="#{anunPlat.link}" style="width:100px">
 							<p:cellEditor>
 								<f:facet name="output">
-								<a href="#{anunPlat.link}" >Link</a>
+								<a href="#{anunPlat.link}" target="_blank">#{anuncioPlataformaBean.verificarLink(anunPlat)}</a>
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{anunPlat.link}" style="width:100px"
@@ -182,11 +177,7 @@
 
 
 
-
-
-
-
-						<p:column headerText="Editar" style="width:70px">
+						<p:column headerText="Editar Link" style="width:70px">
 							<p:rowEditor />
 						</p:column>
 
