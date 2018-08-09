@@ -2,6 +2,8 @@ package bean;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -9,6 +11,7 @@ import javax.inject.Named;
 
 import control.ControlAnuncio;
 import control.ControlRequerimento;
+import mail.SSLEmail;
 import model.Anuncio;
 import model.Requerimento;
 
@@ -33,6 +36,42 @@ public class CriarAnuncio implements Serializable {
 	private Anuncio anuncio = new Anuncio();
 	
 	private String idRequerimento;
+	
+	private String mailReq;
+	
+	public String getMailReq() {
+		return mailReq;
+	}
+
+	public void setMailReq(String mailReq) {
+		this.mailReq = mailReq;
+	}
+	
+	private String body;
+	
+	
+	public String getBody() {
+		return body;
+	}
+
+	
+	public void setBody(String body) {
+		this.body = body;
+	}
+	
+	
+	private LocalDate date = LocalDate.now();
+	
+	
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
 	public Anuncio getAnuncio() {
 		return anuncio;
@@ -50,6 +89,9 @@ public class CriarAnuncio implements Serializable {
 			} else {
 				System.out.println("Não está ok!");
 			}
+		
+		body = "O seu pedido foi processado pelos Recursos Humanos com a referência: " +anuncio.getREF()+"\n\n Requisitos do Candidato:\n "+ anuncio.getRequisitos()+ "\n" + "Data: " +  getDate();
+		SSLEmail.SSlAdsCreate(mailReq, anuncio.getFuncao(), body);
 		
 		return "DashboardRH?faces-redirect=true";
 	}
@@ -77,9 +119,12 @@ public class CriarAnuncio implements Serializable {
 			System.out.println("correu " + idRequerimento);
 			anuncio.setIdRequerimento(idRequerimento);
 			req = controlReq.getRequerimento(Long.valueOf(idRequerimento));
+			mailReq = req.getEmail();
+			System.out.println(mailReq);
 			anuncio.setManager(req.getRequerente());
 			anuncio.setFuncao(req.getFuncao());
 			anuncio.setRequisitos(req.getRequisitos());
+			
 			
 		} else {
 			System.out.println("Sem parametro");
