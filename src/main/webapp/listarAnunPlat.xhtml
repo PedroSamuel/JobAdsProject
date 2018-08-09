@@ -51,7 +51,7 @@
 
 						</p:column>
 
-						<p:column id="dias" headerText="Dias até expirar:"
+						<p:column id="dias" headerText="Dias até Expirar:"
 							style="width:100px" sortBy="#{anunPlat.diasRestantes}"
 							filterBy="#{anunPlat.diasRestantes}">
 							<h:outputText value="#{anunPlat.diasRestantes}" />
@@ -103,8 +103,7 @@
 							filterBy="#{anunPlat.link}" style="width:200px">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:commandLink value="#{anunPlat.link}"
-										action="#{anuncioPlataforma.redirect()}" />
+										<a href="#{anunPlat.link}" >Link</a>
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{anunPlat.link}" style="width:100%"

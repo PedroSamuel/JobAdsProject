@@ -171,8 +171,7 @@
 							filterBy="#{anunPlat.link}" style="width:100px">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:commandLink value="#{anunPlat.link}"
-										action="#{anuncioPlataforma.redirect()}" />
+								<a href="#{anunPlat.link}" >Link</a>
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{anunPlat.link}" style="width:100px"

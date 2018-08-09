@@ -25,6 +25,7 @@ public class ControlAnuncio {
 	private ControlAnuncioPlataforma APControl;
 	
 	public void criarAnuncio(Anuncio anuncio) {
+		anuncio.temTarefa();
 		dbA.createEntity(anuncio);
 	}
 	
