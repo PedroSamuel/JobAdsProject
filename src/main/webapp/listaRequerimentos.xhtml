@@ -34,7 +34,7 @@
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
 						filteredValue="#{requerimentoBean.filteredRequerientos}"
 						scrollable="true" scrollHeight="600" raggableColumns="false"
-					    resizableColumns="false">
+					    resizableColumns="false" filterDelay="500">
 
 
 						<p:ajax event="rowEdit" listener="#{requerimentoBean.onRowEdit}" />
@@ -53,7 +53,7 @@
 
 						</p:column>
 
-						<p:column headerText="Funcao" sortBy="#{req.funcao}"
+						<p:column headerText="Função" sortBy="#{req.funcao}"
 							filterBy="#{req.funcao}" style="width: 200px;">
 							<h:outputText value="#{req.funcao}" />
 						</p:column>

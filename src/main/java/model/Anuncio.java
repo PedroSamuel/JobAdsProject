@@ -44,6 +44,7 @@ public class Anuncio extends Entidade {
 	private LocalDateTime dataCriacao;
     private LocalDateTime dataModificacao;
     private String tarefas;
+    private String descricaoTarefas;
     
     
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "anuncio") //,cascade = { CascadeType.PERSIST, CascadeType.MERGE,
@@ -166,7 +167,7 @@ public class Anuncio extends Entidade {
 
 	
 	public void temTarefa() {
-		tarefas = "!!!!";
+		tarefas = "Tem Tarefas";
 	}
 	
 	public void feito() {
@@ -176,6 +177,14 @@ public class Anuncio extends Entidade {
 	public void removerPlataforma(AnuncioPlataforma anuncioplataforma) {
 		plataformas.remove(anuncioplataforma);
 		
+	}
+
+	public String getDescricaoTarefas() {
+		return descricaoTarefas;
+	}
+
+	public void setDescricaoTarefas(String descricaoTarefas) {
+		this.descricaoTarefas = descricaoTarefas;
 	}
 	
 	

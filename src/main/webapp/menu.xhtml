@@ -33,6 +33,7 @@
 			 
 			<div class="col-md-10 ">
   <br />
+  		<h5 id="titulo"><b><i> Gestão de Anúncios v1.0</i> </b></h5>
         <p:menubar>
    
    
@@ -45,19 +46,22 @@
          <p:menuitem value="Plataformas" action="listaPlataformas?faces-redirect=true"  />
          
           <p:menuitem value="Registos em Plataformas" action="listarAnunPlat?faces-redirect=true"  />
+          
+          
+            <p:menuitem value="Criar Utilizador" action="criarUser?faces-redirect=true"  />
         
       
         
     
       
  
-        <f:facet name="options">
+ 
          
-            <p:button id="logout" class="mybutton" type="button" value="Logout" icon="ui-icon-extlink" outcome="index.xhtml?faces-redirect=true" />
+            <p:menuitem id="logout" class="mybutton" type="button" value="Logout" action="#{logout.submit}" />
 
 	
             
-        </f:facet>
+      
     </p:menubar>
     
     </div>

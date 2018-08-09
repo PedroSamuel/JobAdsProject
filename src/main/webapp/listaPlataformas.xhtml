@@ -34,7 +34,7 @@
 						widgetVar="plataformaTable" 
 						rowKey="#{plataforma.id}" 
 						emptyMessage="Não foram encontrados resultados com os seguintes criterios"
-						filteredValue="#{plataformaBean.filteredPlataformas}">
+						filteredValue="#{plataformaBean.filteredPlataformas}" filterDelay="500">
 
 
 						<p:ajax event="rowEdit" listener="#{plataformaBean.onRowEdit}" />

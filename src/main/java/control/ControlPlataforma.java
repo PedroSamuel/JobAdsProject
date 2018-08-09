@@ -16,8 +16,13 @@ public class ControlPlataforma {
 	@Inject
 	RepositorioPlataformas dbP ;
 	
+	@Inject
+	ControlAnuncio anuncioControl;
+	
 	public void criarPlataforma(Plataforma plataforma) {
 		dbP.createEntity(plataforma);
+		System.out.println("Verificar Tarefa Aplicar");
+		anuncioControl.verificarTarefaAplicar();
 	}
 	
 	public List<Plataforma> Plataformas(){
@@ -35,6 +40,8 @@ public class ControlPlataforma {
 	
 	public void removePlataforma(Plataforma plataforma) {
 		dbP.removeEntity(plataforma);
+		System.out.println("Verificar Tarefa Aplicar");
+		anuncioControl.verificarTarefaAplicar();
 		
 	}
 

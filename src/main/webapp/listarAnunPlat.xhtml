@@ -37,21 +37,19 @@
 						filteredValue="#{anuncioplataformaBean2.filteredAnuncioPlataforma}"
 						sortBy="#{anunPlat.diasRestantes}" sortOrder="ascending"
 						rowKey="#{anunPlat.id}" scrollable="true" scrollHeight="600"
-						raggableColumns="false" resizableColumns="false">
+						raggableColumns="false" resizableColumns="false" filterDelay="500">
 
 
 
-						<p:ajax event="rowEdit"
-							listener="#{anuncioplataformaBean2.onRowEdit}" />
 
 						<p:column headerText="Estado" sortBy="#{anunPlat.estado}"
-							style="width:100px" filterBy="#{anunPlat.estado}">
+							style="width:100px; color:#{anunPlat.estado == 'Offline' ? 'red;' : 'green;' }" filterBy="#{anunPlat.estado}">
 
 							<h:outputText value="#{anunPlat.estado}" />
 
 						</p:column>
 
-						<p:column id="dias" headerText="Dias até expirar:"
+						<p:column id="dias" headerText="Dias até Expirar:"
 							style="width:100px" sortBy="#{anunPlat.diasRestantes}"
 							filterBy="#{anunPlat.diasRestantes}">
 							<h:outputText value="#{anunPlat.diasRestantes}" />
@@ -99,19 +97,6 @@
 						</p:column>
 
 
-						<p:column headerText="Link" sortBy="#{anunPlat.link}"
-							filterBy="#{anunPlat.link}" style="width:200px">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:commandLink value="#{anunPlat.link}"
-										action="#{anuncioPlataforma.redirect()}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{anunPlat.link}" style="width:100%"
-										label="Função" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
 
 						<p:column headerText="Detalhes" style="width:70px;">
 							<p:button outcome="detalhesAnunPlat?faces-redirect=true"
@@ -119,11 +104,6 @@
 								<f:param name="idAnuncio" value="#{anunPlat.anuncio.id}"></f:param>
 							</p:button>
 						</p:column>
-
-						<p:column headerText="Editar" style="width:70px">
-							<p:rowEditor />
-						</p:column>
-
 
 
 

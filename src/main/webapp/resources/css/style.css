@@ -1,113 +1,125 @@
 @CHARSET "UTF-8";
 
 body, html {
-background-image: url(#{ resource [ 'images:AquaBlueBG.jpg' ]});
-background-repeat:repeat-y;
-
-
-/* Center and scale the image nicely */
-background-position:center;
-background-size:cover;
-/* Full height */
-height:100%;
-
+	background-image: url(#{ resource [ 'images:AquaBlueBG.jpg' ]
 }
 
+);
+background-repeat
+:repeat-y
+;
 
-body{
+/* Center and scale the image nicely */
+
+
+background-position
+:center
+;
+
+
+background-size
+:cover
+;
+/* Full height */
+
+
+height
+:
+100%;
+
+
+
+}
+body {
 	padding: 2em;
 	color: #3a1e8f;
 	font-family: sans-serif;
-	
 }
 
-.align-center{
+.align-center {
 	left: 30%;
 	position: relative;
 }
 
-p{
+p {
 	font-size: 15px;
 }
 
-h3 b{
+h3 b {
 	font-size: 25px;
 	color: #e95d0b;
 }
 
-.inline-block{
+.inline-block {
 	display: inline-block;
 }
 
-#menu{
+#menu {
 	position: relative;
-	display: block; 	
+	display: block;
 }
 
-.selectOneMenu{
+.selectOneMenu {
 	font-size: 25px;
 	padding: 5px;
 	background: #c9f5ff;
-	
 }
 
-.green{
-	color:green;
+.green {
+	color: green;
 }
 
-.red{
+.red {
 	color: red;
 }
 
-.blue{
+.blue {
 	color: blue;
 }
 
-
-table{
+table {
 	background: #c9f5ff;
 	color: black;
 	padding: 1em;
 	border-color: black;
-	border:solid;
-	font-size:15px;
+	border: solid;
+	font-size: 15px;
+}
+
+#titulo {
+	color: #e41d14;
+	text-align: right;
 }
 
 
-
-
-th{
+th {
 	font-weight: bold;
-	padding:0.5em;
-	background :#60bfd8;
+	padding: 0.5em;
+	background: #60bfd8;
 }
 
-tr:hover{
+tr:hover {
 	background: #c9f5ff;
 }
 
-
-
-.ui-menu{
+.ui-menu {
 	background-color: #e7480e;
 	vertical-align: middle;
 	border-color: black;
 	border-style: solid;
 	border-radius: 25px;
-
 }
 
-.ui-menuitem-text, .ui-button-text{
+.ui-menuitem-text, .ui-button-text {
 	color: white;
 	font-size: 15px;
 	font-weight: bold;
 	padding: 0.5em;
 	background: #9a030380;
 	border-radius: 10px;
-	
 }
 
-.mybutton .ui-button-text{
+.mybutton .ui-button-text {
 	background: #e42813;
 }
 
@@ -115,38 +127,36 @@ span.ui-button-text.ui-c:active {
 	background: green;
 }
 
-.ui-menuitem-text:hover, button:hover{
+.ui-menuitem-text:hover, button:hover {
 	background: #60bfd8;
 	zoom: 1.1;
 }
 
-.menuitem{
+.menuitem {
 	color: black;
 	padding: 1em;
 	border-color: black;
-	border:solid;
+	border: solid;
 }
 
 .super {
 	position: absolute;
 }
 
-
 .a150px {
 	width: 150px;
 }
 
-.inlineblock{
+.inlineblock {
 	display: inline-block;
-	
 }
 
-.inline{
+.inline {
 	display: inline;
 	padding-left: 30px;
 }
 
-.container-fluid{
+.container-fluid {
 	top: 1em;
 	position: relative;
 }
@@ -210,11 +220,10 @@ div.filler {
 }
 
 .datatable {
-	margin:1em;
-	
-	}
-	
-.displayinfo{
+	margin: 1em;
+}
+
+.displayinfo {
 	color: #000000;
 	padding: 1em;
 	font-size: 15px;
@@ -224,9 +233,6 @@ div.filler {
 	border-radius: 25px;
 }
 
-
-.inputText{
+.inputText {
 	font-size: 15px;
-	
 }
-
