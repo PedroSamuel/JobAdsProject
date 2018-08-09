@@ -123,12 +123,12 @@
 							filterBy="#{anunPlat.estado}" filterMatchMode="contains"
 							style="width:100px">
 
-							<p:selectOneButton value="#{anunPlat.estado}"
+							<p:selectOneButton class="selectOneButton" value="#{anunPlat.estado}"
 								unselectable="false">
 
-								<f:selectItem class="on selectOnebutton" itemLabel="Offline"
+								<f:selectItem  id="off" class="selectOnebutton" itemLabel="Offline"
 									itemValue="Offline" />
-								<f:selectItem class="off selectOnebutton" itemLabel="Online"
+								<f:selectItem  id="on" class="selectOnebutton" itemLabel="Online"
 									itemValue="Online" />
 								<p:ajax event="change"
 									listener="#{anuncioPlataformaBean.onlineDate(anunPlat)}"

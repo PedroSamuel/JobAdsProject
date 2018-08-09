@@ -1,10 +1,7 @@
 @CHARSET "UTF-8";
 
 body, html {
-	background-image: url(#{ resource [ 'images:AquaBlueBG.jpg' ]
-}
-
-);
+	background-image: url(#{ resource [ 'images:AquaBlueBG.jpg' ]});
 background-repeat
 :repeat-y
 ;
@@ -32,7 +29,7 @@ height
 }
 body {
 	padding: 2em;
-	color: #3a1e8f;
+	color: #070534;
 	font-family: sans-serif;
 }
 
@@ -110,27 +107,63 @@ tr:hover {
 	border-radius: 25px;
 }
 
-.ui-menuitem-text, .ui-button-text {
+.ui-menuitem-text {
 	color: white;
 	font-size: 15px;
 	font-weight: bold;
 	padding: 0.5em;
-	background: #9a030380;
+	background: #e9580b;
 	border-radius: 10px;
 }
 
-.mybutton .ui-button-text {
-	background: #e42813;
+
+.ui-button{
+		background: #f2f2f2;
+		
 }
 
-span.ui-button-text.ui-c:active {
-	background: green;
+
+
+
+.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-corner-left{
+	background: #ff8888;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-corner-right{
+	background: #bbffbb;
+}
+
+.ui-button.ui-widget.ui-state-active.ui-button-text-only.ui-corner-left{
+	background: #ff0000;
+}
+
+.ui-button.ui-widget.ui-state-active.ui-button-text-only.ui-corner-right{
+	background: #4fff4f;
+}
+
+.ui-button.ui-widget.ui-state-active.ui-button-text-only{
+	zoom: 1.1;
+	border: solid;
+}
+
+.ui-button.ui-widget{
+	color: #070534;
+}
+
+
+.mybutton {
+	background-color: #f9aa80;
+}
+
+.ui-button.logout{
+	color: #400080;
 }
 
 .ui-menuitem-text:hover, button:hover {
-	background: #60bfd8;
-	zoom: 1.1;
+	zoom: 1.2;
 }
+
+
 
 .menuitem {
 	color: black;
@@ -224,7 +257,7 @@ div.filler {
 }
 
 .displayinfo {
-	color: #000000;
+	color: #070534;
 	padding: 1em;
 	font-size: 15px;
 	background-color: #fddd71;
@@ -236,3 +269,4 @@ div.filler {
 .inputText {
 	font-size: 15px;
 }
+
