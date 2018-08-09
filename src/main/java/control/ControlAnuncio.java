@@ -26,7 +26,10 @@ public class ControlAnuncio {
 	
 	public void criarAnuncio(Anuncio anuncio) {
 		anuncio.temTarefa();
+<<<<<<< HEAD
 		anuncio.setDescriçaoTarefas("Anuncio por Aplicar nas Plataformas");
+=======
+>>>>>>> Andre-from-Master-8-Agosto-(home)
 		dbA.createEntity(anuncio);
 		
 	}
