@@ -109,7 +109,7 @@
 						</p:column>
 
 
-						<p:column headerText="Plataformas (Online/Offline)" sortBy="#{anuncio.countPlataformasOnline()}" filterBy="#{anuncio.countPlataformasOnline()}" filterMatchMode="contains" style="width:80px">
+						<p:column headerText="Plataformas (Online/Total)" sortBy="#{anuncio.countPlataformasOnline()}" filterBy="#{anuncio.countPlataformasOnline()}" filterMatchMode="contains" style="width:80px">
 							<h:outputText
 								value="#{ anuncio.countPlataformasOnline()}  / #{anuncio.countPlataformas()}  " />
 						</p:column>
