@@ -53,7 +53,8 @@ public class PlataformaBean implements Serializable {
 
 	public void removePlataforma(Plataforma plataforma) {
 		plataformaControl.removePlataforma(plataforma);
-		anuncioControl.verificarTarefaAplicar();
+		
+
 		plataformasLoad();
 	}
 
