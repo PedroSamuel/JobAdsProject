@@ -26,7 +26,7 @@ public class ControlAnuncio {
 	
 	public void criarAnuncio(Anuncio anuncio) {
 		anuncio.temTarefa();
-		anuncio.setDescriçaoTarefas("Anuncio por Aplicar nas Plataformas");
+		anuncio.setDescricaoTarefas("Anuncio por Aplicar nas Plataformas");
 		dbA.createEntity(anuncio);
 		
 	}
@@ -85,7 +85,7 @@ public class ControlAnuncio {
 		System.out.println("count Plats Online " + numPlataformasOnline);
 		long numTotalPlataformas = dbP.countPlataformas();
 		System.out.println("count todas Plataformas " + numTotalPlataformas);
-		anuncio.setDescriçaoTarefas("Não tem Tarefas por concluir");
+		anuncio.setDescricaoTarefas("Não tem Tarefas por concluir");
 		switch (anuncio.getEstado()) {
 			
 			case "Aplicar":
@@ -97,7 +97,7 @@ public class ControlAnuncio {
 					break;
 			} else {
 				anuncio.temTarefa();
-				anuncio.setDescriçaoTarefas((numTotalPlataformas - numPlataformasOnline) +  " plataformas por Aplicar");
+				anuncio.setDescricaoTarefas((numTotalPlataformas - numPlataformasOnline) +  " plataformas por Aplicar");
 				break;
 			}
 		case "Manter":
@@ -112,7 +112,7 @@ public class ControlAnuncio {
 				}
 			} else {
 				anuncio.temTarefa();
-				anuncio.setDescriçaoTarefas((numPlataformas-numPlataformasOnline) + " plataformas registadas estão offline");
+				anuncio.setDescricaoTarefas((numPlataformas-numPlataformasOnline) + " plataformas registadas estão offline");
 				System.out.println("plataformas offline no anuncio que tem estado manter: " + anuncio.getREF());
 				break;
 			}
@@ -125,7 +125,7 @@ public class ControlAnuncio {
 				break;
 			} else {
 				System.out.println("anuncio tem plataformas por retirar " + anuncio.getREF());
-				anuncio.setDescriçaoTarefas(numPlataformasOnline + " plataformas por retirar." );
+				anuncio.setDescricaoTarefas(numPlataformasOnline + " plataformas por retirar." );
 				anuncio.temTarefa();
 				break;
 			}
