@@ -11,6 +11,9 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.omnifaces.util.Faces;
+import javax.faces.application.FacesMessage;
+import org.primefaces.PrimeFaces;
+import javax.faces.context.FacesContext;
 
 
 @Named
@@ -23,18 +26,24 @@ public class Login {
 
     private String username;
     private String password;
-
-
+    
+    
     public void submit() throws IOException {
+    	FacesMessage message = null;
+        boolean loggedIn = false;
+    	
         try {
             SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));
             SavedRequest savedRequest = WebUtils.getAndClearSavedRequest(Faces.getRequest());
             Faces.redirect(savedRequest != null ? savedRequest.getRequestUrl() : HOME_URLRH);
         }
         catch (AuthenticationException e) {
-            //defineGrowl("Dados inseridos invalidos. Tente novamente", "", "login");
+        	loggedIn = false;
+        	message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Dados inseridos invalidos.", "Tente novamente");
             e.printStackTrace(); // TODO: logger.
         }
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        PrimeFaces.current().ajax().addCallbackParam("loggedIn", loggedIn);
     }
     
  
