@@ -51,7 +51,6 @@
 					<h3><b>Associar Plataforma</b></h3>
 					<h:selectOneMenu class="selectOneMenu" value="#{newAnunPlat.plataforma}"
 						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Plataformas" itemValue="" />
 						<f:selectItems value="#{newAnunPlat.naoAssociadas}"
 							var="plataforma" itemLabel="#{plataforma.nomePlataforma}"
 							itemValue="#{plataforma}" />

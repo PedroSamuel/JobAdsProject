@@ -23,7 +23,7 @@ public class RepositorioAnuncios extends EntityRepository<Anuncio> {
 	}
 	
 	public List<Anuncio> comTarefa() {
-		return em.createNamedQuery("Anuncio.comTarefa", Anuncio.class).setParameter("tarefas", "!!!!").getResultList();
+		return em.createNamedQuery("Anuncio.comTarefa", Anuncio.class).setParameter("tarefas", "Tem Tarefas").getResultList();
 	}
 
 	public Long countAnuncios() {

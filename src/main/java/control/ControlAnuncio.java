@@ -25,7 +25,10 @@ public class ControlAnuncio {
 	private ControlAnuncioPlataforma APControl;
 	
 	public void criarAnuncio(Anuncio anuncio) {
+		anuncio.temTarefa();
+		anuncio.setDescriçaoTarefas("Anuncio por Aplicar nas Plataformas");
 		dbA.createEntity(anuncio);
+		
 	}
 	
 	public List<Anuncio> Anuncios(){
@@ -82,22 +85,25 @@ public class ControlAnuncio {
 		System.out.println("count Plats Online " + numPlataformasOnline);
 		long numTotalPlataformas = dbP.countPlataformas();
 		System.out.println("count todas Plataformas " + numTotalPlataformas);
+		anuncio.setDescriçaoTarefas("Não tem Tarefas por concluir");
 		switch (anuncio.getEstado()) {
+			
 			case "Aplicar":
 				System.out.println("Estado Aplicar");
 				if (numPlataformasOnline == numTotalPlataformas){
-					anuncio.setEstado("Manter");
+					//anuncio.setEstado("Manter");
 					anuncio.feito();
 					System.out.println("Totalmente Aplicado o Anuncio, mudado para manter:" + anuncio.getREF());
 					break;
 			} else {
 				anuncio.temTarefa();
+				anuncio.setDescriçaoTarefas((numTotalPlataformas - numPlataformasOnline) +  " plataformas por Aplicar");
 				break;
 			}
 		case "Manter":
 			System.out.println("Estado Manter");
 			if (numPlataformasOnline == numPlataformas) {
-				if (anuncio.getTarefas().equals("!!!!")) {
+				if (anuncio.getTarefas().equals("Tem Tarefas")) {
 					anuncio.feito();
 					System.out.println(
 							"Todas as plataformas registadas estao online para o anuncio que tem estado manter: "
@@ -106,6 +112,7 @@ public class ControlAnuncio {
 				}
 			} else {
 				anuncio.temTarefa();
+				anuncio.setDescriçaoTarefas((numPlataformas-numPlataformasOnline) + " plataformas registadas estão offline");
 				System.out.println("plataformas offline no anuncio que tem estado manter: " + anuncio.getREF());
 				break;
 			}
@@ -118,6 +125,7 @@ public class ControlAnuncio {
 				break;
 			} else {
 				System.out.println("anuncio tem plataformas por retirar " + anuncio.getREF());
+				anuncio.setDescriçaoTarefas(numPlataformasOnline + " plataformas por retirar." );
 				anuncio.temTarefa();
 				break;
 			}

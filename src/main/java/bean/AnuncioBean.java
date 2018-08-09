@@ -72,45 +72,7 @@ public class AnuncioBean implements Serializable {
 		return anuncio.countPlataformasOnline();
 	}
 
-	
-//	public void tarefas(Collection<Anuncio> list) {
-//		for (Anuncio anuncio : list) {
-//			switch(anuncio.getEstado()) {
-//				case "Aplicar":
-//					if (numberAnunPlats(anuncio) == plats.Plataformas().size()) {
-//						anuncio.setEstado("Manter");
-//						anuncio.setTarefas("Feito");
-//						break;
-//					} else {
-//						anuncio.setTarefas("!!!!");
-//						
-//						break;
-//					}
-//				case "Manter":
-//					if (numberOnlinePlats(anuncio) == numberAnunPlats(anuncio)) {
-//						anuncio.setTarefas("Feito");
-//						break;
-//						
-//					} else {
-//						anuncio.setTarefas("!!!!");
-//						break;
-//					}
-//				case "Retirar":
-//					if (numberOnlinePlats(anuncio) == 0) {
-//						anuncio.setTarefas("Feito");
-//						break;
-//					} else {
-//						anuncio.setTarefas("!!!!");
-//						break;
-//					}
-//				default:
-//					anuncio.setTarefas("ERRO");
-//					break;
-//				}
-//				anuncioControl.updateAnuncio(anuncio);		
-//		}
-//		
-//	}
+
 	
 	
 	public String listAnunPlat(Anuncio anuncio) {
