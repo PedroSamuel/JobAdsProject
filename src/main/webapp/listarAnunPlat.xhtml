@@ -52,7 +52,7 @@
 						<p:column id="dias" headerText="Dias até Expirar:"
 							style="width:100px" sortBy="#{anunPlat.diasRestantes}"
 							filterBy="#{anunPlat.diasRestantes}">
-							<h:outputText value="#{anunPlat.diasRestantes}" />
+							<h:outputText value="#{anunPlat.diasRestantes}" filterMatchMode="lte"/>
 						</p:column>
 
 
@@ -76,7 +76,7 @@
 
 						<p:column headerText="Anúncio Criado"
 							sortBy="#{anunPlat.datacriacao}" style="width:100px"
-							filterBy="#{anunPlat.datacriacao}" filterMatchMode="contains">
+							filterBy="#{anunPlat.datacriacao}">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{anunPlat.datacriacao.toLocalDate()}" />
@@ -107,7 +107,7 @@
 
 
 
-						<p:column headerText="Eliminar" style="width:70px">
+						<p:column headerText="Arquivar" style="width:70px">
 							<p:commandButton icon="ui-icon-trash"
 								action="#{anuncioplataformaBean2.removeAnunPlat(anunPlat)}"
 								update="dtAnunPlat">
