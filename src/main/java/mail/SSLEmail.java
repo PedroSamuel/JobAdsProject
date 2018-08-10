@@ -42,7 +42,7 @@ public class SSLEmail {
 		Session session = Session.getInstance(props, auth);
 		System.out.println("Session created");
 		new Thread(() -> {
-	        EmailUtil.sendEmail(session, toEmail,"Pedido para a função: "+ subject, "O seu pedido foi efectuado com sucesso!\n\n Requesitos do Candidato: \n"+ Body);
+	        EmailUtil.sendEmail(session, toEmail,"Pedido para a função: "+ subject, "O seu pedido foi efectuado com sucesso!\n\n Requisitos do Candidato: \n"+ Body);
 		}).start();
 	        //EmailUtil.sendAttachmentEmail(session, toEmail,"SSLEmail Testing Subject with Attachment", "SSLEmail Testing Body with Attachment");
 

@@ -56,6 +56,7 @@ public class ControlAnuncioPlataforma {
 		anuncioPlataforma.setDataExpiracao(expirationDate(anuncioPlataforma));
 		reverContagem(anuncioPlataforma);
 		dbAP.updateEntity(anuncioPlataforma);
+		anuncioControl.updateAnuncio(dbA.getEntity(Anuncio.class, (long)anuncioPlataforma.getAnuncio().getId()));
 	 
 		System.out.println("update anuncioPlataforma ok");
 		

@@ -352,11 +352,10 @@
 
 
 
-				<p:column headerText="Plataformas"
+				<p:column headerText="Plataformas (Online/Total)"
 					sortBy="#{anuncio.countPlataformasOnline()} Plataformas (Online/Total)"
-					style="width:30px;"
-					filterBy="#{anuncio.countPlataformasOnline()}"
-					filterMatchMode="contains">
+					style="width:30px;">
+					
 					<h:outputText
 						value="#{anuncio.countPlataformasOnline()} / #{anuncio.countPlataformas()}" />
 				</p:column>
