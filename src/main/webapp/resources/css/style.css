@@ -126,11 +126,11 @@ tr:hover {
 
 
 .ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-corner-left{
-	background: #ff8888;
+	background: #cdcdcd;
 }
 
 .ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-corner-right{
-	background: #bbffbb;
+	background: #cdcdcd;
 }
 
 .ui-button.ui-widget.ui-state-active.ui-button-text-only.ui-corner-left{
