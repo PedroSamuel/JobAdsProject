@@ -109,6 +109,8 @@ public class ControlAnuncio {
 							"Todas as plataformas registadas estao online para o anuncio que tem estado manter: "
 									+ anuncio.getREF());
 					break;
+				} else {
+					break;
 				}
 			} else {
 				anuncio.temTarefa();
